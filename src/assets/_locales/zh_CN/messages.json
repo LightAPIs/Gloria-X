@@ -1,0 +1,131 @@
+{
+  "extensionDescription": {
+    "message": "Chrome 上的可编程网站通知聚合器"
+  },
+  "cancelText": {
+    "message": "取消"
+  },
+  "popupTaskLabel": {
+    "message": "任务列表"
+  },
+  "popupTaskAdd": {
+    "message": "添加任务"
+  },
+  "popupTaskShare": {
+    "message": "分享任务"
+  },
+  "popupTaskBook": {
+    "message": "中文指南"
+  },
+  "popupTaskEdit": {
+    "message": "编辑"
+  },
+  "popupTaskDelete": {
+    "message": "删除"
+  },
+  "popupTaskDisconnect": {
+    "message": "停止检查此任务的远程更新"
+  },
+  "popupTaskDeleteConfirm": {
+    "message": "确认要删除此任务吗？"
+  },
+  "popupTaskDeleteOk": {
+    "message": "确认删除"
+  },
+  "popupTaskDisconnectConfirm": {
+    "message": "确认要停止检查此任务的远程更新吗？"
+  },
+  "popupTaskDisconnectOk": {
+    "message": "确认停止"
+  },
+  "popupTaskTriggerDate": {
+    "message": "上次执行时间： "
+  },
+  "popupTaskPushDate": {
+    "message": "上次推送时间： "
+  },
+  "popupTaskTriggerCount": {
+    "message": "总执行次数： "
+  },
+  "popupTaskPushCount": {
+    "message": "总推送次数： "
+  },
+  "popupTaskTriggerInterval": {
+    "message": "时间间隔： "
+  },
+  "popupTaskOrigin": {
+    "message": "来源： "
+  },
+  "popupTaskNoOrigin": {
+    "message": "本地"
+  },
+  "popupTaskNeedInteractionTag": {
+    "message": "手动关闭"
+  },
+  "popupTaskNeedInteractionText": {
+    "message": "弹出的通知需要手动关闭"
+  },
+  "popupTaskStrictModeTag": {
+    "message": "严格模式"
+  },
+  "popupTaskStrictModeText": {
+    "message": "严格按照时间间隔执行任务"
+  },
+  "popupTaskDialogTitle": {
+    "message": "编辑任务"
+  },
+  "popupTaskDialogCreateTitle": {
+    "message": "创建任务"
+  },
+  "popupTaskFormNameLabel": {
+    "message": "任务名称"
+  },
+  "popupTaskFormNamePlaceholder": {
+    "message": "为您的任务取一个好听的名字吧 ^-^"
+  },
+  "popupTaskFormCodeLabel": {
+    "message": "任务代码"
+  },
+  "popupTaskFormCodePlaceholder": {
+    "message": "请输入任务代码"
+  },
+  "popupTaskFormTriggerIntervalLabel": {
+    "message": "执行间隔(分钟)"
+  },
+  "popupTaskFormOptionalLabel": {
+    "message": "可选选项"
+  },
+  "popupTaskFormSubmit": {
+    "message": "提交"
+  },
+  "popupTaskFormCreate": {
+    "message": "立即创建"
+  },
+  "popupTaskRulesName": {
+    "message": "请输入任务名称"
+  },
+  "popupTaskRulesCode": {
+    "message": "任务代码是必需的"
+  },
+  "popupTaskRulesTriggerInterval": {
+    "message": "请输入执行间隔时间"
+  },
+  "popupTaskRulesInteger": {
+    "message": "执行间隔时间必须为整数"
+  },
+  "popupTaskErrorEdit": {
+    "message": "内部错误，没有找到相应的 id"
+  },
+  "popupNotificationLabel": {
+    "message": "通知记录"
+  },
+  "popupNotificationAll": {
+    "message": "所有通知"
+  },
+  "popupNotificationFrom": {
+    "message": "来自： "
+  },
+  "calcUndefined": {
+    "message": "无"
+  }
+}
