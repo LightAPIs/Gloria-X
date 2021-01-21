@@ -197,6 +197,9 @@
   "settingsNotificationSound": {
     "message": "允许通知发出声音"
   },
+  "settingsNotificationCustomSound": {
+    "message": "使用自定义通知声音 \n(如果您的系统是 Windows7 或系统是 Windows10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
+  },
   "settingsNotificationShowUrl": {
     "message": "在通知记录中显示通知的网址 (如果存在)"
   },

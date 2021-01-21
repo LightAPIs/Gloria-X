@@ -197,8 +197,16 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           }
           break;
         case 'silent':
+          //* Windows10
           if (_.isBoolean(value) || _.isUndefined(value)) {
             options.silent = value;
+            status = true;
+          }
+          break;
+        case 'customSound':
+          //? 用于处理 Windows7 系统以及 Windows10 系统下将 chrome://flags/#enable-native-notifications 设置为 Disabled 的情况
+          if (_.isBoolean(value) || _.isUndefined(value)) {
+            options.customSound = value;
             status = true;
           }
           break;
@@ -460,6 +468,10 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
             return reject(chrome.runtime.lastError);
           }
 
+          if (!this.options.silent && this.options.customSound) {
+            this.audio();
+          }
+
           chrome.notifications.onClicked.addListener(this.clickHandler);
           chrome.notifications.onClosed.addListener(this.closeHandler);
           chrome.notifications.onButtonClicked.addListener(this.buttonClickHandler);
@@ -519,6 +531,24 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
         resolve(wasCleared);
       });
+    });
+  }
+
+  static audioDebounce = _.debounce(
+    function(func) {
+      func();
+    },
+    2000,
+    {
+      leading: true,
+      trailing: false,
+    }
+  );
+
+  audio() {
+    Notification.audioDebounce(() => {
+      const sound = new Audio('sound/bell.ogg');
+      sound.play();
     });
   }
 }

@@ -9,6 +9,7 @@ function defaultConfigs(): store.GloriaConfig {
     taskTriggerInterval: 5,
     notificationDetectIcon: false,
     notificationSound: false,
+    notificationCustomSound: false,
     notificationShowUrl: false,
     notificationLazyLoading: false,
     notificationShowSearchInput: false,

@@ -6,6 +6,7 @@ declare namespace enhanced {
     detectIcon?: boolean | string;
     defaultIconUrl?: string;
     silent?: boolean;
+    customSound?: boolean;
     onClick?: (() => void) | null;
     onClose?: (() => void) | null;
     onButton1Click?: (() => void) | null;

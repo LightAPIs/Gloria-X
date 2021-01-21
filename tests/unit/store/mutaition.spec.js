@@ -40,6 +40,7 @@ function createNewConfigs() {
     taskTriggerInterval: 1440,
     notificationDetectIcon: true,
     notificationSound: true,
+    notificationCustomSound: true,
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
@@ -106,6 +107,9 @@ describe('Test mutations:', function() {
     });
     it('notificationSound is set.', function() {
       expect(state.configs.notificationSound).to.be.true;
+    });
+    it('notificationCustomSound is set.', function() {
+      expect(state.configs.notificationCustomSound).to.be.true;
     });
     it('notificationShowUrl is set.', function() {
       expect(state.configs.notificationShowUrl).to.be.true;

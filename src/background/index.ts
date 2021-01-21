@@ -95,7 +95,7 @@ function createNotification(options: enhanced.NotificationOptions) {
 function createNotificationOptions(task: store.GloriaTask, data: store.MessageData, configs: store.GloriaConfig) {
   const { name, needInteraction } = task;
   const { notificationId, title, message, iconUrl, url, imageUrl } = data;
-  const { notificationSound, notificationDetectIcon } = configs;
+  const { notificationSound, notificationCustomSound, notificationDetectIcon } = configs;
   const options: enhanced.NotificationOptions = {
     //* defaultIconUrl 属性由管理器内添加
     title: title || '',
@@ -108,9 +108,10 @@ function createNotificationOptions(task: store.GloriaTask, data: store.MessageDa
     buttons: undefined,
     eventTime: Date.now(),
     priority: 0,
-    silent: !notificationSound,
     isClickable: !!url,
     url: url || undefined,
+    silent: !notificationSound,
+    customSound: notificationCustomSound,
     detectIcon: notificationDetectIcon,
   };
 

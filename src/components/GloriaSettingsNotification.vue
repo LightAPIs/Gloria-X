@@ -19,6 +19,13 @@
     </div>
     <div class="margin-top">
       <el-switch
+        :value="configs.notificationCustomSound"
+        :active-text="i18n('settingsNotificationCustomSound')"
+        @change="onChange('notificationCustomSound', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
         :value="configs.notificationShowUrl"
         :active-text="i18n('settingsNotificationShowUrl')"
         @change="onChange('notificationShowUrl', $event)"
