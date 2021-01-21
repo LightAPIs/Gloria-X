@@ -1,0 +1,71 @@
+diff --git a/node_modules/scrap-favicon/index.js b/node_modules/scrap-favicon/index.js
+index 7ce47c1..85702f0 100644
+--- a/node_modules/scrap-favicon/index.js
++++ b/node_modules/scrap-favicon/index.js
+@@ -1,10 +1,12 @@
+ const cheerio = require('cheerio');
+ const sizeOf = require('image-size');
+-const {performance} = require('perf_hooks');
++// const {performance} = require('perf_hooks');
+ const Url = require('url');
+ const http = require('http');
+ const https = require('https');
+ 
++const { performance } = window;
++
+ const ERROR_ENUM = {
+     MAX_REDIRECT: 'maxRedirect',
+     UNKNOWN: 'unknown',
+@@ -175,7 +177,6 @@ function checkDefaultImages(imagesInfo) {
+ }
+ 
+ function fetchImagesSize(imagesInfo) {
+-
+     return new Promise((resolve, reject) => {
+         let count = 0;
+         imagesInfo.forEach(info => {
+@@ -184,12 +185,13 @@ function fetchImagesSize(imagesInfo) {
+                     Object.assign(info, response, {success: true});
+                     count++;
+                     if (count === imagesInfo.length) {
++                        
+                         resolve(imagesInfo);
+                     }
+                 }).catch(err => {
+                 Object.assign(info, {success: false, error: err.message});
+-                count++;
+-                if (count === imagesInfo.length) {
++                    count++;
++                    if (count === imagesInfo.length) {
+                     resolve(imagesInfo);
+                 }
+             });
+@@ -237,7 +239,6 @@ function checkImage(imgUrl) {
+ }
+ 
+ function getImageSizeFromChunk(imgUrl) {
+-
+     return new Promise((resolve, reject) => {
+ 
+         const parsedUrl = parseUrl(imgUrl);
+@@ -258,6 +259,20 @@ function getImageSizeFromChunk(imgUrl) {
+                         return;
+                     }
+                     request.abort();
++
++                    //! 提前处理数据
++                    //// ==================================
++                    if (!dimensions) {
++                        reject(imageTypeDetectionError);
++                        return;
++                    }
++                    resolve({
++                        width: dimensions.width,
++                        height: dimensions.height,
++                        type: dimensions.type,
++                        chunkSize: buffer.length
++                    });
++                    //// ==================================
+                 })
+                 .on('error', (err) => {
+                     reject(err);

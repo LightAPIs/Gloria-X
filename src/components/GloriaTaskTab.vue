@@ -1,21 +1,29 @@
 <template>
   <div class="tab-content">
-    <gloria-task-item
-      v-for="task in tasks"
-      :key="task.id"
-      :id="task.id"
-      :name="task.name"
-      :is-enable="task.isEnable"
-      :trigger-interval="task.triggerInterval"
-      :trigger-count="task.triggerCount"
-      :trigger-date="task.triggerDate"
-      :push-count="task.pushCount"
-      :push-date="task.pushDate"
-      :origin="task.origin"
-      :need-interaction="task.needInteraction"
-      :strict-mode="task.strictMode"
-      @task-edit="onTaskEdit"
-    ></gloria-task-item>
+    <el-container class="task-container" direction="vertical">
+      <el-header v-if="configs.taskShowSearchInput" height="32px">
+        <gloria-search-input type="tasks" @filter="onFilter"></gloria-search-input>
+      </el-header>
+      <el-main>
+        <gloria-task-item
+          v-for="task in tasks"
+          :key="task.id"
+          :id="task.id"
+          :name="task.name"
+          :is-enable="task.isEnable"
+          :trigger-interval="task.triggerInterval"
+          :trigger-count="task.triggerCount"
+          :trigger-date="task.triggerDate"
+          :push-count="task.pushCount"
+          :push-date="task.pushDate"
+          :origin="task.origin"
+          :need-interaction="task.needInteraction"
+          :on-time-mode="task.onTimeMode"
+          :filter-text="filterText"
+          @task-edit="onTaskEdit"
+        ></gloria-task-item>
+      </el-main>
+    </el-container>
     <gloria-task-fab @add-task="onAddTask"></gloria-task-fab>
     <gloria-task-edit
       :dialog-visible="dialogVisible"
@@ -24,7 +32,7 @@
       :name="form.name"
       :code="form.code"
       :trigger-interval="form.triggerInterval"
-      :strict-mode="form.strictMode"
+      :on-time-mode="form.onTimeMode"
       :need-interaction="form.needInteraction"
       @close-dialog="dialogVisible = false"
     ></gloria-task-edit>
@@ -37,10 +45,16 @@ import { mapState, mapMutations } from 'vuex';
 import GloriaTaskItem from './GloriaTaskItem.vue';
 import GloriaTaskFab from './GloriaTaskFab.vue';
 import GloriaTaskEdit from './GloriaTaskEdit.vue';
+import GloriaSearchInput from './GloriaSearchInput.vue';
 
 export default Vue.extend({
   name: 'gloria-task-tab',
-  components: { GloriaTaskItem, GloriaTaskFab, GloriaTaskEdit },
+  components: {
+    GloriaTaskItem,
+    GloriaTaskFab,
+    GloriaTaskEdit,
+    GloriaSearchInput,
+  },
   data() {
     return {
       dialogVisible: false,
@@ -50,16 +64,17 @@ export default Vue.extend({
         name: '',
         code: '',
         triggerInterval: 5,
-        strictMode: false,
+        onTimeMode: false,
         needInteraction: false,
       },
+      filterText: '',
     };
   },
   computed: {
-    ...mapState(['tasks', 'notifications', 'configs']),
+    ...mapState(['tasks', 'configs']),
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'updateTaskBasis']),
+    ...mapMutations(['updateIsEnable', 'updateTaskBasic']),
     onAddTask() {
       this.formType = 'add';
       this.dialogVisible = true;
@@ -69,14 +84,14 @@ export default Vue.extend({
       let editStatus = false;
       for (const item of tasks) {
         if (item.id === id) {
-          const { name, code, triggerInterval, strictMode, needInteraction } = item;
+          const { name, code, triggerInterval, onTimeMode, needInteraction } = item;
           this.formType = 'edit';
           Object.assign(this.form, {
             id,
             name,
             code,
             triggerInterval,
-            strictMode,
+            onTimeMode,
             needInteraction,
           });
           this.dialogVisible = true;
@@ -87,6 +102,15 @@ export default Vue.extend({
 
       !editStatus && this.$message.error(this.i18n('popupTaskErrorEdit'));
     },
+    onFilter(text: string) {
+      this.filterText = text;
+    },
   },
 });
 </script>
+
+<style lang="scss">
+.task-container {
+  height: 510px;
+}
+</style>

@@ -35,5 +35,5 @@
     "128": "icons/app/icon-128.png"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": ["storage", "tabs"]
+  "permissions": ["<all_urls>", "storage", "tabs", "alarms", "notifications", "webRequest", "webRequestBlocking"]
 }

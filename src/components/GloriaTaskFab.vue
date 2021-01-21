@@ -27,12 +27,30 @@ export default Vue.extend({
         },
         {
           idx: 1,
-          icon: 'share',
-          title: this.i18n('popupTaskShare'),
-          color: '#999',
+          icon: 'settings',
+          title: this.i18n('optionsSettingsMenu'),
+          color: '#4867a7',
         },
         {
           idx: 2,
+          icon: 'code',
+          title: this.i18n('optionsDebugMenu'),
+          color: '#5c8647',
+        },
+        {
+          idx: 3,
+          icon: 'send',
+          title: this.i18n('optionsReducerMenu'),
+          color: '#965e5e',
+        },
+        {
+          idx: 4,
+          icon: 'share',
+          title: this.i18n('popupTaskShare'),
+          color: '#00bcd4',
+        },
+        {
+          idx: 5,
           icon: 'menu_book',
           title: this.i18n('popupTaskBook'),
           color: '#666',
@@ -45,12 +63,27 @@ export default Vue.extend({
       switch (idx) {
         case 1:
           chrome.tabs.create({
-            url: 'https://gloria.pub/',
+            url: './options.html#/settings',
           });
           break;
         case 2:
           chrome.tabs.create({
-            url: 'https://docs.gloria.pub/',
+            url: './options.html#/debug',
+          });
+          break;
+        case 3:
+          chrome.tabs.create({
+            url: './options.html#/reducer',
+          });
+          break;
+        case 4:
+          chrome.tabs.create({
+            url: 'https://gloria.pub/',
+          });
+          break;
+        case 5:
+          chrome.tabs.create({
+            url: 'https://github.com/LightAPIs/Gloria-X#使用方法',
           });
           break;
         case 0:

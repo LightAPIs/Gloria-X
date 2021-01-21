@@ -1,11 +1,11 @@
 <template>
-  <el-card class="tab-card" shadow="hover">
+  <el-card v-show="itemShow" class="tab-card" shadow="hover">
     <span slot="header">
       <span class="header-text">
         {{ name }}
       </span>
-      <el-tag v-if="strictMode" type="info" size="mini" effect="dark" :title="i18n('popupTaskStrictModeText')" class="tag">
-        {{ i18n('popupTaskStrictModeTag') }}
+      <el-tag v-if="onTimeMode" type="info" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
+        {{ i18n('popupTaskOnTimeModeTag') }}
       </el-tag>
       <el-tag v-if="needInteraction" type="info" size="mini" effect="dark" :title="i18n('popupTaskNeedInteractionText')" class="tag">
         {{ i18n('popupTaskNeedInteractionTag') }}
@@ -96,6 +96,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapMutations } from 'vuex';
+import { toLower } from 'lodash';
+
 export default Vue.extend({
   name: 'gloria-task-item',
   props: {
@@ -139,13 +141,27 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
-    strictMode: {
+    onTimeMode: {
       type: Boolean,
       default: false,
     },
+    filterText: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    itemShow() {
+      const { filterText, name } = this;
+      let show = false;
+      if (!filterText || toLower(name).includes(toLower(filterText))) {
+        show = true;
+      }
+      return show;
+    },
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'deleteTaskItem']),
+    ...mapMutations(['updateIsEnable', 'removeTaskItem']),
     onEdit() {
       const { id } = this;
       this.$emit('task-edit', id);
@@ -159,7 +175,7 @@ export default Vue.extend({
     },
     onDelete() {
       const { id } = this;
-      this.deleteTaskItem(id);
+      this.removeTaskItem(id);
     },
   },
 });

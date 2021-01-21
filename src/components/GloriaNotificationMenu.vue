@@ -7,13 +7,13 @@
     @select="handleSelect"
     class="history-menu"
   >
-    <el-menu-item index="0" class="history-menu-item" :title="i18n('popupNotificationAll')">
+    <el-menu-item index="-1" class="history-menu-item" :title="i18n('popupNotificationAll')">
       {{ i18n('popupNotificationAll') }}
     </el-menu-item>
     <el-menu-item
       v-for="(item, index) in notificationsTitleList"
-      :key="index + 1"
-      :index="(index + 1).toString()"
+      :key="index"
+      :index="index.toString()"
       class="history-menu-item"
       :title="item"
     >
@@ -30,16 +30,15 @@ export default Vue.extend({
   name: 'gloria-notification-menu',
   data() {
     return {
-      activeIndex: '0',
+      activeIndex: '-1',
     };
   },
   computed: {
     ...mapGetters(['notificationsTitleList']),
   },
   methods: {
-    handleSelect(key: string, keyPath: string) {
-      console.log('select');
-      console.log(key, keyPath);
+    handleSelect(key: string) {
+      this.$emit('select-menu', key);
     },
   },
 });

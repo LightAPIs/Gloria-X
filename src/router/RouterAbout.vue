@@ -1,12 +1,13 @@
 <template>
-  <el-input></el-input>
+  <div id="about-router">
+    About
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-
 export default Vue.extend({
-  name: 'gloria-notification-input',
+  name: 'router-about',
   data() {
     return {};
   },

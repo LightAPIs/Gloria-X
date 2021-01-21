@@ -22,8 +22,8 @@
 <script lang="ts">
 import { mapMutations, mapGetters } from 'vuex';
 import Vue from 'vue';
-import GloriaTaskTab from './GloriaTaskTab.vue';
-import GloriaNotificationTab from './GloriaNotificationTab.vue';
+import GloriaTaskTab from '@/components/GloriaTaskTab.vue';
+import GloriaNotificationTab from '@/components/GloriaNotificationTab.vue';
 
 export default Vue.extend({
   name: 'app',
@@ -32,9 +32,13 @@ export default Vue.extend({
     ...mapGetters(['activeTab']),
   },
   methods: {
-    ...mapMutations(['updateConfigsLastActiveTab']),
+    ...mapMutations(['updateConfigs']),
     leaveTab(activeName: string) {
-      activeName !== this.activeTab && this.updateConfigsLastActiveTab(activeName);
+      activeName !== this.activeTab &&
+        this.updateConfigs({
+          name: 'lastActiveTab',
+          value: activeName,
+        });
       // 这里后续还需要处理清空未读通知数，仅在 activeName 为 "notifications" 时
     },
   },
@@ -54,9 +58,6 @@ export default Vue.extend({
   }
   .el-dialog__header {
     padding-bottom: 5px;
-  }
-  .form-trigger-time {
-    margin-left: 25px;
   }
 }
 </style>

@@ -1,0 +1,165 @@
+<template>
+  <div class="gloria-settings-file">
+    <span class="file-btn">
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsImportTooltip')">
+        <el-button type="primary" @click="onImport" size="small">
+          {{ i18n('settingsImport') }}
+        </el-button>
+      </el-tooltip>
+    </span>
+
+    <span class="file-btn">
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsExportJsonTooltip')">
+        <el-button type="info" @click="onExoprtJson" size="small">
+          {{ i18n('settingsExportJson') }}
+        </el-button>
+      </el-tooltip>
+    </span>
+
+    <span class="file-btn">
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsExportTextTooltip')">
+        <el-button type="info" @click="onExportText" size="small">
+          {{ i18n('settingsExportText') }}
+        </el-button>
+      </el-tooltip>
+    </span>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+import { mapMutations, mapState } from 'vuex';
+import AES from 'crypto-js/aes';
+import encUtf8 from 'crypto-js/enc-utf8';
+
+const secretKey = '048e0efc-da28-4322-a93c-37fa69e84df8';
+
+export default Vue.extend({
+  name: 'gloria-settings-file',
+  computed: {
+    ...mapState(['tasks']),
+  },
+  methods: {
+    ...mapMutations(['mergeTasks']),
+    exportFile(content: string, filename: string, completed?: () => void) {
+      const exportBlob = new Blob([content]);
+      const saveLink = document.createElement('a');
+      saveLink.href = URL.createObjectURL(exportBlob);
+      saveLink.download = filename;
+
+      /** MouseEvent 鼠标事件构造器 */
+      const ev = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: false,
+        screenX: 0,
+        screenY: 0,
+        clientX: 0,
+        clientY: 0,
+        ctrlKey: false,
+        altKey: false,
+        shiftKey: false,
+        metaKey: false,
+        button: 0,
+        relatedTarget: null,
+      });
+      saveLink.dispatchEvent(ev);
+
+      typeof completed === 'function' && completed();
+    },
+    importFile(callback: (status: boolean, content: string) => void) {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.txt, .text, .json, .conf, .config';
+      fileInput.style.display = 'none';
+
+      fileInput.addEventListener('change', () => {
+        if (!fileInput.value) {
+          callback(false, 'no file');
+          return;
+        }
+
+        if (fileInput.files) {
+          const file = fileInput.files[0];
+          const { type } = file;
+
+          if (type !== 'application/json' && type !== 'application/xml' && type !== 'text/plain') {
+            callback(false, 'invalid');
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const { target } = e;
+            if (target) {
+              const data = target.result;
+              callback(true, data as string);
+            }
+            return;
+          };
+
+          reader.readAsText(file);
+        }
+      });
+
+      fileInput.click();
+    },
+    onImport() {
+      try {
+        this.importFile((status, content) => {
+          if (status) {
+            if (content) {
+              if (/^\[/.test(content)) {
+                this.handleImport(content);
+              } else {
+                const bytes = AES.decrypt(content, secretKey);
+                const originalText = bytes.toString(encUtf8);
+                this.handleImport(originalText);
+              }
+            } else {
+              this.$message.error(this.i18n('settingsImportEmpty'));
+            }
+          } else {
+            content === 'no file' && this.$message.warning(this.i18n('settingsImoprtNoFile'));
+            content === 'invalid' && this.$message.error(this.i18n('settingsImportInvalid'));
+          }
+        });
+      } catch (e) {
+        console.error(e);
+        this.$message.error(this.i18n('settingsImportUnkown'));
+      }
+    },
+    handleImport(content: string) {
+      try {
+        const importArr = JSON.parse(content);
+        if (Array.isArray(importArr)) {
+          this.mergeTasks(importArr);
+          this.$message.success(this.i18n('settingsImportSuccess'));
+        } else {
+          this.$message.warning(this.i18n('settingsImportNoArray'));
+        }
+      } catch (e) {
+        console.error(e);
+        this.$message.error(this.i18n('settingsImportUnkown'));
+      }
+    },
+    onExoprtJson() {
+      const { tasks } = this;
+      this.exportFile(JSON.stringify(tasks, null, 2), 'tasks.json', () => {
+        this.$message.success(this.i18n('settingsExportJsonSuccess'));
+      });
+    },
+    onExportText() {
+      const { tasks } = this;
+      this.exportFile(AES.encrypt(JSON.stringify(tasks), secretKey).toString(), 'tasks.txt', () => {
+        this.$message.success(this.i18n('settingsExportTextSuccess'));
+      });
+    },
+  },
+});
+</script>
+
+<style>
+.file-btn {
+  margin-right: 30px;
+}
+</style>

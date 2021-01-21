@@ -11,17 +11,24 @@
         <el-input v-model="form.name" clearable :placeholder="i18n('popupTaskFormNamePlaceholder')" prefix-icon="el-icon-view"></el-input>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormCodeLabel')" prop="code">
-        <el-input v-model="form.code" :placeholder="i18n('popupTaskFormCodePlaceholder')" type="textarea" :rows="8"></el-input>
+        <el-input
+          v-model="form.code"
+          :placeholder="i18n('popupTaskFormCodePlaceholder')"
+          type="textarea"
+          :rows="8"
+          @keydown.native.tab="textareaTab($refs.taskInput, $event)"
+          ref="taskInput"
+        ></el-input>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')" prop="triggerInterval">
-        <el-input-number v-model="form.triggerInterval" :min="1" :max="1440" step-strictly></el-input-number>
+        <el-input-number v-model="form.triggerInterval" :min="1" :max="60 * 24 * 7" step-strictly></el-input-number>
         <span class="form-trigger-time">
           {{ triggerTime }}
         </span>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
-        <el-checkbox v-model="form.strictMode">
-          {{ i18n('popupTaskStrictModeText') }}
+        <el-checkbox v-model="form.onTimeMode">
+          {{ i18n('popupTaskOnTimeModeText') }}
         </el-checkbox>
         <br />
         <el-checkbox v-model="form.needInteraction">
@@ -43,7 +50,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Form as ElForm } from 'element-ui';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default Vue.extend({
   name: 'glorai-task-edit',
@@ -72,7 +79,7 @@ export default Vue.extend({
       type: Number,
       default: 5,
     },
-    strictMode: {
+    onTimeMode: {
       type: Boolean,
       default: false,
     },
@@ -88,7 +95,7 @@ export default Vue.extend({
         name: '',
         code: '',
         triggerInterval: 5,
-        strictMode: false,
+        onTimeMode: false,
         needInteraction: false,
       },
       rules: {
@@ -122,6 +129,7 @@ export default Vue.extend({
     };
   },
   computed: {
+    ...mapState(['configs']),
     triggerTime() {
       const { triggerInterval } = this.form;
       let display = '';
@@ -134,40 +142,41 @@ export default Vue.extend({
   watch: {
     dialogVisible(val) {
       if (val) {
-        const { type, id, name, code, triggerInterval, strictMode, needInteraction } = this;
+        const { type, id, name, code, triggerInterval, onTimeMode, needInteraction } = this;
         if (type === 'edit') {
           Object.assign(this.form, {
             id,
             name,
             code,
             triggerInterval,
-            strictMode,
+            onTimeMode,
             needInteraction,
           });
         } else {
           this.onReset();
+          const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = this.configs;
           Object.assign(this.form, {
             id: this.uuid(),
             name: '',
             code: '',
-            triggerInterval: 5,
-            strictMode: false,
-            needInteraction: false,
+            triggerInterval: taskTriggerInterval,
+            onTimeMode: taskOnTimeMode,
+            needInteraction: taskNeedInteraction,
           });
         }
       }
     },
   },
   methods: {
-    ...mapMutations(['updateTaskBasis', 'createTaskBasis']),
+    ...mapMutations(['updateTaskBasic', 'createTaskBasic']),
     onSubmit() {
       (this.$refs.form as ElForm).validate((valid: boolean) => {
         if (valid) {
           const { form, type } = this;
           if (type === 'edit') {
-            this.updateTaskBasis(form);
+            this.updateTaskBasic(form);
           } else {
-            this.createTaskBasis(form);
+            this.createTaskBasic(form);
           }
 
           this.$emit('close-dialog');
@@ -182,3 +191,9 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style>
+.form-trigger-time {
+  margin-left: 25px;
+}
+</style>

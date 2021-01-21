@@ -4,6 +4,7 @@ import createLogger from 'vuex/dist/logger';
 import VuexChromePlugin from 'vuex-chrome-plugin';
 import getters from './getters';
 import mutations from './mutations';
+import actions from './actions';
 
 Vue.use(Vuex);
 
@@ -23,15 +24,19 @@ const logger = createLogger({
 
 export default new Vuex.Store({
   state: {
+    implicitPush: false,
     tasks: [],
+    operationTask: null,
     notifications: [],
     stages: [],
     configs: {},
+    reducer: '',
+    unread: 0,
   },
   getters,
   mutations,
-  actions: {},
-  modules: {},
+  actions,
+  // modules: {},
   strict: devMode,
   plugins: [logger, VuexChromePlugin()],
 });

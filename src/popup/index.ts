@@ -74,6 +74,8 @@ Vue.mixin({
   },
 });
 
+calc.momentLocale();
+
 new Vue({
   el: '#popup-app',
   store,

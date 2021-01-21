@@ -5,6 +5,9 @@
   "cancelText": {
     "message": "取消"
   },
+  "confirmText": {
+    "message": "确认"
+  },
   "popupTaskLabel": {
     "message": "任务列表"
   },
@@ -48,7 +51,7 @@
     "message": "总执行次数： "
   },
   "popupTaskPushCount": {
-    "message": "总推送次数： "
+    "message": "总推送通知数： "
   },
   "popupTaskTriggerInterval": {
     "message": "时间间隔： "
@@ -65,10 +68,10 @@
   "popupTaskNeedInteractionText": {
     "message": "弹出的通知需要手动关闭"
   },
-  "popupTaskStrictModeTag": {
-    "message": "严格模式"
+  "popupTaskOnTimeModeTag": {
+    "message": "准时模式"
   },
-  "popupTaskStrictModeText": {
+  "popupTaskOnTimeModeText": {
     "message": "严格按照时间间隔执行任务"
   },
   "popupTaskDialogTitle": {
@@ -90,7 +93,7 @@
     "message": "请输入任务代码"
   },
   "popupTaskFormTriggerIntervalLabel": {
-    "message": "执行间隔(分钟)"
+    "message": "执行间隔 (分钟)"
   },
   "popupTaskFormOptionalLabel": {
     "message": "可选选项"
@@ -125,7 +128,299 @@
   "popupNotificationFrom": {
     "message": "来自： "
   },
+  "searchTaskPlaceholder": {
+    "message": "输入关键字对任务进行过滤"
+  },
+  "searchNotificationPlaceholder": {
+    "message": "输入关键字对通知进行过滤"
+  },
+  "optionsTitle": {
+    "message": "选项"
+  },
+  "optionsSettingsMenu": {
+    "message": "常规设置"
+  },
+  "optionsDebugMenu": {
+    "message": "任务调试"
+  },
+  "optionsStateMenu": {
+    "message": "内部状态"
+  },
+  "optionsReducerMenu": {
+    "message": "通知 Reducer"
+  },
+  "optionsAboutMenu": {
+    "message": "关于 Gloria-X"
+  },
+  "settingsTask": {
+    "message": "任务"
+  },
+  "settingsTaskOnTimeMode": {
+    "message": "对于新创建或安装的任务，默认开启\"$colon$\"选项",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "popupTaskOnTimeModeText"
+      }
+    }
+  },
+  "settingsTaskNeedInteraction": {
+    "message": "对于新创建或安装的任务，默认开启\"$colon$\"选项",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "popupTaskNeedInteractionText"
+      }
+    }
+  },
+  "settingsTaskOnTop": {
+    "message": "新添加的任务位于任务列表的最上方"
+  },
+  "settingsTaskTriggerInterval": {
+    "message": "新创建或安装的任务默认执行间隔 (分钟)："
+  },
+  "settingsTaskShowSearchInput": {
+    "message": "在任务列表的顶部显示任务筛选输入框"
+  },
+  "settingsTaskAutoRemoveStage": {
+    "message": "在删除任务时，自动移除 STAGES 组件中其对应的消息缓存"
+  },
+  "settingsNotification": {
+    "message": "通知"
+  },
+  "settingsImplicitPush": {
+    "message": "隐式推送通知 (只将新消息记录在通知历史中，不弹出通知提示)"
+  },
+  "settingsNotificationDetectIcon": {
+    "message": "允许自动检测并获取网站图标"
+  },
+  "settingsNotificationSound": {
+    "message": "允许通知发出声音"
+  },
+  "settingsNotificationShowUrl": {
+    "message": "在通知记录中显示通知的网址 (如果存在)"
+  },
+  "settingsNotificationLazyLoading": {
+    "message": "对通知记录里的通知图片启用懒加载"
+  },
+  "settingsNotificationShowSearchInput": {
+    "message": "在通知记录的顶部显示通知筛选输入框"
+  },
+  "settingsNotificationShowBadge": {
+    "message": "在扩展程序图标上显示未读通知数量标记"
+  },
+  "settingsNotificationMaximun": {
+    "message": "通知记录数量上限："
+  },
+  "settingsClear": {
+    "message": "清理功能"
+  },
+  "settingsClearNotifications": {
+    "message": "清除通知记录"
+  },
+  "settingsClearNotificationsTip": {
+    "message": "清理所有通知的历史记录"
+  },
+  "settingsClearTasks": {
+    "message": "清除所有任务"
+  },
+  "settingsClearTasksTip": {
+    "message": "删除掉所有已添加的任务"
+  },
+  "settingsClearStages": {
+    "message": "清理所有 Stages"
+  },
+  "settingsClearStagesTip": {
+    "message": "清理所有任务的通知缓存"
+  },
+  "settingsClearExpiredStages": {
+    "message": "清理过期 Stages"
+  },
+  "settingsClearExpiredStagesTip": {
+    "message": "清理缺失相对应任务的通知缓存"
+  },
+  "settingsClearCaches": {
+    "message": "清理 Caches"
+  },
+  "settingsClearCachesTip": {
+    "message": "清理所有网络请求缓存"
+  },
+  "settingsClearConfirm": {
+    "message": "确认要清理吗？"
+  },
+  "settingsImportExport": {
+    "message": "导入/导出"
+  },
+  "settingsImport": {
+    "message": "导入任务"
+  },
+  "settingsImoprtNoFile": {
+    "message": "没有选择文件"
+  },
+  "settingsImportInvalid": {
+    "message": "无效的文件"
+  },
+  "settingsImportEmpty": {
+    "message": "文件内容为空"
+  },
+  "settingsImportNoArray": {
+    "message": "数据不是数组"
+  },
+  "settingsImportUnkown": {
+    "message": "未知错误"
+  },
+  "settingsImportSuccess": {
+    "message": "导入任务完成"
+  },
+  "settingsImportTooltip": {
+    "message": "从 json 或 txt 文件中导入任务 (支持从 Gloria 所导出的任务)"
+  },
+  "settingsExportJson": {
+    "message": "明文导出任务"
+  },
+  "settingsExportJsonTooltip": {
+    "message": "导出任务为 json 文件 (支持导入到 Gloria 中)"
+  },
+  "settingsExportJsonSuccess": {
+    "message": "成功导出 json 文件"
+  },
+  "settingsExportTextSuccess": {
+    "message": "成功导出 txt 文件"
+  },
+  "settingsExportText": {
+    "message": "加密导出任务"
+  },
+  "settingsExportTextTooltip": {
+    "message": "导出任务为 txt 文件"
+  },
+  "debugTest": {
+    "message": "测试任务代码"
+  },
+  "debugTestCode": {
+    "message": "测试"
+  },
+  "debugCodeLabel": {
+    "message": "测试代码："
+  },
+  "debugCodePlaceholder": {
+    "message": "请输入测试的任务代码"
+  },
+  "debugResult": {
+    "message": "测试结果："
+  },
+  "debugResultPlaceholder": {
+    "message": "此处显示测试结果"
+  },
+  "debugError": {
+    "message": "代码错误："
+  },
+  "debugErrorPlaceholder": {
+    "message": "此处显示代码错误"
+  },
+  "stateLabel": {
+    "message": "内部状态"
+  },
+  "stateWatchingLabel": {
+    "message": "正在观察中 ..."
+  },
+  "stateWatch": {
+    "message": "开始观察内部状态"
+  },
+  "stateStopWatch": {
+    "message": "停止观察内部状态"
+  },
+  "stateNotifications": {
+    "message": "通知记录："
+  },
+  "stateNotificationsPlaceholder": {
+    "message": "此处显示通知记录的内部状态"
+  },
+  "stateTasks": {
+    "message": "Gloria-X 任务："
+  },
+  "stateTasksPlaceholder": {
+    "message": "此处显示所有任务的内部状态"
+  },
+  "stateStages": {
+    "message": "STAGES (用于判定是否推送新通知):"
+  },
+  "stateStagesPlaceholder": {
+    "message": "此处显示所有消息的内部缓存情况"
+  },
+  "reducerLabel": {
+    "message": "Reducer 函数："
+  },
+  "reducerTip": {
+    "message": "在使用 Reducer 函数前，须知晓其带来的好处及风险。"
+  },
+  "reducerLink": {
+    "message": "详细信息"
+  },
+  "reducerTestContentLabel": {
+    "message": "测试内容 (JSON)："
+  },
+  "reducerTestContent": {
+    "message": "请提供一个由 Gloria Notification 对象或者该对象所组成的数组序列化后的 JSON，例如下面这样：\n\n$test$",
+    "placeholders": {
+      "test": {
+        "content": "$1",
+        "example": "{...}"
+      }
+    }
+  },
+  "reducerTestResultLabel": {
+    "message": "测试结果："
+  },
+  "reducerTestRedult": {
+    "message": "此处显示测试结果"
+  },
+  "reducerPlacehoder": {
+    "message": "示例:\n\nfunction reducer(notification): notification | null { ... }\n\n请务必小心使用 Reducer 函数！"
+  },
+  "reducerEdit": {
+    "message": "编辑"
+  },
+  "reducerSave": {
+    "message": "保存"
+  },
+  "reducerCancel": {
+    "message": "取消"
+  },
+  "reducerTest": {
+    "message": "测试"
+  },
+  "reducerTestError": {
+    "message": "传入的测试对象不正确"
+  },
   "calcUndefined": {
     "message": "无"
+  },
+  "notificationContextMessage": {
+    "message": "$time$ $task$",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "23:11:11"
+      },
+      "task": {
+        "content": "$2",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskTitle": {
+    "message": "Gloria-X 通知"
+  },
+  "notificationTaskInstall": {
+    "message": "安装新任务: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTestName": {
+    "message": "测试"
   }
 }
