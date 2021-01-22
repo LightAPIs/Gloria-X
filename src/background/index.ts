@@ -98,6 +98,7 @@ function createNotificationOptions(task: store.GloriaTask, data: store.MessageDa
   const { notificationSound, notificationCustomSound, notificationDetectIcon } = configs;
   const options: enhanced.NotificationOptions = {
     //* defaultIconUrl 属性由管理器内添加
+    //* 若未指定 onClick，通知对象内部会自动添加点击打开 url 的事件
     title: title || '',
     message: message || '',
     iconUrl: iconUrl || DEFAULT_ICON_URL,
@@ -220,6 +221,27 @@ function syncMessageFlow() {
       }
     }
   });
+}
+
+function syncUnreadNumber() {
+  chrome.browserAction.setBadgeBackgroundColor({
+    color: '#cc0033',
+  });
+
+  store.watch(
+    (state: store.VuexState): number => state.unread,
+    (val: number) => {
+      if (val > 0) {
+        chrome.browserAction.setBadgeText({
+          text: val.toString(),
+        });
+      } else {
+        chrome.browserAction.setBadgeText({
+          text: '',
+        });
+      }
+    }
+  );
 }
 
 function testVirtualNotification(dataList: store.CommitData | store.CommitData[]) {
@@ -470,3 +492,4 @@ chrome.webRequest.onCompleted.addListener(
 
 syncTasks();
 syncMessageFlow();
+syncUnreadNumber();

@@ -27,6 +27,8 @@ const {
   clearNotifications,
   setReducer,
   updateReducer,
+  decreaseUnread,
+  clearUnread,
 } = mutations;
 
 function createNewConfigs() {
@@ -44,7 +46,7 @@ function createNewConfigs() {
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
-    notificationShowBadge: true,
+    notificationShowBadge: false,
     notificationMaximun: 500,
   };
 }
@@ -121,7 +123,7 @@ describe('Test mutations:', function() {
       expect(state.configs.notificationShowSearchInput).to.be.true;
     });
     it('notificationShowBadge is set.', function() {
-      expect(state.configs.notificationShowBadge).to.be.true;
+      expect(state.configs.notificationShowBadge).to.be.false;
     });
     it('notificationMaximun is set.', function() {
       expect(state.configs.notificationMaximun).to.equal(500);
@@ -132,6 +134,8 @@ describe('Test mutations:', function() {
     it('state.configs is normal.', function() {
       const state = {
         configs: defaultConfigs(),
+        notifications: [],
+        unread: 5,
       };
       const newConfigs = createNewConfigs();
       for (const key in newConfigs) {
@@ -141,6 +145,7 @@ describe('Test mutations:', function() {
         });
       }
       expect(state.configs).to.deep.equal(newConfigs);
+      expect(state.unread).to.equal(0);
     });
   });
 
@@ -572,6 +577,28 @@ describe('Test mutations:', function() {
       };
       updateReducer(state, '');
       expect(state.reducer).to.be.empty;
+    });
+  });
+
+  describe('Method: decreaseUnread', function() {
+    it('decrease unread num.', function() {
+      const state = {
+        unread: 1,
+      };
+      decreaseUnread(state);
+      expect(state.unread).to.equal(0);
+      decreaseUnread(state);
+      expect(state.unread).to.equal(0);
+    });
+  });
+
+  describe('Method: clearUnread', function() {
+    it('clear unread num.', function() {
+      const state = {
+        unread: 5,
+      };
+      clearUnread(state);
+      expect(state.unread).to.equal(0);
     });
   });
 

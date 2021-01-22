@@ -348,6 +348,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
                   }
                 );
               }
+              store.commit('decreaseUnread');
             }
           );
 
@@ -365,6 +366,13 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           console.error(e);
         }
       }
+    }
+
+    if (!this.onclose) {
+      this.options.onClose = async () => {
+        store.commit('decreaseUnread');
+        await this.clear();
+      };
     }
 
     if (_.isString(this.options.detectIcon)) {
@@ -412,8 +420,10 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     }
   };
 
-  private closeHandler = (id: string) => {
-    if (id === this.id) {
+  private closeHandler = (id: string, byUser: boolean) => {
+    //* 仅用户手动点击关闭按钮会触发
+    //! 注:实测在使用 Windows10 原生通知中心时是无法触发关闭事件的
+    if (byUser && id === this.id) {
       this._state = NotificationState.READY;
       this.dispatchEvent(
         new CustomEvent('Close', {

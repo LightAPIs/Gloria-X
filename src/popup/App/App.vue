@@ -32,14 +32,18 @@ export default Vue.extend({
     ...mapGetters(['activeTab']),
   },
   methods: {
-    ...mapMutations(['updateConfigs']),
+    ...mapMutations(['updateConfigs', 'clearUnread']),
     leaveTab(activeName: string) {
+      //? 由于机制原因，若开始时 activeTab 中保存的值为 'tasks'，则不会触发这个事件
+      if (activeName === 'notifications') {
+        this.clearUnread();
+      }
+
       activeName !== this.activeTab &&
         this.updateConfigs({
           name: 'lastActiveTab',
           value: activeName,
         });
-      // 这里后续还需要处理清空未读通知数，仅在 activeName 为 "notifications" 时
     },
   },
 });

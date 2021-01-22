@@ -33,6 +33,14 @@ export default {
         }
       }
 
+      //* 处理扩展程序图标显示未读通知数
+      if (name === 'notificationShowBadge') {
+        if (!state.configs.notificationShowBadge) {
+          // 关闭选项时清零
+          state.unread = 0;
+        }
+      }
+
       chromeStorage.setConfigs(state.configs, `set "configs.${name}: ${value}".`);
     }
   },
@@ -294,5 +302,14 @@ export default {
   updateReducer(state: store.VuexState, newReducer: string) {
     state.reducer = newReducer;
     chromeStorage.setReducer(state.reducer, 'update reducer.');
+  },
+
+  decreaseUnread(state: store.VuexState) {
+    if (state.unread > 0) {
+      state.unread--;
+    }
+  },
+  clearUnread(state: store.VuexState) {
+    state.unread = 0;
   },
 };
