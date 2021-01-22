@@ -55,7 +55,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     return this._state;
   }
   set state(value: NotificationState) {
-    this._state = value;
+    ////
   }
 
   protected _id: string | null | undefined = null;
@@ -63,7 +63,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     return this._id;
   }
   set id(value: string | null | undefined) {
-    this._id = value;
+    ////
   }
 
   private originIconUrl: string | undefined;
@@ -293,7 +293,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       this.events[type].filter(_.isFunction).forEach(fn => (fn as any)(...evt.detail));
     }
     if (_.isFunction(this[`on${type}`])) {
-      this[`on${type}]`]();
+      this[`on${type}`]();
     }
     return true;
   }
@@ -399,7 +399,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     }
   }
 
-  private buttonClickHandler(id: string, buttonIndex: number) {
+  private buttonClickHandler = (id: string, buttonIndex: number) => {
     if (id === this.id) {
       this.dispatchEvent(
         new CustomEvent(`Button${buttonIndex}Click`, {
@@ -410,9 +410,9 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       );
       chrome.notifications.onButtonClicked.removeListener(this.buttonClickHandler);
     }
-  }
+  };
 
-  private closeHandler(id: string) {
+  private closeHandler = (id: string) => {
     if (id === this.id) {
       this._state = NotificationState.READY;
       this.dispatchEvent(
@@ -423,9 +423,9 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       );
       chrome.notifications.onClosed.removeListener(this.closeHandler);
     }
-  }
+  };
 
-  private clickHandler(id: string) {
+  private clickHandler = (id: string) => {
     if (id === this.id) {
       this.dispatchEvent(
         new CustomEvent('Click', {
@@ -433,9 +433,9 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           cancelable: false,
         })
       );
-      chrome.notifications.onClicked.removeListener(this.clickHandler);
+      chrome.notifications.onClosed.removeListener(this.clickHandler);
     }
-  }
+  };
 
   create(): Promise<string> {
     // eslint-disable-next-line no-async-promise-executor
@@ -472,8 +472,8 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
             this.audio();
           }
 
-          chrome.notifications.onClicked.addListener(this.clickHandler);
           chrome.notifications.onClosed.addListener(this.closeHandler);
+          chrome.notifications.onClicked.addListener(this.clickHandler);
           chrome.notifications.onButtonClicked.addListener(this.buttonClickHandler);
 
           if (this.options.autoCloseTime) {
