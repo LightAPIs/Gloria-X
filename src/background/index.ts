@@ -92,7 +92,7 @@ function createNotification(options: enhanced.NotificationOptions) {
   notificationsManager.add(options);
 }
 
-function createNotificationOptions(task: store.GloriaTask, data: store.MessageData, configs: store.GloriaConfig) {
+function createNotificationOptions(task: store.GloriaTask, data: store.MessageData, configs: store.GloriaConfig, isTest?: boolean) {
   const { name, needInteraction } = task;
   const { notificationId, title, message, iconUrl, url, imageUrl } = data;
   const { notificationSound, notificationCustomSound, notificationDetectIcon } = configs;
@@ -114,6 +114,7 @@ function createNotificationOptions(task: store.GloriaTask, data: store.MessageDa
     silent: !notificationSound,
     customSound: notificationCustomSound,
     detectIcon: notificationDetectIcon,
+    isTest,
   };
 
   if (options.type === 'image') {
@@ -270,7 +271,7 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
   };
 
   (dataList as store.MessageData[]).forEach(item => {
-    const options = createNotificationOptions(virtualTask, item, configs);
+    const options = createNotificationOptions(virtualTask, item, configs, true);
     createNotification(options);
   });
 }

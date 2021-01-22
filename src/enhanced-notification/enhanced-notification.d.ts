@@ -7,6 +7,7 @@ declare namespace enhanced {
     defaultIconUrl?: string;
     silent?: boolean;
     customSound?: boolean;
+    isTest?: boolean;
     onClick?: (() => void) | null;
     onClose?: (() => void) | null;
     onButton1Click?: (() => void) | null;
