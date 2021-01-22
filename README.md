@@ -125,28 +125,26 @@ importScripts('script.js')
 
 当调用这个异步的 `importScripts` 方法载入外部脚本时会返回一个 `Promise` 对象。`Promise.then` 的回调函数所接收到的第一个参数就是载入的外部脚本的返回值。
 
-Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `importScripts('gloria-utils')` 加载这些模块，但由于内部打包的 `gloria-utils` 版本不同，所能使用的模块存在些许差异：
+Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `importScripts('gloria-utils')` 加载这些模块，所能使用的模块如下表所示：
 
-|                        集成模块/版本                         | Gloria(0.13.10) |  Gloria-X  |
-| :----------------------------------------------------------: | :-------------: | :--------: |
-| export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)' |     0.22.0      | 1.0.0-rc.2 |
-|      export `co` from '[co](https://github.com/tj/co)'       |      4.6.0      |     /      |
-| export `cookie` from '[cookie](https://github.com/jshttp/cookie)' |      0.3.1      |   0.3.1    |
-| export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)' |      3.8.1      |   3.8.2    |
-| export `is` from '[is_js](https://github.com/arasatasaygin/is.js)' |      0.9.0      |     /      |
-| export `lodash` from '[lodash](https://github.com/lodash/lodash)' |     4.16.4      |  4.17.10   |
-| export `moment` from '[moment](https://github.com/moment/moment)' |     2.18.1      |   2.22.2   |
-|    export `qs` from '[qs](https://github.com/ljharb/qs)'     |      6.3.0      |   6.5.2    |
-| export `ramda` from '[ramda](https://github.com/ramda/ramda)' |     0.24.1      |   0.25.0   |
-| export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)' |      4.1.0      |   4.1.0    |
-| export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)' |     1.13.0      |   1.18.2   |
-| export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)' |     0.20.14     |   0.21.4   |
-| export `underscoreString` from '[underscore.string](https://github.com/esamattis/underscore.string)' |      3.3.4      |   3.3.4    |
-| export `validator` from '[validator](https://github.com/validatorjs/validator.js)' |      7.1.0      |   10.3.0   |
-| export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)' |     0.4.17      |   0.4.19   |
-| export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)' |      3.2.0      |   4.2.0    |
-
-*注意：如果一份加载了内部模块的任务代码在 Gloria 上正常工作，但在 Gloria-X 上无法工作或结果与预期不相同时，请检查是否是因为模块缺失或版本差异原因所导致。*
+|                        集成模块/版本                         | Gloria(0.13.10) & Gloria-X |
+| :----------------------------------------------------------: | :------------------------: |
+| export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)' |           0.22.0           |
+|      export `co` from '[co](https://github.com/tj/co)'       |           4.6.0            |
+| export `cookie` from '[cookie](https://github.com/jshttp/cookie)' |           0.3.1            |
+| export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)' |           3.8.1            |
+| export `is` from '[is_js](https://github.com/arasatasaygin/is.js)' |           0.9.0            |
+| export `lodash` from '[lodash](https://github.com/lodash/lodash)' |           4.16.4           |
+| export `moment` from '[moment](https://github.com/moment/moment)' |           2.18.1           |
+|    export `qs` from '[qs](https://github.com/ljharb/qs)'     |           6.3.0            |
+| export `ramda` from '[ramda](https://github.com/ramda/ramda)' |           0.24.1           |
+| export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)' |           4.1.0            |
+| export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)' |           1.13.0           |
+| export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)' |          0.20.14           |
+| export `underscoreString` from '[underscore.string](https://github.com/esamattis/underscore.string)' |           3.3.4            |
+| export `validator` from '[validator](https://github.com/validatorjs/validator.js)' |           7.1.0            |
+| export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)' |           0.4.17           |
+| export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)' |           3.2.0            |
 
 ## 高级选项
 

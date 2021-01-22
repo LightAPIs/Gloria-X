@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { each, toLower } from 'lodash';
-import GloriaSandbox from 'gloria-sandbox';
+import { createGloriaSandbox } from 'gloria-sandbox';
 
 function getOrigin(url: string) {
   return new URL(url).origin;
@@ -115,16 +116,24 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
 
 function evalUntrusted(code: string) {
   return new Promise((resolve, reject) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new GloriaSandbox().then((sandbox: any) => {
-      sandbox.once('commit', (details: object) => {
-        resolve(details);
+    createGloriaSandbox().then((sandbox: any) => {
+      sandbox.addEventListener('error', ({ detail }: any) => {
+        reject(detail);
+      });
+      sandbox.addEventListener('commit', ({ detail }: any) => {
+        resolve(detail);
         sandbox.destroy();
       });
-      sandbox.eval(code).catch((err: unknown) => {
-        reject(err);
-        sandbox.destroy();
-      });
+      sandbox
+        .execute(code, 1000 * 60)
+        .then(() => {
+          //? 若不注销，当任务代码中不存在 commit 函数时，会造成内存泄漏
+          sandbox.destroy();
+        })
+        .catch((err: unknown) => {
+          reject(err);
+          sandbox.destroy();
+        });
     });
   });
 }
