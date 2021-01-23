@@ -207,8 +207,8 @@ function syncMessageFlow() {
       const { payload: messageFlow } = mutation;
       const { id, taskId, data } = messageFlow;
       const { tasks } = state;
-      const { configs } = store.state;
-      if (!pushMessageList.has(id)) {
+      const { configs, implicitPush } = store.state;
+      if (!implicitPush && !pushMessageList.has(id)) {
         for (const task of tasks) {
           if (task.id === taskId) {
             data.forEach((item: store.MessageData) => {
@@ -241,6 +241,60 @@ function syncUnreadNumber() {
           text: '',
         });
       }
+    }
+  );
+}
+
+function syncImplicitStatus() {
+  //* 在扩展程序图标上注册相应 checkbox 菜单
+  chrome.contextMenus.create({
+    id: 'gloriaXImplicitStatus',
+    type: 'checkbox',
+    title: i18n('contextMenusImplicitPush'),
+    checked: false,
+    contexts: ['browser_action'],
+    onclick() {
+      if (!chrome.runtime.lastError) {
+        store.commit('switchImplicitPush');
+      }
+    },
+  });
+
+  store.watch(
+    (state: store.VuexState): boolean => state.implicitPush,
+    (val: boolean) => {
+      if (val) {
+        chrome.browserAction.setIcon({
+          path: {
+            '16': 'icons/invisible/invisible-16.png',
+            '19': 'icons/invisible/invisible-19.png',
+            '24': 'icons/invisible/invisible-24.png',
+            '32': 'icons/invisible/invisible-32.png',
+            '48': 'icons/invisible/invisible-48.png',
+            '64': 'icons/invisible/invisible-64.png',
+            '96': 'icons/invisible/invisible-96.png',
+            '128': 'icons/invisible/invisible-128.png',
+          },
+        });
+      } else {
+        chrome.browserAction.setIcon({
+          path: {
+            '16': 'icons/app/icon-16.png',
+            '19': 'icons/app/icon-19.png',
+            '24': 'icons/app/icon-24.png',
+            '32': 'icons/app/icon-32.png',
+            '48': 'icons/app/icon-48.png',
+            '64': 'icons/app/icon-64.png',
+            '96': 'icons/app/icon-96.png',
+            '128': 'icons/app/icon-128.png',
+          },
+        });
+      }
+
+      chrome.contextMenus.update('gloriaXImplicitStatus', {
+        type: 'checkbox',
+        checked: val,
+      });
     }
   );
 }
@@ -494,3 +548,4 @@ chrome.webRequest.onCompleted.addListener(
 syncTasks();
 syncMessageFlow();
 syncUnreadNumber();
+syncImplicitStatus();

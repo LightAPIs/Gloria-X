@@ -13,6 +13,10 @@ export default {
     state.implicitPush = newStatus || false;
     chromeStorage.setImplicitPush(state.implicitPush, `set implicitPush -> ${state.implicitPush}`);
   },
+  switchImplicitPush(state: store.VuexState) {
+    state.implicitPush = !state.implicitPush;
+    chromeStorage.setImplicitPush(state.implicitPush, `switch implicitPush -> ${state.implicitPush}`);
+  },
 
   setConfigs(state: store.VuexState, newCofings: store.GloriaConfig) {
     Object.assign(state.configs, defaultConfigs(), newCofings || {});

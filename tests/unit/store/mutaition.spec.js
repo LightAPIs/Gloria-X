@@ -6,6 +6,7 @@ import { defaultConfigs } from '@/store/state';
 const {
   setImplicitPush,
   updateImplicitPush,
+  switchImplicitPush,
   setConfigs,
   updateConfigs,
   setTasks,
@@ -73,6 +74,18 @@ describe('Test mutations:', function() {
       };
       updateImplicitPush(state, true);
       expect(state.implicitPush).to.be.true;
+    });
+  });
+
+  describe('Method: switchImplicitPush', function() {
+    it('state.implicitPush is normal.', function() {
+      const state = {
+        implicitPush: false,
+      };
+      switchImplicitPush(state);
+      expect(state.implicitPush).to.be.true;
+      switchImplicitPush(state);
+      expect(state.implicitPush).to.be.false;
     });
   });
 

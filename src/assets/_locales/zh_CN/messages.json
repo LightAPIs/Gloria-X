@@ -398,6 +398,9 @@
   "calcUndefined": {
     "message": "无"
   },
+  "contextMenusImplicitPush": {
+    "message": "启用隐式推送功能"
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {
