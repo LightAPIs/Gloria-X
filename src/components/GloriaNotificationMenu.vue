@@ -10,6 +10,9 @@
     <el-menu-item index="-1" class="history-menu-item" :title="i18n('popupNotificationAll')">
       {{ i18n('popupNotificationAll') }}
     </el-menu-item>
+    <el-menu-item index="-2" class="history-menu-item" :title="i18n('popupNotificationLater')">
+      {{ i18n('popupNotificationLater') }}
+    </el-menu-item>
     <el-menu-item
       v-for="(item, index) in notificationsTitleList"
       :key="index"

@@ -252,6 +252,7 @@ export default {
               //? 为了能在观察内部状态时动态显示缓存的图标信息，提前手动赋值
               iconUrl: iconUrl || '',
             },
+            later: false,
           });
         });
         //* 处理通知记录数量上限
@@ -294,6 +295,26 @@ export default {
       }
     }
     upd && chromeStorage.setNotifications(state.notifications, `update notifications -> "${id}".`);
+  },
+  markLaterNotification(state: store.VuexState, notificationId: string) {
+    let mark = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (notificationId === state.notifications[i].id) {
+        state.notifications[i].later = true;
+        mark = true;
+      }
+    }
+    mark && chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> ${notificationId}.`);
+  },
+  checkedNotification(state: store.VuexState, notificationId: string) {
+    let checked = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (notificationId === state.notifications[i].id) {
+        state.notifications[i].later = false;
+        checked = true;
+      }
+    }
+    checked && chromeStorage.setNotifications(state.notifications, `checked notification -> ${notificationId}.`);
   },
   clearNotifications(state: store.VuexState) {
     state.notifications = [];

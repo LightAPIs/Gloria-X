@@ -95,7 +95,7 @@ function createNotification(options: enhanced.NotificationOptions) {
 function createNotificationOptions(task: store.GloriaTask, data: store.MessageData, configs: store.GloriaConfig, isTest?: boolean) {
   const { name, needInteraction } = task;
   const { notificationId, title, message, iconUrl, url, imageUrl } = data;
-  const { notificationSound, notificationCustomSound, notificationDetectIcon } = configs;
+  const { notificationSound, notificationCustomSound, notificationDetectIcon, notificationLaterMark } = configs;
   const options: enhanced.NotificationOptions = {
     //* defaultIconUrl 属性由管理器内添加
     //* 若未指定 onClick，通知对象内部会自动添加点击打开 url 的事件
@@ -119,6 +119,17 @@ function createNotificationOptions(task: store.GloriaTask, data: store.MessageDa
 
   if (options.type === 'image') {
     options.imageUrl = imageUrl;
+  }
+
+  if (notificationLaterMark && !options.isTest && options.url) {
+    options.buttons = [
+      {
+        title: i18n('notificationLater'),
+      },
+    ];
+    options.onButton0Click = id => {
+      id && store.commit('markLaterNotification', id);
+    };
   }
 
   return options;

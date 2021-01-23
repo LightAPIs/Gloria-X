@@ -62,9 +62,6 @@ export default Vue.extend({
       required: true,
     },
   },
-  data() {
-    return {};
-  },
   computed: {
     ...mapState(['tasks', 'notifications', 'stages']),
     tasksView() {
@@ -86,7 +83,6 @@ export default Vue.extend({
       return '';
     },
   },
-  watch: {},
 });
 </script>
 

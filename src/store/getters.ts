@@ -17,4 +17,7 @@ export default {
     });
     return titleList;
   },
+  // hasContextMessage(state: store.VuexState, text: string) {
+  //   state.notifications.find(item => item.options.contextMessage === text);
+  // },
 };

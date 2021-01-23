@@ -25,6 +25,8 @@ const {
   addMessageFlow,
   setNotifications,
   updateNotification,
+  markLaterNotification,
+  checkedNotification,
   clearNotifications,
   setReducer,
   updateReducer,
@@ -41,9 +43,10 @@ function createNewConfigs() {
     taskShowSearchInput: true,
     taskAutoRemoveStage: true,
     taskTriggerInterval: 1440,
-    notificationDetectIcon: true,
     notificationSound: true,
     notificationCustomSound: true,
+    notificationLaterMark: true,
+    notificationDetectIcon: true,
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
@@ -117,14 +120,17 @@ describe('Test mutations:', function() {
     it('taskTriggerInterval is set.', function() {
       expect(state.configs.taskTriggerInterval).to.equal(1440);
     });
-    it('notificationDetectIcon is set.', function() {
-      expect(state.configs.notificationDetectIcon).to.be.true;
-    });
     it('notificationSound is set.', function() {
       expect(state.configs.notificationSound).to.be.true;
     });
     it('notificationCustomSound is set.', function() {
       expect(state.configs.notificationCustomSound).to.be.true;
+    });
+    it('notificationLaterMark is set.', function() {
+      expect(state.configs.notificationLaterMark).to.be.true;
+    });
+    it('notificationDetectIcon is set.', function() {
+      expect(state.configs.notificationDetectIcon).to.be.true;
     });
     it('notificationShowUrl is set.', function() {
       expect(state.configs.notificationShowUrl).to.be.true;
@@ -550,6 +556,36 @@ describe('Test mutations:', function() {
         },
       });
       expect(state.notifications[0].options.iconUrl).to.not.empty;
+    });
+  });
+
+  describe('Method: markLaterNotification', function() {
+    it('mark later notificaiton.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            later: false,
+          },
+        ],
+      };
+      markLaterNotification(state, '1');
+      expect(state.notifications[0].later).to.be.true;
+    });
+  });
+
+  describe('Method: checkedNotification', function() {
+    it('checked notification.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            later: true,
+          },
+        ],
+      };
+      checkedNotification(state, '1');
+      expect(state.notifications[0].later).to.be.false;
     });
   });
 

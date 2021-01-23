@@ -70,8 +70,8 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
   private originIcon: HTMLImageElement | undefined;
   private onclick: any;
   private onclose: any;
+  private onbutton0click: any;
   private onbutton1click: any;
-  private onbutton2click: any;
   private events: { [index: string]: EventListenerOrEventListenerObject[] } = {};
 
   constructor(protected _options: T) {}
@@ -112,39 +112,40 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           break;
         case 'onClick':
           if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
-            this.onclick = value;
+            options.onClick = value;
             status = true;
           }
           break;
         case 'onClose':
           if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
-            this.onclose = value;
+            options.onClose = value;
+            status = true;
+          }
+          break;
+        case 'onButton0Click':
+          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
+            options.onButton0Click = value;
             status = true;
           }
           break;
         case 'onButton1Click':
           if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
-            this.onbutton1click = value;
-            status = true;
-          }
-          break;
-        case 'onButton2Click':
-          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
-            this.onbutton2click = value;
+            options.onButton1Click = value;
             status = true;
           }
           break;
         case 'buttons':
           if (_.isArray(value) && value.length <= 2) {
-            for (const i in value) {
-              if (_.isFunction(value[i].onClick)) {
-                if (i == '0') {
-                  options.onButton1Click = value[i].onClick;
-                } else if (i == '1') {
-                  options.onButton2Click = value[i].onClick;
-                }
-              }
-            }
+            // for (const i in value) {
+            //   if (_.isFunction(value[i].onClick)) {
+            //     if (i == '0') {
+            //       options.onButton0Click = value[i].onClick;
+            //     } else if (i == '1') {
+            //       options.onButton1Click = value[i].onClick;
+            //     }
+            //   }
+            // }
+            //? 遵循 Chrome 的限制，不再允许直接在 buttons 中包含相应事件
             options.buttons = value;
             status = true;
           } else if (_.isUndefined(value)) {
@@ -197,7 +198,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           }
           break;
         case 'silent':
-          //* Windows10
+          //* Windows10 原生通知可以受此选项控制
           if (_.isBoolean(value) || _.isUndefined(value)) {
             options.silent = value;
             status = true;
@@ -298,8 +299,9 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     if (_.isArray(this.events[type])) {
       this.events[type].filter(_.isFunction).forEach(fn => (fn as any)(...evt.detail));
     }
+
     if (_.isFunction(this[`on${type}`])) {
-      this[`on${type}`]();
+      this[`on${type}`](...evt.detail);
     }
     return true;
   }
@@ -321,8 +323,53 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     const targetUrl = this.options.url;
 
     if (_.isString(targetUrl)) {
-      if (!this.onclick) {
-        this.options.onClick = async () => {
+      if (this.options.detectIcon === true) {
+        try {
+          const iconUrl = await this.detectIcon(targetUrl);
+          if (iconUrl) {
+            this.options.iconUrl = iconUrl;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+
+    if (_.isString(this.options.detectIcon)) {
+      try {
+        const iconUrl = await this.detectIcon(this.options.detectIcon);
+        if (iconUrl) {
+          this.options.iconUrl = iconUrl;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    if (this.options.iconUrl) {
+      try {
+        this.originIconUrl = this.options.iconUrl;
+        this.originIcon = await loadImage(this.originIconUrl);
+        this.options.iconUrl = imageToDataURI(this.originIcon);
+      } catch (e) {
+        if (this.options.defaultIconUrl) {
+          try {
+            this.originIconUrl = this.options.defaultIconUrl;
+            this.originIcon = await loadImage(this.originIconUrl);
+            this.options.iconUrl = imageToDataURI(this.originIcon);
+          } catch (e) {
+            this.options.iconUrl = TRANSPARENT_IMAGE;
+          }
+        } else {
+          this.options.iconUrl = TRANSPARENT_IMAGE;
+        }
+      }
+    }
+
+    if (!this.options.onClick) {
+      if (_.isString(targetUrl)) {
+        //* 默认点击打开相应的网址
+        this.onclick = async () => {
           chrome.tabs.query(
             {
               url: asLink(targetUrl as string),
@@ -361,55 +408,48 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           await this.clear();
         };
       }
-
-      if (this.options.detectIcon === true) {
-        try {
-          const iconUrl = await this.detectIcon(targetUrl);
-          if (iconUrl) {
-            this.options.iconUrl = iconUrl;
-          }
-        } catch (e) {
-          console.error(e);
+    } else {
+      this.onclick = async (id: string) => {
+        if (_.isFunction(this.options.onClick)) {
+          this.options.onClick(id);
         }
-      }
-    }
-
-    if (!this.onclose) {
-      this.options.onClose = async () => {
-        !this.options.isTest && store.commit('decreaseUnread');
         await this.clear();
       };
     }
 
-    if (_.isString(this.options.detectIcon)) {
-      try {
-        const iconUrl = await this.detectIcon(this.options.detectIcon);
-        if (iconUrl) {
-          this.options.iconUrl = iconUrl;
+    if (!this.options.onClose) {
+      this.onclose = async (_id: string, byUser: boolean) => {
+        if (byUser) {
+          //* 仅用户手动点击关闭按钮会触发
+          !this.options.isTest && store.commit('decreaseUnread');
         }
-      } catch (e) {
-        console.error(e);
-      }
+        await this.clear();
+      };
+    } else {
+      this.opclose = async (id: string, byUser: boolean) => {
+        if (_.isFunction(this.options.onClose)) {
+          this.options.onClose(id, byUser);
+        }
+        await this.clear();
+      };
     }
 
-    if (this.options.iconUrl) {
-      try {
-        this.originIconUrl = this.options.iconUrl;
-        this.originIcon = await loadImage(this.originIconUrl);
-        this.options.iconUrl = imageToDataURI(this.originIcon);
-      } catch (e) {
-        if (this.options.defaultIconUrl) {
-          try {
-            this.originIconUrl = this.options.defaultIconUrl;
-            this.originIcon = await loadImage(this.originIconUrl);
-            this.options.iconUrl = imageToDataURI(this.originIcon);
-          } catch (e) {
-            this.options.iconUrl = TRANSPARENT_IMAGE;
-          }
-        } else {
-          this.options.iconUrl = TRANSPARENT_IMAGE;
+    if (this.options.onButton0Click) {
+      this.onbutton0click = async (id: string, buttonIndex: number) => {
+        if (_.isFunction(this.options.onButton0Click)) {
+          this.options.onButton0Click(id, buttonIndex);
         }
-      }
+        await this.clear();
+      };
+    }
+
+    if (this.options.onButton1Click) {
+      this.onbutton1click = async (id: string, buttonIndex: number) => {
+        if (_.isFunction(this.options.onButton1Click)) {
+          this.options.onButton1Click(id, buttonIndex);
+        }
+        await this.clear();
+      };
     }
   }
 
@@ -419,7 +459,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
         new CustomEvent(`Button${buttonIndex}Click`, {
           bubbles: false,
           cancelable: false,
-          detail: [buttonIndex],
+          detail: [id, buttonIndex],
         })
       );
       chrome.notifications.onButtonClicked.removeListener(this.buttonClickHandler);
@@ -430,15 +470,13 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     //! 注:实测在使用 Windows10 原生通知中心时是无法触发关闭事件的
     if (id === this.id) {
       this._state = NotificationState.READY;
-      if (byUser) {
-        //* 仅用户手动点击关闭按钮会触发
-        this.dispatchEvent(
-          new CustomEvent('Close', {
-            bubbles: false,
-            cancelable: false,
-          })
-        );
-      }
+      this.dispatchEvent(
+        new CustomEvent('Close', {
+          bubbles: false,
+          cancelable: false,
+          detail: [id, byUser],
+        })
+      );
       chrome.notifications.onClosed.removeListener(this.closeHandler);
     }
   };
@@ -449,6 +487,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
         new CustomEvent('Click', {
           bubbles: false,
           cancelable: false,
+          detail: [id],
         })
       );
       chrome.notifications.onClosed.removeListener(this.clickHandler);

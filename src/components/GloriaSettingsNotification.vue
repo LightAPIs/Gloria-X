@@ -5,13 +5,6 @@
     </div>
     <div class="margin-top">
       <el-switch
-        :value="configs.notificationDetectIcon"
-        :active-text="i18n('settingsNotificationDetectIcon')"
-        @change="onChange('notificationDetectIcon', $event)"
-      ></el-switch>
-    </div>
-    <div class="margin-top">
-      <el-switch
         :value="configs.notificationSound"
         :active-text="i18n('settingsNotificationSound')"
         @change="onChange('notificationSound', $event)"
@@ -22,6 +15,20 @@
         :value="configs.notificationCustomSound"
         :active-text="i18n('settingsNotificationCustomSound')"
         @change="onChange('notificationCustomSound', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
+        :value="configs.notificationLaterMark"
+        :active-text="i18n('settingsNotificationLaterMark')"
+        @change="onChange('notificationLaterMark', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
+        :value="configs.notificationDetectIcon"
+        :active-text="i18n('settingsNotificationDetectIcon')"
+        @change="onChange('notificationDetectIcon', $event)"
       ></el-switch>
     </div>
     <div class="margin-top">

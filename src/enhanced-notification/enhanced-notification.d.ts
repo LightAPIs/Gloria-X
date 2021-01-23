@@ -8,10 +8,10 @@ declare namespace enhanced {
     silent?: boolean;
     customSound?: boolean;
     isTest?: boolean;
-    onClick?: (() => void) | null;
-    onClose?: (() => void) | null;
-    onButton1Click?: (() => void) | null;
-    onButton2Click?: (() => void) | null;
+    onClick?: ((notificationId: string) => void) | null;
+    onClose?: ((notificationId: string, byUser: boolean) => void) | null;
+    onButton0Click?: ((notificationId: string, buttonIndex: number) => void) | null;
+    onButton1Click?: ((notificationId: string, buttonIndex: number) => void) | null;
   }
   type NotificationTypes = 'basic' | 'image';
 

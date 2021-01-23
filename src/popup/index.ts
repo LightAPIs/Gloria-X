@@ -8,6 +8,7 @@ import VueFab from 'vue-float-action-button';
 import {
   Aside,
   Avatar,
+  Badge,
   Button,
   Card,
   Checkbox,
@@ -64,6 +65,7 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Link);
 Vue.use(Image);
+Vue.use(Badge);
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 Vue.mixin({

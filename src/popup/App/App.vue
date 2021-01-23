@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { mapMutations, mapGetters } from 'vuex';
 import Vue from 'vue';
+import { mapMutations, mapGetters } from 'vuex';
 import GloriaTaskTab from '@/components/GloriaTaskTab.vue';
 import GloriaNotificationTab from '@/components/GloriaNotificationTab.vue';
 

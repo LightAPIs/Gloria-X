@@ -14,7 +14,9 @@
               <gloria-notification-item
                 v-for="info in notifications"
                 :key="info.id"
+                :id="info.id"
                 :menu-key="menuKey"
+                :later="info.later"
                 :event-time="info.options.eventTime"
                 :type="info.options.type"
                 :title="info.options.title"

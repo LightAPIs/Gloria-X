@@ -73,6 +73,7 @@ declare namespace store {
     taskTriggerInterval?: number;
     notificationSound?: boolean;
     notificationCustomSound?: boolean;
+    notificationLaterMark?: boolean;
     notificationDetectIcon?: boolean;
     notificationShowUrl?: boolean;
     notificationLazyLoading?: boolean;

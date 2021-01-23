@@ -125,6 +125,9 @@
   "popupNotificationAll": {
     "message": "所有通知"
   },
+  "popupNotificationLater": {
+    "message": "稍后查阅"
+  },
   "popupNotificationFrom": {
     "message": "来自： "
   },
@@ -191,14 +194,17 @@
   "settingsImplicitPush": {
     "message": "隐式推送通知 (只将新消息记录在通知历史中，不弹出通知提示)"
   },
-  "settingsNotificationDetectIcon": {
-    "message": "允许自动检测并获取网站图标"
-  },
   "settingsNotificationSound": {
     "message": "允许通知发出提示音"
   },
   "settingsNotificationCustomSound": {
     "message": "使用自定义的通知提示音 \n(如果您的系统是 Windows7 或系统是 Windows10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
+  },
+  "settingsNotificationLaterMark": {
+    "message": "支持标识稍后查阅通知 (仅针对提供了 url 的通知消息)"
+  },
+  "settingsNotificationDetectIcon": {
+    "message": "允许自动检测并获取网站图标"
   },
   "settingsNotificationShowUrl": {
     "message": "在通知记录中显示通知的网址 (如果存在)"
@@ -428,5 +434,8 @@
   },
   "notificationTestName": {
     "message": "测试"
+  },
+  "notificationLater": {
+    "message": "稍后查阅"
   }
 }
