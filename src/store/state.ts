@@ -1,6 +1,6 @@
 function defaultConfigs(): store.GloriaConfig {
   return {
-    lastActiveTab: 'tasks',
+    taskAutoCheckUpdate: false,
     taskOnTimeMode: false,
     taskNeedInteraction: false,
     taskOnTop: false,

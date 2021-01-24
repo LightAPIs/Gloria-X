@@ -1,3 +1,5 @@
+'use strict';
+
 import { expect } from 'chai';
 import chrome from 'sinon-chrome';
 import mutations from '@/store/mutations';
@@ -7,6 +9,10 @@ const {
   setImplicitPush,
   updateImplicitPush,
   switchImplicitPush,
+  setLastActiveTab,
+  updateLastActiveTab,
+  setLastCheckTasksUpdate,
+  triggerLastCheckTasksUpdate,
   setConfigs,
   updateConfigs,
   setTasks,
@@ -17,6 +23,7 @@ const {
   removeTaskItem,
   triggerTask,
   clearTasks,
+  disconnectTask,
   setStages,
   updateStage,
   addStage,
@@ -36,7 +43,7 @@ const {
 
 function createNewConfigs() {
   return {
-    lastActiveTab: 'notifications',
+    taskAutoCheckUpdate: true,
     taskOnTimeMode: true,
     taskNeedInteraction: true,
     taskOnTop: true,
@@ -92,6 +99,48 @@ describe('Test mutations:', function() {
     });
   });
 
+  describe('Method: setLastActiveTab', function() {
+    it('state.lastActiveTab is normal.', function() {
+      const state = {
+        lastActiveTab: '',
+      };
+      setLastActiveTab(state, 'test');
+      expect(state.lastActiveTab).to.equal('test');
+    });
+  });
+
+  describe('Method: updateLastActiveTab', function() {
+    it('update lastActiveTab.', function() {
+      const state = {
+        lastActiveTab: '',
+      };
+      updateLastActiveTab(state, 'test');
+      expect(state.lastActiveTab).to.equal('test');
+    });
+  });
+
+  describe('Method: setLastCheckTasksUpdate', function() {
+    it('state.lastCheckTasksUpdate is normal.', function() {
+      const state = {
+        lastCheckTasksUpdate: '',
+      };
+      setLastCheckTasksUpdate(state, '');
+      expect(state.lastCheckTasksUpdate).to.not.empty;
+      setLastCheckTasksUpdate(state, 'Virtual time');
+      expect(state.lastCheckTasksUpdate).to.equal('Virtual time');
+    });
+  });
+
+  describe('Method: triggerLastCheckTasksUpdate', function() {
+    it('trigger check tasks update.', function() {
+      const state = {
+        lastCheckTasksUpdate: '',
+      };
+      triggerLastCheckTasksUpdate(state);
+      expect(state.lastCheckTasksUpdate).to.not.empty;
+    });
+  });
+
   describe('Method: setConfigs', function() {
     const state = {
       configs: {},
@@ -102,11 +151,14 @@ describe('Test mutations:', function() {
     it('state.configs size is normal.', function() {
       expect(Object.keys(state.configs).length).to.equal(keyLen);
     });
-    it('lastActiveTab is set.', function() {
-      expect(state.configs.lastActiveTab).to.equal('notifications');
+    it('taskAutoCheckUpdate is set.', function() {
+      expect(state.configs.taskAutoCheckUpdate).to.be.true;
     });
     it('taskOnTimeMode is set.', function() {
       expect(state.configs.taskOnTimeMode).to.be.true;
+    });
+    it('taskNeedInteraction is set.', function() {
+      expect(state.configs.taskNeedInteraction).to.be.true;
     });
     it('taskOnTop is set.', function() {
       expect(state.configs.taskOnTop).to.be.true;
@@ -396,6 +448,21 @@ describe('Test mutations:', function() {
       clearTasks(state);
       expect(state.tasks).to.be.empty;
       expect(state.stages.length).to.equal(1);
+    });
+  });
+
+  describe('Method: disconnectTask', function() {
+    it('disconnect task.', function() {
+      const state = {
+        tasks: [
+          {
+            id: '1',
+            origin: 'https://example.com',
+          },
+        ],
+      };
+      disconnectTask(state, '1');
+      expect(state.tasks[0].origin).to.be.empty;
     });
   });
 

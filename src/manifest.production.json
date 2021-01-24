@@ -11,6 +11,12 @@
     "page": "background.html",
     "persistent": true
   },
+  "content_scripts": [
+    {
+      "matches": ["*://*.gloria.pub/task/*"],
+      "js": ["content/inject-button.js"]
+    }
+  ],
   "browser_action": {
     "default_icon": {
       "16": "icons/app/icon-16.png",

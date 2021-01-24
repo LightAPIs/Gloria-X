@@ -7,21 +7,11 @@ import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
+import { trim } from 'lodash';
 
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 momentLocale();
-
-chrome.storage.local.get(['implicitPush', 'configs', 'tasks', 'stages', 'notifications', 'reducer'], res => {
-  console.log(res);
-  const { implicitPush, configs, tasks, stages, notifications, reducer } = res;
-  store.commit('setImplicitPush', implicitPush);
-  store.commit('setConfigs', configs);
-  store.commit('setNotifications', notifications);
-  store.commit('setStages', stages);
-  store.commit('setReducer', reducer);
-  store.commit('setTasks', tasks);
-});
 
 function createTaskTimer(task: store.GloriaTask, immediately = false) {
   const { id, code, triggerInterval, triggerDate, onTimeMode } = task;
@@ -59,6 +49,89 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
     }
   } else {
     alarmsManager.add(id, -1, triggerInterval, run);
+  }
+}
+
+function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
+  function check() {
+    store.commit('triggerLastCheckTasksUpdate');
+    const { tasks, configs } = store.state;
+    tasks.forEach(task => {
+      if (task.origin && task.origin.match(/:\/\/gloria\.pub\/task\/(?:\w+)/)) {
+        const originId = (/:\/\/gloria\.pub\/task\/(\w+)/.exec(task.origin) as string[])[1];
+        try {
+          fetch('https://api.gloria.pub/task/' + originId)
+            .then(res => res.json())
+            .then(r => {
+              if (r.code && trim(r.code) !== trim(task.code)) {
+                notificationsManager.add({
+                  title: i18n('notificationCodeUpdate', [r.name]),
+                  message: i18n('notificationCodeUpdateTip'),
+                  iconUrl: DEFAULT_ICON_URL,
+                  type: 'basic',
+                  id: uuid(),
+                  contextMessage: 'Gloria-X',
+                  requireInteraction: false,
+                  eventTime: Date.now(),
+                  priority: 0,
+                  silent: !configs.notificationSound,
+                  customSound: configs.notificationCustomSound,
+                  detectIcon: false,
+                  isTest: true,
+                  buttons: [
+                    {
+                      title: i18n('notificationCodeUpdateGo'),
+                    },
+                    {
+                      title: i18n('notificationCodeUpdateDisconnect'),
+                    },
+                  ],
+                  onButton0Click: id => {
+                    id &&
+                      chrome.windows.getCurrent(
+                        {
+                          windowTypes: ['normal'],
+                        },
+                        win => {
+                          if (!chrome.runtime.lastError && win) {
+                            chrome.tabs.create({
+                              url: task.origin,
+                            });
+                          } else {
+                            chrome.windows.create(w => {
+                              w &&
+                                chrome.tabs.create({
+                                  url: task.origin,
+                                  windowId: w.id,
+                                });
+                            });
+                          }
+                        }
+                      );
+                  },
+                  onButton1Click: id => {
+                    id && store.commit('disconnectTask', task.id);
+                  },
+                });
+              }
+            });
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    });
+  }
+
+  if (immediately) {
+    const { lastCheckTasksUpdate } = store.state;
+    if (isAfterInterval(lastCheckTasksUpdate, 60 * 6)) {
+      alarmsManager.add(checkId, -1, 60 * 6, check);
+      check();
+    } else {
+      alarmsManager.add(checkId, remainingTime(lastCheckTasksUpdate, 60 * 6), 60 * 6, check);
+    }
+  } else {
+    alarmsManager.add(checkId, -1, 60 * 6, check);
   }
 }
 
@@ -135,7 +208,33 @@ function createNotificationOptions(task: store.GloriaTask, data: store.MessageDa
   return options;
 }
 
-//todo function checkOriginUpdate() {}
+function syncCodeUpdate() {
+  const checkCodeUpdateIdList = new Set([] as string[]);
+  const { taskAutoCheckUpdate } = store.state.configs;
+  if (taskAutoCheckUpdate) {
+    const checkId = uuid();
+    createCheckCodeUpdateTimer(checkId, true);
+    checkCodeUpdateIdList.add(checkId);
+  }
+
+  store.watch(
+    (state: store.VuexState): boolean => state.configs.taskAutoCheckUpdate,
+    (val: boolean) => {
+      if (val) {
+        if (checkCodeUpdateIdList.size === 0) {
+          const checkId = uuid();
+          createCheckCodeUpdateTimer(checkId, true);
+          checkCodeUpdateIdList.add(checkId);
+        }
+      } else {
+        checkCodeUpdateIdList.forEach(timerId => {
+          alarmsManager.remove(timerId);
+        });
+        checkCodeUpdateIdList.clear();
+      }
+    }
+  );
+}
 
 function syncTasks() {
   const activeTaskIdList = new Set([] as string[]);
@@ -341,75 +440,6 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
   });
 }
 
-chrome.runtime.onMessageExternal.addListener((message, _sender, sendResponse) => {
-  let originTasks: store.GloriaTask[];
-  switch (message.type) {
-    case 'task.install':
-      store.dispatch('installTask', {
-        id: uuid(),
-        code: message.code,
-        name: message.name,
-        triggerInterval: 5,
-        needInteraction: false,
-        onTimeMode: false,
-        origin: message.origin,
-      });
-      sendResponse(true);
-      chrome.notifications.create(
-        {
-          title: i18n('notificationTaskTitle'),
-          message: i18n('notificationTaskInstall', [message.name]),
-          iconUrl: DEFAULT_ICON_URL,
-          type: 'basic',
-        },
-        () => {
-          if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError);
-          }
-        }
-      );
-      break;
-    case 'task.is-exist':
-      if (message.origin) {
-        originTasks = store.state.tasks.filter(task => task.origin === message.origin);
-        if (originTasks.length > 0) {
-          if (originTasks[0].code === message.code) {
-            sendResponse(true);
-          } else {
-            sendResponse('diff');
-          }
-        } else {
-          sendResponse(false);
-        }
-      } else {
-        sendResponse(false);
-      }
-      break;
-    case 'task.uninstall':
-      if (message.origin) {
-        store.dispatch('removeTaskByOrigin', message.origin);
-        sendResponse(true);
-      } else {
-        sendResponse(false);
-      }
-      break;
-    case 'task.update':
-      if (message.origin) {
-        store.dispatch('updateTaskByOrigin', {
-          url: message.origin,
-          code: message.code,
-        });
-        sendResponse(true);
-      } else {
-        sendResponse(false);
-      }
-      break;
-    case 'extension.version':
-      sendResponse(chrome.runtime.getManifest().version); // Gloria-X is usually bigger than Gloria version.
-      break;
-  }
-});
-
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   const { type, data } = message;
   switch (type) {
@@ -454,6 +484,148 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
           err: {
             message: JSON.stringify(e),
           },
+        });
+      }
+      return true;
+    case 'checkInstall':
+      if (store.getters.hasInstalledTask(data)) {
+        sendResponse({
+          result: true,
+        });
+      } else {
+        sendResponse({
+          result: false,
+        });
+      }
+      return true;
+    case 'installTask':
+      try {
+        fetch(data)
+          .then(res => {
+            if (res.status >= 200 && res.status < 300) {
+              return res.json();
+            } else {
+              return res.text().then(msg => {
+                throw {
+                  status: res.status,
+                  statusText: msg,
+                };
+              });
+            }
+          })
+          .then(r => {
+            if (trim(r.code)) {
+              store.dispatch('installTask', {
+                id: uuid(),
+                code: trim(r.code),
+                name: r.name || r.description || r.author || r._id,
+                origin: data.replace('api.', ''),
+              });
+              sendResponse({
+                result: true,
+              });
+              chrome.notifications.create(
+                {
+                  title: i18n('notificationTaskTitle'),
+                  message: i18n('notificationTaskInstall', [r.name]),
+                  iconUrl: DEFAULT_ICON_URL,
+                  type: 'basic',
+                },
+                () => {
+                  if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError);
+                  }
+                }
+              );
+            } else {
+              sendResponse({
+                result: false,
+              });
+            }
+          });
+      } catch (e) {
+        sendResponse({
+          result: false,
+          err: {
+            message: JSON.stringify(e),
+          },
+        });
+      }
+      return true;
+    case 'updateTask':
+      try {
+        fetch(data)
+          .then(res => {
+            if (res.status >= 200 && res.status < 300) {
+              return res.json();
+            } else {
+              return res.text().then(msg => {
+                throw {
+                  status: res.status,
+                  statusText: msg,
+                };
+              });
+            }
+          })
+          .then(r => {
+            if (trim(r.code)) {
+              store.dispatch('updateTaskByOrigin', {
+                code: trim(r.code),
+                url: data.replace('api.', ''),
+              });
+              sendResponse({
+                result: true,
+              });
+              chrome.notifications.create(
+                {
+                  title: i18n('notificationTaskTitle'),
+                  message: i18n('notificationTaskUpdate', [r.name]),
+                  iconUrl: DEFAULT_ICON_URL,
+                  type: 'basic',
+                },
+                () => {
+                  if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError);
+                  }
+                }
+              );
+            } else {
+              sendResponse({
+                result: false,
+              });
+            }
+          });
+      } catch (e) {
+        sendResponse({
+          result: false,
+          err: {
+            message: JSON.stringify(e),
+          },
+        });
+      }
+      return true;
+    case 'uninstallTask':
+      if (data) {
+        store.dispatch('removeTaskByOrigin', data);
+        sendResponse({
+          result: true,
+        });
+        chrome.notifications.create(
+          {
+            title: i18n('notificationTaskTitle'),
+            message: i18n('notificationTaskUninstall', data),
+            iconUrl: DEFAULT_ICON_URL,
+            type: 'basic',
+          },
+          () => {
+            if (chrome.runtime.lastError) {
+              console.error(chrome.runtime.lastError);
+            }
+          }
+        );
+      } else {
+        sendResponse({
+          result: false,
         });
       }
       return true;
@@ -520,43 +692,24 @@ chrome.webRequest.onCompleted.addListener(
   }
 );
 
-// chrome.notifications.onButtonClicked.addListener((notificationId, buttonIndex) => {
-//   //todo 处理稍后查阅功能
-//   try {
-//     const { id, origin } = JSON.parse(notificationId);
-//     if (buttonIndex === 0) {
-//       // 打开更新网站
-//       chrome.windows.getCurrent(
-//         {
-//           windowTypes: ['normal'],
-//         },
-//         win => {
-//           if (!chrome.runtime.lastError && win) {
-//             chrome.tabs.create({
-//               url: origin,
-//             });
-//           } else {
-//             chrome.windows.create(w => {
-//               w &&
-//                 chrome.tabs.create({
-//                   url: origin,
-//                   windowId: w.id,
-//                 });
-//             });
-//           }
-//         }
-//       );
-//     } else if (buttonIndex === 1) {
-//       //todo 原程序在此处有一个删除任务的 origin 的操作
-//     }
-//   } catch (e) {
-//     console.error(e);
-//   } finally {
-//     chrome.notifications.clear(notificationId);
-//   }
-// });
+chrome.storage.local.get(
+  ['implicitPush', 'configs', 'tasks', 'stages', 'notifications', 'reducer', 'lastCheckTasksUpdate', 'lastActiveTab'],
+  res => {
+    console.log(res);
+    const { implicitPush, configs, tasks, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab } = res;
+    store.commit('setImplicitPush', implicitPush);
+    store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
+    store.commit('setLastActiveTab', lastActiveTab);
+    store.commit('setConfigs', configs);
+    store.commit('setNotifications', notifications);
+    store.commit('setStages', stages);
+    store.commit('setReducer', reducer);
+    store.commit('setTasks', tasks);
 
-syncTasks();
-syncMessageFlow();
-syncUnreadNumber();
-syncImplicitStatus();
+    syncTasks();
+    syncMessageFlow();
+    syncUnreadNumber();
+    syncImplicitStatus();
+    syncCodeUpdate();
+  }
+);

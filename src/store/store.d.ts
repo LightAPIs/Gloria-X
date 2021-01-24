@@ -60,26 +60,27 @@ declare namespace store {
 
   interface GloriaConfigItem {
     name: string;
-    value: string | boolean | number;
+    value: boolean | number;
   }
 
   interface GloriaConfig {
-    [key: string]: string | number | boolean;
-    lastActiveTab?: string;
-    taskOnTimeMode?: boolean;
-    taskOnTop?: boolean;
-    taskShowSearchInput?: boolean;
-    taskAutoRemoveStage?: boolean;
-    taskTriggerInterval?: number;
-    notificationSound?: boolean;
-    notificationCustomSound?: boolean;
-    notificationLaterMark?: boolean;
-    notificationDetectIcon?: boolean;
-    notificationShowUrl?: boolean;
-    notificationLazyLoading?: boolean;
-    notificationShowSearchInput?: boolean;
-    notificationShowBadge?: boolean;
-    notificationMaximun?: number;
+    [key: string]: number | boolean;
+    taskAutoCheckUpdate: boolean;
+    taskOnTimeMode: boolean;
+    taskNeedInteraction: boolean;
+    taskOnTop: boolean;
+    taskShowSearchInput: boolean;
+    taskAutoRemoveStage: boolean;
+    taskTriggerInterval: number;
+    notificationSound: boolean;
+    notificationCustomSound: boolean;
+    notificationLaterMark: boolean;
+    notificationDetectIcon: boolean;
+    notificationShowUrl: boolean;
+    notificationLazyLoading: boolean;
+    notificationShowSearchInput: boolean;
+    notificationShowBadge: boolean;
+    notificationMaximun: number;
   }
 
   interface MessageFlow {
@@ -90,6 +91,8 @@ declare namespace store {
 
   interface VuexState {
     implicitPush: boolean;
+    lastActiveTab: string;
+    lastCheckTasksUpdate: string;
     tasks: GloriaTask[];
     operationTask: GloriaTask | null;
     notifications: GloriaNotification[];

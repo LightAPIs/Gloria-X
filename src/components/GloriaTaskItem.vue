@@ -18,6 +18,7 @@
           :confirm-button-text="i18n('popupTaskDisconnectOk')"
           confirm-button-type="warning"
           :cancel-button-text="i18n('cancelText')"
+          @confirm="onDisconnect"
         >
           <el-button
             slot="reference"
@@ -161,7 +162,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'removeTaskItem']),
+    ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask']),
     onEdit() {
       const { id } = this;
       this.$emit('task-edit', id);
@@ -176,6 +177,10 @@ export default Vue.extend({
     onDelete() {
       const { id } = this;
       this.removeTaskItem(id);
+    },
+    onDisconnect() {
+      const { id } = this;
+      this.disconnectTask(id);
     },
   },
 });

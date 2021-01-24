@@ -1,6 +1,6 @@
 import { now } from '@/commons/calc';
 import ChromeStorage from './storage';
-import { defaultConfigs, defaultTask } from './state';
+import { defaultTask } from './state';
 
 const chromeStorage = new ChromeStorage();
 const STAGE_LIMIT = 200;
@@ -18,8 +18,24 @@ export default {
     chromeStorage.setImplicitPush(state.implicitPush, `switch implicitPush -> ${state.implicitPush}`);
   },
 
+  setLastActiveTab(state: store.VuexState, newTab: string) {
+    state.lastActiveTab = newTab || 'tasks';
+  },
+  updateLastActiveTab(state: store.VuexState, newTab: string) {
+    state.lastActiveTab = newTab;
+    chromeStorage.setLastActiveTab(state.lastActiveTab, `update active tab: "${state.lastActiveTab}".`);
+  },
+
+  setLastCheckTasksUpdate(state: store.VuexState, newTime: string) {
+    state.lastCheckTasksUpdate = newTime || now();
+  },
+  triggerLastCheckTasksUpdate(state: store.VuexState) {
+    state.lastCheckTasksUpdate = now();
+    chromeStorage.setLastCheckTasksUpdate(state.lastCheckTasksUpdate, `trigger check tasks update: "${state.lastCheckTasksUpdate}".`);
+  },
+
   setConfigs(state: store.VuexState, newCofings: store.GloriaConfig) {
-    Object.assign(state.configs, defaultConfigs(), newCofings || {});
+    Object.assign(state.configs, newCofings || {});
   },
   updateConfigs(state: store.VuexState, config: store.GloriaConfigItem) {
     const { name, value } = config;
@@ -165,6 +181,17 @@ export default {
     chromeStorage.setTasks(state.tasks, 'clear tasks.');
     delStage && chromeStorage.setStages(state.stages, 'auto clear stages.');
   },
+  disconnectTask(state: store.VuexState, id: string) {
+    let dis = false;
+    for (let i = 0; i < state.tasks.length; i++) {
+      if (id === state.tasks[i].id) {
+        state.tasks[i].origin = '';
+        dis = true;
+        break;
+      }
+    }
+    dis && chromeStorage.setTasks(state.tasks, `disconnect task -> "${id}".`);
+  },
 
   setStages(state: store.VuexState, newStages: store.GloriaStage[]) {
     if (newStages && Array.isArray(newStages) && newStages.length > 0) {
@@ -304,7 +331,7 @@ export default {
         mark = true;
       }
     }
-    mark && chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> ${notificationId}.`);
+    mark && chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> "${notificationId}".`);
   },
   checkedNotification(state: store.VuexState, notificationId: string) {
     let checked = false;
@@ -314,7 +341,7 @@ export default {
         checked = true;
       }
     }
-    checked && chromeStorage.setNotifications(state.notifications, `checked notification -> ${notificationId}.`);
+    checked && chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
   },
   clearNotifications(state: store.VuexState) {
     state.notifications = [];

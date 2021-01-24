@@ -2,6 +2,13 @@
   <div>
     <div>
       <el-switch
+        :value="configs.taskAutoCheckUpdate"
+        :active-text="i18n('settingsTaskAutoCheckUpdate')"
+        @change="onChange('taskAutoCheckUpdate', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
         :value="configs.taskOnTimeMode"
         :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeText'))"
         @change="onChange('taskOnTimeMode', $event)"

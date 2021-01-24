@@ -5,7 +5,19 @@ import { reduceNotification } from './reducer';
 
 export default {
   installTask(context: any, newTask: store.GloriaTaskBasic) {
-    context.commit('createTaskBasic', newTask);
+    const { commit, state } = context;
+    const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = state.configs as store.GloriaConfig;
+    commit(
+      'createTaskBasic',
+      Object.assign(
+        {
+          triggerInterval: taskTriggerInterval,
+          needInteraction: taskNeedInteraction,
+          onTimeMode: taskOnTimeMode,
+        },
+        newTask
+      )
+    );
   },
   updateTaskByOrigin(context: any, originData: { url: string; code: store.OriginCode }) {
     const { commit, state } = context;
@@ -71,9 +83,11 @@ export default {
             }
 
             if (diffArray.length > 0) {
+              const newStage = [];
+              newStage.push(...stagesItem.stage, ...diffArray);
               commit('updateStage', {
                 id,
-                stage: stagesItem.stage.push(...diffArray),
+                stage: newStage,
               });
               //* 处理 Reducer 函数
               const reduceArray: store.CommitData[] = reduceNotification(pushData, reducer);

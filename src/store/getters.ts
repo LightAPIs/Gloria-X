@@ -1,6 +1,6 @@
 export default {
   activeTab(state: store.VuexState) {
-    const { lastActiveTab } = state.configs;
+    const { lastActiveTab } = state;
     let tab = 'tasks';
     if (lastActiveTab && ['tasks', 'notifications'].includes(lastActiveTab)) {
       tab = lastActiveTab;
@@ -17,7 +17,7 @@ export default {
     });
     return titleList;
   },
-  // hasContextMessage(state: store.VuexState, text: string) {
-  //   state.notifications.find(item => item.options.contextMessage === text);
-  // },
+  hasInstalledTask: (state: store.VuexState) => (url: string) => {
+    return state.tasks.find(task => task.origin === url);
+  },
 };

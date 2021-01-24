@@ -7,14 +7,35 @@ class ChromeStorage {
   };
 
   private implicitPush: (func: () => void) => void;
+  private lastActiveTab: (func: () => void) => void;
+  private lastCheckTasksUpdate: (func: () => void) => void;
   private tasks: (func: () => void) => void;
   private notifications: (func: () => void) => void;
   private stages: (func: () => void) => void;
   private configs: (func: () => void) => void;
   private reducer: (func: () => void) => void;
+  private blockLog: boolean;
 
-  constructor() {
+  constructor(blockLog?: boolean) {
+    this.blockLog = blockLog || false;
+
     this.implicitPush = debounce(
+      function(func) {
+        func();
+      },
+      ChromeStorage.WAIT_TIME,
+      ChromeStorage.OPTIONS
+    );
+
+    this.lastActiveTab = debounce(
+      function(func) {
+        func();
+      },
+      ChromeStorage.WAIT_TIME,
+      ChromeStorage.OPTIONS
+    );
+
+    this.lastCheckTasksUpdate = debounce(
       function(func) {
         func();
       },
@@ -70,7 +91,33 @@ class ChromeStorage {
           implicitPush: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
+        }
+      );
+    });
+  }
+
+  setLastActiveTab(data: string, message?: string) {
+    this.lastActiveTab(() => {
+      chrome.storage.local.set(
+        {
+          lastActiveTab: data,
+        },
+        () => {
+          !this.blockLog && message && console.log(message);
+        }
+      );
+    });
+  }
+
+  setLastCheckTasksUpdate(data: string, message?: string) {
+    this.lastCheckTasksUpdate(() => {
+      chrome.storage.local.set(
+        {
+          lastCheckTasksUpdate: data,
+        },
+        () => {
+          !this.blockLog && message && console.log(message);
         }
       );
     });
@@ -83,7 +130,7 @@ class ChromeStorage {
           tasks: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
         }
       );
     });
@@ -96,7 +143,7 @@ class ChromeStorage {
           notifications: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
         }
       );
     });
@@ -109,7 +156,7 @@ class ChromeStorage {
           stages: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
         }
       );
     });
@@ -122,7 +169,7 @@ class ChromeStorage {
           configs: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
         }
       );
     });
@@ -135,7 +182,7 @@ class ChromeStorage {
           reducer: data,
         },
         () => {
-          message && console.log(message);
+          !this.blockLog && message && console.log(message);
         }
       );
     });

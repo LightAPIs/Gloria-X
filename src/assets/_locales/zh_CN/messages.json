@@ -158,6 +158,9 @@
   "settingsTask": {
     "message": "任务"
   },
+  "settingsTaskAutoCheckUpdate": {
+    "message": "自动检查任务代码更新"
+  },
   "settingsTaskOnTimeMode": {
     "message": "对于新创建或安装的任务，默认开启\"$colon$\"选项",
     "placeholders": {
@@ -432,10 +435,70 @@
       }
     }
   },
+  "notificationTaskUpdate": {
+    "message": "更新任务: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskUninstall": {
+    "message": "卸载任务: \"$url$\"",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://gloria.pub/task/"
+      }
+    }
+  },
   "notificationTestName": {
     "message": "测试"
   },
   "notificationLater": {
     "message": "稍后查阅"
+  },
+  "notificationCodeUpdate": {
+    "message": "检测到任务\"$task$\"存在更新",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test Name"
+      }
+    }
+  },
+  "notificationCodeUpdateTip": {
+    "message": "出于安全考虑，Gloria-X 不会提供自动更新任务代码的功能。"
+  },
+  "notificationCodeUpdateGo": {
+    "message": "前往任务页面更新"
+  },
+  "notificationCodeUpdateDisconnect": {
+    "message": "停止检查此任务更新"
+  },
+  "injectButtonTip": {
+    "message": "该按钮由 Gloria-X 提供"
+  },
+  "injectInstall": {
+    "message": "安装 (X)"
+  },
+  "injectInstallFaild": {
+    "message": "安装失败 (X)"
+  },
+  "injectInstalled": {
+    "message": "卸载任务 (X)"
+  },
+  "injectUninstallFaild": {
+    "message": "卸载失败 (X)"
+  },
+  "injectUpdate": {
+    "message": "更新任务 (X)"
+  },
+  "injectUpdated": {
+    "message": "更新完成 (X)"
+  },
+  "injectUpdateFaild": {
+    "message": "更新失败 (X)"
   }
 }
