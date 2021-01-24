@@ -12,6 +12,7 @@
     </el-menu-item>
     <el-menu-item index="-2" class="history-menu-item" :title="i18n('popupNotificationLater')">
       {{ i18n('popupNotificationLater') }}
+      <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" />
     </el-menu-item>
     <el-menu-item
       v-for="(item, index) in notificationsTitleList"
@@ -27,7 +28,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default Vue.extend({
   name: 'gloria-notification-menu',
@@ -37,6 +38,7 @@ export default Vue.extend({
     };
   },
   computed: {
+    ...mapState(['laterCount']),
     ...mapGetters(['notificationsTitleList']),
   },
   methods: {
@@ -53,6 +55,11 @@ export default Vue.extend({
   .history-menu-item {
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+.later-count {
+  sup {
+    vertical-align: super;
   }
 }
 </style>

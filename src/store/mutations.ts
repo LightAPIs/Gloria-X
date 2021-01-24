@@ -328,20 +328,31 @@ export default {
     for (let i = 0; i < state.notifications.length; i++) {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = true;
+        state.laterCount++;
         mark = true;
       }
     }
-    mark && chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> "${notificationId}".`);
+    if (mark) {
+      chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> "${notificationId}".`);
+      chromeStorage.setLaterCount(state.laterCount, `increase later count to "${state.laterCount}".`);
+    }
   },
   checkedNotification(state: store.VuexState, notificationId: string) {
     let checked = false;
     for (let i = 0; i < state.notifications.length; i++) {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = false;
+        state.laterCount--;
+        if (state.laterCount < 0) {
+          state.laterCount = 0;
+        }
         checked = true;
       }
     }
-    checked && chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
+    if (checked) {
+      chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
+      chromeStorage.setLaterCount(state.laterCount, `decrease later count to "${state.laterCount}".`);
+    }
   },
   clearNotifications(state: store.VuexState) {
     state.notifications = [];
@@ -363,5 +374,9 @@ export default {
   },
   clearUnread(state: store.VuexState) {
     state.unread = 0;
+  },
+
+  setLaterCount(state: store.VuexState, newCount: number) {
+    state.laterCount = newCount || 0;
   },
 };

@@ -100,6 +100,7 @@ declare namespace store {
     configs: GloriaConfig;
     reducer: string;
     unread: number;
+    laterCount: number;
   }
 
   interface GloriaGetter {

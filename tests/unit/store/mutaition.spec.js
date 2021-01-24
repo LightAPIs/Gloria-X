@@ -39,6 +39,7 @@ const {
   updateReducer,
   decreaseUnread,
   clearUnread,
+  setLaterCount,
 } = mutations;
 
 function createNewConfigs() {
@@ -635,9 +636,11 @@ describe('Test mutations:', function() {
             later: false,
           },
         ],
+        laterCount: 0,
       };
       markLaterNotification(state, '1');
       expect(state.notifications[0].later).to.be.true;
+      expect(state.laterCount).to.be.equal(1);
     });
   });
 
@@ -650,9 +653,11 @@ describe('Test mutations:', function() {
             later: true,
           },
         ],
+        laterCount: 1,
       };
       checkedNotification(state, '1');
       expect(state.notifications[0].later).to.be.false;
+      expect(state.laterCount).to.equal(0);
     });
   });
 
@@ -715,6 +720,16 @@ describe('Test mutations:', function() {
       };
       clearUnread(state);
       expect(state.unread).to.equal(0);
+    });
+  });
+
+  describe('Method: setLaterCount', function() {
+    it('set laterCount.', function() {
+      const state = {
+        laterCount: 0,
+      };
+      setLaterCount(state, 5);
+      expect(state.laterCount).to.equal(5);
     });
   });
 
