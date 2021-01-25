@@ -73,12 +73,7 @@ export default {
               d && diffArray.push(singleStage);
               if (d) {
                 diffArray.push(singleStage);
-                pushData.push(
-                  Object.assign({}, dataItem, {
-                    //* 通知 id，用于标识每条通知
-                    notificationId: uuid(),
-                  })
-                );
+                pushData.push(Object.assign({}, dataItem));
               }
             }
 
@@ -96,7 +91,12 @@ export default {
                 commit('addMessageFlow', {
                   id: uuid(),
                   taskId: id,
-                  data: reduceArray,
+                  data: reduceArray.map(ele => {
+                    return Object.assign(ele, {
+                      //* 通知 id，用于标识每条通知
+                      notificationId: uuid(),
+                    });
+                  }),
                 });
             }
           } else {
