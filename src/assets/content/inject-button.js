@@ -204,4 +204,12 @@ function init() {
   }
 }
 
+const gloriaObserver = new MutationObserver(() => {
+  init();
+});
+
+gloriaObserver.observe(document.getElementById('app'), {
+  childList: true,
+});
+
 init();

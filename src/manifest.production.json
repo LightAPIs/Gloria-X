@@ -13,7 +13,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.gloria.pub/task/*"],
+      "matches": ["*://*.gloria.pub/*"],
       "js": ["content/inject-button.js"]
     }
   ],
