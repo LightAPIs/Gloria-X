@@ -1,15 +1,17 @@
 <template>
   <div id="about-router">
-    About
+    <gloria-about-content></gloria-about-content>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import GloriaAboutContent from '@/components/GloriaAboutContent.vue';
+
 export default Vue.extend({
   name: 'router-about',
-  data() {
-    return {};
+  components: {
+    GloriaAboutContent,
   },
 });
 </script>

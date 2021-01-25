@@ -407,6 +407,30 @@
   "reducerTestError": {
     "message": "传入的测试对象不正确"
   },
+  "aboutSupport": {
+    "message": "支持"
+  },
+  "aboutSupportLabel": {
+    "message": "Gloria-X 是一款免费开源的可编程网站通知聚合器，可以通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒，并且绝不会收集发送用户的任何隐私信息。"
+  },
+  "aboutSourceCode": {
+    "message": "源代码 (MIT License)"
+  },
+  "aboutIssues": {
+    "message": "问题反馈"
+  },
+  "aboutGuide": {
+    "message": "Gloria 中文指南"
+  },
+  "aboutShare": {
+    "message": "任务代码分享网站"
+  },
+  "aboutThanks": {
+    "message": "鸣谢"
+  },
+  "aboutThanksLabel": {
+    "message": "Gloria-X 的诞生，离不开以下开源项目所提供的支持和帮助："
+  },
   "calcUndefined": {
     "message": "无"
   },
