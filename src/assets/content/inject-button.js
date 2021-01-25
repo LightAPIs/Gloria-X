@@ -208,8 +208,10 @@ const gloriaObserver = new MutationObserver(() => {
   init();
 });
 
-gloriaObserver.observe(document.getElementById('app'), {
-  childList: true,
-});
+const app = document.getElementById('app');
+app &&
+  gloriaObserver.observe(app, {
+    childList: true,
+  });
 
 init();
