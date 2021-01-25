@@ -4,10 +4,16 @@ import moment from 'moment';
 // moment.locale(chrome.i18n.getUILanguage() || navigator.language);
 //? 由于在单元测试时，若直接进行全局设置语言环境,会因为 chrome 没有被定义而报错。
 
-function momentLocale() {
-  const lang = chrome.i18n.getUILanguage() || navigator.language;
-  if (moment.locale() !== lang) {
-    moment.locale(lang);
+function momentLocale(language?: string) {
+  if (language) {
+    if (moment.locale() !== language) {
+      moment.locale(language);
+    }
+  } else {
+    const lang = chrome.i18n.getUILanguage() || navigator.language;
+    if (moment.locale() !== lang) {
+      moment.locale(lang);
+    }
   }
 }
 
@@ -40,11 +46,11 @@ function isAfterInterval(date: number | string, interval = 1) {
     return true;
   }
 
-  return moment(now()).diff(date) >= interval;
+  return moment().diff(date, 'm') >= interval;
 }
 
 function remainingTime(date: number | string, interval: number) {
-  const rtime = interval - moment(now()).diff(date, 'm');
+  const rtime = interval - moment().diff(date, 'm');
   return rtime > 0 ? rtime : 1;
 }
 
