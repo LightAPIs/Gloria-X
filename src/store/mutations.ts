@@ -58,6 +58,7 @@ export default {
         if (!state.configs.notificationShowBadge) {
           // 关闭选项时清零
           state.unread = 0;
+          chromeStorage.setUnread(state.unread, 'sync clear unread number.');
         }
       }
 
@@ -291,6 +292,7 @@ export default {
         }
         if (notificationShowBadge) {
           state.unread += data.length;
+          chromeStorage.setUnread(state.unread, `store unread number to "${state.unread}".`);
         }
 
         push = true;
@@ -367,13 +369,18 @@ export default {
     chromeStorage.setReducer(state.reducer, 'update reducer.');
   },
 
+  setUnread(state: store.VuexState, newNum: number) {
+    state.unread = newNum > 0 ? newNum : 0;
+  },
   decreaseUnread(state: store.VuexState) {
     if (state.unread > 0) {
       state.unread--;
+      chromeStorage.setUnread(state.unread, `decrease unread number to "${state.unread}".`);
     }
   },
   clearUnread(state: store.VuexState) {
     state.unread = 0;
+    chromeStorage.setUnread(state.unread, 'clear unread number.');
   },
 
   setLaterCount(state: store.VuexState, newCount: number) {

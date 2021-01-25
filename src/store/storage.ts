@@ -14,6 +14,7 @@ class ChromeStorage {
   private stages: (func: () => void) => void;
   private configs: (func: () => void) => void;
   private reducer: (func: () => void) => void;
+  private unread: (func: () => void) => void;
   private laterCount: (func: () => void) => void;
   private blockLog: boolean;
 
@@ -77,6 +78,14 @@ class ChromeStorage {
     );
 
     this.reducer = debounce(
+      function(func) {
+        func();
+      },
+      ChromeStorage.WAIT_TIME,
+      ChromeStorage.OPTIONS
+    );
+
+    this.unread = debounce(
       function(func) {
         func();
       },
@@ -189,6 +198,19 @@ class ChromeStorage {
       chrome.storage.local.set(
         {
           reducer: data,
+        },
+        () => {
+          !this.blockLog && message && console.log(message);
+        }
+      );
+    });
+  }
+
+  setUnread(data: number, message?: string) {
+    this.unread(() => {
+      chrome.storage.local.set(
+        {
+          unread: data,
         },
         () => {
           !this.blockLog && message && console.log(message);

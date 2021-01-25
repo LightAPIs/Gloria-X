@@ -37,6 +37,7 @@ const {
   clearNotifications,
   setReducer,
   updateReducer,
+  setUnread,
   decreaseUnread,
   clearUnread,
   setLaterCount,
@@ -698,6 +699,16 @@ describe('Test mutations:', function() {
       };
       updateReducer(state, '');
       expect(state.reducer).to.be.empty;
+    });
+  });
+
+  describe('Method: setUnread', function() {
+    it('set unread number.', function() {
+      const state = {
+        unread: 0,
+      };
+      setUnread(state, 5);
+      expect(state.unread).to.equal(5);
     });
   });
 
