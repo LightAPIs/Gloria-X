@@ -357,8 +357,20 @@ export default {
     }
   },
   clearNotifications(state: store.VuexState) {
-    state.notifications = [];
-    chromeStorage.setNotifications(state.notifications, 'clear notifications.');
+    if (state.notifications.length > 0) {
+      state.notifications = [];
+      chromeStorage.setNotifications(state.notifications, 'clear notifications.');
+    }
+
+    if (state.unread > 0) {
+      state.unread = 0;
+      chromeStorage.setUnread(state.unread, 'sync clear unread number.');
+    }
+
+    if (state.laterCount > 0) {
+      state.laterCount = 0;
+      chromeStorage.setLaterCount(state.laterCount, 'sync clear later count.');
+    }
   },
 
   setReducer(state: store.VuexState, newReducer: string) {
