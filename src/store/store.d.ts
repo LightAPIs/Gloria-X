@@ -76,6 +76,7 @@ declare namespace store {
     notificationCustomSound: boolean;
     notificationLaterMark: boolean;
     notificationDetectIcon: boolean;
+    notificationDisableError: boolean;
     notificationShowUrl: boolean;
     notificationLazyLoading: boolean;
     notificationShowSearchInput: boolean;

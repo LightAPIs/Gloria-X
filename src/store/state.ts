@@ -11,6 +11,7 @@ function defaultConfigs(): store.GloriaConfig {
     notificationCustomSound: false,
     notificationLaterMark: false,
     notificationDetectIcon: false,
+    notificationDisableError: false,
     notificationShowUrl: false,
     notificationLazyLoading: false,
     notificationShowSearchInput: false,

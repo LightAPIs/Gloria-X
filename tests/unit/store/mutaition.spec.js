@@ -56,6 +56,7 @@ function createNewConfigs() {
     notificationCustomSound: true,
     notificationLaterMark: true,
     notificationDetectIcon: true,
+    notificationDisableError: true,
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
@@ -185,6 +186,9 @@ describe('Test mutations:', function() {
     });
     it('notificationDetectIcon is set.', function() {
       expect(state.configs.notificationDetectIcon).to.be.true;
+    });
+    it('notificationDisableError is set.', function() {
+      expect(state.configs.notificationDisableError).to.be.true;
     });
     it('notificationShowUrl is set.', function() {
       expect(state.configs.notificationShowUrl).to.be.true;

@@ -209,6 +209,9 @@
   "settingsNotificationDetectIcon": {
     "message": "允许自动检测并获取网站图标"
   },
+  "settingsNotificationDisableError": {
+    "message": "禁用任务执行出错的通知 (不推荐)"
+  },
   "settingsNotificationShowUrl": {
     "message": "在通知记录中显示通知的网址 (如果存在)"
   },
@@ -476,6 +479,18 @@
   },
   "notificationCodeUpdateDisconnect": {
     "message": "停止检查此任务更新"
+  },
+  "notificationCodeError": {
+    "message": "任务\"$task$\"执行出错！",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test name"
+      }
+    }
+  },
+  "notificationTerminateTask": {
+    "message": "终止该任务"
   },
   "injectButtonTip": {
     "message": "该按钮由 Gloria-X 提供"

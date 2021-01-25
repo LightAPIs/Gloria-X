@@ -14,7 +14,8 @@ const notificationsManager = new NotificationsManager();
 momentLocale();
 
 function createTaskTimer(task: store.GloriaTask, immediately = false) {
-  const { id, code, triggerInterval, triggerDate, onTimeMode } = task;
+  const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;
+  const { id, code, triggerInterval, triggerDate, onTimeMode, name } = task;
   function run() {
     store.commit('triggerTask', id);
     setTimeout(() => {
@@ -31,6 +32,33 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
         })
         .catch(err => {
           console.error(err);
+          !notificationDisableError &&
+            notificationsManager.add({
+              title: i18n('notificationCodeError', [name]),
+              message: err.message,
+              iconUrl: DEFAULT_ICON_URL,
+              type: 'basic',
+              id: uuid(),
+              contextMessage: 'Gloria-X',
+              requireInteraction: false,
+              eventTime: Date.now(),
+              priority: 0,
+              silent: !notificationSound,
+              customSound: notificationCustomSound,
+              detectIcon: false,
+              isTest: true,
+              buttons: [
+                {
+                  title: i18n('notificationTerminateTask'),
+                },
+              ],
+              onButton0Click: () => {
+                store.commit('updateIsEnable', {
+                  id,
+                  checked: false,
+                });
+              },
+            });
         });
     }, 0);
   }

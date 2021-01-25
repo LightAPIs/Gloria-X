@@ -33,6 +33,13 @@
     </div>
     <div class="margin-top">
       <el-switch
+        :value="configs.notificationDisableError"
+        :active-text="i18n('settingsNotificationDisableError')"
+        @change="onChange('notificationDisableError', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
         :value="configs.notificationShowUrl"
         :active-text="i18n('settingsNotificationShowUrl')"
         @change="onChange('notificationShowUrl', $event)"
