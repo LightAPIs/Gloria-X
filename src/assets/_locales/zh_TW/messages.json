@@ -1,0 +1,543 @@
+{
+  "extensionDescription": {
+    "message": "Chrome 上的可編程網站訊息聚合器"
+  },
+  "cancelText": {
+    "message": "取消"
+  },
+  "confirmText": {
+    "message": "確認"
+  },
+  "popupTaskLabel": {
+    "message": "任務列表"
+  },
+  "popupTaskAdd": {
+    "message": "新增任務"
+  },
+  "popupTaskShare": {
+    "message": "分享任務"
+  },
+  "popupTaskBook": {
+    "message": "簡體中文指南"
+  },
+  "popupTaskEdit": {
+    "message": "編輯"
+  },
+  "popupTaskDelete": {
+    "message": "移除"
+  },
+  "popupTaskDisconnect": {
+    "message": "停止檢查此任務的遠程更新"
+  },
+  "popupTaskDeleteConfirm": {
+    "message": "確認要移除此任務嗎？"
+  },
+  "popupTaskDeleteOk": {
+    "message": "確認移除"
+  },
+  "popupTaskDisconnectConfirm": {
+    "message": "確認要停止檢查此任務的遠程更新嗎？"
+  },
+  "popupTaskDisconnectOk": {
+    "message": "確認停止"
+  },
+  "popupTaskTriggerDate": {
+    "message": "上次執行時間： "
+  },
+  "popupTaskPushDate": {
+    "message": "上次推送時間： "
+  },
+  "popupTaskTriggerCount": {
+    "message": "總執行次數： "
+  },
+  "popupTaskPushCount": {
+    "message": "總推送訊息數： "
+  },
+  "popupTaskTriggerInterval": {
+    "message": "時間間隔： "
+  },
+  "popupTaskOrigin": {
+    "message": "來源： "
+  },
+  "popupTaskNoOrigin": {
+    "message": "本地"
+  },
+  "popupTaskNeedInteractionTag": {
+    "message": "手動關閉"
+  },
+  "popupTaskNeedInteractionText": {
+    "message": "彈出的訊息需要手動關閉"
+  },
+  "popupTaskOnTimeModeTag": {
+    "message": "準時模式"
+  },
+  "popupTaskOnTimeModeText": {
+    "message": "嚴格按照時間間隔執行任務"
+  },
+  "popupTaskDialogTitle": {
+    "message": "編輯任務"
+  },
+  "popupTaskDialogCreateTitle": {
+    "message": "創建任務"
+  },
+  "popupTaskFormNameLabel": {
+    "message": "任務名稱"
+  },
+  "popupTaskFormNamePlaceholder": {
+    "message": "為您的任務取一個好聽的名字吧 ^-^"
+  },
+  "popupTaskFormCodeLabel": {
+    "message": "任務程式碼"
+  },
+  "popupTaskFormCodePlaceholder": {
+    "message": "請輸入任務程式碼"
+  },
+  "popupTaskFormTriggerIntervalLabel": {
+    "message": "執行間隔 (分鐘)"
+  },
+  "popupTaskFormOptionalLabel": {
+    "message": "可選選項"
+  },
+  "popupTaskFormSubmit": {
+    "message": "提交"
+  },
+  "popupTaskFormCreate": {
+    "message": "立即創建"
+  },
+  "popupTaskRulesName": {
+    "message": "請輸入任務名稱"
+  },
+  "popupTaskRulesCode": {
+    "message": "任務程式碼是必需的"
+  },
+  "popupTaskRulesTriggerInterval": {
+    "message": "請輸入執行間隔時間"
+  },
+  "popupTaskRulesInteger": {
+    "message": "執行間隔時間必須為整數"
+  },
+  "popupTaskErrorEdit": {
+    "message": "內部錯誤，沒有找到相應的 id"
+  },
+  "popupNotificationLabel": {
+    "message": "訊息記錄"
+  },
+  "popupNotificationAll": {
+    "message": "所有訊息"
+  },
+  "popupNotificationLater": {
+    "message": "稍後查閱"
+  },
+  "popupNotificationFrom": {
+    "message": "來自： "
+  },
+  "searchTaskPlaceholder": {
+    "message": "輸入關鍵字對任務進行過濾"
+  },
+  "searchNotificationPlaceholder": {
+    "message": "輸入關鍵字對訊息進行過濾"
+  },
+  "optionsTitle": {
+    "message": "選項"
+  },
+  "optionsSettingsMenu": {
+    "message": "常規設定"
+  },
+  "optionsDebugMenu": {
+    "message": "任務調試"
+  },
+  "optionsStateMenu": {
+    "message": "內部狀態"
+  },
+  "optionsReducerMenu": {
+    "message": "訊息 Reducer"
+  },
+  "optionsAboutMenu": {
+    "message": "關於 Gloria-X"
+  },
+  "settingsTask": {
+    "message": "任務"
+  },
+  "settingsTaskAutoCheckUpdate": {
+    "message": "自動檢查任務程式碼更新"
+  },
+  "settingsTaskOnTimeMode": {
+    "message": "對於新創建或安裝的任務，默認開啟\"$option$\"選項",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskOnTimeModeText"
+      }
+    }
+  },
+  "settingsTaskNeedInteraction": {
+    "message": "對於新創建或安裝的任務，默認開啟\"$option$\"選項",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskNeedInteractionText"
+      }
+    }
+  },
+  "settingsTaskOnTop": {
+    "message": "新增的任務位於任務列表的最上方"
+  },
+  "settingsTaskTriggerInterval": {
+    "message": "新創建或安裝的任務默認執行間隔 (分鐘)："
+  },
+  "settingsTaskShowSearchInput": {
+    "message": "在任務列表的頂部顯示任務篩選輸入框"
+  },
+  "settingsTaskAutoRemoveStage": {
+    "message": "在移除任務時，自動移除 STAGES 組件中其對應的訊息快取"
+  },
+  "settingsNotification": {
+    "message": "訊息"
+  },
+  "settingsImplicitPush": {
+    "message": "隱式推送訊息 (只將新訊息記錄在訊息歷史中，不彈出訊息提示)"
+  },
+  "settingsNotificationSound": {
+    "message": "允許訊息發出提示音"
+  },
+  "settingsNotificationCustomSound": {
+    "message": "使用自定義的訊息提示音 (如果您的系統是 Windows 7 或系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設置為 Disabled 時，需要開啟該選項訊息才能發出聲音。)"
+  },
+  "settingsNotificationLaterMark": {
+    "message": "支持標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
+  },
+  "settingsNotificationDetectIcon": {
+    "message": "允許自動檢測並獲取網站圖示"
+  },
+  "settingsNotificationDisableError": {
+    "message": "禁用任務執行出錯的訊息 (不推薦)"
+  },
+  "settingsNotificationShowUrl": {
+    "message": "在訊息記錄中顯示訊息的網址 (如果存在)"
+  },
+  "settingsNotificationLazyLoading": {
+    "message": "對訊息記錄里的訊息圖像啟用懶載入"
+  },
+  "settingsNotificationShowSearchInput": {
+    "message": "在訊息記錄的頂部顯示訊息篩選輸入框"
+  },
+  "settingsNotificationShowBadge": {
+    "message": "在擴充功能圖示上顯示未讀訊息數量標記"
+  },
+  "settingsNotificationMaximun": {
+    "message": "訊息記錄數量上限："
+  },
+  "settingsClear": {
+    "message": "清理功能"
+  },
+  "settingsClearNotifications": {
+    "message": "清除訊息記錄"
+  },
+  "settingsClearNotificationsTip": {
+    "message": "清理所有訊息的歷史記錄"
+  },
+  "settingsClearTasks": {
+    "message": "清除所有任務"
+  },
+  "settingsClearTasksTip": {
+    "message": "移除掉所有已添加的任務"
+  },
+  "settingsClearStages": {
+    "message": "清理所有 Stages"
+  },
+  "settingsClearStagesTip": {
+    "message": "清理所有任務的訊息快取"
+  },
+  "settingsClearExpiredStages": {
+    "message": "清理過期 Stages"
+  },
+  "settingsClearExpiredStagesTip": {
+    "message": "清理缺失相對應任務的訊息快取"
+  },
+  "settingsClearCaches": {
+    "message": "清理 Caches"
+  },
+  "settingsClearCachesTip": {
+    "message": "清理所有網路請求快取"
+  },
+  "settingsClearConfirm": {
+    "message": "確認要清理嗎？"
+  },
+  "settingsImportExport": {
+    "message": "匯入/匯出"
+  },
+  "settingsImport": {
+    "message": "匯入任務"
+  },
+  "settingsImoprtNoFile": {
+    "message": "沒有選擇檔案"
+  },
+  "settingsImportInvalid": {
+    "message": "無效的檔案"
+  },
+  "settingsImportEmpty": {
+    "message": "檔案內容為空"
+  },
+  "settingsImportNoArray": {
+    "message": "數據不是數組"
+  },
+  "settingsImportUnkown": {
+    "message": "未知錯誤"
+  },
+  "settingsImportSuccess": {
+    "message": "匯入任務完成"
+  },
+  "settingsImportTooltip": {
+    "message": "從 json 或 txt 文件中匯入任務 (支持從 Gloria 所匯出的任務)"
+  },
+  "settingsExportJson": {
+    "message": "明文匯出任務"
+  },
+  "settingsExportJsonTooltip": {
+    "message": "匯出任務為 json 文件 (支持匯入到 Gloria 中)"
+  },
+  "settingsExportJsonSuccess": {
+    "message": "成功匯出 json 文件"
+  },
+  "settingsExportTextSuccess": {
+    "message": "成功匯出 txt 文件"
+  },
+  "settingsExportText": {
+    "message": "加密匯出任務"
+  },
+  "settingsExportTextTooltip": {
+    "message": "匯出任務為 txt 文件"
+  },
+  "debugTest": {
+    "message": "測試任務程式碼"
+  },
+  "debugTestCode": {
+    "message": "測試"
+  },
+  "debugCodeLabel": {
+    "message": "測試程式碼："
+  },
+  "debugCodePlaceholder": {
+    "message": "請輸入測試的任務程式碼"
+  },
+  "debugResult": {
+    "message": "測試結果："
+  },
+  "debugResultPlaceholder": {
+    "message": "此處顯示測試結果"
+  },
+  "debugError": {
+    "message": "程式碼碼錯誤："
+  },
+  "debugErrorPlaceholder": {
+    "message": "此處顯示程式碼錯誤"
+  },
+  "stateLabel": {
+    "message": "內部狀態"
+  },
+  "stateWatchingLabel": {
+    "message": "正在觀測中 ..."
+  },
+  "stateWatch": {
+    "message": "開始觀測內部狀態"
+  },
+  "stateStopWatch": {
+    "message": "停止觀測內部狀態"
+  },
+  "stateNotifications": {
+    "message": "訊息記錄："
+  },
+  "stateNotificationsPlaceholder": {
+    "message": "此處顯示訊息記錄的內部狀態"
+  },
+  "stateTasks": {
+    "message": "Gloria-X 任務："
+  },
+  "stateTasksPlaceholder": {
+    "message": "此處顯示所有任務的內部狀態"
+  },
+  "stateStages": {
+    "message": "STAGES (用於判定是否推送新訊息):"
+  },
+  "stateStagesPlaceholder": {
+    "message": "此處顯示所有訊息的內部快取情況"
+  },
+  "reducerLabel": {
+    "message": "Reducer 函數："
+  },
+  "reducerTip": {
+    "message": "在使用 Reducer 函數前，須知曉其帶來的好處及風險。"
+  },
+  "reducerLink": {
+    "message": "詳細資訊"
+  },
+  "reducerTestContentLabel": {
+    "message": "測試內容 (JSON)："
+  },
+  "reducerTestContent": {
+    "message": "請提供一個由 Gloria Notification 對象或者該對象所組成的數組序列化後的 JSON，例如下面這樣：\n\n$test$",
+    "placeholders": {
+      "test": {
+        "content": "$1",
+        "example": "{...}"
+      }
+    }
+  },
+  "reducerTestResultLabel": {
+    "message": "測試結果："
+  },
+  "reducerTestRedult": {
+    "message": "此處顯示測試結果"
+  },
+  "reducerPlacehoder": {
+    "message": ">-----------------------------------------------------------<\n示例:\n\nfunction reducer(notification){\n  ...\n  return notification || null;\n}\n\n請務必小心使用 Reducer 函數！\n>-----------------------------------------------------------<"
+  },
+  "reducerEdit": {
+    "message": "編輯"
+  },
+  "reducerSave": {
+    "message": "儲存"
+  },
+  "reducerCancel": {
+    "message": "取消"
+  },
+  "reducerTest": {
+    "message": "測試"
+  },
+  "reducerTestError": {
+    "message": "傳入的測試對象不正確"
+  },
+  "aboutSupport": {
+    "message": "支持"
+  },
+  "aboutSupportLabel": {
+    "message": "Gloria-X 是一款免費開源的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私資訊。"
+  },
+  "aboutSourceCode": {
+    "message": "程式码 (MIT License)"
+  },
+  "aboutIssues": {
+    "message": "問題反饋"
+  },
+  "aboutGuide": {
+    "message": "Gloria 中文指南"
+  },
+  "aboutShare": {
+    "message": "任務程式碼分享網站"
+  },
+  "aboutThanks": {
+    "message": "鳴謝"
+  },
+  "aboutThanksLabel": {
+    "message": "Gloria-X 的誕生，離不開以下開源專案所提供的支持和幫助："
+  },
+  "calcUndefined": {
+    "message": "無"
+  },
+  "contextMenusImplicitPush": {
+    "message": "啟用隱式推送功能"
+  },
+  "notificationContextMessage": {
+    "message": "$time$ $task$",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "23:11:11"
+      },
+      "task": {
+        "content": "$2",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskTitle": {
+    "message": "Gloria-X 訊息"
+  },
+  "notificationTaskInstall": {
+    "message": "安裝新任務: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskUpdate": {
+    "message": "更新任務: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskUninstall": {
+    "message": "卸載任務: \"$url$\"",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://gloria.pub/task/"
+      }
+    }
+  },
+  "notificationTestName": {
+    "message": "測試"
+  },
+  "notificationLater": {
+    "message": "稍後查閱"
+  },
+  "notificationCodeUpdate": {
+    "message": "檢測到任務\"$task$\"存在更新",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test Name"
+      }
+    }
+  },
+  "notificationCodeUpdateTip": {
+    "message": "出於安全考慮，Gloria-X 不會提供自動更新任務程式碼的功能。"
+  },
+  "notificationCodeUpdateGo": {
+    "message": "前往任務頁面更新"
+  },
+  "notificationCodeUpdateDisconnect": {
+    "message": "停止檢查此任務更新"
+  },
+  "notificationCodeError": {
+    "message": "任務\"$task$\"執行出錯！",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test name"
+      }
+    }
+  },
+  "notificationTerminateTask": {
+    "message": "終止該任務"
+  },
+  "injectButtonTip": {
+    "message": "該按鈕由 Gloria-X 提供"
+  },
+  "injectInstall": {
+    "message": "安裝 (X)"
+  },
+  "injectInstallFaild": {
+    "message": "安裝失敗 (X)"
+  },
+  "injectInstalled": {
+    "message": "卸載任務 (X)"
+  },
+  "injectUninstallFaild": {
+    "message": "卸載失敗 (X)"
+  },
+  "injectUpdate": {
+    "message": "更新任務 (X)"
+  },
+  "injectUpdated": {
+    "message": "更新完成 (X)"
+  },
+  "injectUpdateFaild": {
+    "message": "更新失敗 (X)"
+  }
+}

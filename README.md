@@ -1,10 +1,10 @@
 # Gloria-X
 
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](/LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](/LICENSE)
 
 > Chrome 上的可编程网站通知聚合器
 >
-> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
+> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
 ![Gloria-X](/src/assets/icons/app/icon-128.png)
 

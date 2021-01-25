@@ -1,1 +1,543 @@
-{}
+{
+  "extensionDescription": {
+    "message": "A programmable website notifications aggregator in Chrome"
+  },
+  "cancelText": {
+    "message": "Cancel"
+  },
+  "confirmText": {
+    "message": "Confirm"
+  },
+  "popupTaskLabel": {
+    "message": "Tasks"
+  },
+  "popupTaskAdd": {
+    "message": "Add task"
+  },
+  "popupTaskShare": {
+    "message": "Share task"
+  },
+  "popupTaskBook": {
+    "message": "Chinese guide"
+  },
+  "popupTaskEdit": {
+    "message": "Edit"
+  },
+  "popupTaskDelete": {
+    "message": "Delete"
+  },
+  "popupTaskDisconnect": {
+    "message": "Disconnect to check remote updates for this task"
+  },
+  "popupTaskDeleteConfirm": {
+    "message": "Are you sure you want to delete this task?"
+  },
+  "popupTaskDeleteOk": {
+    "message": "Delete"
+  },
+  "popupTaskDisconnectConfirm": {
+    "message": "Are you sure you want to disconnect to check remote updates for this task?"
+  },
+  "popupTaskDisconnectOk": {
+    "message": "Disconnect"
+  },
+  "popupTaskTriggerDate": {
+    "message": "Last execution time: "
+  },
+  "popupTaskPushDate": {
+    "message": "Last push time: "
+  },
+  "popupTaskTriggerCount": {
+    "message": "Total execution times: "
+  },
+  "popupTaskPushCount": {
+    "message": "Total push notifications: "
+  },
+  "popupTaskTriggerInterval": {
+    "message": "Time interval: "
+  },
+  "popupTaskOrigin": {
+    "message": "Source: "
+  },
+  "popupTaskNoOrigin": {
+    "message": "Local"
+  },
+  "popupTaskNeedInteractionTag": {
+    "message": "Interaction"
+  },
+  "popupTaskNeedInteractionText": {
+    "message": "The pop-up notification needs to be closed manually"
+  },
+  "popupTaskOnTimeModeTag": {
+    "message": "On-time"
+  },
+  "popupTaskOnTimeModeText": {
+    "message": "Perform tasks strictly in accordance with time intervals"
+  },
+  "popupTaskDialogTitle": {
+    "message": "Edit task"
+  },
+  "popupTaskDialogCreateTitle": {
+    "message": "Create task"
+  },
+  "popupTaskFormNameLabel": {
+    "message": "Task name"
+  },
+  "popupTaskFormNamePlaceholder": {
+    "message": "Give your task a nice name ^-^"
+  },
+  "popupTaskFormCodeLabel": {
+    "message": "Task code"
+  },
+  "popupTaskFormCodePlaceholder": {
+    "message": "Please enter the task code"
+  },
+  "popupTaskFormTriggerIntervalLabel": {
+    "message": "Interval (min)"
+  },
+  "popupTaskFormOptionalLabel": {
+    "message": "Optional option"
+  },
+  "popupTaskFormSubmit": {
+    "message": "Submit"
+  },
+  "popupTaskFormCreate": {
+    "message": "Create now"
+  },
+  "popupTaskRulesName": {
+    "message": "Please enter a task name"
+  },
+  "popupTaskRulesCode": {
+    "message": "Task code is required"
+  },
+  "popupTaskRulesTriggerInterval": {
+    "message": "Please enter the execution interval"
+  },
+  "popupTaskRulesInteger": {
+    "message": "The execution interval must be an integer"
+  },
+  "popupTaskErrorEdit": {
+    "message": "Internal error, no corresponding ID found"
+  },
+  "popupNotificationLabel": {
+    "message": "Notifications"
+  },
+  "popupNotificationAll": {
+    "message": "All"
+  },
+  "popupNotificationLater": {
+    "message": "Later review"
+  },
+  "popupNotificationFrom": {
+    "message": "From: "
+  },
+  "searchTaskPlaceholder": {
+    "message": "Enter keywords to filter tasks"
+  },
+  "searchNotificationPlaceholder": {
+    "message": "Enter keywords to filter notifications"
+  },
+  "optionsTitle": {
+    "message": "Options"
+  },
+  "optionsSettingsMenu": {
+    "message": "General settings"
+  },
+  "optionsDebugMenu": {
+    "message": "Task debug"
+  },
+  "optionsStateMenu": {
+    "message": "Internal state"
+  },
+  "optionsReducerMenu": {
+    "message": "Reducer"
+  },
+  "optionsAboutMenu": {
+    "message": "About Gloria-X"
+  },
+  "settingsTask": {
+    "message": "Task"
+  },
+  "settingsTaskAutoCheckUpdate": {
+    "message": "Automatically check for task code updates"
+  },
+  "settingsTaskOnTimeMode": {
+    "message": "For newly created or installed tasks, the \"$option$\" option is turned on by default",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskOnTimeModeText"
+      }
+    }
+  },
+  "settingsTaskNeedInteraction": {
+    "message": "For newly created or installed tasks, the \"$option$\" option is turned on by default",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskNeedInteractionText"
+      }
+    }
+  },
+  "settingsTaskOnTop": {
+    "message": "The newly added task is at the top of the task list"
+  },
+  "settingsTaskTriggerInterval": {
+    "message": "The default execution interval (minutes) of newly created or installed tasks:"
+  },
+  "settingsTaskShowSearchInput": {
+    "message": "Display the task filter input box at the top of the task list"
+  },
+  "settingsTaskAutoRemoveStage": {
+    "message": "When deleting a task, automatically remove its corresponding message cache in the STAGES component"
+  },
+  "settingsNotification": {
+    "message": "Notification"
+  },
+  "settingsImplicitPush": {
+    "message": "Implicit push notifications (only record new messages in notification records, no notification prompts)"
+  },
+  "settingsNotificationSound": {
+    "message": "The notification is allowed to sound"
+  },
+  "settingsNotificationCustomSound": {
+    "message": "Use a custom notification sound (you need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled.)"
+  },
+  "settingsNotificationLaterMark": {
+    "message": "Support for marking the notification for later review (only for notification messages with URL provided)"
+  },
+  "settingsNotificationDetectIcon": {
+    "message": "Allow automatic detection and acquisition of website icons"
+  },
+  "settingsNotificationDisableError": {
+    "message": "Disable notification of task execution errors (deprecated)"
+  },
+  "settingsNotificationShowUrl": {
+    "message": "Display the URL of the notification in notification records (if it exists)"
+  },
+  "settingsNotificationLazyLoading": {
+    "message": "Enable lazy loading of the notification image in notification records"
+  },
+  "settingsNotificationShowSearchInput": {
+    "message": "Display the notification filter input box at the top of notification records"
+  },
+  "settingsNotificationShowBadge": {
+    "message": "Show the number of unread notifications mark on the extension icon"
+  },
+  "settingsNotificationMaximun": {
+    "message": "Maximum number of notification records:"
+  },
+  "settingsClear": {
+    "message": "Clean"
+  },
+  "settingsClearNotifications": {
+    "message": "Clear notification records"
+  },
+  "settingsClearNotificationsTip": {
+    "message": "Clear the history of all notifications"
+  },
+  "settingsClearTasks": {
+    "message": "Clear tasks"
+  },
+  "settingsClearTasksTip": {
+    "message": "Delete all added tasks"
+  },
+  "settingsClearStages": {
+    "message": "Clear Stages"
+  },
+  "settingsClearStagesTip": {
+    "message": "Clear the notification cache for all tasks"
+  },
+  "settingsClearExpiredStages": {
+    "message": "Clear expired Stages"
+  },
+  "settingsClearExpiredStagesTip": {
+    "message": "Clear the notification cache of missing corresponding tasks"
+  },
+  "settingsClearCaches": {
+    "message": "Clear Caches"
+  },
+  "settingsClearCachesTip": {
+    "message": "Clear all network request cache"
+  },
+  "settingsClearConfirm": {
+    "message": "Are you sure you want to clean this up?"
+  },
+  "settingsImportExport": {
+    "message": "Import/Export"
+  },
+  "settingsImport": {
+    "message": "Import task"
+  },
+  "settingsImoprtNoFile": {
+    "message": "No file selected"
+  },
+  "settingsImportInvalid": {
+    "message": "Invalid file"
+  },
+  "settingsImportEmpty": {
+    "message": "File content is empty"
+  },
+  "settingsImportNoArray": {
+    "message": "Data is not an array"
+  },
+  "settingsImportUnkown": {
+    "message": "Unknown error"
+  },
+  "settingsImportSuccess": {
+    "message": "Import task completed"
+  },
+  "settingsImportTooltip": {
+    "message": "Import tasks from json or txt files (support tasks exported from Gloria)"
+  },
+  "settingsExportJson": {
+    "message": "Plaintext export task"
+  },
+  "settingsExportJsonTooltip": {
+    "message": "Export task as json file (support import into Gloria)"
+  },
+  "settingsExportJsonSuccess": {
+    "message": "Successfully exported the json file"
+  },
+  "settingsExportTextSuccess": {
+    "message": "Successfully exported the txt file"
+  },
+  "settingsExportText": {
+    "message": "Encrypted export task"
+  },
+  "settingsExportTextTooltip": {
+    "message": "Export task as txt file"
+  },
+  "debugTest": {
+    "message": "Test task code"
+  },
+  "debugTestCode": {
+    "message": "Testing"
+  },
+  "debugCodeLabel": {
+    "message": "Test code:"
+  },
+  "debugCodePlaceholder": {
+    "message": "Please enter the test task code"
+  },
+  "debugResult": {
+    "message": "Test results:"
+  },
+  "debugResultPlaceholder": {
+    "message": "Test results are shown here"
+  },
+  "debugError": {
+    "message": "Code error:"
+  },
+  "debugErrorPlaceholder": {
+    "message": "Code error shown here"
+  },
+  "stateLabel": {
+    "message": "Internal state"
+  },
+  "stateWatchingLabel": {
+    "message": "Under observation ..."
+  },
+  "stateWatch": {
+    "message": "Start looking inside"
+  },
+  "stateStopWatch": {
+    "message": "Stop looking inside"
+  },
+  "stateNotifications": {
+    "message": "Notification records:"
+  },
+  "stateNotificationsPlaceholder": {
+    "message": "The internal status of notification records is displayed here"
+  },
+  "stateTasks": {
+    "message": "Gloria-X tasks:"
+  },
+  "stateTasksPlaceholder": {
+    "message": "The internal status of all tasks is displayed here"
+  },
+  "stateStages": {
+    "message": "STAGES (Used to determine whether to push new notifications):"
+  },
+  "stateStagesPlaceholder": {
+    "message": "The internal cache of all messages is displayed here"
+  },
+  "reducerLabel": {
+    "message": "Reducer function:"
+  },
+  "reducerTip": {
+    "message": "Before using the Reducer function, you must know its benefits and risks."
+  },
+  "reducerLink": {
+    "message": "Details"
+  },
+  "reducerTestContentLabel": {
+    "message": "Test content (JSON):"
+  },
+  "reducerTestContent": {
+    "message": "Please provide a serialized JSON of the Gloria Notification object or an array of the objects, for example, the following:\n\n$test$",
+    "placeholders": {
+      "test": {
+        "content": "$1",
+        "example": "{...}"
+      }
+    }
+  },
+  "reducerTestResultLabel": {
+    "message": "Test results:"
+  },
+  "reducerTestRedult": {
+    "message": "Test results are shown here"
+  },
+  "reducerPlacehoder": {
+    "message": ">-------------------------------------------------<\nExample:\n\nfunction reducer(notification) {\n  ...\n return notification || null;\n}\n\nPlease use the Reducer function carefully!\n>-------------------------------------------------<"
+  },
+  "reducerEdit": {
+    "message": "Edit"
+  },
+  "reducerSave": {
+    "message": "Save"
+  },
+  "reducerCancel": {
+    "message": "Cancel"
+  },
+  "reducerTest": {
+    "message": "Testing"
+  },
+  "reducerTestError": {
+    "message": "The test object passed in is incorrect"
+  },
+  "aboutSupport": {
+    "message": "Support"
+  },
+  "aboutSupportLabel": {
+    "message": "Gloria-X is a free and open source programmable website notifications aggregator. It can capture the new content on the website and pop up notifications with a custom JavaScript code task. And will never collect any private information from the sending user."
+  },
+  "aboutSourceCode": {
+    "message": "Source code (MIT License)"
+  },
+  "aboutIssues": {
+    "message": "Feedback"
+  },
+  "aboutGuide": {
+    "message": "Gloria Chinese guide"
+  },
+  "aboutShare": {
+    "message": "Task code sharing website"
+  },
+  "aboutThanks": {
+    "message": "Thanks"
+  },
+  "aboutThanksLabel": {
+    "message": "The birth of Gloria-X is inseparable from the support and help provided by the following open source projects:"
+  },
+  "calcUndefined": {
+    "message": "Undefined"
+  },
+  "contextMenusImplicitPush": {
+    "message": "Enable implicit push"
+  },
+  "notificationContextMessage": {
+    "message": "$time$ $task$",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "23:11:11"
+      },
+      "task": {
+        "content": "$2",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskTitle": {
+    "message": "Gloria-X Notification"
+  },
+  "notificationTaskInstall": {
+    "message": "Install new tasks: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskUpdate": {
+    "message": "Update task: \"$task$\"",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test"
+      }
+    }
+  },
+  "notificationTaskUninstall": {
+    "message": "Uninstall task: \"$url$\"",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://gloria.pub/task/"
+      }
+    }
+  },
+  "notificationTestName": {
+    "message": "Test"
+  },
+  "notificationLater": {
+    "message": "Later review"
+  },
+  "notificationCodeUpdate": {
+    "message": "An update to task \"$task$\" has been detected",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test Name"
+      }
+    }
+  },
+  "notificationCodeUpdateTip": {
+    "message": "For safety reasons, Gloria-X does not provide the function of automatically updating task codes."
+  },
+  "notificationCodeUpdateGo": {
+    "message": "Go to the page"
+  },
+  "notificationCodeUpdateDisconnect": {
+    "message": "Disconnect this task"
+  },
+  "notificationCodeError": {
+    "message": "Task \"$task$\" execution error!",
+    "placeholders": {
+      "task": {
+        "content": "$1",
+        "example": "Test name"
+      }
+    }
+  },
+  "notificationTerminateTask": {
+    "message": "Terminate the task"
+  },
+  "injectButtonTip": {
+    "message": "This button is provided by Gloria-X"
+  },
+  "injectInstall": {
+    "message": "Install (X)"
+  },
+  "injectInstallFaild": {
+    "message": "Installation failed (X)"
+  },
+  "injectInstalled": {
+    "message": "Uninstall (X)"
+  },
+  "injectUninstallFaild": {
+    "message": "Uninstallation failed (X)"
+  },
+  "injectUpdate": {
+    "message": "Update (X)"
+  },
+  "injectUpdated": {
+    "message": "Update completed (X)"
+  },
+  "injectUpdateFaild": {
+    "message": "Update failed (X)"
+  }
+}

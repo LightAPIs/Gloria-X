@@ -162,18 +162,18 @@
     "message": "自动检查任务代码更新"
   },
   "settingsTaskOnTimeMode": {
-    "message": "对于新创建或安装的任务，默认开启\"$colon$\"选项",
+    "message": "对于新创建或安装的任务，默认开启\"$option$\"选项",
     "placeholders": {
-      "colon": {
+      "option": {
         "content": "$1",
         "example": "popupTaskOnTimeModeText"
       }
     }
   },
   "settingsTaskNeedInteraction": {
-    "message": "对于新创建或安装的任务，默认开启\"$colon$\"选项",
+    "message": "对于新创建或安装的任务，默认开启\"$option$\"选项",
     "placeholders": {
-      "colon": {
+      "option": {
         "content": "$1",
         "example": "popupTaskNeedInteractionText"
       }
@@ -201,7 +201,7 @@
     "message": "允许通知发出提示音"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定义的通知提示音 \n(如果您的系统是 Windows7 或系统是 Windows10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
+    "message": "使用自定义的通知提示音 (如果您的系统是 Windows 7 或系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
   },
   "settingsNotificationLaterMark": {
     "message": "支持标识稍后查阅通知 (仅针对提供了 url 的通知消息)"
@@ -390,7 +390,7 @@
     "message": "此处显示测试结果"
   },
   "reducerPlacehoder": {
-    "message": "示例:\n\nfunction reducer(notification): notification | null { ... }\n\n请务必小心使用 Reducer 函数！"
+    "message": ">-----------------------------------------------------------<\n示例:\n\nfunction reducer(notification){\n  ...\n  return notification || null;\n}\n\n请务必小心使用 Reducer 函数！\n>-----------------------------------------------------------<"
   },
   "reducerEdit": {
     "message": "编辑"
