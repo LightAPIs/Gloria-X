@@ -152,7 +152,7 @@ describe('Test mutations:', function() {
     const keyLen = Object.keys(newConfigs).length;
     setConfigs(state, newConfigs);
     it('state.configs size is normal.', function() {
-      expect(Object.keys(state.configs).length).to.equal(keyLen);
+      expect(Object.keys(state.configs)).to.have.lengthOf(keyLen);
     });
     it('taskAutoCheckUpdate is set.', function() {
       expect(state.configs.taskAutoCheckUpdate).to.be.true;
@@ -286,7 +286,7 @@ describe('Test mutations:', function() {
           pushDate: '',
         },
       ]);
-      expect(state.tasks.length).to.equal(2);
+      expect(state.tasks).to.have.lengthOf(2);
     });
   });
 
@@ -453,7 +453,7 @@ describe('Test mutations:', function() {
       };
       clearTasks(state);
       expect(state.tasks).to.be.empty;
-      expect(state.stages.length).to.equal(1);
+      expect(state.stages).to.have.lengthOf(1);
     });
   });
 
@@ -568,7 +568,7 @@ describe('Test mutations:', function() {
           ],
         };
         clearExpiredStages(state);
-        expect(state.stages.length).to.equal(1);
+        expect(state.stages).to.have.lengthOf(1);
       });
     });
   });
