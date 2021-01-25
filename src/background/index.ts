@@ -705,11 +705,11 @@ chrome.storage.local.get(
     store.commit('setStages', stages);
     store.commit('setReducer', reducer);
     store.commit('setTasks', tasks);
-
-    syncTasks();
-    syncMessageFlow();
-    syncUnreadNumber();
-    syncImplicitStatus();
-    syncCodeUpdate();
   }
 );
+
+syncTasks();
+syncMessageFlow();
+syncUnreadNumber();
+syncImplicitStatus();
+syncCodeUpdate();
