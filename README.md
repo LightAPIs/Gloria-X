@@ -126,13 +126,15 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 //* 常规任务，传入的是一个数组
 (async () => {
     const { lodash: _ } = await importScripts('gloria-utils');
-    return [{
-        title: _.random(1).toString(),
-    }];
+    return [
+        {
+        	title: _.random(1).toString(),
+    	}
+    ];
 })().then(commit);
 ```
 
-当然这个两任务并没有任何实际意义，仅供用来测试参考两种任务间的区别。
+当然这两个任务并没有任何实际意义，仅供用来测试参考两种任务间的区别。
 
 先不要管 `'gloria-utils'` 是什么东西，后面的内容中会提到，我们现在只需要关注两个任务传递给 `commit` 函数的结果。在两个任务中对象的 `title` 属性都采用 `_.random(1).toString()` 赋值，这个方法的结果只有可能为 `"0"` 或 `"1"` 两种可能性。
 
