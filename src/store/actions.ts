@@ -70,7 +70,6 @@ export default {
                 }
               }
 
-              d && diffArray.push(singleStage);
               if (d) {
                 diffArray.push(singleStage);
                 pushData.push(Object.assign({}, dataItem));
