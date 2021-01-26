@@ -1,12 +1,21 @@
-# Gloria-X
+<p align="center">
+  <img src="./src/assets/icons/app/icon-128.png" />
+</p>
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](/LICENSE)
+<h1 align="center">Gloria-X</h1>
+
+<p align="center">
+  <a href="https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh">
+    <img src="https://img.shields.io/chrome-web-store/v/npdafhgodaenfglcfkkbnmdbfkgfadbh?maxAge=86400" alt="Chrome Web Store" />
+  </a>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
+  </a>
+</p>
 
 > Chrome 上的可编程网站通知聚合器
 >
 > **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
-
-![Gloria-X](/src/assets/icons/app/icon-128.png)
 
 通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒。
 
@@ -16,7 +25,8 @@
 
 ## 安装方法
 
-*还在测试中，懒得打包。*
+1. ~~前往 chrome 网上应用店进行下载安装。~~ (审核中)
+2. 点击[此处](https://github.com/LightAPIs/Gloria-X/releases/latest)下载扩展程序压缩包并进行解压，启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压所得目录即可完成扩展程序的安装。
 
 ## 使用方法
 
@@ -28,11 +38,11 @@ JavaScript 同样是 Gloria-X 任务代码唯一支持的编程语言。任务�
 
 ```javascript
 commit({
-    title: Date.now().toString(),
+  title: Date.now().toString(),
 });
 ```
 
-*当然这段任务代码本身是没有实际意义的。*
+_当然这段任务代码本身是没有实际意义的。_
 
 ### `Gloria Notification` 对象结构
 
@@ -49,18 +59,18 @@ commit({
 }
 ```
 
-*为了安全性和避免可能发生某些未知的错误，扩展程序在内部处理时会忽略掉 `Gloria Notification` 对象上的其他属性。*
+_为了安全性和避免可能发生某些未知的错误，扩展程序在内部处理时会忽略掉 `Gloria Notification` 对象上的其他属性。_
 
 #### 对象属性介绍
 
->  提示：设定上所有对象的属性类型均为**可选的** `String` 字符串，即使在扩展程序的内部处理时可能会存在相应的隐式类型转换，但还是建议在编写时不要直接传递其他可以隐式转换为 `String` 的类型 (如：`Number`，`Boolean` 等)，应当自行手动将其转换为 `String`。
+> 提示：设定上所有对象的属性类型均为**可选的** `String` 字符串，即使在扩展程序的内部处理时可能会存在相应的隐式类型转换，但还是建议在编写时不要直接传递其他可以隐式转换为 `String` 的类型 (如：`Number`，`Boolean` 等)，应当自行手动将其转换为 `String`。
 
 - `title`
-   - 类型: `String`
-   - 默认值: `""`
-   - 含义: 推送消息的标题。
-   - 会用于与旧消息的判定中。
-   - 如：在一个[观察任务](#观察任务)中，如果新对象中的 `title` 与储存里旧对象中的 `title` 不相同时，则新对象会被判定为一则新消息。
+  - 类型: `String`
+  - 默认值: `""`
+  - 含义: 推送消息的标题。
+  - 会用于与旧消息的判定中。
+  - 如：在一个[观察任务](#观察任务)中，如果新对象中的 `title` 与储存里旧对象中的 `title` 不相同时，则新对象会被判定为一则新消息。
 - `message`
   - 类型: `String`
   - 默认值: `""`
@@ -71,7 +81,7 @@ commit({
   - 类型: `String`
   - 默认值: `undefined`
   - 含义: 推送消息显示的图标信息。
-  - 这是 Chrome 创建通知消息时必须提供的参数，所以若不手动指定，扩展程序会先查找 `url`(*若指定了 `url` 并在设置中启用相应的功能*) 网站的网站图标，其次会提供一个默认图标 `"icons/app/icon-128.png"` (即 Gloria-X 的图标)。
+  - 这是 Chrome 创建通知消息时必须提供的参数，所以若不手动指定，扩展程序会先查找 `url`(_若指定了 `url` 并在设置中启用相应的功能_) 网站的网站图标，其次会提供一个默认图标 `"icons/app/icon-128.png"` (即 Gloria-X 的图标)。
 - `imageUrl`
   - 类型: `String`
   - 默认值: `undefined`
@@ -127,24 +137,24 @@ importScripts('script.js')
 
 Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `importScripts('gloria-utils')` 加载这些模块，所能使用的模块如下表所示：
 
-|                        集成模块/版本                         | Gloria(0.13.10) & Gloria-X |
-| :----------------------------------------------------------: | :------------------------: |
-| export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)' |           0.22.0           |
-|      export `co` from '[co](https://github.com/tj/co)'       |           4.6.0            |
-| export `cookie` from '[cookie](https://github.com/jshttp/cookie)' |           0.3.1            |
-| export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)' |           3.8.1            |
-| export `is` from '[is_js](https://github.com/arasatasaygin/is.js)' |           0.9.0            |
-| export `lodash` from '[lodash](https://github.com/lodash/lodash)' |           4.16.4           |
-| export `moment` from '[moment](https://github.com/moment/moment)' |           2.18.1           |
-|    export `qs` from '[qs](https://github.com/ljharb/qs)'     |           6.3.0            |
-| export `ramda` from '[ramda](https://github.com/ramda/ramda)' |           0.24.1           |
-| export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)' |           4.1.0            |
-| export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)' |           1.13.0           |
-| export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)' |          0.20.14           |
+|                                            集成模块/版本                                             | Gloria(0.13.10) & Gloria-X |
+| :--------------------------------------------------------------------------------------------------: | :------------------------: |
+|               export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)'                |           0.22.0           |
+|                          export `co` from '[co](https://github.com/tj/co)'                           |           4.6.0            |
+|                  export `cookie` from '[cookie](https://github.com/jshttp/cookie)'                   |           0.3.1            |
+|         export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)'          |           3.8.1            |
+|                  export `is` from '[is_js](https://github.com/arasatasaygin/is.js)'                  |           0.9.0            |
+|                  export `lodash` from '[lodash](https://github.com/lodash/lodash)'                   |           4.16.4           |
+|                  export `moment` from '[moment](https://github.com/moment/moment)'                   |           2.18.1           |
+|                        export `qs` from '[qs](https://github.com/ljharb/qs)'                         |           6.3.0            |
+|                    export `ramda` from '[ramda](https://github.com/ramda/ramda)'                     |           0.24.1           |
+|                 export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)'                 |           4.1.0            |
+|     export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)'     |           1.13.0           |
+|              export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)'               |          0.20.14           |
 | export `underscoreString` from '[underscore.string](https://github.com/esamattis/underscore.string)' |           3.3.4            |
-| export `validator` from '[validator](https://github.com/validatorjs/validator.js)' |           7.1.0            |
-| export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)' |           0.4.17           |
-| export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)' |           3.2.0            |
+|          export `validator` from '[validator](https://github.com/validatorjs/validator.js)'          |           7.1.0            |
+|          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           |           0.4.17           |
+|               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |           3.2.0            |
 
 ## 高级选项
 
@@ -154,7 +164,7 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 
 在代码输入框中输入需要调试的任务代码后，点击页面上方的"测试"按钮，即可查看测试输出结果 (当然，异步执行的任务代码可能需要等上一会儿)，并且所得到的测试结果既不会经过内部的 STAGES 组件 (一个用于缓存消息的组件)，也不会经过 Reducer 函数 (见后面介绍)，而是直接生成相应的通知消息。
 
-若任务代码中存在语法等错误，也会显示在面板中 (*注：仅支持捕获同步执行代码的错误，采用异步执行的代码的错误或者是在代码中使用 `console` 语句的输出需要打开扩展程序的背景页<"background.html">进行查看*)。
+若任务代码中存在语法等错误，也会显示在面板中 (_注：仅支持捕获同步执行代码的错误，采用异步执行的代码的错误或者是在代码中使用 `console` 语句的输出需要打开扩展程序的背景页<"background.html">进行查看_)。
 
 ### 观察内部状态
 
@@ -186,7 +196,7 @@ Task(Execute) ==> commit ==> Gloria Notification(s) ==> STAGES(Compare and cache
 
 #### 作用
 
-在 Reducer 函数中，你可以完成修改、过滤以及通过 http 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Alertover](https://www.alertover.com/)、[Server酱](https://sc.ftqq.com/3.version)等)将消息同步至其他设备当中的操作。
+在 Reducer 函数中，你可以完成修改、过滤以及通过 http 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version)等)将消息同步至其他设备当中的操作。
 
 #### 具体用法
 
@@ -200,18 +210,18 @@ Reducer 接收一个 `Gloria Notification` 对象作为参数，并可选的返�
 
 ```javascript
 function reducer(notification) {
-    if (notification.message.includes('sad')) {
-        return null;
-    }
-    return notification;
+  if (notification.message.includes('sad')) {
+    return null;
+  }
+  return notification;
 }
 ```
 
->  *注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以即使通知被丢弃，STAGES 组件中仍然会保存关于该通知消息的缓存，但是不会出现通知记录当中。*
+> _注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以即使通知被丢弃，STAGES 组件中仍然会保存关于该通知消息的缓存，但是不会出现通知记录当中。_
 >
->  *（当然，你其实并不需要十分关心这些内容，因为它不会影响到任务代码的编写，我之所以要告诉你这些，只是希望你能更清楚 Reducer 函数是在何时工作的，产生了什么影响，多了解一些没什么坏处。）*
+> _（当然，你其实并不需要十分关心这些内容，因为它不会影响到任务代码的编写，我之所以要告诉你这些，只是希望你能更清楚 Reducer 函数是在何时工作的，产生了什么影响，多了解一些没什么坏处。）_
 >
->  *即假设当你通过 Reducer 丢弃一则通知消息，然后删除了 Reducer 函数，那么理论上在下一次任务执行后，这一则通知也不会被当作新消息弹出，因为它之前已经被缓存进 STAGES 组件中了。*
+> _即假设当你通过 Reducer 丢弃一则通知消息，然后删除了 Reducer 函数，那么理论上在下一次任务执行后，这一则通知也不会被当作新消息弹出，因为它之前已经被缓存进 STAGES 组件中了。_
 
 ##### 修改通知
 
@@ -219,14 +229,14 @@ function reducer(notification) {
 
 ```javascript
 function reducer(notification) {
-    notification.message = notification.message.replace('sad', 'happy');
-    return notification;
+  notification.message = notification.message.replace('sad', 'happy');
+  return notification;
 }
 ```
 
-> *注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以 STAGES 组件中仍然保存的是关于修改之前的通知消息的缓存，但是通知记录中会显示修改之后的通知内容。*
+> _注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以 STAGES 组件中仍然保存的是关于修改之前的通知消息的缓存，但是通知记录中会显示修改之后的通知内容。_
 >
-> *即假设当你通过 Reducer 修改了一则通知消息，然后删除了 Reducer 函数，那么理论上在下一次任务执行后，这一则通知也不会被当作新消息弹出，因为它其实和 STAGES 组件中缓存的消息相同。*
+> _即假设当你通过 Reducer 修改了一则通知消息，然后删除了 Reducer 函数，那么理论上在下一次任务执行后，这一则通知也不会被当作新消息弹出，因为它其实和 STAGES 组件中缓存的消息相同。_
 
 小提示：通常来说在 Reducer 函数中去修改 `notification.id` 属性是没有意义的，因为这个属性值并不会真实地反馈到通知消息当中去，它仅仅是用于在 STAGES 组件中进行判定(见：[对象属性介绍](#对象属性介绍))。
 
@@ -238,27 +248,27 @@ function reducer(notification) {
 
 ```javascript
 function reducer(notification) {
-	const { title, message, url } = notification;
-    const data = {
-        type: 'note',
-        title,
-        body: message,
-        device_iden: '...',	//? 可选，设备标识，具体见 Pushbullet 文档
-    }
-    url &&
-        Object.assign(data, {
-        	type: 'link',
-        	url,
-    	});
-    fetch('https://api.pushbullet.com/v2/pushes', {
-        method: 'POST',
-        headers: new Headers({
-            'Access-Token': 'o.xxx',	//! 你的访问令牌
-            'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify(data),
+  const { title, message, url } = notification;
+  const data = {
+    type: 'note',
+    title,
+    body: message,
+    device_iden: '...', //? 可选，设备标识，具体见 Pushbullet 文档
+  };
+  url &&
+    Object.assign(data, {
+      type: 'link',
+      url,
     });
-    return notification;
+  fetch('https://api.pushbullet.com/v2/pushes', {
+    method: 'POST',
+    headers: new Headers({
+      'Access-Token': 'o.xxx', //! 你的访问令牌
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify(data),
+  });
+  return notification;
 }
 ```
 
@@ -286,14 +296,14 @@ function reducer(notification) {
 虽然 Gloria-X 是基于 Gloria 修改而成，大体功能上保持不变，但是仍存在着部分差异：
 
 1. 显示界面有所区别：Gloria-X 中新增加了一个选项页面，并将原来 Gloria 中的"高级"选项卡从 Popup(弹出窗口) 中分离出来，放置于选项页面中。
-2. 在任务中新增加一个`准时模式`可选选项，即任务严格按照给定时间间隔执行检查 (*不影响任务代码本身，任务依旧兼容 Gloria*)。在任务已启用的前提下，
+2. 在任务中新增加一个`准时模式`可选选项，即任务严格按照给定时间间隔执行检查 (_不影响任务代码本身，任务依旧兼容 Gloria_)。在任务已启用的前提下，
    - 采用默认模式(Gloria 的设定)的任务在启动浏览器时总是会自动执行一次，再以此刻活动时间为基准设定计时器；
    - 采用准时模式的任务在启动浏览器时会先判定该任务距上一次的执行时间是否超过所设定的执行间隔，若还在间隔时间内，则不会立即执行检查，而是依照预定的时间到达时才会执行检查。
 3. 默认不再自动检测网站图标，但依旧可以在常规设置当中开启该功能。
 
 同时也加入了一些方便使用的新特性：
 
-- ~~实现快速选取网页内元素并创建监视文本的观察任务~~ *（待实现 ＞︿＜）*
+- ~~实现快速选取网页内元素并创建监视文本的观察任务~~ _（待实现 ＞︿＜）_
 - 允许隐式推送通知 (记录通知但不会有消息提示)
 - 允许扩展程序图标显示读通知数量
 - 支持稍后查阅通知的功能
