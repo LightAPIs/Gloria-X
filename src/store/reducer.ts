@@ -49,7 +49,7 @@ function commitFormat(commitData: store.CommitData | store.CommitData[]): store.
 function handleReducer(commitData: store.CommitData, reducer: string): store.CommitData {
   if (trim(reducer)) {
     try {
-      const reducerFunc = eval(`(function() {return ${reducer}})()`);
+      const reducerFunc = eval(`(function() {return ${trim(reducer)}})()`);
       let resultData = reducerFunc(commitData);
       console.log(resultData);
       if (isArray(resultData)) {
