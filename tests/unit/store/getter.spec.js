@@ -88,7 +88,6 @@ describe('Test getters:', function() {
       };
       const result1 = hasInstalledTask(state)('http://c.com');
       const result2 = hasInstalledTask(state)('http://d.com');
-      console.log(result1);
       expect(result1).to.not.be.undefined;
       expect(result2).to.be.undefined;
     });
