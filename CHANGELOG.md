@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/LightAPIs/Gloria-X/compare/v1.0.0...v1.1.0) (2021-01-27)
+
+
+### Features
+
+* **popup:** 允许在 popup 页面中通过鼠标右键菜单操作任务和通知记录；新增允许显示通知记录分类数量的设置项 ([ea37403](https://github.com/LightAPIs/Gloria-X/commit/ea374033a9c757817c54745b8a2a89a5a71ef565))
+* **storage:** 不再储存 laterCount 值 ([fcbe9cb](https://github.com/LightAPIs/Gloria-X/commit/fcbe9cb29e3e3d9e0e610b86d3824599ed5c1109))
+
+
+### Bug Fixes
+
+* **actions:** 修复一个关于缓存 STAGES 数据的问题 ([f0b07b7](https://github.com/LightAPIs/Gloria-X/commit/f0b07b7348822d341fc8018b929332d91750053e))
+* **reducer:** 修复一个关于 Reducer 可能潜在的错误 ([91b7a65](https://github.com/LightAPIs/Gloria-X/commit/91b7a6540e3275a65339783a1ced5f29f718b8f7))
+
 ## 1.0.0 (2021-01-26)
 
 
