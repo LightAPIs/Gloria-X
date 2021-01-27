@@ -3,7 +3,7 @@
 import { expect } from 'chai';
 import getters from '@/store/getters';
 
-const { activeTab, notificationsTitleList, hasInstalledTask } = getters;
+const { activeTab, notificationsTitleList, hasInstalledTask, laterCount } = getters;
 
 describe('Test getters:', function() {
   describe('Attribute: activeTab', function() {
@@ -90,6 +90,28 @@ describe('Test getters:', function() {
       const result2 = hasInstalledTask(state)('http://d.com');
       expect(result1).to.not.be.undefined;
       expect(result2).to.be.undefined;
+    });
+  });
+
+  describe('Attribute: laterCount', function() {
+    it('laterCount is normal.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            later: true,
+          },
+          {
+            id: '2',
+            later: false,
+          },
+        ],
+      };
+      const result1 = laterCount(state);
+      expect(result1).to.equal(1);
+      state.notifications[1].later = true;
+      const result2 = laterCount(state);
+      expect(result2).to.equal(2);
     });
   });
 });

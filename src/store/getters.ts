@@ -20,4 +20,12 @@ export default {
   hasInstalledTask: (state: store.VuexState) => (url: string) => {
     return state.tasks.find(task => task.origin === url);
   },
+  laterCount: (state: store.VuexState) => {
+    let num = 0;
+    const { notifications } = state;
+    notifications.forEach(notify => {
+      notify.later && num++;
+    });
+    return num;
+  },
 };

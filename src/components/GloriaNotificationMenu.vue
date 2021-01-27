@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default Vue.extend({
   name: 'gloria-notification-menu',
@@ -38,8 +38,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(['laterCount']),
-    ...mapGetters(['notificationsTitleList']),
+    ...mapGetters(['notificationsTitleList', 'laterCount']),
   },
   methods: {
     handleSelect(key: string) {

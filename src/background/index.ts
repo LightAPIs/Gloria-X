@@ -721,27 +721,15 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 chrome.storage.local.get(
-  [
-    'implicitPush',
-    'configs',
-    'tasks',
-    'stages',
-    'notifications',
-    'reducer',
-    'lastCheckTasksUpdate',
-    'lastActiveTab',
-    'unread',
-    'laterCount',
-  ],
+  ['implicitPush', 'configs', 'tasks', 'stages', 'notifications', 'reducer', 'lastCheckTasksUpdate', 'lastActiveTab', 'unread'],
   res => {
     console.log(res);
-    const { implicitPush, configs, tasks, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab, unread, laterCount } = res;
+    const { implicitPush, configs, tasks, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab, unread } = res;
     store.commit('setImplicitPush', implicitPush);
     store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
     store.commit('setLastActiveTab', lastActiveTab);
     store.commit('setConfigs', configs);
     store.commit('setUnread', unread);
-    store.commit('setLaterCount', laterCount);
     store.commit('setNotifications', notifications);
     store.commit('setStages', stages);
     store.commit('setReducer', reducer);

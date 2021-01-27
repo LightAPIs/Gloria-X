@@ -15,7 +15,6 @@ class ChromeStorage {
   private configs: (func: () => void) => void;
   private reducer: (func: () => void) => void;
   private unread: (func: () => void) => void;
-  private laterCount: (func: () => void) => void;
   private blockLog: boolean;
 
   constructor(blockLog?: boolean) {
@@ -86,14 +85,6 @@ class ChromeStorage {
     );
 
     this.unread = debounce(
-      function(func) {
-        func();
-      },
-      ChromeStorage.WAIT_TIME,
-      ChromeStorage.OPTIONS
-    );
-
-    this.laterCount = debounce(
       function(func) {
         func();
       },
@@ -211,19 +202,6 @@ class ChromeStorage {
       chrome.storage.local.set(
         {
           unread: data,
-        },
-        () => {
-          !this.blockLog && message && console.log(message);
-        }
-      );
-    });
-  }
-
-  setLaterCount(data: number, message?: string) {
-    this.laterCount(() => {
-      chrome.storage.local.set(
-        {
-          laterCount: data,
         },
         () => {
           !this.blockLog && message && console.log(message);

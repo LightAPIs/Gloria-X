@@ -36,7 +36,6 @@ export default new Vuex.Store({
     configs: defaultconf,
     reducer: '',
     unread: 0,
-    laterCount: 0,
   } as store.VuexState,
   getters,
   mutations,
