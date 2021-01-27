@@ -61,7 +61,7 @@ function createNewConfigs() {
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
-    notificationShowBadge: true,
+    notificationShowBadge: false,
     notificationShowMenuCount: true,
     notificationMaxinum: 500,
   };
@@ -202,7 +202,7 @@ describe('Test mutations:', function() {
       expect(state.configs.notificationShowSearchInput).to.be.true;
     });
     it('notificationShowBadge is set.', function() {
-      expect(state.configs.notificationShowBadge).to.be.true;
+      expect(state.configs.notificationShowBadge).to.be.false;
     });
     it('notificationShowMenuCount is set.', function() {
       expect(state.configs.notificationShowMenuCount).to.be.true;
