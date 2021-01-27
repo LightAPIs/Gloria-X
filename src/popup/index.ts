@@ -36,6 +36,7 @@ import {
   Timeline,
   TimelineItem,
 } from 'element-ui';
+import Contextmenu from 'vue-contextmenujs';
 
 Vue.use(Tabs);
 Vue.use(TabPane);
@@ -66,6 +67,7 @@ Vue.use(Col);
 Vue.use(Link);
 Vue.use(Image);
 Vue.use(Badge);
+Vue.use(Contextmenu);
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 Vue.mixin({

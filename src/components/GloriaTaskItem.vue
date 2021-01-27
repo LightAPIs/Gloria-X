@@ -1,5 +1,5 @@
 <template>
-  <el-card v-show="itemShow" class="tab-card" shadow="hover">
+  <el-card v-show="itemShow" class="tab-card" shadow="hover" @contextmenu.native.prevent="onContextmenu">
     <span slot="header">
       <span class="header-text">
         {{ name }}
@@ -96,7 +96,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { toLower } from 'lodash';
 
 export default Vue.extend({
@@ -152,6 +152,7 @@ export default Vue.extend({
     },
   },
   computed: {
+    ...mapGetters(['taskCode']),
     itemShow() {
       const { filterText, name } = this;
       let show = false;
@@ -162,7 +163,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask']),
+    ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask', 'updateTaskBasic']),
     onEdit() {
       const { id } = this;
       this.$emit('task-edit', id);
@@ -181,6 +182,91 @@ export default Vue.extend({
     onDisconnect() {
       const { id } = this;
       this.disconnectTask(id);
+    },
+    onContextmenu(event: Event) {
+      const { id, name, isEnable, onTimeMode, needInteraction, origin } = this;
+      const items = [
+        {
+          label: this.i18n('popupContextTaskCopyName'),
+          icon: 'el-icon-copy-document',
+          onClick: () => {
+            this.copyToClip(name, () => {
+              this.$message.success(this.i18n('popupContextTaskCopyNameCompleted'));
+            });
+          },
+        },
+        {
+          label: this.i18n('popupContextTaskCopyCode'),
+          icon: 'el-icon-document-copy',
+          divided: true,
+          onClick: () => {
+            this.copyToClip(this.taskCode(id), () => {
+              this.$message.success(this.i18n('popupContextTaskCopyCodeCompleted'));
+            });
+          },
+        },
+        {
+          label: isEnable ? this.i18n('popupContextTaskDisable') : this.i18n('popupContextTaskEnable'),
+          icon: 'el-icon-switch-button',
+          onClick: () => {
+            this.updateIsEnable({
+              id,
+              checked: !isEnable,
+            });
+          },
+        },
+        {
+          label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
+          icon: 'el-icon-alarm-clock',
+          onClick: () => {
+            this.updateTaskBasic({
+              id,
+              onTimeMode: !onTimeMode,
+            });
+          },
+        },
+        {
+          label: needInteraction ? this.i18n('popupContextTaskNeedInteractionDisable') : this.i18n('popupContextTaskNeedInteractionEnable'),
+          icon: 'el-icon-thumb',
+          divided: true,
+          onClick: () => {
+            this.updateTaskBasic({
+              id,
+              needInteraction: !needInteraction,
+            });
+          },
+        },
+        {
+          label: this.i18n('popupContextTaskEdit'),
+          icon: 'el-icon-edit-outline',
+          onClick: () => {
+            this.$emit('task-edit', id);
+          },
+        },
+      ];
+
+      origin &&
+        items.push({
+          label: this.i18n('popupContextTaskDisconnect'),
+          icon: 'el-icon-connection',
+          onClick: () => {
+            this.disconnectTask(id);
+          },
+        });
+
+      items.push({
+        label: this.i18n('popupContextTaskDelete'),
+        icon: 'el-icon-delete',
+        onClick: () => {
+          this.removeTaskItem(id);
+        },
+      });
+
+      this.$contextmenu({
+        items,
+        event,
+      });
+      return false;
     },
   },
 });

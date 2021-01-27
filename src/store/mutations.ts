@@ -43,9 +43,9 @@ export default {
       state.configs[name] = value;
 
       //* 处理通知记录数量上限
-      if (name === 'notificationMaximun') {
-        if (state.configs.notificationMaximun && state.notifications.length > state.configs.notificationMaximun) {
-          const diffNum = state.notifications.length - state.configs.notificationMaximun;
+      if (name === 'notificationMaxinum') {
+        if (state.configs.notificationMaxinum && state.notifications.length > state.configs.notificationMaxinum) {
+          const diffNum = state.notifications.length - state.configs.notificationMaxinum;
           for (let i = 0; i < diffNum; i++) {
             state.notifications.pop();
           }
@@ -260,7 +260,7 @@ export default {
   addMessageFlow(state: store.VuexState, newMessageFlow: store.MessageFlow) {
     //! 推送消息流是虚拟的
     const { taskId, data } = newMessageFlow;
-    const { notificationShowBadge, notificationMaximun } = state.configs;
+    const { notificationShowBadge, notificationMaxinum } = state.configs;
     let push = false;
     for (let i = 0; i < state.tasks.length; i++) {
       if (taskId === state.tasks[i].id) {
@@ -286,8 +286,8 @@ export default {
           });
         });
         //* 处理通知记录数量上限
-        if (notificationMaximun && state.notifications.length > notificationMaximun) {
-          const diffNum = state.notifications.length - notificationMaximun;
+        if (notificationMaxinum && state.notifications.length > notificationMaxinum) {
+          const diffNum = state.notifications.length - notificationMaxinum;
           for (let i = 0; i < diffNum; i++) {
             state.notifications.pop();
           }
@@ -348,6 +348,60 @@ export default {
     }
 
     checked && chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
+  },
+  removeNotification(state: store.VuexState, notificationId: string) {
+    let del = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (notificationId === state.notifications[i].id) {
+        state.notifications.splice(i, 1);
+        del = true;
+        break;
+      }
+    }
+
+    del && chromeStorage.setNotifications(state.notifications, `remove notification: "${notificationId}".`);
+  },
+  clearLaterCount(state: store.VuexState) {
+    let clc = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (state.notifications[i].later) {
+        state.notifications[i].later = false;
+        clc = true;
+      }
+    }
+
+    clc && chromeStorage.setNotifications(state.notifications, 'clear later count.');
+  },
+  markLaterByName(state: store.VuexState, name: string) {
+    let mark = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (state.notifications[i].options.contextMessage === name) {
+        if (state.notifications[i].options.url && !state.notifications[i].later) {
+          state.notifications[i].later = true;
+          mark = true;
+        }
+      }
+    }
+
+    mark && chromeStorage.setNotifications(state.notifications, `mark later by name: "${name}".`);
+  },
+  removeLaterByName(state: store.VuexState, name: string) {
+    let rm = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (state.notifications[i].options.contextMessage === name) {
+        if (state.notifications[i].later) {
+          state.notifications[i].later = false;
+          rm = true;
+        }
+      }
+    }
+
+    rm && chromeStorage.setNotifications(state.notifications, `remove later by name: "${name}".`);
+  },
+  removeNotificationsByName(state: store.VuexState, name: string) {
+    state.notifications = state.notifications.filter(notify => notify.options.contextMessage !== name);
+
+    chromeStorage.setNotifications(state.notifications, `remove notifications by name: "${name}".`);
   },
   clearNotifications(state: store.VuexState) {
     if (state.notifications.length > 0) {

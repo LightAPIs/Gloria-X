@@ -119,22 +119,22 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 ```javascript
 //* 观察任务，传入的是单个对象
 (async () => {
-    const { lodash: _ } = await importScripts('gloria-utils');
-    return {
-        title: _.random(1).toString(),
-    };
+  const { lodash: _ } = await importScripts('gloria-utils');
+  return {
+    title: _.random(1).toString(),
+  };
 })().then(commit);
 ```
 
 ```javascript
 //* 常规任务，传入的是一个数组
 (async () => {
-    const { lodash: _ } = await importScripts('gloria-utils');
-    return [
-        {
-        	title: _.random(1).toString(),
-    	}
-    ];
+  const { lodash: _ } = await importScripts('gloria-utils');
+  return [
+    {
+      title: _.random(1).toString(),
+    },
+  ];
 })().then(commit);
 ```
 
@@ -172,18 +172,18 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 
 ```javascript
 fetch('https://infodev.cubejoy.com/Store/GetNews?area=2&pageindex=1&pagesize=15')
-.then(res => res.text())
-.then(res => JSON.parse(res.substring(1,res.length-1)))
-.then(json => {
-  let notifications = json.result.list.map(feed => {
-    return {
-     message: feed.Title
-    ,url: 'https://news.cubejoy.com/html/en/news/newsdetail/detail'+feed.Id+'.html'
-    ,iconUrl: feed.ImgUrlM
-    }
-  })
-  commit(notifications)
-})
+  .then(res => res.text())
+  .then(res => JSON.parse(res.substring(1, res.length - 1)))
+  .then(json => {
+    let notifications = json.result.list.map(feed => {
+      return {
+        message: feed.Title,
+        url: 'https://news.cubejoy.com/html/en/news/newsdetail/detail' + feed.Id + '.html',
+        iconUrl: feed.ImgUrlM,
+      };
+    });
+    commit(notifications);
+  });
 ```
 
 如果你了解 `fetch` 或 `XHR` 的话，通过这个任务应该也就能明白具体如何在任务代码中访问 url 了。
@@ -382,6 +382,7 @@ function reducer(notification) {
 - 允许通知记录里的图片懒加载
 - 允许自定义通知是否发出提示音
 - 允许在任务执行出错时弹出通知提示
+- 可以在 Popup 页面中通过鼠标右键菜单操作任务和通知记录
 
 ## 计划
 
@@ -397,6 +398,7 @@ function reducer(notification) {
 - [a62527776a/vue-floating-action-button](https://github.com/a62527776a/vue-floating-action-button)
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
 - [ElemeFE/element](https://github.com/ElemeFE/element)
+- [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
 - [vuejs/vue](https://github.com/vuejs/vue)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)
 

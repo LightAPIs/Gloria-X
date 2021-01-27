@@ -131,6 +131,111 @@
   "popupNotificationFrom": {
     "message": "來自： "
   },
+  "popupContextTaskCopyName": {
+    "message": "複製任務名稱"
+  },
+  "popupContextTaskCopyNameCompleted": {
+    "message": "已成功將任務名稱複製到剪貼板中"
+  },
+  "popupContextTaskCopyCode": {
+    "message": "複製任務程式碼"
+  },
+  "popupContextTaskCopyCodeCompleted": {
+    "message": "已成功將任務程式碼複製到剪貼板中"
+  },
+  "popupContextTaskEnable": {
+    "message": "啟用任務"
+  },
+  "popupContextTaskDisable": {
+    "message": "禁用任務"
+  },
+  "popupContextTaskOnTimeEnable": {
+    "message": "啟用準時模式"
+  },
+  "popupContextTaskOnTimeDisable": {
+    "message": "禁用準時模式"
+  },
+  "popupContextTaskNeedInteractionEnable": {
+    "message": "啟用手動關閉"
+  },
+  "popupContextTaskNeedInteractionDisable": {
+    "message": "禁用手動關閉"
+  },
+  "popupContextTaskEdit": {
+    "message": "編輯此任務 ..."
+  },
+  "popupContextTaskDisconnect": {
+    "message": "停止檢查此任務的遠程更新"
+  },
+  "popupContextTaskDelete": {
+    "message": "移除此任務"
+  },
+  "popupContextNotificationMenuCopy": {
+    "message": "複製此分類名稱"
+  },
+  "popupContextNotificationMenuCopyCompletd": {
+    "message": "已成功將分類名稱複製到剪貼板中"
+  },
+  "popupContextNotificationMenuOpenLater": {
+    "message": "打開所有稍後查閱的訊息"
+  },
+  "popupContextNotificationMenuCheckedLater": {
+    "message": "移除所有稍後查閱標識"
+  },
+  "popupContextNotificationMenuClearAll": {
+    "message": "清除所有訊息記錄"
+  },
+  "popupContextNotificationMenuMarkLater": {
+    "message": "將分類下所有訊息標識為稍後查閱"
+  },
+  "popupContextNotificationMenuRemoveLater": {
+    "message": "移除分類下所有訊息的稍後查閱標識"
+  },
+  "popupContextNotificationMenuClear": {
+    "message": "清除此分類下的所有訊息記錄"
+  },
+  "popupContextNotificationItemOpen": {
+    "message": "打開訊息鏈接"
+  },
+  "popupContextNotificationItemCopyLink": {
+    "message": "複製訊息鏈接"
+  },
+  "popupContextNotificationItemCopyLinkCompleted": {
+    "message": "已成功將訊息鏈接複製到剪貼板中"
+  },
+  "popupContextNotificationItemCopyTitle": {
+    "message": "複製訊息標題"
+  },
+  "popupContextNotificationItemCopyTitleCompleted": {
+    "message": "已成功將訊息標題複製到剪貼板中"
+  },
+  "popupContextNotificationItemCopyMessage": {
+    "message": "複製訊息內容"
+  },
+  "popupContextNotificationItemCopyMessageCompleted": {
+    "message": "已成功將訊息內容複製到剪貼板中"
+  },
+  "popupContextNotificationItemCopyIconUrl": {
+    "message": "複製訊息圖示地址"
+  },
+  "popupContextNotificationItemCopyIconUrlCompleted": {
+    "message": "已成功將訊息圖示地址複製到剪貼板中"
+  },
+  "popupContextNotificationItemCopyImageUrl": {
+    "message": "複製訊息圖像地址"
+  },
+  "popupContextNotificationItemCopyImageUrlCompleted": {
+    "message": "已成功將訊息圖像地址複製到剪貼板中"
+  },
+  "popupContextNotificationItemMarkLater": {
+    "message": "將訊息標識為稍後查閱"
+  },
+  "popupContextNotificationItemRemoveLater": {
+    "message": "移除訊息的稍後查閱標識"
+  },
+  "popupContextNotificationItemDelete": {
+    "message": "刪除此項訊息記錄"
+  },
   "searchTaskPlaceholder": {
     "message": "輸入關鍵字對任務進行過濾"
   },
@@ -221,10 +326,13 @@
   "settingsNotificationShowSearchInput": {
     "message": "在訊息記錄的頂部顯示訊息篩選輸入框"
   },
+  "settingsNotificationShowMenuCount": {
+    "message": "在訊息記錄中顯示分類數量"
+  },
   "settingsNotificationShowBadge": {
     "message": "在擴充功能圖示上顯示未讀訊息數量標記"
   },
-  "settingsNotificationMaximun": {
+  "settingsNotificationMaxinum": {
     "message": "訊息記錄數量上限："
   },
   "settingsClear": {

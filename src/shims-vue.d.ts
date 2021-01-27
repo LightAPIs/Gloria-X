@@ -4,6 +4,8 @@ declare module '*.vue' {
 
   declare module 'vue/types/vue' {
     interface Vue {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      $contextmenu: any;
       i18n: (first: string, sub?: string[]) => string;
       n2br: (val: string) => string | undefined;
       nbsp: (val: string) => string | undefined;
@@ -14,6 +16,7 @@ declare module '*.vue' {
       now: () => string;
       uuid: () => string;
       textareaTab: (element: HTMLInputElement, event: KeyboardEvent) => void;
+      copyToClip: (content: string, copyCompleted?: () => void) => void;
     }
   }
 }

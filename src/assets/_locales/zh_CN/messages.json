@@ -131,6 +131,111 @@
   "popupNotificationFrom": {
     "message": "来自： "
   },
+  "popupContextTaskCopyName": {
+    "message": "复制任务名称"
+  },
+  "popupContextTaskCopyNameCompleted": {
+    "message": "已成功将任务名称复制到剪贴板中"
+  },
+  "popupContextTaskCopyCode": {
+    "message": "复制任务代码"
+  },
+  "popupContextTaskCopyCodeCompleted": {
+    "message": "已成功将任务代码复制到剪贴板中"
+  },
+  "popupContextTaskEnable": {
+    "message": "启用任务"
+  },
+  "popupContextTaskDisable": {
+    "message": "禁用任务"
+  },
+  "popupContextTaskOnTimeEnable": {
+    "message": "启用准时模式"
+  },
+  "popupContextTaskOnTimeDisable": {
+    "message": "禁用准时模式"
+  },
+  "popupContextTaskNeedInteractionEnable": {
+    "message": "启用手动关闭"
+  },
+  "popupContextTaskNeedInteractionDisable": {
+    "message": "禁用手动关闭"
+  },
+  "popupContextTaskEdit": {
+    "message": "编辑此任务 ..."
+  },
+  "popupContextTaskDisconnect": {
+    "message": "停止检查此任务的远程更新"
+  },
+  "popupContextTaskDelete": {
+    "message": "删除此任务"
+  },
+  "popupContextNotificationMenuCopy": {
+    "message": "复制此分类名称"
+  },
+  "popupContextNotificationMenuCopyCompletd": {
+    "message": "已成功将分类名称复制到剪贴板中"
+  },
+  "popupContextNotificationMenuOpenLater": {
+    "message": "打开所有稍后查阅的通知"
+  },
+  "popupContextNotificationMenuCheckedLater": {
+    "message": "移除所有稍后查阅标识"
+  },
+  "popupContextNotificationMenuClearAll": {
+    "message": "清除所有通知记录"
+  },
+  "popupContextNotificationMenuMarkLater": {
+    "message": "将分类下所有通知标识为稍后查阅"
+  },
+  "popupContextNotificationMenuRemoveLater": {
+    "message": "移除分类下所有通知的稍后查阅标识"
+  },
+  "popupContextNotificationMenuClear": {
+    "message": "清除此分类下的所有通知记录"
+  },
+  "popupContextNotificationItemOpen": {
+    "message": "打开通知链接"
+  },
+  "popupContextNotificationItemCopyLink": {
+    "message": "复制通知链接"
+  },
+  "popupContextNotificationItemCopyLinkCompleted": {
+    "message": "已成功将通知链接复制到剪贴板中"
+  },
+  "popupContextNotificationItemCopyTitle": {
+    "message": "复制通知标题"
+  },
+  "popupContextNotificationItemCopyTitleCompleted": {
+    "message": "已成功将通知标题复制到剪贴板中"
+  },
+  "popupContextNotificationItemCopyMessage": {
+    "message": "复制通知内容"
+  },
+  "popupContextNotificationItemCopyMessageCompleted": {
+    "message": "已成功将通知内容复制到剪贴板中"
+  },
+  "popupContextNotificationItemCopyIconUrl": {
+    "message": "复制通知图标地址"
+  },
+  "popupContextNotificationItemCopyIconUrlCompleted": {
+    "message": "已成功将通知图标地址复制到剪贴板中"
+  },
+  "popupContextNotificationItemCopyImageUrl": {
+    "message": "复制通知图片地址"
+  },
+  "popupContextNotificationItemCopyImageUrlCompleted": {
+    "message": "已成功将通知图片地址复制到剪贴板中"
+  },
+  "popupContextNotificationItemMarkLater": {
+    "message": "将通知标识为稍后查阅"
+  },
+  "popupContextNotificationItemRemoveLater": {
+    "message": "移除通知的稍后查阅标识"
+  },
+  "popupContextNotificationItemDelete": {
+    "message": "删除此项通知记录"
+  },
   "searchTaskPlaceholder": {
     "message": "输入关键字对任务进行过滤"
   },
@@ -221,10 +326,13 @@
   "settingsNotificationShowSearchInput": {
     "message": "在通知记录的顶部显示通知筛选输入框"
   },
+  "settingsNotificationShowMenuCount": {
+    "message": "在通知记录中显示分类数量"
+  },
   "settingsNotificationShowBadge": {
     "message": "在扩展程序图标上显示未读通知数量标记"
   },
-  "settingsNotificationMaximun": {
+  "settingsNotificationMaxinum": {
     "message": "通知记录数量上限："
   },
   "settingsClear": {

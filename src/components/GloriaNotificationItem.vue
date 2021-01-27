@@ -1,7 +1,7 @@
 <template>
   <el-timeline-item v-show="matchMenu && itemShow" :timestamp="displayTime(eventTime)" placement="top">
     <el-badge is-dot :hidden="!later" class="notification-item">
-      <el-card :body-style="{ padding: '5px 15px' }" class="history-card">
+      <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.native.prevent="onContextmenu">
         <div slot="header" class="card-header">
           <el-row>
             <el-col :span="4">
@@ -129,10 +129,10 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations(['checkedNotification']),
+    ...mapMutations(['checkedNotification', 'markLaterNotification', 'removeNotification']),
     openLink() {
       const { url, later, id } = this;
-      if (this.isLink(url)) {
+      if (url && this.isLink(url)) {
         chrome.tabs.query(
           {
             url: this.asLink(url),
@@ -157,6 +157,109 @@ export default Vue.extend({
       if (later) {
         this.checkedNotification(id);
       }
+    },
+    onContextmenu(event: Event) {
+      const { id, url, title, message, iconUrl, imageUrl, later } = this;
+      const items = [];
+
+      url &&
+        items.push(
+          {
+            label: this.i18n('popupContextNotificationItemOpen'),
+            icon: 'el-icon-view',
+            divided: true,
+            onClick: () => {
+              this.openLink();
+            },
+          },
+          {
+            label: this.i18n('popupContextNotificationItemCopyLink'),
+            icon: 'el-icon-link',
+            divided: !title,
+            onClick: () => {
+              this.copyToClip(url, () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
+              });
+            },
+          }
+        );
+
+      title &&
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyTitle'),
+          icon: 'el-icon-chat-dot-round',
+          divided: !message,
+          onClick: () => {
+            this.copyToClip(title, () => {
+              this.$message.success(this.i18n('popupContextNotificationItemCopyTitleCompleted'));
+            });
+          },
+        });
+
+      message &&
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyMessage'),
+          icon: 'el-icon-chat-line-round',
+          divided: !iconUrl,
+          onClick: () => {
+            this.copyToClip(message, () => {
+              this.$message.success(this.i18n('popupContextNotificationItemCopyMessageCompleted'));
+            });
+          },
+        });
+
+      iconUrl &&
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyIconUrl'),
+          icon: 'el-icon-picture-outline-round',
+          divided: !imageUrl,
+          onClick: () => {
+            this.copyToClip(iconUrl, () => {
+              this.$message.success(this.i18n('popupContextNotificationItemCopyIconUrlCompleted'));
+            });
+          },
+        });
+
+      imageUrl &&
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyImageUrl'),
+          icon: 'el-icon-picture-outline',
+          divided: true,
+          onClick: () => {
+            this.copyToClip(imageUrl, () => {
+              this.$message.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
+            });
+          },
+        });
+
+      if (url) {
+        items.push({
+          label: later ? this.i18n('popupContextNotificationItemRemoveLater') : this.i18n('popupContextNotificationItemMarkLater'),
+          icon: later ? 'el-icon-check' : 'el-icon-collection-tag',
+          divided: true,
+          onClick: () => {
+            if (later) {
+              this.checkedNotification(id);
+            } else {
+              this.markLaterNotification(id);
+            }
+          },
+        });
+      }
+
+      items.push({
+        label: this.i18n('popupContextNotificationItemDelete'),
+        icon: 'el-icon-delete',
+        onClick: () => {
+          this.removeNotification(id);
+        },
+      });
+
+      this.$contextmenu({
+        items,
+        event,
+      });
+      return false;
     },
   },
 });

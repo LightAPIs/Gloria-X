@@ -61,6 +61,13 @@
     </div>
     <div class="margin-top">
       <el-switch
+        :value="configs.notificationShowMenuCount"
+        :active-text="i18n('settingsNotificationShowMenuCount')"
+        @change="onChange('notificationShowMenuCount', $event)"
+      ></el-switch>
+    </div>
+    <div class="margin-top">
+      <el-switch
         :value="configs.notificationShowBadge"
         :active-text="i18n('settingsNotificationShowBadge')"
         @change="onChange('notificationShowBadge', $event)"
@@ -68,15 +75,15 @@
     </div>
     <div class="margin-top">
       <span class="font-14">
-        {{ i18n('settingsNotificationMaximun') }}
+        {{ i18n('settingsNotificationMaxinum') }}
       </span>
       <el-input-number
-        :value="configs.notificationMaximun"
+        :value="configs.notificationMaxinum"
         :min="50"
         :max="500"
         controls-position="right"
         step-strictly
-        @change="onChange('notificationMaximun', $event)"
+        @change="onChange('notificationMaxinum', $event)"
       ></el-input-number>
     </div>
   </div>
@@ -97,7 +104,7 @@ export default Vue.extend({
         this.updateImplicitPush(value);
       } else {
         let sta = true;
-        if (name === 'notificationMaximun' && !value) {
+        if (name === 'notificationMaxinum' && !value) {
           sta = false;
         }
         sta &&

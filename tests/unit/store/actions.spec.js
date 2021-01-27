@@ -19,7 +19,7 @@ describe('Test actions:', function() {
         stages: [],
         configs: {
           notificationShowBadge: false,
-          notificationMaximun: 200,
+          notificationMaxinum: 200,
         },
         tasks: [
           {

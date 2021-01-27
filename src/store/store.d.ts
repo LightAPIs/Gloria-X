@@ -81,7 +81,8 @@ declare namespace store {
     notificationLazyLoading: boolean;
     notificationShowSearchInput: boolean;
     notificationShowBadge: boolean;
-    notificationMaximun: number;
+    notificationShowMenuCount: boolean;
+    notificationMaxinum: number;
   }
 
   interface MessageFlow {

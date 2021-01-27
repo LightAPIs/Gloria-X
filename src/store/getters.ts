@@ -28,4 +28,37 @@ export default {
     });
     return num;
   },
+  laterList(state: store.VuexState) {
+    const arr: store.GloriaNotification[] = [];
+    const { notifications } = state;
+    notifications.forEach(notify => {
+      if (notify.later) {
+        arr.push(notify);
+      }
+    });
+    return arr;
+  },
+  notificationCount: (state: store.VuexState) => (name: string) => {
+    let count = 0;
+    const { notifications } = state;
+    notifications.forEach(notify => {
+      if (notify.options.contextMessage === name) {
+        count++;
+      }
+    });
+    return count;
+  },
+  notificationsAllCount(state: store.VuexState) {
+    return state.notifications.length;
+  },
+  taskCode: (state: store.VuexState) => (id: string) => {
+    let code = '';
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === id) {
+        code = task.code;
+      }
+    }
+    return code;
+  },
 };

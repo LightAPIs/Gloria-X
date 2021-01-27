@@ -131,6 +131,111 @@
   "popupNotificationFrom": {
     "message": "From: "
   },
+  "popupContextTaskCopyName": {
+    "message": "Copy task name"
+  },
+  "popupContextTaskCopyNameCompleted": {
+    "message": "The task name was successfully copied to the clipboard"
+  },
+  "popupContextTaskCopyCode": {
+    "message": "Copy task code"
+  },
+  "popupContextTaskCopyCodeCompleted": {
+    "message": "The task code was successfully copied to the clipboard"
+  },
+  "popupContextTaskEnable": {
+    "message": "Enable the task"
+  },
+  "popupContextTaskDisable": {
+    "message": "Disable the task"
+  },
+  "popupContextTaskOnTimeEnable": {
+    "message": "Enable On-Time mode"
+  },
+  "popupContextTaskOnTimeDisable": {
+    "message": "Disable On-time mode"
+  },
+  "popupContextTaskNeedInteractionEnable": {
+    "message": "Enable Interaction"
+  },
+  "popupContextTaskNeedInteractionDisable": {
+    "message": "Disable Interaction"
+  },
+  "popupContextTaskEdit": {
+    "message": "Edit this task ..."
+  },
+  "popupContextTaskDisconnect": {
+    "message": "Disconnect remote update"
+  },
+  "popupContextTaskDelete": {
+    "message": "Delete this task"
+  },
+  "popupContextNotificationMenuCopy": {
+    "message": "Copy this category name"
+  },
+  "popupContextNotificationMenuCopyCompletd": {
+    "message": "The category name was successfully copied to the clipboard"
+  },
+  "popupContextNotificationMenuOpenLater": {
+    "message": "Open all notifications for later review"
+  },
+  "popupContextNotificationMenuCheckedLater": {
+    "message": "Remove all later review flags"
+  },
+  "popupContextNotificationMenuClearAll": {
+    "message": "Clear all notification records"
+  },
+  "popupContextNotificationMenuMarkLater": {
+    "message": "Mark all for review later"
+  },
+  "popupContextNotificationMenuRemoveLater": {
+    "message": "Remove all later review flags"
+  },
+  "popupContextNotificationMenuClear": {
+    "message": "Clear all notification records for this"
+  },
+  "popupContextNotificationItemOpen": {
+    "message": "Open notification link"
+  },
+  "popupContextNotificationItemCopyLink": {
+    "message": "Copy notification link"
+  },
+  "popupContextNotificationItemCopyLinkCompleted": {
+    "message": "The notification link has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemCopyTitle": {
+    "message": "Copy notification title"
+  },
+  "popupContextNotificationItemCopyTitleCompleted": {
+    "message": "The notification title has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemCopyMessage": {
+    "message": "Copy notification content"
+  },
+  "popupContextNotificationItemCopyMessageCompleted": {
+    "message": "The notification content has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemCopyIconUrl": {
+    "message": "Copy icon address"
+  },
+  "popupContextNotificationItemCopyIconUrlCompleted": {
+    "message": "The notification icon address has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemCopyImageUrl": {
+    "message": "Copy image address"
+  },
+  "popupContextNotificationItemCopyImageUrlCompleted": {
+    "message": "The notification image address has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemMarkLater": {
+    "message": "Mark for later review"
+  },
+  "popupContextNotificationItemRemoveLater": {
+    "message": "Remove later review flag"
+  },
+  "popupContextNotificationItemDelete": {
+    "message": "Delete this record"
+  },
   "searchTaskPlaceholder": {
     "message": "Enter keywords to filter tasks"
   },
@@ -221,10 +326,13 @@
   "settingsNotificationShowSearchInput": {
     "message": "Display the notification filter input box at the top of notification records"
   },
+  "settingsNotificationShowMenuCount": {
+    "message": "Show quantity at category in notification records"
+  },
   "settingsNotificationShowBadge": {
     "message": "Show the number of unread notifications mark on the extension icon"
   },
-  "settingsNotificationMaximun": {
+  "settingsNotificationMaxinum": {
     "message": "Maximum number of notification records:"
   },
   "settingsClear": {

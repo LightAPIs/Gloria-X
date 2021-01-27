@@ -16,7 +16,8 @@ function defaultConfigs(): store.GloriaConfig {
     notificationLazyLoading: false,
     notificationShowSearchInput: false,
     notificationShowBadge: false,
-    notificationMaximun: 200,
+    notificationShowMenuCount: false,
+    notificationMaxinum: 200,
   };
 }
 

@@ -34,6 +34,8 @@ const {
   updateNotification,
   markLaterNotification,
   checkedNotification,
+  removeNotification,
+  clearLaterCount,
   clearNotifications,
   setReducer,
   updateReducer,
@@ -59,8 +61,9 @@ function createNewConfigs() {
     notificationShowUrl: true,
     notificationLazyLoading: true,
     notificationShowSearchInput: true,
-    notificationShowBadge: false,
-    notificationMaximun: 500,
+    notificationShowBadge: true,
+    notificationShowMenuCount: true,
+    notificationMaxinum: 500,
   };
 }
 
@@ -199,10 +202,13 @@ describe('Test mutations:', function() {
       expect(state.configs.notificationShowSearchInput).to.be.true;
     });
     it('notificationShowBadge is set.', function() {
-      expect(state.configs.notificationShowBadge).to.be.false;
+      expect(state.configs.notificationShowBadge).to.be.true;
     });
-    it('notificationMaximun is set.', function() {
-      expect(state.configs.notificationMaximun).to.equal(500);
+    it('notificationShowMenuCount is set.', function() {
+      expect(state.configs.notificationShowMenuCount).to.be.true;
+    });
+    it('notificationMaxinum is set.', function() {
+      expect(state.configs.notificationMaxinum).to.equal(500);
     });
   });
 
@@ -658,6 +664,53 @@ describe('Test mutations:', function() {
       };
       checkedNotification(state, '1');
       expect(state.notifications[0].later).to.be.false;
+    });
+  });
+
+  describe('Method: removeNotification', function() {
+    it('remove notification.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+          },
+          {
+            id: '2',
+          },
+          {
+            id: '3',
+          },
+        ],
+      };
+      removeNotification(state, '1');
+      expect(state.notifications).to.lengthOf(2);
+      removeNotification(state, '4');
+      expect(state.notifications).to.lengthOf(2);
+    });
+  });
+
+  describe('Method: clearLaterCount', function() {
+    it('clear later count.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            later: true,
+          },
+          {
+            id: '2',
+            later: false,
+          },
+          {
+            id: '3',
+            later: true,
+          },
+        ],
+      };
+      clearLaterCount(state);
+      expect(state.notifications[0].later).to.be.false;
+      expect(state.notifications[1].later).to.be.false;
+      expect(state.notifications[2].later).to.be.false;
     });
   });
 

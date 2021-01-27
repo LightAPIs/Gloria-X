@@ -3,7 +3,7 @@
 import { expect } from 'chai';
 import getters from '@/store/getters';
 
-const { activeTab, notificationsTitleList, hasInstalledTask, laterCount } = getters;
+const { activeTab, notificationsTitleList, hasInstalledTask, laterCount, laterList, notificationCount } = getters;
 
 describe('Test getters:', function() {
   describe('Attribute: activeTab', function() {
@@ -112,6 +112,60 @@ describe('Test getters:', function() {
       state.notifications[1].later = true;
       const result2 = laterCount(state);
       expect(result2).to.equal(2);
+    });
+  });
+
+  describe('Attribute: laterList', function() {
+    it('laterList is normal.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            later: true,
+          },
+          {
+            id: '2',
+            later: false,
+          },
+          {
+            id: '3',
+            later: true,
+          },
+        ],
+      };
+      const result = laterList(state);
+      expect(result).to.lengthOf(2);
+    });
+  });
+
+  describe('Attribute: notificationCount', function() {
+    it('notificationCount is normal.', function() {
+      const state = {
+        notifications: [
+          {
+            id: '1',
+            options: {
+              contextMessage: 'a',
+            },
+          },
+          {
+            id: '2',
+            options: {
+              contextMessage: 'b',
+            },
+          },
+          {
+            id: '3',
+            options: {
+              contextMessage: 'a',
+            },
+          },
+        ],
+      };
+      const result1 = notificationCount(state)('a');
+      const result2 = notificationCount(state)('b');
+      expect(result1).to.equal(2);
+      expect(result2).to.equal(1);
     });
   });
 });
