@@ -204,7 +204,7 @@
     "message": "使用自定義的訊息提示音 (如果您的系統是 Windows 7 或系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設置為 Disabled 時，需要開啟該選項訊息才能發出聲音。)"
   },
   "settingsNotificationLaterMark": {
-    "message": "支持標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
+    "message": "支持在訊息提醒中標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
   },
   "settingsNotificationDetectIcon": {
     "message": "允許自動檢測並獲取網站圖示"

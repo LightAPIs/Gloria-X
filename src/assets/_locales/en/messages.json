@@ -204,7 +204,7 @@
     "message": "Use a custom notification sound (you need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled.)"
   },
   "settingsNotificationLaterMark": {
-    "message": "Support for marking the notification for later review (only for notification messages with URL provided)"
+    "message": "Support for marking the notification in message for later review (only for notification messages with URL provided)"
   },
   "settingsNotificationDetectIcon": {
     "message": "Allow automatic detection and acquisition of website icons"

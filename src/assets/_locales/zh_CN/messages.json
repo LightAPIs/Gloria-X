@@ -204,7 +204,7 @@
     "message": "使用自定义的通知提示音 (如果您的系统是 Windows 7 或系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
   },
   "settingsNotificationLaterMark": {
-    "message": "支持标识稍后查阅通知 (仅针对提供了 url 的通知消息)"
+    "message": "支持在通知消息中标识稍后查阅通知 (仅针对提供了 url 的通知消息)"
   },
   "settingsNotificationDetectIcon": {
     "message": "允许自动检测并获取网站图标"
