@@ -332,31 +332,22 @@ export default {
     for (let i = 0; i < state.notifications.length; i++) {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = true;
-        state.laterCount++;
         mark = true;
       }
     }
-    if (mark) {
-      chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> "${notificationId}".`);
-      chromeStorage.setLaterCount(state.laterCount, `increase later count to "${state.laterCount}".`);
-    }
+
+    mark && chromeStorage.setNotifications(state.notifications, `mark later notificaiton -> "${notificationId}".`);
   },
   checkedNotification(state: store.VuexState, notificationId: string) {
     let checked = false;
     for (let i = 0; i < state.notifications.length; i++) {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = false;
-        state.laterCount--;
-        if (state.laterCount < 0) {
-          state.laterCount = 0;
-        }
         checked = true;
       }
     }
-    if (checked) {
-      chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
-      chromeStorage.setLaterCount(state.laterCount, `decrease later count to "${state.laterCount}".`);
-    }
+
+    checked && chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
   },
   clearNotifications(state: store.VuexState) {
     if (state.notifications.length > 0) {
@@ -367,11 +358,6 @@ export default {
     if (state.unread > 0) {
       state.unread = 0;
       chromeStorage.setUnread(state.unread, 'sync clear unread number.');
-    }
-
-    if (state.laterCount > 0) {
-      state.laterCount = 0;
-      chromeStorage.setLaterCount(state.laterCount, 'sync clear later count.');
     }
   },
 
@@ -397,9 +383,5 @@ export default {
       state.unread = 0;
       chromeStorage.setUnread(state.unread, 'clear unread number.');
     }
-  },
-
-  setLaterCount(state: store.VuexState, newCount: number) {
-    state.laterCount = newCount || 0;
   },
 };
