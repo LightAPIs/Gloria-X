@@ -57,8 +57,10 @@ export default {
       if (name === 'notificationShowBadge') {
         if (!state.configs.notificationShowBadge) {
           // 关闭选项时清零
-          state.unread = 0;
-          chromeStorage.setUnread(state.unread, 'sync clear unread number.');
+          if (state.unread > 0) {
+            state.unread = 0;
+            chromeStorage.setUnread(state.unread, 'sync clear unread number.');
+          }
         }
       }
 
@@ -391,8 +393,10 @@ export default {
     }
   },
   clearUnread(state: store.VuexState) {
-    state.unread = 0;
-    chromeStorage.setUnread(state.unread, 'clear unread number.');
+    if (state.unread > 0) {
+      state.unread = 0;
+      chromeStorage.setUnread(state.unread, 'clear unread number.');
+    }
   },
 
   setLaterCount(state: store.VuexState, newCount: number) {
