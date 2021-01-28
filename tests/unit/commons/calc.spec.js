@@ -2,14 +2,14 @@
 
 import { expect } from 'chai';
 import chrome from 'sinon-chrome';
-import { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, momentLocale } from '@/commons/calc';
+import { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, dayjsLocale } from '@/commons/calc';
 
 describe('Test calc:', function() {
   before(function() {
     global.chrome = chrome;
   });
 
-  momentLocale('zh-cn');
+  dayjsLocale('zh-cn');
 
   describe('Method: displayTime', function() {
     it('display time is normal.', function() {
@@ -23,7 +23,7 @@ describe('Test calc:', function() {
   describe('Method: intervalTime', function() {
     it('interval time is normal.', function() {
       const time1 = intervalTime(1440);
-      expect(time1).to.equal('24H');
+      expect(time1).to.equal('1D');
     });
   });
 

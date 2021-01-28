@@ -2,7 +2,7 @@ import { evalUntrusted, inflatedRequestHeaders } from '@/commons/eval-untrusted'
 import IntervalAlarmsManager from '@/commons/IntervalAlarmsManager';
 import NotificationsManager from '@/commons/NavigableNotificationsManager';
 import store from '../store';
-import { isAfterInterval, remainingTime, nowLTS, momentLocale } from '@/commons/calc';
+import { isAfterInterval, remainingTime, nowLTS, dayjsLocale } from '@/commons/calc';
 import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
@@ -11,7 +11,7 @@ import { trim } from 'lodash';
 
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
-momentLocale();
+dayjsLocale();
 
 function createTaskTimer(task: store.GloriaTask, immediately = false) {
   const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;

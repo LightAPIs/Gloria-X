@@ -276,7 +276,7 @@ Reducer 接收一个 `Gloria Notification` 对象作为参数，并可选的返�
 
 ##### 过滤通知
 
-过滤掉 `message` 中包含 "sad" 的字符串:
+过滤掉 `message` 中包含 "sad" 字符串的通知：
 
 ```javascript
 function reducer(notification) {
@@ -295,7 +295,7 @@ function reducer(notification) {
 
 ##### 修改通知
 
-将 `message` 中的 "sad" 修改为 "happy":
+将 `message` 中的 "sad" 修改为 "happy"：
 
 ```javascript
 function reducer(notification) {

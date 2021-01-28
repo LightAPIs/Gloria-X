@@ -78,7 +78,7 @@ Vue.mixin({
   },
 });
 
-calc.momentLocale();
+calc.dayjsLocale();
 
 new Vue({
   el: '#popup-app',
