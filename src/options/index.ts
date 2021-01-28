@@ -2,11 +2,6 @@ import Vue from 'vue';
 import App from './App/App.vue';
 import VueRouter from 'vue-router';
 import store from '../store';
-import RouterSettings from '../router/RouterSettings.vue';
-import RouterDebug from '../router/RouterDebug.vue';
-import RouterState from '../router/RouterState.vue';
-import RouterReducer from '../router/RouterReducer.vue';
-import RouterAbout from '../router/RouterAbout.vue';
 import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
 import {
@@ -31,6 +26,11 @@ import {
   Switch,
   Tooltip,
 } from 'element-ui';
+const RouterSettings = () => import('../router/RouterSettings.vue');
+const RouterDebug = () => import('../router/RouterDebug.vue');
+const RouterState = () => import('../router/RouterState.vue');
+const RouterReducer = () => import('../router/RouterReducer.vue');
+const RouterAbout = () => import('../router/RouterAbout.vue');
 
 Vue.use(VueRouter);
 Vue.use(Container);
