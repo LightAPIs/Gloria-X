@@ -26,11 +26,11 @@ import {
   Switch,
   Tooltip,
 } from 'element-ui';
-const RouterSettings = () => import('../router/RouterSettings.vue');
-const RouterDebug = () => import('../router/RouterDebug.vue');
-const RouterState = () => import('../router/RouterState.vue');
-const RouterReducer = () => import('../router/RouterReducer.vue');
-const RouterAbout = () => import('../router/RouterAbout.vue');
+const RouterSettings = () => import(/* webpackChunkName: "options-group" */ '../router/RouterSettings.vue');
+const RouterDebug = () => import(/* webpackChunkName: "options-group" */ '../router/RouterDebug.vue');
+const RouterState = () => import(/* webpackChunkName: "options-group" */ '../router/RouterState.vue');
+const RouterReducer = () => import(/* webpackChunkName: "options-group" */ '../router/RouterReducer.vue');
+const RouterAbout = () => import(/* webpackChunkName: "options-group" */ '../router/RouterAbout.vue');
 
 Vue.use(VueRouter);
 Vue.use(Container);

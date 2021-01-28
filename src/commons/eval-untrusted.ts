@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { each, toLower } from 'lodash';
 import { createGloriaSandbox } from 'gloria-sandbox';
 
 function getOrigin(url: string) {
@@ -12,7 +11,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
 
   if (window.sessionStorage['request.id.' + requestId]) {
     for (let i = 0; requestHeaders.length; i++) {
-      switch (toLower(requestHeaders[i].name)) {
+      switch (requestHeaders[i].name.toLowerCase()) {
         case 'cookie':
           cookieIndex = i;
           break;
@@ -52,7 +51,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
       window.sessionStorage['request.id.' + requestId] = window.sessionStorage['request.inflate.' + url];
     } catch (e) {
       if (e.name === 'QuotaExceededError') {
-        each(Object.keys(window.sessionStorage), (key: string) => {
+        Object.keys(window.sessionStorage).forEach(key => {
           if (key !== 'request.id.' + requestId && key !== 'request.inflate.' + url) {
             window.sessionStorage.removeItem(key);
           }
@@ -66,7 +65,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
     let isSendByGloria = false;
     for (let i = 0; i < requestHeaders.length; i++) {
       const header = requestHeaders[i];
-      switch (toLower(header.name)) {
+      switch (header.name.toLowerCase()) {
         case 'send-by':
           if (header.name === 'Gloria') {
             isSendByGloria = true;

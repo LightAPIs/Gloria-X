@@ -1,4 +1,4 @@
-import { trim, isArray, isObject } from 'lodash';
+import isNull from 'lodash.isnull';
 
 function handleFormat(commitData: store.CommitData): store.CommitData {
   const { title, message, iconUrl, imageUrl, url, id } = commitData;
@@ -33,7 +33,7 @@ function handleFormat(commitData: store.CommitData): store.CommitData {
 }
 
 function commitFormat(commitData: store.CommitData | store.CommitData[]): store.CommitData | store.CommitData[] {
-  if (isArray(commitData)) {
+  if (Array.isArray(commitData)) {
     const formatArray: store.CommitData[] = [];
 
     commitData.forEach(data => {
@@ -47,14 +47,13 @@ function commitFormat(commitData: store.CommitData | store.CommitData[]): store.
 }
 
 function handleReducer(commitData: store.CommitData, reducer: string): store.CommitData {
-  if (trim(reducer)) {
+  if (reducer && reducer.trim()) {
     try {
-      const reducerFunc = eval(`(function() {return ${trim(reducer)}})()`);
+      const reducerFunc = eval(`(function() {return ${reducer.trim()}})()`);
       let resultData = reducerFunc(commitData);
-      console.log(resultData);
-      if (isArray(resultData)) {
+      if (Array.isArray(resultData)) {
         resultData = null;
-      } else if (isObject(resultData)) {
+      } else if (typeof resultData === 'object' && !isNull(resultData)) {
         resultData = handleFormat(resultData);
       } else if (resultData) {
         resultData = null;
@@ -72,7 +71,7 @@ function handleReducer(commitData: store.CommitData, reducer: string): store.Com
 }
 
 function reduceNotification<T extends store.CommitData | store.CommitData[]>(commitData: T, reducer: string): T {
-  if (isArray(commitData)) {
+  if (Array.isArray(commitData)) {
     const dataArray: store.CommitData[] = [];
     commitData.forEach(data => {
       dataArray.push(handleReducer(data, reducer));

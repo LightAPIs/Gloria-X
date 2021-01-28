@@ -42,7 +42,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters, mapState, mapMutations } from 'vuex';
-import { toLower } from 'lodash';
 import { APP_ICON_URL } from '@/commons/var';
 
 export default Vue.extend({
@@ -114,7 +113,11 @@ export default Vue.extend({
     itemShow() {
       let show = false;
       const { filterText, title, message } = this;
-      if (!filterText || toLower(title).includes(toLower(filterText)) || toLower(message).includes(toLower(filterText))) {
+      if (
+        !filterText ||
+        title.toLowerCase().includes(filterText.toLowerCase()) ||
+        message.toLowerCase().includes(filterText.toLowerCase())
+      ) {
         show = true;
       }
       return show;

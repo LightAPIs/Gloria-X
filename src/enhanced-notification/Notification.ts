@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import _ from 'lodash';
+import debounce from 'lodash.debounce';
+import isInteger from 'lodash.isinteger';
+import isNull from 'lodash.isnull';
 import { asLink } from '@/commons/ui';
 import { APP_ICON_URL } from '@/commons/var';
 import { TRANSPARENT_IMAGE, loadImage, imageToDataURI } from './common';
@@ -81,63 +83,63 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       let status = false;
       switch (prop) {
         case 'id':
-          if (_.isString(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined' || isNull(value)) {
             options.id = value;
             status = true;
           }
           break;
         case 'url':
-          if (_.isString(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined' || isNull(value)) {
             options.url = value;
             status = true;
           }
           break;
         case 'autoCloseTime':
-          if ((_.isNumber(value) && value > 0) || _.isUndefined(value) || _.isNull(value)) {
+          if ((typeof value === 'number' && value > 0) || typeof value === 'undefined' || isNull(value)) {
             options.autoCloseTime = value;
             status = true;
           }
           break;
         case 'detectIcon':
-          if (_.isString(value) || _.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'boolean' || typeof value === 'undefined') {
             options.detectIcon = value;
             status = true;
           }
           break;
         case 'defaultIconUrl':
-          if (_.isString(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined') {
             options.defaultIconUrl = value;
             status = true;
           }
           break;
         case 'onClick':
-          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'function' || typeof value === 'undefined' || isNull(value)) {
             options.onClick = value;
             status = true;
           }
           break;
         case 'onClose':
-          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'function' || typeof value === 'undefined' || isNull(value)) {
             options.onClose = value;
             status = true;
           }
           break;
         case 'onButton0Click':
-          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'function' || typeof value === 'undefined' || isNull(value)) {
             options.onButton0Click = value;
             status = true;
           }
           break;
         case 'onButton1Click':
-          if (_.isFunction(value) || _.isUndefined(value) || _.isNull(value)) {
+          if (typeof value === 'function' || typeof value === 'undefined' || isNull(value)) {
             options.onButton1Click = value;
             status = true;
           }
           break;
         case 'buttons':
-          if (_.isArray(value) && value.length <= 2) {
+          if (Array.isArray(value) && value.length <= 2) {
             // for (const i in value) {
-            //   if (_.isFunction(value[i].onClick)) {
+            //   if (typeof value[i].onClick === 'function') {
             //     if (i == '0') {
             //       options.onButton0Click = value[i].onClick;
             //     } else if (i == '1') {
@@ -148,37 +150,37 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
             //? 遵循 Chrome 的限制，不再允许直接在 buttons 中包含相应事件
             options.buttons = value;
             status = true;
-          } else if (_.isUndefined(value)) {
+          } else if (typeof value === 'undefined') {
             options.buttons = value;
             status = true;
           }
           break;
         case 'contextMessage':
-          if (_.isString(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined') {
             options.contextMessage = value;
             status = true;
           }
           break;
         case 'eventTime':
-          if (_.isNumber(value) || _.isUndefined(value)) {
+          if (typeof value === 'number' || typeof value === 'undefined') {
             options.eventTime = value;
             status = true;
           }
           break;
         case 'iconUrl':
-          if (_.isString(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined') {
             options.iconUrl = value;
             status = true;
           }
           break;
         case 'isClickable':
-          if (_.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'boolean' || typeof value === 'undefined') {
             options.isClickable = value;
             status = true;
           }
           break;
         case 'message':
-          if (_.isString(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined') {
             options.message = value;
             status = true;
           }
@@ -186,45 +188,45 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
         case 'priority':
           //? Priority ranges from -2 to 2. 2 is highest. Zero is default.
           //? On platforms that don't support a notification center (Windows, Linux & Mac), -2 and -1 result in an error as notifications with those priorities will not be shown at all.
-          if ((_.isInteger(value) && value >= 0 && value <= 2) || _.isUndefined(value)) {
+          if ((isInteger(value) && value >= 0 && value <= 2) || typeof value === 'undefined') {
             options.priority = value;
             status = true;
           }
           break;
         case 'requireInteraction':
-          if (_.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'boolean' || typeof value === 'undefined') {
             options.requireInteraction = value;
             status = true;
           }
           break;
         case 'silent':
           //* Windows10 原生通知可以受此选项控制
-          if (_.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'boolean' || typeof value === 'undefined') {
             options.silent = value;
             status = true;
           }
           break;
         case 'customSound':
           //? 用于处理 Windows7 系统以及 Windows10 系统下将 chrome://flags/#enable-native-notifications 设置为 Disabled 的情况
-          if (_.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'boolean' || typeof value === 'undefined') {
             options.customSound = value;
             status = true;
           }
           break;
         case 'isTest':
-          if (_.isBoolean(value) || _.isUndefined(value)) {
+          if (typeof value === 'boolean' || typeof value === 'undefined') {
             options.isTest = value;
             status = true;
           }
           break;
         case 'title':
-          if (_.isString(value) || _.isUndefined(value)) {
+          if (typeof value === 'string' || typeof value === 'undefined') {
             options.title = value;
             status = true;
           }
           break;
         case 'type':
-          if ((_.isString(value) && this.templateTypes.includes(value)) || _.isUndefined(value)) {
+          if ((typeof value === 'string' && this.templateTypes.includes(value)) || typeof value === 'undefined') {
             options.type = value;
             status = true;
           }
@@ -245,7 +247,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
         timeout: 5000,
       });
       const { images } = iconList;
-      if (_.isArray(images) && images.length > 0) {
+      if (Array.isArray(images) && images.length > 0) {
         let tempImg: any = {};
         images.forEach(img => {
           if (img.success && img.url) {
@@ -266,13 +268,13 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
   }
 
   addEventListener(type: string, listener: EventListenerOrEventListenerObject): void {
-    if (_.isString(type)) {
-      type = _.toLower(type);
+    if (typeof type === 'string') {
+      type = type.toLowerCase();
     } else {
       throw new Error('Event type must be a string.');
     }
 
-    if (_.isArray(this.events[type]) && !this.events[type].includes(listener)) {
+    if (Array.isArray(this.events[type]) && !this.events[type].includes(listener)) {
       this.events[type].push(listener);
     } else {
       this.events[type] = [listener];
@@ -280,13 +282,13 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
   }
 
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject): void {
-    if (_.isString(type)) {
-      type = _.toLower(type);
+    if (typeof type === 'string') {
+      type = type.toLowerCase();
     } else {
       throw new Error('Event type must be a string.');
     }
 
-    if (_.isArray(this.events[type])) {
+    if (Array.isArray(this.events[type])) {
       const index = this.events[type].indexOf(listener);
       if (index) {
         this.events[type].splice(index, 1);
@@ -295,12 +297,12 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
   }
 
   dispatchEvent(evt: CustomEvent): boolean {
-    const type = _.toLower(evt.type);
-    if (_.isArray(this.events[type])) {
-      this.events[type].filter(_.isFunction).forEach(fn => (fn as any)(...evt.detail));
+    const type = evt.type.toLowerCase();
+    if (Array.isArray(this.events[type])) {
+      this.events[type].filter(x => typeof x === 'function').forEach(fn => (fn as any)(...evt.detail));
     }
 
-    if (_.isFunction(this[`on${type}`])) {
+    if (typeof this[`on${type}`] === 'function') {
       this[`on${type}`](...evt.detail);
     }
     return true;
@@ -322,7 +324,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
     const targetUrl = this.options.url;
 
-    if (_.isString(targetUrl)) {
+    if (typeof targetUrl === 'string') {
       if (this.options.detectIcon === true) {
         try {
           const iconUrl = await this.detectIcon(targetUrl);
@@ -335,7 +337,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       }
     }
 
-    if (_.isString(this.options.detectIcon)) {
+    if (typeof this.options.detectIcon === 'string') {
       try {
         const iconUrl = await this.detectIcon(this.options.detectIcon);
         if (iconUrl) {
@@ -367,12 +369,12 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     }
 
     if (!this.options.onClick) {
-      if (_.isString(targetUrl)) {
+      if (typeof targetUrl === 'string') {
         //* 默认点击打开相应的网址
         this.onclick = async () => {
           chrome.tabs.query(
             {
-              url: asLink(targetUrl as string),
+              url: asLink(targetUrl),
             },
             tabs => {
               if (!chrome.runtime.lastError && tabs[0]) {
@@ -410,7 +412,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       }
     } else {
       this.onclick = async (id: string) => {
-        if (_.isFunction(this.options.onClick)) {
+        if (typeof this.options.onClick === 'function') {
           this.options.onClick(id);
         }
         await this.clear();
@@ -427,7 +429,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       };
     } else {
       this.opclose = async (id: string, byUser: boolean) => {
-        if (_.isFunction(this.options.onClose)) {
+        if (typeof this.options.onClose === 'function') {
           this.options.onClose(id, byUser);
         }
         await this.clear();
@@ -436,7 +438,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
     if (this.options.onButton0Click) {
       this.onbutton0click = async (id: string, buttonIndex: number) => {
-        if (_.isFunction(this.options.onButton0Click)) {
+        if (typeof this.options.onButton0Click === 'function') {
           this.options.onButton0Click(id, buttonIndex);
         }
         await this.clear();
@@ -445,7 +447,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
     if (this.options.onButton1Click) {
       this.onbutton1click = async (id: string, buttonIndex: number) => {
-        if (_.isFunction(this.options.onButton1Click)) {
+        if (typeof this.options.onButton1Click === 'function') {
           this.options.onButton1Click(id, buttonIndex);
         }
         await this.clear();
@@ -535,7 +537,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           chrome.notifications.onButtonClicked.addListener(this.buttonClickHandler);
 
           if (this.options.autoCloseTime) {
-            if (_.isNumber(this.options.autoCloseTime)) {
+            if (typeof this.options.autoCloseTime === 'number') {
               setTimeout(this.clear, this.options.autoCloseTime);
             }
           }
@@ -592,7 +594,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     });
   }
 
-  static audioDebounce = _.debounce(
+  static audioDebounce = debounce(
     function(func) {
       func();
     },

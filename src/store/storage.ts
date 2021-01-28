@@ -1,4 +1,4 @@
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 
 class ChromeStorage {
   static readonly WAIT_TIME = 500;

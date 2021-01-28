@@ -7,7 +7,6 @@ import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
-import { trim } from 'lodash';
 
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
@@ -90,8 +89,8 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
         try {
           fetch('https://api.gloria.pub/task/' + originId)
             .then(res => res.json())
-            .then(r => {
-              if (r.code && trim(r.code) !== trim(task.code)) {
+            .then((r: { name: string; code: string }) => {
+              if (r.code.trim() && r.code.trim() !== task.code.trim()) {
                 notificationsManager.add({
                   title: i18n('notificationCodeUpdate', [r.name]),
                   message: i18n('notificationCodeUpdateTip'),
@@ -542,10 +541,10 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
             }
           })
           .then(r => {
-            if (trim(r.code)) {
+            if (r.code.trim()) {
               store.dispatch('installTask', {
                 id: uuid(),
-                code: trim(r.code),
+                code: r.code.trim(),
                 name: r.name || r.description || r.author || r._id,
                 origin: data.replace('api.', ''),
               });
@@ -596,9 +595,9 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
             }
           })
           .then(r => {
-            if (trim(r.code)) {
+            if (r.code.trim()) {
               store.dispatch('updateTaskByOrigin', {
-                code: trim(r.code),
+                code: r.code.trim(),
                 url: data.replace('api.', ''),
               });
               sendResponse({

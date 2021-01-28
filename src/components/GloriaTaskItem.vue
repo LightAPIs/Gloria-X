@@ -97,7 +97,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
-import { toLower } from 'lodash';
 
 export default Vue.extend({
   name: 'gloria-task-item',
@@ -156,7 +155,7 @@ export default Vue.extend({
     itemShow() {
       const { filterText, name } = this;
       let show = false;
-      if (!filterText || toLower(name).includes(toLower(filterText))) {
+      if (!filterText || name.toLowerCase().includes(filterText.toLowerCase())) {
         show = true;
       }
       return show;

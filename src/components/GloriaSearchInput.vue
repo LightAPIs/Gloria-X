@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 
 export default Vue.extend({
   name: 'gloria-search-input',

@@ -1,5 +1,4 @@
 import { i18n } from './ui';
-import { toLower } from 'lodash';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-tw';
@@ -14,10 +13,9 @@ dayjs.extend(localizedFormat);
 function dayjsLocale(language?: string) {
   let lang = '';
   if (language) {
-    lang = toLower(language);
+    lang = language.toLowerCase();
   } else {
-    lang = toLower(chrome.i18n.getUILanguage() || navigator.language);
-    console.log(lang);
+    lang = (chrome.i18n.getUILanguage() || navigator.language).toLowerCase();
   }
 
   if (lang !== dayjs.locale())
@@ -32,8 +30,6 @@ function dayjsLocale(language?: string) {
         dayjs.locale('en');
         break;
     }
-
-  console.log(dayjs.locale());
 }
 
 function displayTime(d?: string | number) {

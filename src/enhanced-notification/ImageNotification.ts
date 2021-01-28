@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Notification from './Notification';
 import { create2DCanvas, loadImage, imageToDataURI, TRANSPARENT_IMAGE } from './common';
 
@@ -26,13 +25,13 @@ class ImageNotification extends Notification<enhanced.ImageNotificationOptions> 
     switch (prop) {
       case 'imageUrl':
         //! 一个图片消息 imageUrl 属性是必须的
-        if (_.isString(value)) {
+        if (typeof value === 'string') {
           options.imageUrl = value;
           status = true;
         }
         break;
       case 'defaultImageUrl':
-        if (_.isString(value) || _.isUndefined(value)) {
+        if (typeof value === 'string' || typeof value === 'undefined') {
           options.defaultImageUrl = value;
           status = true;
         }

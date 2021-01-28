@@ -88,7 +88,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { trim, isArray, isObject } from 'lodash';
 import { mapMutations, mapState } from 'vuex';
 import { APP_ICON_URL } from '@/commons/var';
 
@@ -129,7 +128,7 @@ export default Vue.extend({
     handleSave() {
       this.editable = false;
       const { currentReducer } = this;
-      this.updateReducer(trim(currentReducer));
+      this.updateReducer(currentReducer.trim());
     },
     handleCancel() {
       this.editable = false;
@@ -139,8 +138,8 @@ export default Vue.extend({
       this.testResult = '';
       const { testContent } = this;
       try {
-        const testObj = JSON.parse(trim(testContent));
-        if (isArray(testObj) || isObject(testObj)) {
+        const testObj = JSON.parse(testContent.trim());
+        if (Array.isArray(testObj) || typeof testObj === 'object') {
           chrome.runtime.sendMessage(
             {
               type: 'testReducer',

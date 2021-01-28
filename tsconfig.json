@@ -11,7 +11,18 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "chrome", "uuid", "lodash", "crypto-js", "mocha", "chai", "sinon-chrome"],
+    "types": [
+      "webpack-env",
+      "chrome",
+      "uuid",
+      "lodash.debounce",
+      "lodash.isnull",
+      "lodash.isinteger",
+      "crypto-js",
+      "mocha",
+      "chai",
+      "sinon-chrome"
+    ],
     "paths": {
       "@/*": ["src/*"]
     },

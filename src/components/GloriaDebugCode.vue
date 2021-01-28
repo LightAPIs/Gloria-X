@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { trim } from 'lodash';
 
 export default Vue.extend({
   name: 'gloria-debug-code',
@@ -67,11 +66,11 @@ export default Vue.extend({
       if (val) {
         this.result = '';
         this.error = '';
-        if (trim(this.code)) {
+        if (this.code.trim()) {
           chrome.runtime.sendMessage(
             {
               type: 'testCode',
-              data: trim(this.code),
+              data: this.code.trim(),
             },
             res => {
               if (res) {
