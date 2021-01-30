@@ -37,7 +37,9 @@ function commitFormat(commitData: store.CommitData | store.CommitData[]): store.
     const formatArray: store.CommitData[] = [];
 
     commitData.forEach(data => {
-      formatArray.push(handleFormat(data));
+      if (typeof data === 'object' && !isNull(data)) {
+        formatArray.push(handleFormat(data));
+      }
     });
 
     return formatArray;
