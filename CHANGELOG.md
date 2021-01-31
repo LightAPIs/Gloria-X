@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/LightAPIs/Gloria-X/compare/v1.1.0...v1.2.0) (2021-01-31)
+
+
+### Features
+
+* **selection:** 实现选取网页元素进行监视的功能 ([ad436e6](https://github.com/LightAPIs/Gloria-X/commit/ad436e6eb2710ed1b4481f6d95a63caac0376296))
+
+
+### Bug Fixes
+
+* **commit:** 修复在创建常规任务的数组中包含 null 或 undefined 时会报错的问题 ([dd13088](https://github.com/LightAPIs/Gloria-X/commit/dd1308800e79a5ea5fe662f37717216e64aecc3e))
+
 ## [1.1.0](https://github.com/LightAPIs/Gloria-X/compare/v1.0.0...v1.1.0) (2021-01-27)
 
 
