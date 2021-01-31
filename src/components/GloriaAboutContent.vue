@@ -83,6 +83,10 @@ export default Vue.extend({
           title: 'GitHub-Laziji/menujs (MIT License)',
         },
         {
+          url: 'https://github.com/Simonwep/selection',
+          title: 'Simonwep/selection (MIT License)',
+        },
+        {
           url: 'https://github.com/vuejs/vue',
           title: 'vuejs/vue (MIT License)',
         },

@@ -436,6 +436,33 @@ function syncImplicitStatus() {
   );
 }
 
+function syncSelection() {
+  chrome.contextMenus.create({
+    id: 'gloriaXSelection',
+    title: i18n('contextMenusSelection'),
+    contexts: ['browser_action', 'page'],
+    onclick() {
+      if (!chrome.runtime.lastError) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].url) {
+              if (!tabs[0].url.match(/^chrome:|^chrome-extension:|^file:/i)) {
+                chrome.tabs.executeScript({
+                  file: 'js/selection.js',
+                });
+              }
+            }
+          }
+        );
+      }
+    },
+  });
+}
+
 function testVirtualNotification(dataList: store.CommitData | store.CommitData[]) {
   if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {
     return;
@@ -741,3 +768,4 @@ syncMessageFlow();
 syncUnreadNumber();
 syncImplicitStatus();
 syncCodeUpdate();
+syncSelection();

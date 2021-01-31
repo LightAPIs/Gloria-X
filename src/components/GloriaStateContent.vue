@@ -7,7 +7,7 @@
             {{ i18n('stateNotifications') }}
           </label>
           <el-input
-            v-model="notificationsView"
+            :value="notificationsView"
             id="state-notifications-view"
             type="textarea"
             :rows="30"
@@ -22,7 +22,7 @@
             {{ i18n('stateTasks') }}
           </label>
           <el-input
-            v-model="tasksView"
+            :value="tasksView"
             id="satae-tasks-view"
             type="textarea"
             :rows="30"
@@ -37,7 +37,7 @@
             {{ i18n('stateStages') }}
           </label>
           <el-input
-            v-model="stagesView"
+            :value="stagesView"
             id="state-stages-view"
             type="textarea"
             :rows="30"

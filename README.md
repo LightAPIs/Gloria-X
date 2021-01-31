@@ -226,6 +226,18 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 |          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           |           0.4.17           |
 |               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |           3.2.0            |
 
+## 额外功能
+
+### 选取网页元素进行监视
+
+> _v1.2.0 +_
+
+可以在网页的右键菜单或者扩展程序图标的右键菜单里找到该功能。
+
+触发该功能后，会进入选取网页元素模式，可以通过鼠标左键单击点选网页内元素，按住 Ctrl 键的同时可以进行多选，再点击"生成任务代码"按钮即可生成相应的任务代码。
+
+需要注意的是，这个功能本质只是一个[观察任务](#观察任务)的快捷生成器。从原理上来说它是无法生成[常规任务](#常规任务)的，并且也不一定能监视所有类型的网页，比如基于 Ajax 技术动态加载的网页等。
+
 ## 高级选项
 
 ### 调试任务代码
@@ -373,7 +385,7 @@ function reducer(notification) {
 
 同时也加入了一些方便使用的新特性：
 
-- ~~实现快速选取网页内元素并创建监视文本的观察任务~~ _（待实现 ＞︿＜）_
+- 支持快速选取网页元素并创建监视文本的观察任务 (_v1.2.0 +_)
 - 允许隐式推送通知 (记录通知但不会有消息提示)
 - 允许扩展程序图标显示读通知数量
 - 支持稍后查阅通知的功能
@@ -383,12 +395,6 @@ function reducer(notification) {
 - 允许自定义通知是否发出提示音
 - 允许在任务执行出错时弹出通知提示
 - 可以在 Popup 页面中通过鼠标右键菜单操作任务和通知记录
-
-## 计划
-
-本项目是我采用空闲时间进行的编写和维护，由于时间和能力有限，部分构思中的功能暂时未能完成，其中包括：
-
-- 实现快速选取网页内元素并创建监视文本的观察任务
 
 ## 相关项目
 
@@ -400,6 +406,7 @@ function reducer(notification) {
 - [ElemeFE/element](https://github.com/ElemeFE/element)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
 - [vuejs/vue](https://github.com/vuejs/vue)
+- [Simonwep/selection](https://github.com/Simonwep/selection)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)
 
 ## 许可证

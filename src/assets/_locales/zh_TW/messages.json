@@ -545,6 +545,9 @@
   "contextMenusImplicitPush": {
     "message": "啟用隱式推送功能"
   },
+  "contextMenusSelection": {
+    "message": "選取網頁元素進行監視 ..."
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {
@@ -623,6 +626,66 @@
   },
   "notificationTerminateTask": {
     "message": "終止該任務"
+  },
+  "generationUsage": {
+    "message": "提示：使用滑鼠左鍵單擊點選網頁內元素，可以按住 Ctrl 鍵進行多選。"
+  },
+  "generationMinus": {
+    "message": "最小化"
+  },
+  "generationRestore": {
+    "message": "恢復"
+  },
+  "generationLeft": {
+    "message": "浮動於左側"
+  },
+  "generationRight": {
+    "message": "浮動於右側"
+  },
+  "generationDestroy": {
+    "message": "關閉"
+  },
+  "generationSelected": {
+    "message": "已選擇元素："
+  },
+  "generationElement": {
+    "message": "元素 $number$:",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "generationSelectionTitle": {
+    "message": "可選，訊息的標題"
+  },
+  "generationSelectionIconUrl": {
+    "message": "可選，訊息的圖示"
+  },
+  "generationSelectionUrl": {
+    "message": "可選，點擊訊息打開的網址"
+  },
+  "generationSelectionSubmit": {
+    "message": "生成任務程式碼"
+  },
+  "generationTest": {
+    "message": "測試任務程式碼"
+  },
+  "generationLast": {
+    "message": "上一步"
+  },
+  "generationNext": {
+    "message": "下一步"
+  },
+  "generationCode": {
+    "message": "任務程式碼："
+  },
+  "generationError": {
+    "message": "無法為所選網頁元素自動生成觀察任務，有可能因為它是基於 Ajax 等技術動態載入而來。"
+  },
+  "generationTaskSubmit": {
+    "message": "創建任務"
   },
   "injectButtonTip": {
     "message": "該按鈕由 Gloria-X 提供"

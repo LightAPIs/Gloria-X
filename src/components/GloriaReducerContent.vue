@@ -73,7 +73,7 @@
             {{ i18n('reducerTestResultLabel') }}
           </label>
           <el-input
-            v-model="testResult"
+            :value="testResult"
             id="reducer-test-result"
             type="textarea"
             :rows="15"

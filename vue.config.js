@@ -9,7 +9,7 @@ const outputDir = productionMode ? 'build' : 'dist';
 // Generate pages object
 const pages = {};
 
-const chromeName = ['popup', 'options', 'background'];
+const chromeName = ['popup', 'options', 'background', 'selection', 'generation'];
 
 chromeName.forEach(name => {
   pages[name] = {

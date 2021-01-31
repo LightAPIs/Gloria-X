@@ -23,7 +23,7 @@
             {{ i18n('debugResult') }}
           </label>
           <el-input
-            v-model="result"
+            :value="result"
             id="debug-code-result"
             type="textarea"
             :rows="15"
@@ -35,7 +35,7 @@
           <label for="debug-code-error" class="input-label">
             {{ i18n('debugError') }}
           </label>
-          <el-input v-model="error" id="debug-code-error" type="textarea" :rows="15" :placeholder="i18n('debugErrorPlaceholder')" readonly>
+          <el-input :value="error" id="debug-code-error" type="textarea" :rows="15" :placeholder="i18n('debugErrorPlaceholder')" readonly>
           </el-input>
         </div>
       </el-col>

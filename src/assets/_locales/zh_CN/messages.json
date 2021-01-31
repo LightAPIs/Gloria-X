@@ -545,6 +545,9 @@
   "contextMenusImplicitPush": {
     "message": "启用隐式推送功能"
   },
+  "contextMenusSelection": {
+    "message": "选取网页元素进行监视 ..."
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {
@@ -623,6 +626,66 @@
   },
   "notificationTerminateTask": {
     "message": "终止该任务"
+  },
+  "generationUsage": {
+    "message": "提示：使用鼠标左键单击点选网页内元素，可以按住 Ctrl 键进行多选。"
+  },
+  "generationMinus": {
+    "message": "最小化"
+  },
+  "generationRestore": {
+    "message": "还原"
+  },
+  "generationLeft": {
+    "message": "浮动于左侧"
+  },
+  "generationRight": {
+    "message": "浮动于右侧"
+  },
+  "generationDestroy": {
+    "message": "关闭"
+  },
+  "generationSelected": {
+    "message": "已选择元素："
+  },
+  "generationElement": {
+    "message": "元素 $number$:",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "generationSelectionTitle": {
+    "message": "可选，通知消息的标题"
+  },
+  "generationSelectionIconUrl": {
+    "message": "可选，通知消息的图标"
+  },
+  "generationSelectionUrl": {
+    "message": "可选，点击通知消息打开的网址"
+  },
+  "generationSelectionSubmit": {
+    "message": "生成任务代码"
+  },
+  "generationTest": {
+    "message": "测试任务代码"
+  },
+  "generationLast": {
+    "message": "上一步"
+  },
+  "generationNext": {
+    "message": "下一步"
+  },
+  "generationCode": {
+    "message": "任务代码："
+  },
+  "generationError": {
+    "message": "无法为所选网页元素自动生成观察任务，有可能因为它是基于 Ajax 等技术动态加载而来。"
+  },
+  "generationTaskSubmit": {
+    "message": "创建任务"
   },
   "injectButtonTip": {
     "message": "该按钮由 Gloria-X 提供"

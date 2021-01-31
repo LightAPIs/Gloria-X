@@ -545,6 +545,9 @@
   "contextMenusImplicitPush": {
     "message": "Enable implicit push"
   },
+  "contextMenusSelection": {
+    "message": "Monitor elements ..."
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {
@@ -623,6 +626,66 @@
   },
   "notificationTerminateTask": {
     "message": "Terminate the task"
+  },
+  "generationUsage": {
+    "message": "Tip: Hold down Ctrl to make multiple selections."
+  },
+  "generationMinus": {
+    "message": "Minimize"
+  },
+  "generationRestore": {
+    "message": "Restore"
+  },
+  "generationLeft": {
+    "message": "Float to the left"
+  },
+  "generationRight": {
+    "message": "Float to the right"
+  },
+  "generationDestroy": {
+    "message": "Close"
+  },
+  "generationSelected": {
+    "message": "Elements selected:"
+  },
+  "generationElement": {
+    "message": "Element $number$:",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "generationSelectionTitle": {
+    "message": "Optional, the title of the notification message"
+  },
+  "generationSelectionIconUrl": {
+    "message": "Optional, the icon of the notification message"
+  },
+  "generationSelectionUrl": {
+    "message": "Optional, click on the URL to open the notification message"
+  },
+  "generationSelectionSubmit": {
+    "message": "Generate"
+  },
+  "generationTest": {
+    "message": "Testing"
+  },
+  "generationLast": {
+    "message": "Last"
+  },
+  "generationNext": {
+    "message": "Next"
+  },
+  "generationCode": {
+    "message": "Task code:"
+  },
+  "generationError": {
+    "message": "The selected element cannot be monitored, possibly because it is dynamically loaded based on technologies such as Ajax."
+  },
+  "generationTaskSubmit": {
+    "message": "Create"
   },
   "injectButtonTip": {
     "message": "This button is provided by Gloria-X"
