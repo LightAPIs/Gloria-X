@@ -506,7 +506,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
       }
 
       if (this.state === NotificationState.READY) {
-        //! 将消息添加到通知记录中
+        //! 将消息自动检测到的图标信息添加到通知记录中
         //? 理论上测试用的通知在此刻 id 还没有被赋值
         if (
           !this.options.isTest &&
