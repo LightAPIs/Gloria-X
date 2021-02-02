@@ -212,7 +212,7 @@ export default Vue.extend({
       let msg = '',
         message = 'const message = ';
       elements.forEach((el, index) => {
-        msg += `\n  const msg${index.toString()} = $("${el.value}").text();`;
+        msg += `\n  const msg${index.toString()} = $("${el.value}").first().text();`;
         message += message.includes('msg') ? ` + " " + msg${index.toString()}` : `msg${index.toString()}`;
       });
 
