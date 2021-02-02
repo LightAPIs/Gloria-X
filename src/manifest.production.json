@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Gloria-X",
   "description": "__MSG_extensionDescription__",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "pana",
   "homepage_url": "https://github.com/LightAPIs/gloria-x",
   "default_locale": "en",

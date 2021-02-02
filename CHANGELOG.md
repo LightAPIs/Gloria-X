@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/LightAPIs/Gloria-X/compare/v1.2.0...v1.2.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **generation:** 修复在选取网页元素后自动生成任务代码时所捕获文本内容可能有误的问题 ([05b401e](https://github.com/LightAPIs/Gloria-X/commit/05b401e96f3265b939f520070187321bc56d0428))
+
 ## [1.2.0](https://github.com/LightAPIs/Gloria-X/compare/v1.1.0...v1.2.0) (2021-01-31)
 
 
