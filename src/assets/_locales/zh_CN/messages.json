@@ -8,6 +8,9 @@
   "confirmText": {
     "message": "确认"
   },
+  "redderText": {
+    "message": "正在渲染中，请稍候 ..."
+  },
   "popupTaskLabel": {
     "message": "任务列表"
   },

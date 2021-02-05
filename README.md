@@ -16,7 +16,6 @@
   </a>
 </p>
 
-
 > Chrome 上的可编程网站通知聚合器
 >
 > **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
@@ -409,8 +408,9 @@ function reducer(notification) {
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
 - [ElemeFE/element](https://github.com/ElemeFE/element)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
-- [vuejs/vue](https://github.com/vuejs/vue)
 - [Simonwep/selection](https://github.com/Simonwep/selection)
+- [vuejs/vue](https://github.com/vuejs/vue)
+- [yeyuqiudeng/vue-lazy-render](https://github.com/yeyuqiudeng/vue-lazy-render)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)
 
 ## 许可证

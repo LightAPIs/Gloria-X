@@ -6,14 +6,20 @@
           <i class="el-icon-s-order"></i>
           {{ i18n('popupTaskLabel') }}
         </span>
-        <gloria-task-tab></gloria-task-tab>
+        <lazy-render immediately :time="100">
+          <div slot="tip">{{ i18n('redderText') }}</div>
+          <gloria-task-tab></gloria-task-tab>
+        </lazy-render>
       </el-tab-pane>
       <el-tab-pane class="tab-pane" name="notifications">
         <span slot="label">
           <i class="el-icon-notebook-2"></i>
           {{ i18n('popupNotificationLabel') }}
         </span>
-        <gloria-notification-tab></gloria-notification-tab>
+        <lazy-render immediately :time="100">
+          <div slot="tip">{{ i18n('redderText') }}</div>
+          <gloria-notification-tab></gloria-notification-tab>
+        </lazy-render>
       </el-tab-pane>
     </el-tabs>
   </div>

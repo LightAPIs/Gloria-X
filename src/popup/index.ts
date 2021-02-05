@@ -5,6 +5,7 @@ import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
 import { v4 as uuid } from 'uuid';
 import VueFab from 'vue-float-action-button';
+import LazyRender from 'vue-lazy-render';
 import {
   Aside,
   Avatar,
@@ -68,6 +69,7 @@ Vue.use(Link);
 Vue.use(Image);
 Vue.use(Badge);
 Vue.use(Contextmenu);
+Vue.use(LazyRender);
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 Vue.mixin({

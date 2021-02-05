@@ -91,6 +91,10 @@ export default Vue.extend({
           title: 'vuejs/vue (MIT License)',
         },
         {
+          url: 'https://github.com/yeyuqiudeng/vue-lazy-render',
+          title: 'yeyuqiudeng/vue-lazy-render (MIT License)',
+        },
+        {
           url: 'https://github.com/yyf1994gggg/vuex-chrome',
           title: 'yyf1994gggg/vuex-chrome (MIT License)',
         },

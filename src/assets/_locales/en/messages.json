@@ -8,6 +8,9 @@
   "confirmText": {
     "message": "Confirm"
   },
+  "redderText": {
+    "message": "Rendering, please wait ..."
+  },
   "popupTaskLabel": {
     "message": "Tasks"
   },
