@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/LightAPIs/Gloria-X/compare/v1.2.1...v1.2.2) (2021-02-05)
+
+
+### Bug Fixes
+
+* **popup:** 修复当通知记录过多时造成窗口弹出卡顿的问题 ([2c04737](https://github.com/LightAPIs/Gloria-X/commit/2c0473743ee59e300bf1ea9e3345826327fbb234))
+* **web-request:** 修复一处关于网络请求的潜在错误 ([373d1ab](https://github.com/LightAPIs/Gloria-X/commit/373d1abd986f0485e8dece7de57aad8ff6049654))
+
 ### [1.2.1](https://github.com/LightAPIs/Gloria-X/compare/v1.2.0...v1.2.1) (2021-02-02)
 
 
