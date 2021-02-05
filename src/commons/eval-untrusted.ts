@@ -11,16 +11,19 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
 
   if (window.sessionStorage['request.id.' + requestId]) {
     for (let i = 0; requestHeaders.length; i++) {
-      switch (requestHeaders[i].name.toLowerCase()) {
-        case 'cookie':
-          cookieIndex = i;
-          break;
-        case 'origin':
-          originIndex = i;
-          break;
-        case 'referer':
-          refererIndex = i;
-          break;
+      const header = requestHeaders[i];
+      if (header.name) {
+        switch (header.name.toLowerCase()) {
+          case 'cookie':
+            cookieIndex = i;
+            break;
+          case 'origin':
+            originIndex = i;
+            break;
+          case 'referer':
+            refererIndex = i;
+            break;
+        }
       }
     }
     const data = JSON.parse(window.sessionStorage['request.id.' + requestId]);
@@ -65,21 +68,23 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
     let isSendByGloria = false;
     for (let i = 0; i < requestHeaders.length; i++) {
       const header = requestHeaders[i];
-      switch (header.name.toLowerCase()) {
-        case 'send-by':
-          if (header.name === 'Gloria') {
-            isSendByGloria = true;
-          }
-          break;
-        case 'cookie':
-          cookieIndex = i;
-          break;
-        case 'origin':
-          originIndex = i;
-          break;
-        case 'referer':
-          refererIndex = i;
-          break;
+      if (header.name) {
+        switch (header.name.toLowerCase()) {
+          case 'send-by':
+            if (header.name === 'Gloria') {
+              isSendByGloria = true;
+            }
+            break;
+          case 'cookie':
+            cookieIndex = i;
+            break;
+          case 'origin':
+            originIndex = i;
+            break;
+          case 'referer':
+            refererIndex = i;
+            break;
+        }
       }
     }
     if (isSendByGloria) {
