@@ -5,17 +5,21 @@
 <h1 align="center">Gloria-X</h1>
 
 <p align="center">
+  <a href="https://github.com/LightAPIs/Gloria-X/releases/latest">
+    <img src="https://img.shields.io/github/v/release/LightAPIs/Gloria-X.svg?color=orange" alt="Release" />
+  </a>
   <a href="https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh">
     <img src="https://img.shields.io/chrome-web-store/v/npdafhgodaenfglcfkkbnmdbfkgfadbh?maxAge=86400" alt="Chrome Web Store" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
   </a>
 </p>
 
+
 > Chrome 上的可编程网站通知聚合器
 >
-> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
+> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
 通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒。
 
