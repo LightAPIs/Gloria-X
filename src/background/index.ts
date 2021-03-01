@@ -522,6 +522,25 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
       //? 从事件侦听器中返回 true，这使得 sendResponse 函数在侦听器返回后保持有效
       return true;
+    case 'testNoMsgCode':
+      evalUntrusted(data)
+        .then(res => {
+          const formatRes = commitFormat(res as store.CommitData | store.CommitData[]);
+          console.debug(formatRes);
+          sendResponse({
+            result: formatRes,
+          });
+        })
+        .catch(e => {
+          console.error(e);
+          sendResponse({
+            err: {
+              message: e.message,
+              stack: e.stack,
+            },
+          });
+        });
+      return true;
     case 'testReducer':
       try {
         const virtualData = JSON.parse(data);
@@ -532,6 +551,24 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
           result: resultData,
         });
         testVirtualNotification(resultData);
+      } catch (e) {
+        console.error(e);
+        sendResponse({
+          err: {
+            message: JSON.stringify(e),
+          },
+        });
+      }
+      return true;
+    case 'testReducerNoMsg':
+      try {
+        const virtualData = JSON.parse(data);
+        const formatData = commitFormat(virtualData);
+        const { reducer } = store.state;
+        const resultData = reduceNotification(formatData, reducer);
+        sendResponse({
+          result: resultData,
+        });
       } catch (e) {
         console.error(e);
         sendResponse({

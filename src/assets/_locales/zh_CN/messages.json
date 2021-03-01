@@ -425,6 +425,9 @@
   "debugTestCode": {
     "message": "测试"
   },
+  "debugTestNoMsgCode": {
+    "message": "测试 (无通知)"
+  },
   "debugCodeLabel": {
     "message": "测试代码："
   },
@@ -514,6 +517,9 @@
   },
   "reducerTest": {
     "message": "测试"
+  },
+  "reducerTestNoMsg": {
+    "message": "测试 (无通知)"
   },
   "reducerTestError": {
     "message": "传入的测试对象不正确"

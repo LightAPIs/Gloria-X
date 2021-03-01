@@ -53,6 +53,10 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
+    testingNoMsg: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -70,6 +74,33 @@ export default Vue.extend({
           chrome.runtime.sendMessage(
             {
               type: 'testCode',
+              data: this.code.trim(),
+            },
+            res => {
+              if (res) {
+                const { result, err } = res;
+                if (result) {
+                  this.result = JSON.stringify(result, null, 4);
+                }
+
+                if (err) {
+                  this.error = err.message + '\n\n' + err.stack;
+                }
+              }
+            }
+          );
+        }
+        this.$emit('stop-test');
+      }
+    },
+    testingNoMsg(val) {
+      if (val) {
+        this.result = '';
+        this.error = '';
+        if (this.code.trim()) {
+          chrome.runtime.sendMessage(
+            {
+              type: 'testNoMsgCode',
               data: this.code.trim(),
             },
             res => {

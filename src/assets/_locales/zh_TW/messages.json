@@ -425,6 +425,9 @@
   "debugTestCode": {
     "message": "測試"
   },
+  "debugTestNoMsgCode": {
+    "message": "測試 (無訊息)"
+  },
   "debugCodeLabel": {
     "message": "測試程式碼："
   },
@@ -514,6 +517,9 @@
   },
   "reducerTest": {
     "message": "測試"
+  },
+  "reducerTestNoMsg": {
+    "message": "測試 (無訊息)"
   },
   "reducerTestError": {
     "message": "傳入的測試對象不正確"

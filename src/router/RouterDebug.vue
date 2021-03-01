@@ -1,12 +1,15 @@
 <template>
   <div id="debug-router">
-    <el-button type="warning" size="small" @click="evalTest">
+    <el-button type="primary" size="small" @click="evalTest">
       {{ i18n('debugTestCode') }}
+    </el-button>
+    <el-button type="warning" size="small" @click="evalTestNoMsg">
+      {{ i18n('debugTestNoMsgCode') }}
     </el-button>
     <el-divider content-position="left">
       {{ i18n('debugTest') }}
     </el-divider>
-    <gloria-debug-code :testing="testing" @stop-test="stopTest"></gloria-debug-code>
+    <gloria-debug-code :testing="testing" :testing-no-msg="testingNoMsg" @stop-test="stopTest"></gloria-debug-code>
   </div>
 </template>
 
@@ -22,14 +25,19 @@ export default Vue.extend({
   data() {
     return {
       testing: false,
+      testingNoMsg: false,
     };
   },
   methods: {
     evalTest() {
       this.testing = true;
     },
+    evalTestNoMsg() {
+      this.testingNoMsg = true;
+    },
     stopTest() {
       this.testing = false;
+      this.testingNoMsg = false;
     },
   },
 });

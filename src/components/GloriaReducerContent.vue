@@ -64,8 +64,11 @@
           ></el-input>
         </div>
         <div class="margin-top">
-          <el-button type="warning" size="small" @click="handleTest" :disabled="editable">
+          <el-button type="primary" size="small" @click="handleTest('testReducer')" :disabled="editable">
             {{ i18n('reducerTest') }}
+          </el-button>
+          <el-button type="warning" size="small" @click="handleTest('testReducerNoMsg')" :disabled="editable">
+            {{ i18n('reducerTestNoMsg') }}
           </el-button>
         </div>
         <div class="test-result">
@@ -134,7 +137,7 @@ export default Vue.extend({
       this.editable = false;
       this.currentReducer = this.reducer;
     },
-    handleTest() {
+    handleTest(type: string) {
       this.testResult = '';
       const { testContent } = this;
       try {
@@ -142,7 +145,7 @@ export default Vue.extend({
         if (Array.isArray(testObj) || typeof testObj === 'object') {
           chrome.runtime.sendMessage(
             {
-              type: 'testReducer',
+              type: type ? type : 'testReducer',
               data: JSON.stringify(testObj),
             },
             res => {
