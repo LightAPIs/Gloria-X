@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/LightAPIs/Gloria-X/compare/v1.2.2...v1.2.3) (2021-03-01)
+
+
+### Bug Fixes
+
+* **test:** 补充在测试时允许不弹出通知消息的按钮 ([c38bb8b](https://github.com/LightAPIs/Gloria-X/commit/c38bb8b0410de7c6711146141d8e929f0c53efed))
+
 ### [1.2.2](https://github.com/LightAPIs/Gloria-X/compare/v1.2.1...v1.2.2) (2021-02-05)
 
 
