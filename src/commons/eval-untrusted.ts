@@ -12,7 +12,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
   if (window.sessionStorage['request.id.' + requestId]) {
     for (let i = 0; requestHeaders.length; i++) {
       const header = requestHeaders[i];
-      if (header.name) {
+      if (header && header.name) {
         switch (header.name.toLowerCase()) {
           case 'cookie':
             cookieIndex = i;
@@ -68,7 +68,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
     let isSendByGloria = false;
     for (let i = 0; i < requestHeaders.length; i++) {
       const header = requestHeaders[i];
-      if (header.name) {
+      if (header && header.name) {
         switch (header.name.toLowerCase()) {
           case 'send-by':
             if (header.name === 'Gloria') {
