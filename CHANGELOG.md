@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/LightAPIs/Gloria-X/compare/v1.2.3...v1.2.4) (2021-03-10)
+
+
+### Bug Fixes
+
+* **web-request:** 修复在处理网络请求时的潜在错误 ([a9f9e3a](https://github.com/LightAPIs/Gloria-X/commit/a9f9e3a6c044446c96b68b13727e94970f0c53ec))
+
 ### [1.2.3](https://github.com/LightAPIs/Gloria-X/compare/v1.2.2...v1.2.3) (2021-03-01)
 
 
