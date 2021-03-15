@@ -217,12 +217,27 @@ export default Vue.extend({
         {
           label: this.i18n('popupContextTaskCopyCode'),
           icon: 'el-icon-document-copy',
-          divided: true,
           onClick: () => {
             this.copyToClip(
               this.taskCode(id),
               () => {
                 this.$message.success(this.i18n('popupContextTaskCopyCodeCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
+          },
+        },
+        {
+          label: this.i18n('popupContextTaskCopyId'),
+          icon: 'el-icon-user',
+          divided: true,
+          onClick: () => {
+            this.copyToClip(
+              id,
+              () => {
+                this.$message.success(this.i18n('popupContextTaskCopyIdCompleted'));
               },
               () => {
                 this.$message.error(this.i18n('popupContextNotificationItemCopyError'));

@@ -152,6 +152,12 @@
   "popupContextTaskCopyCodeCompleted": {
     "message": "已成功将任务代码复制到剪贴板中"
   },
+  "popupContextTaskCopyId": {
+    "message": "复制任务 ID"
+  },
+  "popupContextTaskCopyIdCompleted": {
+    "message": "已成功将任务 ID 复制到剪贴板中"
+  },
   "popupContextTaskEnable": {
     "message": "启用任务"
   },
@@ -235,6 +241,12 @@
   },
   "popupContextNotificationItemCopyImageUrlCompleted": {
     "message": "已成功将通知图片地址复制到剪贴板中"
+  },
+  "popupContextNotificationItemCopyId": {
+    "message": "复制通知 ID"
+  },
+  "popupContextNotificationItemCopyIdCompleted": {
+    "message": "已成功将通知 ID 复制到剪贴板中"
   },
   "popupContextNotificationItemMarkLater": {
     "message": "将通知标识为稍后查阅"

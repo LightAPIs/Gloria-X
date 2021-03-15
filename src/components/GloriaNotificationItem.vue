@@ -251,12 +251,30 @@ export default Vue.extend({
         items.push({
           label: this.i18n('popupContextNotificationItemCopyImageUrl'),
           icon: 'el-icon-picture-outline',
-          divided: true,
+          divided: !id,
           onClick: () => {
             this.copyToClip(
               imageUrl,
               () => {
                 this.$message.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
+          },
+        });
+
+      id &&
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyId'),
+          icon: 'el-icon-user',
+          divided: true,
+          onClick: () => {
+            this.copyToClip(
+              id,
+              () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyIdCompleted'));
               },
               () => {
                 this.$message.error(this.i18n('popupContextNotificationItemCopyError'));

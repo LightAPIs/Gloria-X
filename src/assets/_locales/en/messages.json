@@ -152,6 +152,12 @@
   "popupContextTaskCopyCodeCompleted": {
     "message": "The task code was successfully copied to the clipboard"
   },
+  "popupContextTaskCopyId": {
+    "message": "Copy task ID"
+  },
+  "popupContextTaskCopyIdCompleted": {
+    "message": "The task ID was successfully copied to the clipboard"
+  },
   "popupContextTaskEnable": {
     "message": "Enable the task"
   },
@@ -235,6 +241,12 @@
   },
   "popupContextNotificationItemCopyImageUrlCompleted": {
     "message": "The notification image address has been successfully copied to the clipboard"
+  },
+  "popupContextNotificationItemCopyId": {
+    "message": "Copy ID"
+  },
+  "popupContextNotificationItemCopyIdCompleted": {
+    "message": "The notification ID has been successfully copied to the clipboard"
   },
   "popupContextNotificationItemMarkLater": {
     "message": "Mark for later review"
