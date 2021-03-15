@@ -203,9 +203,15 @@ export default Vue.extend({
           label: this.i18n('popupContextTaskCopyName'),
           icon: 'el-icon-copy-document',
           onClick: () => {
-            this.copyToClip(name, () => {
-              this.$message.success(this.i18n('popupContextTaskCopyNameCompleted'));
-            });
+            this.copyToClip(
+              name,
+              () => {
+                this.$message.success(this.i18n('popupContextTaskCopyNameCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         },
         {
@@ -213,9 +219,15 @@ export default Vue.extend({
           icon: 'el-icon-document-copy',
           divided: true,
           onClick: () => {
-            this.copyToClip(this.taskCode(id), () => {
-              this.$message.success(this.i18n('popupContextTaskCopyCodeCompleted'));
-            });
+            this.copyToClip(
+              this.taskCode(id),
+              () => {
+                this.$message.success(this.i18n('popupContextTaskCopyCodeCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         },
         {

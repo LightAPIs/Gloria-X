@@ -99,9 +99,15 @@ export default Vue.extend({
             icon: 'el-icon-document-copy',
             divided: true,
             onClick: () => {
-              this.copyToClip(notificationsTitleList[index], () => {
-                this.$message.success(this.i18n('popupContextNotificationMenuCopyCompletd'));
-              });
+              this.copyToClip(
+                notificationsTitleList[index],
+                () => {
+                  this.$message.success(this.i18n('popupContextNotificationMenuCopyCompletd'));
+                },
+                () => {
+                  this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                }
+              );
             },
           },
           {

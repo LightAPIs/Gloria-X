@@ -16,7 +16,7 @@ declare module '*.vue' {
       now: () => string;
       uuid: () => string;
       textareaTab: (element: HTMLInputElement, event: KeyboardEvent) => void;
-      copyToClip: (content: string, copyCompleted?: () => void) => void;
+      copyToClip: (content: string, copyCompleted?: () => void, copyError?: () => void) => void;
     }
   }
 }

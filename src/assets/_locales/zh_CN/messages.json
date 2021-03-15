@@ -245,6 +245,9 @@
   "popupContextNotificationItemDelete": {
     "message": "删除此项通知记录"
   },
+  "popupContextNotificationItemCopyError": {
+    "message": "无法将内容复制到剪贴板"
+  },
   "searchTaskPlaceholder": {
     "message": "输入关键字对任务进行过滤"
   },

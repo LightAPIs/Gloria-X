@@ -180,9 +180,15 @@ export default Vue.extend({
             icon: 'el-icon-link',
             divided: !title,
             onClick: () => {
-              this.copyToClip(url, () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
-              });
+              this.copyToClip(
+                url,
+                () => {
+                  this.$message.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
+                },
+                () => {
+                  this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                }
+              );
             },
           }
         );
@@ -193,9 +199,15 @@ export default Vue.extend({
           icon: 'el-icon-chat-dot-round',
           divided: !message,
           onClick: () => {
-            this.copyToClip(title, () => {
-              this.$message.success(this.i18n('popupContextNotificationItemCopyTitleCompleted'));
-            });
+            this.copyToClip(
+              title,
+              () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyTitleCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         });
 
@@ -205,9 +217,15 @@ export default Vue.extend({
           icon: 'el-icon-chat-line-round',
           divided: !iconUrl,
           onClick: () => {
-            this.copyToClip(message, () => {
-              this.$message.success(this.i18n('popupContextNotificationItemCopyMessageCompleted'));
-            });
+            this.copyToClip(
+              message,
+              () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyMessageCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         });
 
@@ -217,9 +235,15 @@ export default Vue.extend({
           icon: 'el-icon-picture-outline-round',
           divided: !imageUrl,
           onClick: () => {
-            this.copyToClip(iconUrl, () => {
-              this.$message.success(this.i18n('popupContextNotificationItemCopyIconUrlCompleted'));
-            });
+            this.copyToClip(
+              iconUrl,
+              () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyIconUrlCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         });
 
@@ -229,9 +253,15 @@ export default Vue.extend({
           icon: 'el-icon-picture-outline',
           divided: true,
           onClick: () => {
-            this.copyToClip(imageUrl, () => {
-              this.$message.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
-            });
+            this.copyToClip(
+              imageUrl,
+              () => {
+                this.$message.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
+              },
+              () => {
+                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
         });
 

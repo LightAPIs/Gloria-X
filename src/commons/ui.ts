@@ -62,17 +62,16 @@ function textareaTab(element: HTMLInputElement, event: KeyboardEvent) {
   }
 }
 
-function copyToClip(content: string, copyCompleted?: () => void) {
-  const oInput = document.createElement('input');
-  oInput.className = 'oInput';
-  oInput.value = content;
-  document.body.appendChild(oInput);
-  oInput.select();
-  document.execCommand('Copy');
-  oInput.style.display = 'none';
-  document.body.removeChild(oInput);
-
-  typeof copyCompleted === 'function' && copyCompleted();
+function copyToClip(content: string, copyCompleted?: () => void, copyError?: () => void) {
+  navigator.clipboard
+    .writeText(content)
+    .then(() => {
+      typeof copyCompleted === 'function' && copyCompleted();
+    })
+    .catch(err => {
+      typeof copyError === 'function' && copyError();
+      console.error('Failed to copy: ', err);
+    });
 }
 
 export { i18n, n2br, nbsp, isLink, asteriskLink as asLink, textareaTab, copyToClip };
