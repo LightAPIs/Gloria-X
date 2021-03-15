@@ -70,7 +70,7 @@ export default {
 
   setTasks(state: store.VuexState, newTasks: store.GloriaTask[]) {
     if (newTasks && Array.isArray(newTasks) && newTasks.length > 0) {
-      state.tasks = [...newTasks];
+      state.tasks = newTasks.map(task => Object.assign(defaultTask(), task));
     } else {
       state.tasks = [];
     }
@@ -162,11 +162,24 @@ export default {
       if (state.tasks[i].id === taskId) {
         state.tasks[i].triggerCount++;
         state.tasks[i].triggerDate = now();
+        state.tasks[i].lastExecutionError = false;
         trigger = true;
         break;
       }
     }
     trigger && chromeStorage.setTasks(state.tasks, `trigger task: "${taskId}".`);
+  },
+  executionError(state: store.VuexState, taskId: string) {
+    let err = false;
+    for (let i = 0; i < state.tasks.length; i++) {
+      if (state.tasks[i].id === taskId) {
+        state.tasks[i].lastExecutionError = true;
+        err = true;
+        break;
+      }
+    }
+
+    err && chromeStorage.setTasks(state.tasks, `task execution error: "${taskId}".`);
   },
   clearTasks(state: store.VuexState) {
     let delStage = false;

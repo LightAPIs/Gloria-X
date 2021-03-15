@@ -58,6 +58,9 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
                 });
               },
             });
+
+          //* 将错误记录至任务中
+          store.commit('executionError', id);
         });
     }, 0);
   }
@@ -486,6 +489,7 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
     pushCount: 0,
     triggerDate: '',
     pushDate: '',
+    lastExecutionError: false,
   };
 
   (dataList as store.MessageData[]).forEach(item => {

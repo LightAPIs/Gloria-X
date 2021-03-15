@@ -4,11 +4,21 @@
       <span class="header-text">
         {{ name }}
       </span>
-      <el-tag v-if="onTimeMode" type="info" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
+      <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
         {{ i18n('popupTaskOnTimeModeTag') }}
       </el-tag>
-      <el-tag v-if="needInteraction" type="info" size="mini" effect="dark" :title="i18n('popupTaskNeedInteractionText')" class="tag">
+      <el-tag v-if="needInteraction" type="warning" size="mini" effect="dark" :title="i18n('popupTaskNeedInteractionText')" class="tag">
         {{ i18n('popupTaskNeedInteractionTag') }}
+      </el-tag>
+      <el-tag
+        v-if="lastExecutionError"
+        type="danger"
+        size="mini"
+        effect="dark"
+        :title="i18n('popupTaskLastExecutionErrorText')"
+        class="tag"
+      >
+        {{ i18n('popupTaskLastExecutionErrorTag') }}
       </el-tag>
       <span class="float-right">
         <el-popconfirm
@@ -142,6 +152,10 @@ export default Vue.extend({
       required: true,
     },
     onTimeMode: {
+      type: Boolean,
+      default: false,
+    },
+    lastExecutionError: {
       type: Boolean,
       default: false,
     },

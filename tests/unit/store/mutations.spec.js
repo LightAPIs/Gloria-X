@@ -22,6 +22,7 @@ const {
   createTaskBasic,
   removeTaskItem,
   triggerTask,
+  executionError,
   clearTasks,
   disconnectTask,
   setStages,
@@ -427,6 +428,21 @@ describe('Test mutations:', function() {
       triggerTask(state, '1');
       expect(state.tasks[0].triggerCount).to.equal(1);
       expect(state.tasks[0].triggerDate).to.not.empty;
+    });
+  });
+
+  describe('Method: executionError', function() {
+    it('task execution error.', function() {
+      const state = {
+        tasks: [
+          {
+            id: '1',
+            lastExecutionError: false,
+          },
+        ],
+      };
+      executionError(state, '1');
+      expect(state.tasks[0].lastExecutionError).to.be.true;
     });
   });
 

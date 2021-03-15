@@ -77,6 +77,12 @@
   "popupTaskOnTimeModeText": {
     "message": "Perform tasks strictly in accordance with time intervals"
   },
+  "popupTaskLastExecutionErrorTag": {
+    "message": "Error"
+  },
+  "popupTaskLastExecutionErrorText": {
+    "message": "Error in last execution"
+  },
   "popupTaskDialogTitle": {
     "message": "Edit task"
   },

@@ -42,6 +42,7 @@ function defaultTask(): store.GloriaTask {
     pushDate: '',
     origin: '',
     isEnable: true,
+    lastExecutionError: false,
   };
 }
 

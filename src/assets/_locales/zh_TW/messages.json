@@ -77,6 +77,12 @@
   "popupTaskOnTimeModeText": {
     "message": "嚴格按照時間間隔執行任務"
   },
+  "popupTaskLastExecutionErrorTag": {
+    "message": "錯誤"
+  },
+  "popupTaskLastExecutionErrorText": {
+    "message": "上次執行時出現錯誤"
+  },
   "popupTaskDialogTitle": {
     "message": "編輯任務"
   },
