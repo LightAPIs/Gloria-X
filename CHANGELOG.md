@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/LightAPIs/Gloria-X/compare/v1.2.4...v1.3.0) (2021-03-15)
+
+
+### Features
+
+* **task:** 在任务上标识上一次任务执行出错的状态 ([622d8b1](https://github.com/LightAPIs/Gloria-X/commit/622d8b177e682c3e17bf4391e4df9400db304ce9))
+
+
+### Bug Fixes
+
+* **copy:** 菜单项中补充复制 ID 的功能 ([8844f61](https://github.com/LightAPIs/Gloria-X/commit/8844f61d0199ed5f4ff8a6656e1f1be4f9fbc805))
+
 ### [1.2.4](https://github.com/LightAPIs/Gloria-X/compare/v1.2.3...v1.2.4) (2021-03-10)
 
 
