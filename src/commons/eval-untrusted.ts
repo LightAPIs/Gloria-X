@@ -7,9 +7,14 @@ function getOrigin(url: string) {
 
 function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDetails) {
   const { requestHeaders = [], requestId, url } = details;
-  let cookieIndex, originIndex, refererIndex;
+  let cookieIndex = -1,
+    originIndex = -1,
+    refererIndex = -1;
 
-  if (window.sessionStorage['request.id.' + requestId]) {
+  const idName = 'request.id.' + requestId,
+    inflateName = 'request.inflate.' + url;
+
+  if (window.sessionStorage[idName]) {
     for (let i = 0; requestHeaders.length; i++) {
       const header = requestHeaders[i];
       if (header && header.name) {
@@ -26,20 +31,36 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
         }
       }
     }
-    const data = JSON.parse(window.sessionStorage['request.id.' + requestId]);
-    if (!cookieIndex) {
+
+    let data = {
+      cookie: '',
+      referer: '',
+      origin: '',
+    };
+    try {
+      data = JSON.parse(window.sessionStorage[idName]);
+    } catch (e) {
+      console.error(e);
+      data = {
+        cookie: '',
+        referer: '',
+        origin: '',
+      };
+    }
+
+    if (cookieIndex === -1) {
       requestHeaders.push({
         name: 'Cookie',
         value: data.cookie || '',
       });
     }
-    if (!refererIndex) {
+    if (refererIndex === -1) {
       requestHeaders.push({
         name: 'Referer',
         value: data.referer || url,
       });
     }
-    if (originIndex) {
+    if (originIndex !== -1) {
       if (requestHeaders[originIndex].value === 'null') {
         requestHeaders[originIndex].value = data.origin || getOrigin(url);
       }
@@ -49,17 +70,17 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
         value: data.origin || getOrigin(url),
       });
     }
-  } else if (window.sessionStorage['request.inflate.' + url]) {
+  } else if (window.sessionStorage[inflateName]) {
     try {
-      window.sessionStorage['request.id.' + requestId] = window.sessionStorage['request.inflate.' + url];
+      window.sessionStorage[idName] = window.sessionStorage[inflateName];
     } catch (e) {
       if (e.name === 'QuotaExceededError') {
         Object.keys(window.sessionStorage).forEach(key => {
-          if (key !== 'request.id.' + requestId && key !== 'request.inflate.' + url) {
+          if (key !== idName && key !== inflateName) {
             window.sessionStorage.removeItem(key);
           }
         });
-        window.sessionStorage['request.id.' + requestId] = window.sessionStorage['request.inflate.' + url];
+        window.sessionStorage[idName] = window.sessionStorage[inflateName];
       } else {
         console.error(e);
       }
@@ -88,27 +109,42 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
       }
     }
     if (isSendByGloria) {
-      const data = JSON.parse(window.sessionStorage['request.inflate.' + url]);
-      if (!cookieIndex) {
+      let data = {
+        cookie: '',
+        referer: '',
+        origin: '',
+      };
+      try {
+        data = JSON.parse(window.sessionStorage[inflateName]);
+      } catch (e) {
+        console.error(e);
+        data = {
+          cookie: '',
+          referer: '',
+          origin: '',
+        };
+      }
+
+      if (cookieIndex === -1) {
         requestHeaders.push({
           name: 'Cookie',
           value: data.cookie || '',
         });
       }
-      if (!refererIndex) {
+      if (refererIndex === -1) {
         requestHeaders.push({
           name: 'Referer',
           value: data.referer || url,
         });
       }
-      if (originIndex) {
+      if (originIndex !== -1) {
         if (requestHeaders[originIndex].value === 'null') {
           requestHeaders[originIndex].value = data.origin || getOrigin(url);
         }
       } else {
         requestHeaders.push({
           name: 'Origin',
-          value: data.origin || url,
+          value: data.origin || getOrigin(url),
         });
       }
     }

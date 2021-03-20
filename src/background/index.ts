@@ -176,19 +176,17 @@ function removeTaskTimer(task: store.GloriaTask) {
 }
 
 function createNotification(options: enhanced.NotificationOptions) {
-  if (options.url) {
+  const { url, iconUrl, imageUrl } = options;
+
+  if (iconUrl && iconUrl.match(/^https?:\/\//)) {
     window.sessionStorage['request.image.' + options.iconUrl] = JSON.stringify({
-      referer: options.url,
+      referer: url || iconUrl,
     });
+  }
+
+  if (imageUrl && imageUrl.match(/^https?:\/\//)) {
     window.sessionStorage['request.image.' + options.imageUrl] = JSON.stringify({
-      referer: options.url,
-    });
-  } else {
-    window.sessionStorage['request.image.' + options.iconUrl] = JSON.stringify({
-      referer: options.iconUrl,
-    });
-    window.sessionStorage['request.image.' + options.imageUrl] = JSON.stringify({
-      referer: options.imageUrl,
+      referer: url || imageUrl,
     });
   }
 
@@ -753,15 +751,28 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
       details.parentFrameId === -1 &&
       details.tabId === -1
     ) {
-      let refererIndex;
+      let refererIndex = -1;
       const { requestHeaders = [] } = details;
       for (let i = 0; i < requestHeaders.length; i++) {
-        if (requestHeaders[i].name === 'Referer') {
+        const header = requestHeaders[i];
+        if (header && header.name && header.name.toLowerCase() === 'referer') {
           refererIndex = i;
         }
       }
-      const data = JSON.parse(window.sessionStorage[name]);
-      if (!refererIndex) {
+
+      let data = {
+        referer: '',
+      };
+      try {
+        data = JSON.parse(window.sessionStorage[name]);
+      } catch (e) {
+        console.error(e);
+        data = {
+          referer: '',
+        };
+      }
+
+      if (refererIndex === -1) {
         requestHeaders.push({
           name: 'Referer',
           value: data.referer || details.url,
@@ -774,13 +785,14 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   },
   {
     urls: ['<all_urls>'],
-  }
+  },
+  ['blocking', 'requestHeaders', 'extraHeaders']
 );
 
 //? 虽然文档中未指出，但是第二个参数是必须给出的
 chrome.webRequest.onCompleted.addListener(
   details => {
-    window.sessionStorage.removeItem('request.id.' + details.requestId);
+    window.sessionStorage['request.id.' + details.requestId] && window.sessionStorage.removeItem('request.id.' + details.requestId);
   },
   {
     urls: ['<all_urls>'],
