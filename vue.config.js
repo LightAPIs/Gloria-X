@@ -16,7 +16,7 @@ chromeName.forEach(name => {
     entry: `src/${name}/index.ts`,
     template: path.resolve(`src/${name}/index.html`),
     filename: `${name}.html`,
-    chunks: ['chunks-vendors', 'chunk-common', name],
+    chunks: ['chunk-vendors', 'chunk-common', name],
   };
 });
 

@@ -11,7 +11,7 @@
     "lint": "vue-cli-service lint",
     "build-watch": "vue-cli-service build-watch",
     "build-zip": "vue-cli-service build --mode zipfile",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rimraf build",
     "fix": "eslint --fix 'src/**/*.{ts,js,vue,scss}'",
     "format": "prettier --write 'src/**/*.{ts,js,vue,scss}'",
     "release": "standard-version",
