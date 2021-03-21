@@ -8,6 +8,7 @@ import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
 
+const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 dayjsLocale();
@@ -120,6 +121,7 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
                     id &&
                       chrome.windows.getCurrent(
                         {
+                          //! 该属性从 Firefox 62 起已被弃用
                           windowTypes: ['normal'],
                         },
                         win => {
@@ -738,7 +740,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   {
     urls: ['<all_urls>'],
   },
-  ['blocking', 'requestHeaders', 'extraHeaders']
+  isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
@@ -786,7 +788,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   {
     urls: ['<all_urls>'],
   },
-  ['blocking', 'requestHeaders', 'extraHeaders']
+  isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
 //? 虽然文档中未指出，但是第二个参数是必须给出的

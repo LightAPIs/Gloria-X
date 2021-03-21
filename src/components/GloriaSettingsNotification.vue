@@ -3,21 +3,21 @@
     <div>
       <el-switch :value="implicitPush" :active-text="i18n('settingsImplicitPush')" @change="onChange('implicitPush', $event)"></el-switch>
     </div>
-    <div class="margin-top">
+    <div v-if="isChrome" class="margin-top">
       <el-switch
         :value="configs.notificationSound"
         :active-text="i18n('settingsNotificationSound')"
         @change="onChange('notificationSound', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div v-if="isChrome" class="margin-top">
       <el-switch
         :value="configs.notificationCustomSound"
         :active-text="i18n('settingsNotificationCustomSound')"
         @change="onChange('notificationCustomSound', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div v-if="isChrome" class="margin-top">
       <el-switch
         :value="configs.notificationLaterMark"
         :active-text="i18n('settingsNotificationLaterMark')"
@@ -94,6 +94,11 @@ import Vue from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default Vue.extend({
   name: 'gloria-settings-notification',
+  data() {
+    return {
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
+    };
+  },
   computed: {
     ...mapState(['implicitPush', 'configs']),
   },

@@ -9,6 +9,8 @@ import { v4 as uuid } from 'uuid';
 import scrapFavicon from 'scrap-favicon';
 import store from '@/store';
 
+const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+
 enum NotificationState {
   IDLE,
   LOADING,
@@ -28,20 +30,32 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
   protected abstract readonly finalType: enhanced.NotificationTypes;
 
-  protected readonly allowOptions: string[] = [
-    'buttons', // Text and icons for up to two notification action buttons.
-    'contextMessage',
-    'eventTime',
-    'iconUrl',
-    'imageUrl', // The image is not visible for Mac OS X users.
-    'isClickable',
-    'message',
-    'priority',
-    'requireInteraction',
-    'silent',
-    'title',
-    'type',
-  ];
+  protected readonly allowOptions: string[] = isChrome
+    ? [
+        'buttons', // Text and icons for up to two notification action buttons.
+        'contextMessage',
+        'eventTime',
+        'iconUrl',
+        'imageUrl', // The image is not visible for Mac OS X users.
+        'isClickable',
+        'message',
+        'priority',
+        'requireInteraction',
+        'silent',
+        'title',
+        'type',
+      ]
+    : [
+        'contextMessage', //! 会被 Firefox 忽略
+        'eventTime', //! 会被 Firefox 忽略
+        'iconUrl',
+        'imageUrl', //! 会被 Firefox 忽略
+        'isClickable', //! 会被 Firefox 忽略
+        'message',
+        'priority', //! 会被 Firefox 忽略
+        'title',
+        'type',
+      ];
   protected readonly templateTypes = ['basic', 'image', 'list', 'progress'];
 
   protected abstract defaultOptions: T;
@@ -386,6 +400,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
               } else {
                 chrome.windows.getCurrent(
                   {
+                    //! 该属性从 Firefox 62 起已被弃用
                     windowTypes: ['normal'],
                   },
                   win => {
