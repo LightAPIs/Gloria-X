@@ -31,7 +31,7 @@
           {{ i18n('popupTaskOnTimeModeText') }}
         </el-checkbox>
         <br />
-        <el-checkbox v-model="form.needInteraction">
+        <el-checkbox v-if="isChrome" v-model="form.needInteraction">
           {{ i18n('popupTaskNeedInteractionText') }}
         </el-checkbox>
       </el-form-item>
@@ -126,6 +126,7 @@ export default Vue.extend({
           },
         ],
       },
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {
