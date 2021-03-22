@@ -245,7 +245,7 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
       });
 
       if (isChrome) {
-        chrome.runtime.sendMessage(chrome.i18n.getMessage('@@extension_id'), {
+        chrome.runtime.sendMessage({
           type: 'path',
           data: pathList,
         });

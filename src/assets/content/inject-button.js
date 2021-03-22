@@ -87,7 +87,6 @@ function create(tag = 'a', name = '', title = '', className = '', onClick = null
 
 function sendInstallTask(id = '') {
   chrome.runtime.sendMessage(
-    i18n('@@extension_id'),
     {
       type: 'installTask',
       data: API_SSERVER + id,
@@ -106,7 +105,6 @@ function sendInstallTask(id = '') {
 
 function sendUninstallTask(url = '') {
   chrome.runtime.sendMessage(
-    i18n('@@extension_id'),
     {
       type: 'uninstallTask',
       data: url,
@@ -125,7 +123,6 @@ function sendUninstallTask(url = '') {
 
 function sendUpdateTask(id = '') {
   chrome.runtime.sendMessage(
-    i18n('@@extension_id'),
     {
       type: 'updateTask',
       data: API_SSERVER + id,
