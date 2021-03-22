@@ -19,6 +19,10 @@ modulesName.forEach(name => {
     filename: `${name}.html`,
     chunks: ['chunk-vendors', 'chunk-common', name],
   };
+
+  if (name === 'background') {
+    pages[name].chunks.push('gloria-utils');
+  }
 });
 
 let outputDir = '';
@@ -89,6 +93,17 @@ module.exports = {
         drop_debugger: true,
         pure_funcs: ['console.log'],
       });
+
+      config.optimization.splitChunks = {
+        cacheGroups: {
+          'gloria-utils': {
+            chunks: 'initial',
+            name: 'gloria-utils',
+            test: /[\\/]node_modules[\\/]gloria-utils[\\/]/,
+            priority: -10,
+          },
+        },
+      };
     }
 
     if (zipMode) {
