@@ -439,7 +439,7 @@ function syncImplicitStatus() {
   );
 }
 
-function syncSelection() {
+function registerMenu() {
   chrome.contextMenus.create({
     id: 'gloriaXSelection',
     title: i18n('contextMenusSelection'),
@@ -464,6 +464,21 @@ function syncSelection() {
       }
     },
   });
+
+  if (!isChrome) {
+    chrome.contextMenus.create({
+      id: 'gloriaXSettings',
+      title: i18n('optionsTitle'),
+      contexts: ['browser_action'],
+      onclick() {
+        if (!chrome.runtime.lastError) {
+          chrome.tabs.create({
+            url: './options.html#/settings',
+          });
+        }
+      },
+    });
+  }
 }
 
 function testVirtualNotification(dataList: store.CommitData | store.CommitData[]) {
@@ -823,4 +838,4 @@ syncMessageFlow();
 syncUnreadNumber();
 syncImplicitStatus();
 syncCodeUpdate();
-syncSelection();
+registerMenu();
