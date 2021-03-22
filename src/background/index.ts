@@ -453,7 +453,7 @@ function registerMenu() {
           },
           tabs => {
             if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].url) {
-              if (!tabs[0].url.match(/^chrome:|^chrome-extension:|^file:/i)) {
+              if (!tabs[0].url.match(/^(?:chrome|chrome-extension|file|moz-extension|about):/i)) {
                 chrome.tabs.executeScript({
                   file: 'js/selection.js',
                 });
@@ -745,7 +745,94 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
           window.sessionStorage.removeItem(key);
         }
       }
-      break;
+      return true;
+    //! 以下是处理 Firefox 上内容脚本的通信部分
+    case 'getPageUrl-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(
+              tabs[0].id,
+              {
+                type: 'getPageUrl',
+                data: '',
+              },
+              res => {
+                sendResponse(res);
+              }
+            );
+          }
+        }
+      );
+      return true;
+    case 'path-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'path',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'float-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'float',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'directive-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'directive',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'destroy-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'destroy',
+              data,
+            });
+          }
+        }
+      );
+      return true;
   }
 });
 

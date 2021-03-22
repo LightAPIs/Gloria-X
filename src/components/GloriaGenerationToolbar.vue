@@ -36,7 +36,7 @@
         size="mini"
         @click="onClick('minus')"
       ></el-button>
-      <el-button :title="i18n('generationDestroy')" icon="el-icon-close" circle size="mini" @click="onClick('destroy')"></el-button>
+      <el-button :title="i18n('generationDestroy')" icon="el-icon-close" circle size="mini" @click="onDestroy"></el-button>
     </div>
   </div>
 </template>
@@ -49,6 +49,7 @@ export default Vue.extend({
     return {
       minus: false,
       floatRight: true,
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   methods: {
@@ -69,20 +70,50 @@ export default Vue.extend({
           break;
       }
 
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type,
-              data: '',
-            });
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(tabs[0].id, {
+                type: 'float',
+                data: type,
+              });
+            }
           }
-        }
-      );
+        );
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'float-firefox',
+          data: type,
+        });
+      }
+    },
+    onDestroy() {
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(tabs[0].id, {
+                type: 'destroy',
+                data: '',
+              });
+            }
+          }
+        );
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'destroy-firefox',
+          data: '',
+        });
+      }
     },
   },
 });

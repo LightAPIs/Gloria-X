@@ -110,6 +110,8 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
     (window as any).gloriaXAddedCss = true;
   }
 
+  const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+
   const selection = new SelectionArea({
     document: window.document,
     class: 'selection-area',
@@ -242,10 +244,17 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
         pathList.push(cssPath(el));
       });
 
-      chrome.runtime.sendMessage(chrome.i18n.getMessage('@@extension_id'), {
-        type: 'path',
-        data: pathList,
-      });
+      if (isChrome) {
+        chrome.runtime.sendMessage(chrome.i18n.getMessage('@@extension_id'), {
+          type: 'path',
+          data: pathList,
+        });
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'path-firefox',
+          data: pathList,
+        });
+      }
     });
 
   document.addEventListener('click', handler, true);
@@ -258,39 +267,42 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
     'style',
     `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 300px !important; width: calc(100% - 4px) !important;`
   );
-  generation.src = chrome.extension.getURL('generation.html');
+  generation.src = chrome.runtime.getURL('generation.html');
   document.body.after(generation);
 
   chrome.runtime.onMessage.addListener(function listener(message, _sender, response) {
-    if (message.type === 'getPageUrl') {
+    const { type, data } = message;
+    if (type === 'getPageUrl') {
       response(location.href);
-    } else if (message.type === 'directive') {
-      if (message.data === 'disableSelection') {
+    } else if (type === 'directive') {
+      if (data === 'disableSelection') {
         selection.disable();
-      } else if (message.data === 'enableSelection') {
+      } else if (data === 'enableSelection') {
         selection.enable();
       }
-    } else if (message.type === 'minus') {
-      generation.setAttribute(
-        'style',
-        `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
-      );
-    } else if (message.type === 'plus') {
-      generation.setAttribute(
-        'style',
-        `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 300px !important; width: calc(100% - 4px) !important;`
-      );
-    } else if (message.type === 'left') {
-      generation.setAttribute(
-        'style',
-        `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; left: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
-      );
-    } else if (message.type === 'right') {
-      generation.setAttribute(
-        'style',
-        `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
-      );
-    } else if (message.type === 'destroy') {
+    } else if (type === 'float') {
+      if (data === 'minus') {
+        generation.setAttribute(
+          'style',
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
+        );
+      } else if (data === 'plus') {
+        generation.setAttribute(
+          'style',
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 300px !important; width: calc(100% - 4px) !important;`
+        );
+      } else if (data === 'left') {
+        generation.setAttribute(
+          'style',
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; left: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
+        );
+      } else if (data === 'right') {
+        generation.setAttribute(
+          'style',
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 42px !important; width: 200px !important;`
+        );
+      }
+    } else if (type === 'destroy') {
       document.removeEventListener('click', handler, true);
       selection.getSelection().forEach(el => {
         el.classList.remove('gloria-x-selected');
