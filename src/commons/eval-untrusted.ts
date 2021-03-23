@@ -6,7 +6,7 @@ function getOrigin(url: string) {
 }
 
 function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDetails) {
-  const { requestHeaders = [], requestId, url, type } = details;
+  const { requestHeaders = [], requestId, url, type, initiator } = details;
   let cookieIndex = -1,
     originIndex = -1,
     refererIndex = -1;
@@ -15,7 +15,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
     inflateName = 'request.inflate.' + url,
     imageName = 'request.image.' + url;
 
-  if (details.frameId === 0 && details.parentFrameId === -1 && details.tabId === -1) {
+  if (initiator && initiator.includes(chrome.i18n.getMessage('@@extension_id'))) {
     if (window.sessionStorage[idName]) {
       for (let i = 0; requestHeaders.length; i++) {
         const header = requestHeaders[i];

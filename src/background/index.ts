@@ -845,7 +845,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
-//? 虽然文档中未指出，但是第二个参数是必须给出的
 chrome.webRequest.onCompleted.addListener(
   details => {
     window.sessionStorage['request.id.' + details.requestId] && window.sessionStorage.removeItem('request.id.' + details.requestId);
