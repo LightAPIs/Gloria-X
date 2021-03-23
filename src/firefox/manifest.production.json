@@ -9,7 +9,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "{5f7c490a-a6b5-44b4-9ab7-fa7117a16ca5}",
-      "strict_min_version": "55.0",
+      "strict_min_version": "56.0",
       "update_url": "https://github.com/LightAPIs/Gloria-X/blob/master/firefox_updates.json"
     }
   },
@@ -23,12 +23,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*.gloria.pub/*"
-      ],
-      "js": [
-        "content/inject-button.js"
-      ]
+      "matches": ["*://*.gloria.pub/*"],
+      "js": ["content/inject-button.js"]
     }
   ],
   "browser_action": {
@@ -54,9 +50,7 @@
     "96": "icons/app/icon-96.png",
     "128": "icons/app/icon-128.png"
   },
-  "web_accessible_resources": [
-    "generation.html"
-  ],
+  "web_accessible_resources": ["generation.html"],
   "content_security_policy": "script-src 'self' 'unsafe-eval' blob:; object-src 'self'",
   "permissions": [
     "<all_urls>",
