@@ -95,6 +95,10 @@ class ChromeStorage {
     );
   }
 
+  shallowCopy(data: object) {
+    return JSON.parse(JSON.stringify(data));
+  }
+
   setImplicitPush(data: boolean, message?: string) {
     this.implicitPush(() => {
       chrome.storage.local.set(
@@ -138,7 +142,7 @@ class ChromeStorage {
     this.tasks(() => {
       chrome.storage.local.set(
         {
-          tasks: isChrome ? data : Object.assign({}, data),
+          tasks: isChrome ? data : this.shallowCopy(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -151,7 +155,7 @@ class ChromeStorage {
     this.notifications(() => {
       chrome.storage.local.set(
         {
-          notifications: isChrome ? data : Object.assign({}, data),
+          notifications: isChrome ? data : this.shallowCopy(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -164,7 +168,7 @@ class ChromeStorage {
     this.stages(() => {
       chrome.storage.local.set(
         {
-          stages: isChrome ? data : Object.assign({}, data),
+          stages: isChrome ? data : this.shallowCopy(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
