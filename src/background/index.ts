@@ -845,54 +845,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  details => {
-    const name = 'request.image.' + details.url;
-    if (
-      window.sessionStorage[name] &&
-      details.type === 'image' &&
-      details.frameId === 0 &&
-      details.parentFrameId === -1 &&
-      details.tabId === -1
-    ) {
-      let refererIndex = -1;
-      const { requestHeaders = [] } = details;
-      for (let i = 0; i < requestHeaders.length; i++) {
-        const header = requestHeaders[i];
-        if (header && header.name && header.name.toLowerCase() === 'referer') {
-          refererIndex = i;
-        }
-      }
-
-      let data = {
-        referer: '',
-      };
-      try {
-        data = JSON.parse(window.sessionStorage[name]);
-      } catch (e) {
-        console.error(e);
-        data = {
-          referer: '',
-        };
-      }
-
-      if (refererIndex === -1) {
-        requestHeaders.push({
-          name: 'Referer',
-          value: data.referer || details.url,
-        });
-      }
-    }
-    return {
-      requestHeaders: details.requestHeaders,
-    };
-  },
-  {
-    urls: ['<all_urls>'],
-  },
-  isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
-);
-
 //? 虽然文档中未指出，但是第二个参数是必须给出的
 chrome.webRequest.onCompleted.addListener(
   details => {
