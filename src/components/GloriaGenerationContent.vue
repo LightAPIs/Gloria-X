@@ -128,7 +128,7 @@
                   {{ i18n('popupTaskOnTimeModeText') }}
                 </el-checkbox>
                 <br />
-                <el-checkbox v-model="taskForm.needInteraction">
+                <el-checkbox v-if="isChrome" v-model="taskForm.needInteraction">
                   {{ i18n('popupTaskNeedInteractionText') }}
                 </el-checkbox>
               </el-form-item>
@@ -188,6 +188,7 @@ export default Vue.extend({
           },
         ],
       },
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {
@@ -311,79 +312,117 @@ export default Vue.extend({
       });
     },
     disableSelection() {
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'directive',
-              data: 'disableSelection',
-            });
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(tabs[0].id, {
+                type: 'directive',
+                data: 'disableSelection',
+              });
+            }
           }
-        }
-      );
+        );
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'directive-firefox',
+          data: 'disableSelection',
+        });
+      }
     },
     enableSelection() {
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'directive',
-              data: 'enableSelection',
-            });
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(tabs[0].id, {
+                type: 'directive',
+                data: 'enableSelection',
+              });
+            }
           }
-        }
-      );
+        );
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'directive-firefox',
+          data: 'enableSelection',
+        });
+      }
     },
     getPageUrl() {
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(
-              tabs[0].id,
-              {
-                type: 'getPageUrl',
-                data: '',
-              },
-              res => {
-                if (res) {
-                  this.pageUrl = res;
-                  if (!this.selectionForm.url) {
-                    this.selectionForm.url = this.pageUrl;
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(
+                tabs[0].id,
+                {
+                  type: 'getPageUrl',
+                  data: '',
+                },
+                res => {
+                  if (res) {
+                    this.pageUrl = res;
+                    if (!this.selectionForm.url) {
+                      this.selectionForm.url = this.pageUrl;
+                    }
                   }
                 }
-              }
-            );
+              );
+            }
           }
-        }
-      );
+        );
+      } else {
+        chrome.runtime.sendMessage(
+          {
+            type: 'getPageUrl-firefox',
+            data: '',
+          },
+          res => {
+            if (res) {
+              this.pageUrl = res;
+              if (!this.selectionForm.url) {
+                this.selectionForm.url = this.pageUrl;
+              }
+            }
+          }
+        );
+      }
     },
     taskCompletion() {
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'destroy',
-              data: '',
-            });
+      if (this.isChrome) {
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => {
+            if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+              chrome.tabs.sendMessage(tabs[0].id, {
+                type: 'destroy',
+                data: '',
+              });
+            }
           }
-        }
-      );
+        );
+      } else {
+        chrome.runtime.sendMessage({
+          type: 'destroy-firefox',
+          data: '',
+        });
+      }
     },
   },
   created() {

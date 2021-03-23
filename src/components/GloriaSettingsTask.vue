@@ -14,7 +14,7 @@
         @change="onChange('taskOnTimeMode', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div v-if="isChrome" class="margin-top">
       <el-switch
         :value="configs.taskNeedInteraction"
         :active-text="i18n('settingsTaskNeedInteraction', i18n('popupTaskNeedInteractionText'))"
@@ -62,6 +62,11 @@ import Vue from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default Vue.extend({
   name: 'gloria-settings-task',
+  data() {
+    return {
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
+    };
+  },
   computed: {
     ...mapState(['configs']),
     triggerTime() {

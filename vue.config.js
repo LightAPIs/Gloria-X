@@ -4,35 +4,67 @@ const path = require('path');
 const packageInfo = require('./package.json');
 
 const productionMode = process.env.NODE_ENV === 'production';
-const outputDir = productionMode ? 'build' : 'dist';
+const chromeMode = process.env.VUE_APP_TITLE === 'chrome';
+const zipMode = process.env.VUE_APP_BUILD === 'zip';
 
 // Generate pages object
 const pages = {};
 
-const chromeName = ['popup', 'options', 'background', 'selection', 'generation'];
+const modulesName = ['popup', 'options', 'background', 'selection', 'generation'];
 
-chromeName.forEach(name => {
+modulesName.forEach(name => {
   pages[name] = {
     entry: `src/${name}/index.ts`,
     template: path.resolve(`src/${name}/index.html`),
     filename: `${name}.html`,
     chunks: ['chunk-vendors', 'chunk-common', name],
   };
+
+  if (name === 'background') {
+    pages[name].chunks.push('gloria-utils');
+  }
 });
 
-const copyFiles = productionMode
-  ? [
+let outputDir = '';
+let copyFiles = [];
+
+if (productionMode) {
+  if (chromeMode) {
+    outputDir = 'build/chrome';
+    copyFiles = [
       {
-        from: path.resolve('src/manifest.production.json'),
-        to: `${path.resolve('build')}/manifest.json`,
-      },
-    ]
-  : [
-      {
-        from: path.resolve('src/manifest.development.json'),
-        to: `${path.resolve('dist')}/manifest.json`,
+        from: path.resolve('src/chrome/manifest.production.json'),
+        to: `${path.resolve('build')}/chrome/manifest.json`,
       },
     ];
+  } else {
+    outputDir = 'build/firefox';
+    copyFiles = [
+      {
+        from: path.resolve('src/firefox/manifest.production.json'),
+        to: `${path.resolve('build')}/firefox/manifest.json`,
+      },
+    ];
+  }
+} else {
+  if (chromeMode) {
+    outputDir = 'dist/chrome';
+    copyFiles = [
+      {
+        from: path.resolve('src/chrome/manifest.development.json'),
+        to: `${path.resolve('dist')}/chrome/manifest.json`,
+      },
+    ];
+  } else {
+    outputDir = 'dist/firefox';
+    copyFiles = [
+      {
+        from: path.resolve('src/firefox/manifest.development.json'),
+        to: `${path.resolve('dist')}/firefox/manifest.json`,
+      },
+    ];
+  }
+}
 
 copyFiles.push({
   from: path.resolve('src/assets'),
@@ -61,13 +93,24 @@ module.exports = {
         drop_debugger: true,
         pure_funcs: ['console.log'],
       });
+
+      config.optimization.splitChunks = {
+        cacheGroups: {
+          'gloria-utils': {
+            chunks: 'initial',
+            name: 'gloria-utils',
+            test: /[\\/]node_modules[\\/]gloria-utils[\\/]/,
+            priority: -10,
+          },
+        },
+      };
     }
 
-    if (process.env.VUE_APP_TITLE === 'zip') {
+    if (zipMode) {
       config.plugins.push(
         new ZipWebpackPlugin({
           path: path.resolve('archive'),
-          filename: `${packageInfo.name}_v${packageInfo.version}.zip`,
+          filename: `${packageInfo.name}_${chromeMode ? 'chrome' : 'firefox'}_v${packageInfo.version}.zip`,
         })
       );
     }

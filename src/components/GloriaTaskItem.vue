@@ -7,7 +7,14 @@
       <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
         {{ i18n('popupTaskOnTimeModeTag') }}
       </el-tag>
-      <el-tag v-if="needInteraction" type="warning" size="mini" effect="dark" :title="i18n('popupTaskNeedInteractionText')" class="tag">
+      <el-tag
+        v-if="needInteraction && isChrome"
+        type="warning"
+        size="mini"
+        effect="dark"
+        :title="i18n('popupTaskNeedInteractionText')"
+        class="tag"
+      >
         {{ i18n('popupTaskNeedInteractionTag') }}
       </el-tag>
       <el-tag
@@ -164,6 +171,11 @@ export default Vue.extend({
       default: '',
     },
   },
+  data() {
+    return {
+      isChrome: process.env.VUE_APP_TITLE === 'chrome',
+    };
+  },
   computed: {
     ...mapGetters(['taskCode']),
     itemShow() {
@@ -197,7 +209,7 @@ export default Vue.extend({
       this.disconnectTask(id);
     },
     onContextmenu(event: Event) {
-      const { id, name, isEnable, onTimeMode, needInteraction, origin } = this;
+      const { id, name, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
       const items = [
         {
           label: this.i18n('popupContextTaskCopyName'),
@@ -258,6 +270,7 @@ export default Vue.extend({
         {
           label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
           icon: 'el-icon-alarm-clock',
+          divided: !isChrome,
           onClick: () => {
             this.updateTaskBasic({
               id,
@@ -265,17 +278,21 @@ export default Vue.extend({
             });
           },
         },
-        {
-          label: needInteraction ? this.i18n('popupContextTaskNeedInteractionDisable') : this.i18n('popupContextTaskNeedInteractionEnable'),
-          icon: 'el-icon-thumb',
-          divided: true,
-          onClick: () => {
-            this.updateTaskBasic({
-              id,
-              needInteraction: !needInteraction,
-            });
-          },
-        },
+        isChrome
+          ? {
+              label: needInteraction
+                ? this.i18n('popupContextTaskNeedInteractionDisable')
+                : this.i18n('popupContextTaskNeedInteractionEnable'),
+              icon: 'el-icon-thumb',
+              divided: true,
+              onClick: () => {
+                this.updateTaskBasic({
+                  id,
+                  needInteraction: !needInteraction,
+                });
+              },
+            }
+          : {},
         {
           label: this.i18n('popupContextTaskEdit'),
           icon: 'el-icon-edit-outline',

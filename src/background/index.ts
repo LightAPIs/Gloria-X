@@ -8,6 +8,7 @@ import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
 
+const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 dayjsLocale();
@@ -120,6 +121,7 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
                     id &&
                       chrome.windows.getCurrent(
                         {
+                          //! 该属性从 Firefox 62 起已被弃用
                           windowTypes: ['normal'],
                         },
                         win => {
@@ -437,7 +439,7 @@ function syncImplicitStatus() {
   );
 }
 
-function syncSelection() {
+function registerMenu() {
   chrome.contextMenus.create({
     id: 'gloriaXSelection',
     title: i18n('contextMenusSelection'),
@@ -451,7 +453,7 @@ function syncSelection() {
           },
           tabs => {
             if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].url) {
-              if (!tabs[0].url.match(/^chrome:|^chrome-extension:|^file:/i)) {
+              if (!tabs[0].url.match(/^(?:chrome|chrome-extension|file|moz-extension|about):/i)) {
                 chrome.tabs.executeScript({
                   file: 'js/selection.js',
                 });
@@ -462,6 +464,21 @@ function syncSelection() {
       }
     },
   });
+
+  if (!isChrome) {
+    chrome.contextMenus.create({
+      id: 'gloriaXSettings',
+      title: i18n('optionsTitle'),
+      contexts: ['browser_action'],
+      onclick() {
+        if (!chrome.runtime.lastError) {
+          chrome.tabs.create({
+            url: './options.html#/settings',
+          });
+        }
+      },
+    });
+  }
 }
 
 function testVirtualNotification(dataList: store.CommitData | store.CommitData[]) {
@@ -724,11 +741,98 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       return true;
     case 'clearCaches':
       for (const key in window.sessionStorage) {
-        if (key.startsWith('import-cripts.cache.')) {
+        if (key.startsWith('import-scripts.cache.')) {
           window.sessionStorage.removeItem(key);
         }
       }
-      break;
+      return true;
+    //! 以下是处理 Firefox 上内容脚本的通信部分
+    case 'getPageUrl-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(
+              tabs[0].id,
+              {
+                type: 'getPageUrl',
+                data: '',
+              },
+              res => {
+                sendResponse(res);
+              }
+            );
+          }
+        }
+      );
+      return true;
+    case 'path-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'path',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'float-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'float',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'directive-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'directive',
+              data,
+            });
+          }
+        }
+      );
+      return true;
+    case 'destroy-firefox':
+      chrome.tabs.query(
+        {
+          active: true,
+          currentWindow: true,
+        },
+        tabs => {
+          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+              type: 'destroy',
+              data,
+            });
+          }
+        }
+      );
+      return true;
   }
 });
 
@@ -738,58 +842,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   {
     urls: ['<all_urls>'],
   },
-  ['blocking', 'requestHeaders', 'extraHeaders']
+  isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  details => {
-    const name = 'request.image.' + details.url;
-    if (
-      window.sessionStorage[name] &&
-      details.type === 'image' &&
-      details.frameId === 0 &&
-      details.parentFrameId === -1 &&
-      details.tabId === -1
-    ) {
-      let refererIndex = -1;
-      const { requestHeaders = [] } = details;
-      for (let i = 0; i < requestHeaders.length; i++) {
-        const header = requestHeaders[i];
-        if (header && header.name && header.name.toLowerCase() === 'referer') {
-          refererIndex = i;
-        }
-      }
-
-      let data = {
-        referer: '',
-      };
-      try {
-        data = JSON.parse(window.sessionStorage[name]);
-      } catch (e) {
-        console.error(e);
-        data = {
-          referer: '',
-        };
-      }
-
-      if (refererIndex === -1) {
-        requestHeaders.push({
-          name: 'Referer',
-          value: data.referer || details.url,
-        });
-      }
-    }
-    return {
-      requestHeaders: details.requestHeaders,
-    };
-  },
-  {
-    urls: ['<all_urls>'],
-  },
-  ['blocking', 'requestHeaders', 'extraHeaders']
-);
-
-//? 虽然文档中未指出，但是第二个参数是必须给出的
 chrome.webRequest.onCompleted.addListener(
   details => {
     window.sessionStorage['request.id.' + details.requestId] && window.sessionStorage.removeItem('request.id.' + details.requestId);
@@ -821,4 +876,4 @@ syncMessageFlow();
 syncUnreadNumber();
 syncImplicitStatus();
 syncCodeUpdate();
-syncSelection();
+registerMenu();
