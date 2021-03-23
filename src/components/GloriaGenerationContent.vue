@@ -128,7 +128,7 @@
                   {{ i18n('popupTaskOnTimeModeText') }}
                 </el-checkbox>
                 <br />
-                <el-checkbox v-model="taskForm.needInteraction">
+                <el-checkbox v-if="isChrome" v-model="taskForm.needInteraction">
                   {{ i18n('popupTaskNeedInteractionText') }}
                 </el-checkbox>
               </el-form-item>
