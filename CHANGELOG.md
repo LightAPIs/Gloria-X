@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/LightAPIs/Gloria-X/compare/v1.3.1...v1.4.0) (2021-03-23)
+
+
+### Features
+
+* **build:** 打包 Firefox 版本 ([cd2a80e](https://github.com/LightAPIs/Gloria-X/commit/cd2a80eb4448ae15549041d4a414c6c96b58e430))
+* **triggerinterval:** 时间间隔更换使用新的输入方式 ([6d80c4c](https://github.com/LightAPIs/Gloria-X/commit/6d80c4c2d4a4e4b83acf2badbfd391bb98b7e2ef))
+
+
+### Bug Fixes
+
+* **clear:** 修复清理 Caches 功能无效的问题 ([de15449](https://github.com/LightAPIs/Gloria-X/commit/de154493ac873b7f1fc4b1a8867e1b25a97cdc1d))
+* **menus:** 为 firefox 版本插件图标右键菜单补充进入选项页面的菜单项 ([d0dec50](https://github.com/LightAPIs/Gloria-X/commit/d0dec508b7e629ee09cf5f65a0cef52bed83fde1))
+* **webrequest:** 修复可能由于扩展程序出错导致浏览器无法联网的问题 ([91f3bfb](https://github.com/LightAPIs/Gloria-X/commit/91f3bfb6657b1366b3e9477b9418b4aba50f1b7f))
+
 ### [1.3.1](https://github.com/LightAPIs/Gloria-X/compare/v1.3.0...v1.3.1) (2021-03-20)
 
 

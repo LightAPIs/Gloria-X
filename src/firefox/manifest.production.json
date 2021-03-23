@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Gloria-X",
   "description": "__MSG_extensionDescription__",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "author": "pana",
   "homepage_url": "https://github.com/LightAPIs/gloria-x",
   "default_locale": "en",
@@ -23,8 +23,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.gloria.pub/*"],
-      "js": ["content/inject-button.js"]
+      "matches": [
+        "*://*.gloria.pub/*"
+      ],
+      "js": [
+        "content/inject-button.js"
+      ]
     }
   ],
   "browser_action": {
@@ -50,7 +54,9 @@
     "96": "icons/app/icon-96.png",
     "128": "icons/app/icon-128.png"
   },
-  "web_accessible_resources": ["generation.html"],
+  "web_accessible_resources": [
+    "generation.html"
+  ],
   "content_security_policy": "script-src 'self' 'unsafe-eval' blob:; object-src 'self'",
   "permissions": [
     "<all_urls>",
