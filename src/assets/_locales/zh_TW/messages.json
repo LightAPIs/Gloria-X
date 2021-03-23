@@ -102,7 +102,7 @@
     "message": "請輸入任務程式碼"
   },
   "popupTaskFormTriggerIntervalLabel": {
-    "message": "執行間隔 (分鐘)"
+    "message": "執行間隔"
   },
   "popupTaskFormOptionalLabel": {
     "message": "可選選項"
@@ -118,12 +118,6 @@
   },
   "popupTaskRulesCode": {
     "message": "任務程式碼是必需的"
-  },
-  "popupTaskRulesTriggerInterval": {
-    "message": "請輸入執行間隔時間"
-  },
-  "popupTaskRulesInteger": {
-    "message": "執行間隔時間必須為整數"
   },
   "popupTaskErrorEdit": {
     "message": "內部錯誤，沒有找到相應的 id"
@@ -312,7 +306,7 @@
     "message": "新增的任務位於任務列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "新創建或安裝的任務默認執行間隔 (分鐘)："
+    "message": "新創建或安裝的任務默認執行間隔："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任務列表的頂部顯示任務篩選輸入框"
@@ -740,5 +734,14 @@
   },
   "injectUpdateFaild": {
     "message": "更新失敗 (X)"
+  },
+  "dayText": {
+    "message": "日"
+  },
+  "hourText": {
+    "message": "時"
+  },
+  "minuteText": {
+    "message": "分"
   }
 }

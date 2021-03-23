@@ -102,7 +102,7 @@
     "message": "Please enter the task code"
   },
   "popupTaskFormTriggerIntervalLabel": {
-    "message": "Interval (min)"
+    "message": "Interval"
   },
   "popupTaskFormOptionalLabel": {
     "message": "Optional option"
@@ -118,12 +118,6 @@
   },
   "popupTaskRulesCode": {
     "message": "Task code is required"
-  },
-  "popupTaskRulesTriggerInterval": {
-    "message": "Please enter the execution interval"
-  },
-  "popupTaskRulesInteger": {
-    "message": "The execution interval must be an integer"
   },
   "popupTaskErrorEdit": {
     "message": "Internal error, no corresponding ID found"
@@ -312,7 +306,7 @@
     "message": "The newly added task is at the top of the task list"
   },
   "settingsTaskTriggerInterval": {
-    "message": "The default execution interval (minutes) of newly created or installed tasks:"
+    "message": "The default execution interval of newly created or installed tasks:"
   },
   "settingsTaskShowSearchInput": {
     "message": "Display the task filter input box at the top of the task list"
@@ -740,5 +734,14 @@
   },
   "injectUpdateFaild": {
     "message": "Update failed (X)"
+  },
+  "dayText": {
+    "message": "D"
+  },
+  "hourText": {
+    "message": "H"
+  },
+  "minuteText": {
+    "message": "M"
   }
 }

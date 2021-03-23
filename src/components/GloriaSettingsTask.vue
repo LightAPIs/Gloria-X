@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gloria-settings-task">
     <div>
       <el-switch
         :value="configs.taskAutoCheckUpdate"
@@ -42,17 +42,26 @@
       <span class="font-14">
         {{ i18n('settingsTaskTriggerInterval') }}
       </span>
+      <el-input-number :value="day" :min="0" :max="6" step-strictly @change="onTriggerInterval('day', $event)"></el-input-number>
+      {{ ' ' + i18n('dayText') }}
       <el-input-number
-        :value="configs.taskTriggerInterval"
-        :min="1"
-        :max="60 * 24 * 7"
-        controls-position="right"
+        class="time-input-number"
+        :value="hour"
+        :min="0"
+        :max="23"
         step-strictly
-        @change="onChange('taskTriggerInterval', $event)"
+        @change="onTriggerInterval('hour', $event)"
       ></el-input-number>
-      <span class="options-trigger-time font-14">
-        {{ triggerTime }}
-      </span>
+      {{ ' ' + i18n('hourText') }}
+      <el-input-number
+        class="time-input-number"
+        :value="minute"
+        :min="0"
+        :max="59"
+        step-strictly
+        @change="onTriggerInterval('minute', $event)"
+      ></el-input-number>
+      {{ ' ' + i18n('minuteText') }}
     </div>
   </div>
 </template>
@@ -64,39 +73,59 @@ export default Vue.extend({
   name: 'gloria-settings-task',
   data() {
     return {
+      day: 0,
+      hour: 0,
+      minute: 0,
       isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {
     ...mapState(['configs']),
-    triggerTime() {
-      const { taskTriggerInterval } = this.configs;
-      let display = '';
-      if (taskTriggerInterval) {
-        display = this.intervalTime(taskTriggerInterval);
-      }
-      return display;
-    },
   },
   methods: {
     ...mapMutations(['updateConfigs']),
     onChange(name: string, value: boolean | number) {
-      let sta = true;
-      if (name === 'taskTriggerInterval' && !value) {
-        sta = false;
-      }
-      sta &&
-        this.updateConfigs({
-          name,
-          value,
-        });
+      this.updateConfigs({
+        name,
+        value,
+      });
     },
+    onTriggerInterval(type: string, value: number) {
+      switch (type) {
+        case 'day':
+          this.day = value;
+          break;
+        case 'hour':
+          this.hour = value;
+          break;
+        case 'minute':
+          this.minute = value;
+          break;
+      }
+
+      const triggerTime = this.day + this.hour + this.minute > 0 ? this.day * 24 * 60 + this.hour * 60 + this.minute : 1;
+      this.updateConfigs({
+        name: 'taskTriggerInterval',
+        value: triggerTime,
+      });
+    },
+  },
+  created() {
+    const { taskTriggerInterval } = this.configs;
+    this.day = this.days(taskTriggerInterval);
+    this.hour = this.hours(taskTriggerInterval);
+    this.minute = this.minutes(taskTriggerInterval);
   },
 });
 </script>
 
 <style lang="scss">
-.options-trigger-time {
-  margin-left: 25px;
+.gloria-settings-task {
+  .time-input-number {
+    margin-left: 20px;
+  }
+  .el-input-number {
+    width: 140px;
+  }
 }
 </style>

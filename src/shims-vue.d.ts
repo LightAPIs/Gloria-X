@@ -14,6 +14,9 @@ declare module '*.vue' {
       displayTime: (d?: string | number) => string;
       intervalTime: (d: number) => string;
       now: () => string;
+      days: (m: number) => number;
+      hours: (m: number) => number;
+      minutes: (m: number) => number;
       uuid: () => string;
       textareaTab: (element: HTMLInputElement, event: KeyboardEvent) => void;
       copyToClip: (content: string, copyCompleted?: () => void, copyError?: () => void) => void;

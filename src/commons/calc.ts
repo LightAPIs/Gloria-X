@@ -40,6 +40,18 @@ function displayTime(d?: string | number) {
   }
 }
 
+function days(m: number) {
+  return dayjs.duration(m, 'm').days();
+}
+
+function hours(m: number) {
+  return dayjs.duration(m, 'm').hours();
+}
+
+function minutes(m: number) {
+  return dayjs.duration(m, 'm').minutes();
+}
+
 function intervalTime(d: number) {
   return dayjs
     .duration(d, 'm')
@@ -72,4 +84,4 @@ function diff(lhs: store.Stage, rhs: store.Stage) {
   return lhs.id !== rhs.id || lhs.title !== rhs.title || lhs.message !== rhs.message;
 }
 
-export { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, dayjsLocale };
+export { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, dayjsLocale, days, hours, minutes };

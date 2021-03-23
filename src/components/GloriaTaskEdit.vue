@@ -20,11 +20,13 @@
           ref="taskInput"
         ></el-input>
       </el-form-item>
-      <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')" prop="triggerInterval">
-        <el-input-number v-model="form.triggerInterval" :min="1" :max="60 * 24 * 7" step-strictly></el-input-number>
-        <span class="form-trigger-time">
-          {{ triggerTime }}
-        </span>
+      <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
+        <el-input-number v-model="form.day" :min="0" :max="6" step-strictly></el-input-number>
+        {{ ' ' + i18n('dayText') }}
+        <el-input-number class="time-input-number" v-model="form.hour" :min="0" :max="23" step-strictly></el-input-number>
+        {{ ' ' + i18n('hourText') }}
+        <el-input-number class="time-input-number" v-model="form.minute" :min="0" :max="59" step-strictly></el-input-number>
+        {{ ' ' + i18n('minuteText') }}
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
         <el-checkbox v-model="form.onTimeMode">
@@ -94,7 +96,9 @@ export default Vue.extend({
         id: '',
         name: '',
         code: '',
-        triggerInterval: 5,
+        day: 0,
+        hour: 0,
+        minute: 5,
         onTimeMode: false,
         needInteraction: false,
       },
@@ -113,43 +117,28 @@ export default Vue.extend({
             trigger: 'change',
           },
         ],
-        triggerInterval: [
-          {
-            required: true,
-            message: this.i18n('popupTaskRulesTriggerInterval'),
-            trigger: 'change',
-          },
-          {
-            type: 'integer',
-            message: this.i18n('popupTaskRulesInteger'),
-            trigger: 'change',
-          },
-        ],
       },
       isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {
     ...mapState(['configs']),
-    triggerTime() {
-      const { triggerInterval } = this.form;
-      let display = '';
-      if (triggerInterval) {
-        display = this.intervalTime(triggerInterval);
-      }
-      return display;
-    },
   },
   watch: {
     dialogVisible(val) {
       if (val) {
         const { type, id, name, code, triggerInterval, onTimeMode, needInteraction } = this;
+        const day = this.days(triggerInterval);
+        const hour = this.hours(triggerInterval);
+        const minute = this.minutes(triggerInterval);
         if (type === 'edit') {
           Object.assign(this.form, {
             id,
             name,
             code,
-            triggerInterval,
+            day,
+            hour,
+            minute,
             onTimeMode,
             needInteraction,
           });
@@ -160,7 +149,9 @@ export default Vue.extend({
             id: this.uuid(),
             name: '',
             code: '',
-            triggerInterval: taskTriggerInterval,
+            day: this.days(taskTriggerInterval),
+            hour: this.hours(taskTriggerInterval),
+            minute: this.minutes(taskTriggerInterval),
             onTimeMode: taskOnTimeMode,
             needInteraction: taskNeedInteraction,
           });
@@ -173,11 +164,29 @@ export default Vue.extend({
     onSubmit() {
       (this.$refs.form as ElForm).validate((valid: boolean) => {
         if (valid) {
-          const { form, type } = this;
+          const {
+            form: { id, name, code, day, hour, minute, onTimeMode, needInteraction },
+            type,
+          } = this;
+          const triggerTime = day + hour + minute > 0 ? day * 24 * 60 + hour * 60 + minute : 1;
           if (type === 'edit') {
-            this.updateTaskBasic(form);
+            this.updateTaskBasic({
+              id,
+              name,
+              code,
+              triggerInterval: triggerTime,
+              onTimeMode,
+              needInteraction,
+            });
           } else {
-            this.createTaskBasic(form);
+            this.createTaskBasic({
+              id,
+              name,
+              code,
+              triggerInterval: triggerTime,
+              onTimeMode,
+              needInteraction,
+            });
           }
 
           this.$emit('close-dialog');
@@ -194,7 +203,10 @@ export default Vue.extend({
 </script>
 
 <style>
-.form-trigger-time {
-  margin-left: 25px;
+.time-input-number {
+  margin-left: 20px;
+}
+.el-input-number {
+  width: 140px;
 }
 </style>

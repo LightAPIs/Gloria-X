@@ -117,11 +117,13 @@
                   prefix-icon="el-icon-view"
                 ></el-input
               ></el-form-item>
-              <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')" prop="triggerInterval">
-                <el-input-number v-model="taskForm.triggerInterval" :min="1" :max="60 * 24 * 7" step-strictly></el-input-number>
-                <span class="form-trigger-time">
-                  {{ triggerTime }}
-                </span>
+              <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
+                <el-input-number v-model="taskForm.day" :min="0" :max="6" step-strictly></el-input-number>
+                {{ ' ' + i18n('dayText') }}
+                <el-input-number class="time-input-number" v-model="taskForm.hour" :min="0" :max="23" step-strictly></el-input-number>
+                {{ ' ' + i18n('hourText') }}
+                <el-input-number class="time-input-number" v-model="taskForm.minute" :min="0" :max="59" step-strictly></el-input-number>
+                {{ ' ' + i18n('minuteText') }}
               </el-form-item>
               <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
                 <el-checkbox v-model="taskForm.onTimeMode">
@@ -163,7 +165,9 @@ export default Vue.extend({
       },
       taskForm: {
         name: 'Task',
-        triggerInterval: 5,
+        day: 0,
+        hour: 0,
+        minute: 5,
         onTimeMode: false,
         needInteraction: false,
       },
@@ -193,14 +197,6 @@ export default Vue.extend({
   },
   computed: {
     ...mapState(['configs']),
-    triggerTime() {
-      const { triggerInterval } = this.taskForm;
-      let display = '';
-      if (triggerInterval) {
-        display = this.intervalTime(triggerInterval);
-      }
-      return display;
-    },
   },
   methods: {
     ...mapMutations(['createTaskBasic']),
@@ -283,8 +279,13 @@ export default Vue.extend({
     onNext() {
       this.progress = 'task';
       const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = this.configs;
+      const day = this.days(taskTriggerInterval);
+      const hour = this.hours(taskTriggerInterval);
+      const minute = this.minutes(taskTriggerInterval);
       Object.assign(this.taskForm, {
-        triggerInterval: taskTriggerInterval,
+        day,
+        hour,
+        minute,
         onTimeMode: taskOnTimeMode,
         needInteraction: taskNeedInteraction,
       });
@@ -294,13 +295,14 @@ export default Vue.extend({
         if (valid) {
           const {
             code,
-            taskForm: { name, triggerInterval, onTimeMode, needInteraction },
+            taskForm: { name, day, hour, minute, onTimeMode, needInteraction },
           } = this;
+          const triggerTime = day + hour + minute > 0 ? day * 24 * 60 + hour * 60 + minute : 1;
           this.createTaskBasic({
             id: uuid(),
             name,
             code,
-            triggerInterval,
+            triggerInterval: triggerTime,
             onTimeMode,
             needInteraction,
           });
@@ -462,6 +464,12 @@ export default Vue.extend({
   }
   .result {
     margin-top: 10px;
+  }
+  .time-input-number {
+    margin-left: 20px;
+  }
+  .el-input-number {
+    width: 140px;
   }
 }
 </style>
