@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/LightAPIs/Gloria-X/compare/v1.4.0...v1.4.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* **notification:** 修复在 Firefox 上通知自动关闭时未读通知数会减少的问题 ([0de47d0](https://github.com/LightAPIs/Gloria-X/commit/0de47d05e13f545eee2410fa96c59c5b6d25845b))
+* **storage:** 修复 Firefox 下部分数据存储出现错误的问题 ([a280c36](https://github.com/LightAPIs/Gloria-X/commit/a280c3601707ac2959ee4c4d8d219e27c12cd229))
+* **storage:** 修复在 Firefox 下部分类型的数据无法储存的问题 ([6e58c9a](https://github.com/LightAPIs/Gloria-X/commit/6e58c9ad803d53463c2cff931959ab91f79c541d))
+
 ## [1.4.0](https://github.com/LightAPIs/Gloria-X/compare/v1.3.1...v1.4.0) (2021-03-23)
 
 
