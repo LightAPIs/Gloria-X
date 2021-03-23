@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "{5f7c490a-a6b5-44b4-9ab7-fa7117a16ca5}": {
+      "updates": [
+        {
+          "version": "1.4.0",
+          "update_link": "https://github.com/LightAPIs/Gloria-X/releases/download/v1.4.0/gloria_x-1.4.0-fx.xpi"
+        }
+      ]
+    }
+  }
+}
