@@ -1,5 +1,7 @@
 import debounce from 'lodash.debounce';
 
+const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+
 class ChromeStorage {
   static readonly WAIT_TIME = 500;
   static readonly OPTIONS = {
@@ -136,7 +138,7 @@ class ChromeStorage {
     this.tasks(() => {
       chrome.storage.local.set(
         {
-          tasks: data,
+          tasks: isChrome ? data : Object.assign({}, data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -149,7 +151,7 @@ class ChromeStorage {
     this.notifications(() => {
       chrome.storage.local.set(
         {
-          notifications: data,
+          notifications: isChrome ? data : Object.assign({}, data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -162,7 +164,7 @@ class ChromeStorage {
     this.stages(() => {
       chrome.storage.local.set(
         {
-          stages: data,
+          stages: isChrome ? data : Object.assign({}, data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -175,7 +177,7 @@ class ChromeStorage {
     this.configs(() => {
       chrome.storage.local.set(
         {
-          configs: data,
+          configs: isChrome ? data : Object.assign({}, data),
         },
         () => {
           !this.blockLog && message && console.log(message);
