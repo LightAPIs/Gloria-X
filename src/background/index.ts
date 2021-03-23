@@ -741,7 +741,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       return true;
     case 'clearCaches':
       for (const key in window.sessionStorage) {
-        if (key.startsWith('import-cripts.cache.')) {
+        if (key.startsWith('import-scripts.cache.')) {
           window.sessionStorage.removeItem(key);
         }
       }
