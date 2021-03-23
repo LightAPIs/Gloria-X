@@ -350,6 +350,9 @@
   "settingsNotificationShowBadge": {
     "message": "在擴充功能圖示上顯示未讀訊息數量標記"
   },
+  "settingsNotificationShowBadgeFirefox": {
+    "message": "在附加元件圖示上顯示未讀訊息數量標記"
+  },
   "settingsNotificationMaxinum": {
     "message": "訊息記錄數量上限："
   },

@@ -350,6 +350,9 @@
   "settingsNotificationShowBadge": {
     "message": "Show the number of unread notifications mark on the extension icon"
   },
+  "settingsNotificationShowBadgeFirefox": {
+    "message": "Show the number of unread notifications mark on the Add-ons icon"
+  },
   "settingsNotificationMaxinum": {
     "message": "Maximum number of notification records:"
   },

@@ -350,6 +350,9 @@
   "settingsNotificationShowBadge": {
     "message": "在扩展程序图标上显示未读通知数量标记"
   },
+  "settingsNotificationShowBadgeFirefox": {
+    "message": "在附加组件图标上显示未读通知数量标记"
+  },
   "settingsNotificationMaxinum": {
     "message": "通知记录数量上限："
   },
