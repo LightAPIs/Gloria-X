@@ -32,9 +32,9 @@
   - [Chrome](#Chrome)
   - [Firefox](#Firefox)
 - [使用方法](#使用方法)
-  - [`Gloria Notification` 对象结构](#`Gloria-Notification`-对象结构)
+  - [Gloria Notification 对象结构](#Gloria-Notification-对象结构)
     - [对象属性介绍](#对象属性介绍)
-  - [`commit` 函数](#`commit`-函数)
+  - [commit 函数](#commit-函数)
     - [任务分类](#任务分类)
       - [观察任务](#观察任务)
       - [常规任务](#常规任务)
@@ -90,7 +90,7 @@ commit({
 
 _当然这段任务代码本身是没有实际意义的，只是一个简单的使用示例。_
 
-### `Gloria Notification` 对象结构
+### Gloria Notification 对象结构
 
 通知消息的显示内容取决于所传递的 `Gloria Notification` 对象属性值，所以首先你需要了解该对象的结构。
 
@@ -145,7 +145,7 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
   - 含义: 对象的标识符，可以用于额外判定通知是否相同。
   - 该属性值会用于与 STAGES 缓存中的旧消息进行判定。
 
-### `commit` 函数
+### commit 函数
 
 `commit` 函数是由 Gloria-X 提供给任务代码的一个特殊函数。通过在任务代码中将需要观测的数据结果，即 `Gloria Notification` 对象或由该对象所组成的数组，以参数的形式传递给 `commit`，便完成了任务代码的编写。
 
