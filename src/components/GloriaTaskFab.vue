@@ -83,7 +83,7 @@ export default Vue.extend({
           break;
         case 5:
           chrome.tabs.create({
-            url: 'https://github.com/LightAPIs/Gloria-X#使用方法',
+            url: 'https://github.com/LightAPIs/Gloria-X',
           });
           break;
         case 0:

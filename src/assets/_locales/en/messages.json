@@ -21,7 +21,7 @@
     "message": "Share task"
   },
   "popupTaskBook": {
-    "message": "Chinese guide"
+    "message": "Help document"
   },
   "popupTaskEdit": {
     "message": "Edit"
@@ -549,7 +549,7 @@
     "message": "Gloria-X is a free and open source programmable website notifications aggregator. It can capture the new content on the website and pop up notifications with a custom JavaScript code task. And will never collect any private information from the sending user."
   },
   "aboutSourceCode": {
-    "message": "Source code (MIT License)"
+    "message": "Gloria-X source code (MIT License) and usage guide"
   },
   "aboutIssues": {
     "message": "Feedback"

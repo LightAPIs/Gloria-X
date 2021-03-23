@@ -69,7 +69,7 @@
     <div class="margin-top">
       <el-switch
         :value="configs.notificationShowBadge"
-        :active-text="i18n('settingsNotificationShowBadge')"
+        :active-text="isChrome ? i18n('settingsNotificationShowBadge') : i18n('settingsNotificationShowBadgeFirefox')"
         @change="onChange('notificationShowBadge', $event)"
       ></el-switch>
     </div>

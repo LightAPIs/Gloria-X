@@ -21,7 +21,7 @@
     "message": "分享任务"
   },
   "popupTaskBook": {
-    "message": "中文指南"
+    "message": "帮助文档"
   },
   "popupTaskEdit": {
     "message": "编辑"
@@ -549,7 +549,7 @@
     "message": "Gloria-X 是一款免费开源的可编程网站通知聚合器，可以通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒，并且绝不会收集发送用户的任何隐私信息。"
   },
   "aboutSourceCode": {
-    "message": "源代码 (MIT License)"
+    "message": "Gloria-X 源代码 (MIT License) 和使用指南"
   },
   "aboutIssues": {
     "message": "问题反馈"
