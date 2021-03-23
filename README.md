@@ -16,7 +16,7 @@
   </a>
 </p>
 
-> Chrome 上的可编程网站通知聚合器
+> Chrome/Firefox 上的可编程网站通知聚合器
 >
 > **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
@@ -26,10 +26,53 @@
 
 **声明 ：** 我决定编写这个项目的初衷并不是因为原本的 Gloria 存在任何影响使用的缺陷或问题，相反地，作为 Gloria 的忠实用户，我用它完成了各式各样的网页监视和消息通知等任务，是我浏览器上必备的扩展程序之一。我之所以选择编写这个工具的原因旨在学习 TypeScript，提高编程水平，顺便根据自己的使用习惯改写部分工具特性。
 
+## 目录
+
+- [安装方法](#安装方法)
+  - [Chrome](#Chrome)
+  - [Firefox](#Firefox)
+- [使用方法](#使用方法)
+  - [`Gloria Notification` 对象结构](#`Gloria-Notification`-对象结构)
+    - [对象属性介绍](#对象属性介绍)
+  - [`commit` 函数](#`commit`-函数)
+    - [任务分类](#任务分类)
+      - [观察任务](#观察任务)
+      - [常规任务](#常规任务)
+    - [两种任务的区别](#两种任务的区别)
+  - [访问 URL](#访问-URL)
+    - [访问 URL 示例](#访问-URL-示例)
+  - [异步载入外部脚本](#异步载入外部脚本)
+- [额外功能](#额外功能)
+  - [选取网页元素进行监视](#选取网页元素进行监视)
+- [高级选项](#高级选项)
+  - [调试任务代码](#调试任务代码)
+  - [观察内部状态](#观察内部状态)
+  - [通知 Reducer](#通知-Reducer)
+    - [Reducer 介绍](#Reducer-介绍)
+    - [工作方式](#工作方式)
+    - [作用](#作用)
+    - [具体用法](#具体用法)
+    - [示例](#示例)
+      - [过滤通知](#过滤通知)
+      - [修改通知](#修改通知)
+      - [发送给 Pushbullet](#发送给-Pushbullet)
+    - [测试 Rudecer](#测试-Rudecer)
+- [相关文档](#相关文档)
+- [与 Gloria 的区别](#与-Gloria-的区别)
+- [Firefox 版本的一些限制](#Firefox-版本的一些限制)
+- [相关项目](#相关项目)
+- [许可证](#许可证)
+
 ## 安装方法
 
+### Chrome
+
 1. 前往 [chrome 网上应用店](https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh)进行下载安装。
-2. 点击[此处](https://github.com/LightAPIs/Gloria-X/releases/latest)下载扩展程序压缩包并进行解压，启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压所得目录即可完成扩展程序的安装。
+2. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序压缩包并进行解压，启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压文件的根目录即可完成扩展程序的安装。
+
+### Firefox
+
+- 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载附加组件安装 _(由于声明了 `unsafe-eval` 权限，所以无法上架至 Mozilla add-ons，仅可自行托管。)_
 
 ## 使用方法
 
@@ -41,7 +84,7 @@ JavaScript 同样是 Gloria-X 任务代码唯一支持的编程语言。任务�
 
 ```javascript
 commit({
-  title: Date.now().toString(),
+  message: Date.now().toString(),
 });
 ```
 
@@ -58,7 +101,7 @@ _当然这段任务代码本身是没有实际意义的，只是一个简单的�
   title: String,    // 默认为 ''，推送消息的标题
   message: String,  // 默认为 ''，推送消息的内容
   iconUrl: String,  // 默认为 undefined，推送消息的图标
-  imageUrl: String, // 默认为 undefined，在推送消息上额外显示的图片
+  imageUrl: String, // 默认为 undefined，在推送消息上额外显示的图片 (Firefox 通知消息忽略该属性)
   url: String,      // 默认为 undefined，点击推送消息时打开的网址
   id: String,       // 默认为 undefined，用于额外判定通知是否相同。如非特定需求，一般不需要手动指定
 }
@@ -68,7 +111,7 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 
 #### 对象属性介绍
 
-> 提示：设定上所有对象的属性类型均为**可选的** `String` 字符串，在编写任务代码时不要直接传递其他可能可以隐式转换为 `String` 的类型 (如：`Number`，`Boolean` 等)，如果这样做，扩展程序会认为传递的属性类型出错，所以请务必自行手动将值转换为 `String` 类型。
+> 提示：设定上所有的对象属性类型均为**可选的** `String` 字符串。在编写任务代码时不要直接传递其他可能可以隐式转换为 `String` 的类型 (如：`Number`，`Boolean` 等)，如果这样做，扩展程序会认为传递的属性类型出错，所以请务必自行手动将值转换为 `String` 类型。
 
 - `title`
   - 类型: `String`
@@ -91,6 +134,7 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
   - 类型: `String`
   - 默认值: `undefined`
   - 含义: 推送消息上额外显示的一张图片。若指定 `imageUrl` 属性，通知会变为一个带图片的通知。
+  - **Firefox 通知会忽略该属性，即在通知消息中不会显示额外的图片，但是会在通知记录中显示**
 - `url`
   - 类型: `String`
   - 默认值: `undefined`
@@ -103,19 +147,23 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 
 ### `commit` 函数
 
-根据传递给 `commit` 参数的区别，任务分为"**观察任务**"和"**常规任务**"。
+`commit` 函数是由 Gloria-X 提供给任务代码的一个特殊函数。通过在任务代码中将需要观测的数据结果，即 `Gloria Notification` 对象或由该对象所组成的数组，以参数的形式传递给 `commit`，便完成了任务代码的编写。
 
-#### 观察任务
+而根据传递给 `commit` 参数的区别，任务分为"**观察任务**"和"**常规任务**"。
+
+#### 任务分类
+
+##### 观察任务
 
 当传递一个单一的 `Gloria Notification` 对象给 `commit` 函数时，该任务会被识别为"观察任务"，会将每次得到的 `Gloria Notification` 对象与上一次所记录的 `Gloria Notification` 对象进行对比，不相同时则会推送新通知。
 
-#### 常规任务
+##### 常规任务
 
 当传递一个由 `Gloria Notification` 对象所组成的数组时，该任务会被识别为"常规任务"，每次所收集到的内容都会被缓存于内部的 `Stages` 组件中，这样只有新对象时才会推送相应的通知。当然，每一个"常规任务"的 `Stages` 组件缓存数量是存在上限值的，但理论上你不会需要去关心其大小，只需要保证每个"常规任务"不会一次传入数量过多的 `Gloria Notification` 对象即可。
 
 #### 两种任务的区别
 
-以下通过两个可以运行的任务代码具体解释一下两种任务的区别。
+以下通过两份可以实际运行的任务代码来具体解释一下两种任务的区别。
 
 假设存在下面两个任务，一个为观察任务，另一个为常规任务。
 
@@ -281,7 +329,7 @@ Task(Execute) => commit => Gloria Notification(s) => STAGES(Compare and cache) =
 
 #### 作用
 
-在 Reducer 函数中，你可以完成修改、过滤以及通过 http 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version)等)将消息同步至其他设备当中的操作。
+在 Reducer 函数中，你可以完成修改、过滤以及通过 http 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version)等)将消息同步至其他设备当中的操作。
 
 #### 具体用法
 
@@ -302,7 +350,7 @@ function reducer(notification) {
 }
 ```
 
-> _注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以即使通知被丢弃，STAGES 组件中仍然会保存关于该通知消息的缓存，但是不会出现通知记录当中。_
+> _注：由于 Reducer 函数工作于将通知消息缓存进 STAGES 组件的操作之后，所以即使通知被丢弃，STAGES 组件中仍然会保存关于该通知消息的缓存，但是不会出现在通知记录当中。_
 >
 > _（当然，你其实并不需要十分关心这些内容，因为它不会影响到任务代码的编写，我之所以要告诉你这些，只是希望你能更清楚 Reducer 函数是在何时工作的，产生了什么影响，多了解一些没什么坏处。）_
 >
@@ -325,7 +373,7 @@ function reducer(notification) {
 
 小提示：通常来说在 Reducer 函数中去修改 `notification.id` 属性是没有意义的，因为这个属性值并不会真实地反馈到通知消息当中去，它仅仅是用于在 STAGES 组件中进行判定(见：[对象属性介绍](#对象属性介绍))。
 
-当然，也许你会通过在观察内部状态面板中发现每一条通知记录都拥用一个独立了 `id` 属性，但其实它和你在 `Gloria Notification` 对象中填写的 `id` 属性没有任何的关联。通知记录当中通知的 ID 值和任务的 ID 值作用是相同的，都是由扩展程序内部自动随机生成并且是只读的。
+当然，也许你会通过在观察内部状态面板中发现每一条通知记录都拥用一个独立了 `id` 属性，但其实它与你在 `Gloria Notification` 对象中填写的 `id` 属性没有任何的关联。通知记录当中通知的 ID 值和任务的 ID 值作用是相同的，都是由扩展程序内部自动随机生成并且是唯一的。
 
 ##### 发送给 Pushbullet
 
@@ -357,6 +405,8 @@ function reducer(notification) {
 }
 ```
 
+你还可以在这里([Reducer 函数 (Pushover 版)](https://gloria.pub/task/60157ce3ab474400108be625))找到使用 Pushover 的版本，更多其他工具的使用接口请参考其文档。
+
 #### 测试 Rudecer
 
 在 Reducer 设置面板中你还可以对所编写的 Reducer 函数进行一些简单的测试。
@@ -367,14 +417,12 @@ function reducer(notification) {
 
 最后再叮嘱一句，一定要小心使用 Reducer 函数。
 
----
+## 相关文档
 
 **更多相关的具体详情可以参考：**
 
 1. Gloria 中文指南：https://docs.gloria.pub/
 2. 任务代码分享网站：https://gloria.pub/
-
----
 
 ## 与 Gloria 的区别
 
@@ -390,15 +438,24 @@ function reducer(notification) {
 
 - 支持快速选取网页元素并创建监视文本的观察任务 (_v1.2.0 +_)
 - 允许隐式推送通知 (记录通知但不会有消息提示)
-- 允许扩展程序图标显示读通知数量
+- 允许在扩展程序图标上显示未读通知数量
 - 支持稍后查阅通知的功能
 - 允许筛选任务和通知记录
-- 通知记录中可以按相关推送任务的名称进行分类
+- 通知记录中的通知按推送任务的名称进行分类
 - 允许通知记录里的图片懒加载
-- 允许自定义通知是否发出提示音
+- 允许自定义通知是否发出提示音 (_Firefox 中不支持_)
 - 允许在任务执行出错时弹出通知提示
-- 将上一次任务执行出错标识在任务上
+- 上一次任务执行出错时会标识在任务上
 - 可以在 Popup 页面中通过鼠标右键菜单操作任务和通知记录
+
+## Firefox 版本的一些限制
+
+由于所提供的 API 不同，Firefox 上的一些功能有所限制，以下是 Firefox 版本相对 Chrome 版本所<u>不支持</u>的功能：
+
+- 弹出的通知需要手动关闭的可选选项
+- 在弹出的通知消息中显示图片
+- 在弹出的通知消息中提供操作按钮
+- 自定义通知是否发出提示音
 
 ## 相关项目
 
