@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/LightAPIs/Gloria-X/compare/v1.4.1...v1.4.2) (2021-03-23)
+
+
+### Bug Fixes
+
+* **manifest:** 修复 Firefox 更新清单地址有误的问题 ([556925f](https://github.com/LightAPIs/Gloria-X/commit/556925f1895c7da0aa99d6763e2fe4651cf13c91))
+
 ### [1.4.1](https://github.com/LightAPIs/Gloria-X/compare/v1.4.0...v1.4.1) (2021-03-23)
 
 
