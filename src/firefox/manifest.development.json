@@ -6,6 +6,13 @@
   "author": "pana",
   "homepage_url": "https://github.com/LightAPIs/gloria-x",
   "default_locale": "en",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{5f7c490a-a6b5-44b4-9ab7-fa7117a16ca5}",
+      "strict_min_version": "55.0",
+      "update_url": "https://github.com/LightAPIs/Gloria-X/blob/master/firefox_updates.json"
+    }
+  },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
