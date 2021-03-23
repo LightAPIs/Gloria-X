@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/LightAPIs/Gloria-X/compare/v1.4.2...v1.4.3) (2021-03-23)
+
+
+### Bug Fixes
+
+* **help:** 修正部分文本内容 ([25385e3](https://github.com/LightAPIs/Gloria-X/commit/25385e33f46fde0a544c8a92abb7b10deb9888c7))
+* **messages:** 修正 Firefox 上部分选项的文本内容 ([2c7ee82](https://github.com/LightAPIs/Gloria-X/commit/2c7ee82787dc8387517134f5ef42e693a1aae918))
+
 ### [1.4.2](https://github.com/LightAPIs/Gloria-X/compare/v1.4.1...v1.4.2) (2021-03-23)
 
 
