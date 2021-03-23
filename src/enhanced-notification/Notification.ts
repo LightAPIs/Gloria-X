@@ -436,14 +436,14 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
     if (!this.options.onClose) {
       this.onclose = async (_id: string, byUser: boolean) => {
-        if (byUser) {
+        if (byUser && isChrome) {
           //* 仅用户手动点击关闭按钮会触发
           !this.options.isTest && store.commit('decreaseUnread');
         }
         await this.clear();
       };
     } else {
-      this.opclose = async (id: string, byUser: boolean) => {
+      this.onclose = async (id: string, byUser: boolean) => {
         if (typeof this.options.onClose === 'function') {
           this.options.onClose(id, byUser);
         }
@@ -485,6 +485,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
   private closeHandler = (id: string, byUser: boolean) => {
     //! 注:实测在使用 Windows10 原生通知中心时是无法触发关闭事件的
+    //! 注:Firefox 中不支持 byUser 参数，且实测 byUser 值始终为 true
     if (id === this.id) {
       this._state = NotificationState.READY;
       this.dispatchEvent(
