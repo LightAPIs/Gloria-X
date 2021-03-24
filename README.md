@@ -16,6 +16,9 @@
   </a>
 </p>
 
+- [English](/README_EN.md)
+- 中文版
+
 > Chrome/Firefox 上的可编程网站通知聚合器
 >
 > **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
@@ -72,18 +75,18 @@
 
 ### Chrome
 
-1. 前往 [chrome 网上应用店](https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh)进行下载安装。
+1. 前往 [Chrome 网上应用店](https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh) 进行下载安装。
 2. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序压缩包并进行解压，启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压文件的根目录即可完成扩展程序的安装。
 
 ### Firefox
 
-- 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载附加组件安装 _(由于声明了 `unsafe-eval` 权限，所以无法上架至 Mozilla add-ons，仅可自行托管。)_
+- 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载附加组件安装 _(由于声明了 `unsafe-eval` 权限，所以无法上架至 Mozilla Add-ons，仅可自行托管。)_
 
 ## 使用方法
 
 由于是承袭自 Gloria，所以 Gloria-X 基本上实现了 Gloria 上所有的功能，使用方法和任务开发与其相同。正常情况下，为 Gloria 所编写的任务代码是同样可以在 Gloria-X 上工作的，反之亦可行。以下是一些简要的使用方法介绍：
 
-JavaScript 同样是 Gloria-X 任务代码唯一支持的编程语言。任务创建通知的编写方法与 Gloria 相同，只需要将一个 `Gloria Notification` 对象或一个由该对象所组成的数组传递给特定的回调函数 `commit`，扩展程序会在内部处理 `commit` 函数的参数，并根据该参数决定推送通知的内容。
+JavaScript 同样是 Gloria-X 任务代码唯一支持的编程语言。任务创建通知的编写方法与 Gloria 相同，只需要将一个 `Gloria Notification` 对象或一个由该对象所组成的数组传递给特定的回调函数 `commit`。Gloria-X 会在内部处理 `commit` 函数的参数，并根据该参数决定推送通知的内容。
 
 比如，下面这段简单的任务代码就是真实可运行的，它会在每次设定的时间间隔到达后执行并弹出一个关于时间戳的通知消息：
 
@@ -103,11 +106,11 @@ _当然这段任务代码本身是没有实际意义的，只是一个简单的�
 
 ```javascript
 {
-  title: String,    // 默认为 ''，推送消息的标题
-  message: String,  // 默认为 ''，推送消息的内容
-  iconUrl: String,  // 默认为 undefined，推送消息的图标
-  imageUrl: String, // 默认为 undefined，在推送消息上额外显示的图片 (Firefox 通知消息忽略该属性)
-  url: String,      // 默认为 undefined，点击推送消息时打开的网址
+  title: String,    // 默认为 ""，推送通知的标题
+  message: String,  // 默认为 ""，推送通知的内容
+  iconUrl: String,  // 默认为 undefined，推送通知的图标
+  imageUrl: String, // 默认为 undefined，在推送通知上额外显示的图片 (Firefox 通知忽略该属性)
+  url: String,      // 默认为 undefined，点击推送通知时打开的网址
   id: String,       // 默认为 undefined，用于额外判定通知是否相同。如非特定需求，一般不需要手动指定
 }
 ```
@@ -121,34 +124,34 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 - `title`
   - 类型: `String`
   - 默认值: `""`
-  - 含义: 推送消息的标题。
-  - 该属性值会用于与 STAGES 缓存中的旧消息进行判定。
-  - 如：在一个[观察任务](#观察任务)中，如果新对象中的 `title` 值与 STAGES 缓存里旧对象中的 `title` 值不相同时，则该新对象就会被判定为是一则新消息并需要进行推送。
+  - 含义: 推送通知的标题。
+  - 该属性值会用于与 STAGES 缓存中的旧通知进行判定。
+  - 如：在一个[观察任务](#观察任务)中，如果新对象中的 `title` 值与 STAGES 缓存里旧对象中的 `title` 值不相同时，则该新对象就会被判定为是一则新通知并需要进行推送。
 - `message`
   - 类型: `String`
   - 默认值: `""`
-  - 含义: 推送消息的主体内容或描述。
-  - 该属性值会用于与 STAGES 缓存中的旧消息进行判定。
-  - 小提示：如果不是用于测试之类的用途，建议不要直接在 `title` 或 `message` 属性中包含与消息内容本身无关的第三方可变量 (比如在标题上附加了一个时间戳 `Date.now().toString()`)。因为这可能会导致每一次任务执行完毕后所得到的对象都不同，从而会被判定成新消息而进行推送。如果出于某种需求需要将两个 `title` 和 `message` 属性值相同的对象当作两个不同的消息处理，可以为对象指定两个不相同的 `id` 属性值 (在 Gloria 中同样可以采用这种方式)，这样这两个对象在扩展程序内部就会被视作两个不相同的对象了。
+  - 含义: 推送通知的主体内容或描述。
+  - 该属性值会用于与 STAGES 缓存中的旧通知进行判定。
+  - 小提示：如果不是用于测试之类的用途，建议不要直接在 `title` 或 `message` 属性中包含与通知内容本身无关的第三方可变量 (比如在标题上附加了一个时间戳 `Date.now().toString()`)。因为这可能会导致每一次任务执行完毕后所得到的对象都不同，从而会被判定成新通知而进行推送。如果出于某种需求需要将两个 `title` 和 `message` 属性值相同的对象当作两个不同的通知处理，可以为对象指定两个不相同的 `id` 属性值 (在 Gloria 中同样可以采用这种方式)，这样这两个对象在扩展程序内部就会被视作两个不相同的对象了。
 - `iconUrl`
   - 类型: `String`
   - 默认值: `undefined`
-  - 含义: 推送消息显示的图标信息。
+  - 含义: 推送通知显示的图标信息。
   - 这是 Chrome 创建通知消息时必须提供的参数，所以若在对象中不指定 `iconUrl` 属性时，扩展程序会先查找 `url` 网站的网站图标 (_如果指定了 `url` 并在设置中启用自动检测网站图标功能_)，其次会提供一个默认图标值 `"icons/app/icon-128.png"` (即 Gloria-X 的图标)。
 - `imageUrl`
   - 类型: `String`
   - 默认值: `undefined`
-  - 含义: 推送消息上额外显示的一张图片。若指定 `imageUrl` 属性，通知会变为一个带图片的通知。
-  - **Firefox 通知会忽略该属性，即在通知消息中不会显示额外的图片，但是会在通知记录中显示**
+  - 含义: 推送通知上额外显示的一张图片。若指定 `imageUrl` 属性，通知会变为一个带图片的通知。
+  - **Firefox 通知会忽略该属性，即在通知中不会显示额外的图片，但是会在通知记录中显示。**
 - `url`
   - 类型: `String`
   - 默认值: `undefined`
-  - 含义: 点击推送消息时打开的网站。
+  - 含义: 点击推送通知时打开的网站。
 - `id`
   - 类型: `String`
   - 默认值: `undefined`
   - 含义: 对象的标识符，可以用于额外判定通知是否相同。
-  - 该属性值会用于与 STAGES 缓存中的旧消息进行判定。
+  - 该属性值会用于与 STAGES 缓存中的旧通知进行判定。
 
 ### commit 函数
 
@@ -164,7 +167,7 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 
 ##### 常规任务
 
-当传递一个由 `Gloria Notification` 对象所组成的数组时，该任务会被识别为"常规任务"，每次所收集到的内容都会被缓存于内部的 `Stages` 组件中，这样只有新对象时才会推送相应的通知。当然，每一个"常规任务"的 `Stages` 组件缓存数量是存在上限值的，但理论上你不会需要去关心其大小，只需要保证每个"常规任务"不会一次传入数量过多的 `Gloria Notification` 对象即可。
+当传递一个由 `Gloria Notification` 对象所组成的数组给 `commit` 函数时，该任务会被识别为"常规任务"，每次所收集到的内容都会被缓存于内部的 `Stages` 组件中，这样只有新对象时才会推送相应的通知。当然，每一个"常规任务"的 `Stages` 组件缓存数量是存在上限值的，但理论上你不会需要去关心其大小，只需要保证每个"常规任务"不会一次传入数量过多的 `Gloria Notification` 对象即可。
 
 #### 两种任务的区别
 
@@ -194,17 +197,17 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 })().then(commit);
 ```
 
-当然这两个任务并没有任何实际意义，仅供用来测试参考两种任务间的区别。
+_当然这两个任务并没有任何实际意义，仅供用来测试参考两种任务间的区别。_
 
-先不要管 `'gloria-utils'` 是什么东西，后面的内容中会提到，我们现在只需要关注两个任务传递给 `commit` 函数的结果。在两个任务中对象的 `title` 属性都采用 `_.random(1).toString()` 赋值，这个方法的结果值只有两种可能性，`"0"` 或者 `"1"` 。
+我们使用了 `lodash` 库中的 `random` 方法进行测。先不要管 `importScripts ('gloria-utils')` 是什么东西，后面的内容中会提到，我们现在只需要关注两个任务传递给 `commit` 函数的结果。在两个任务中对象的 `title` 属性都采用 `_.random(1).toString()` 赋值，这个方法的结果值只有两种可能性，`"0"` 或者 `"1"` 。
 
 当实际运行这两个任务时你就会发现：
 
-观察任务在每一次任务执行时都会有可能推送新的通知消息，只要这一次的对象的 `title` 值与上一次对象的 `title` 值不相同即可。
+观察任务在每一次任务执行时都会有可能推送新的通知，只要这一次的对象的 `title` 值与上一次对象的 `title` 值不相同即可。
 
-而常规任务的行为则完全不相同，当执行次数足够多时，你会发现常规任务至多也只会推送一次新的通知消息。
+而常规任务的行为则完全不相同，当执行次数足够多时，你会发现常规任务至多也只会推送一次新的通知。
 
-这是因为在任务创建时，任务会首先执行一次，并将第一次执行的结果缓存进 STAGES 组件中。当后续执行中出现一个不相同的结果时，则会推送新的通知消息，并将新的结果缓存进 STAGES 组件中。值得注意的是，常规任务不同于观察任务，它并不会被移除旧的结果，而是与新结果一同缓存在 STAGES 组件当中。又因为这个示例任务的特殊性，即只存在两种可能性结果，所以此时无论后续执行会得出什么结果，它都会与 STAGES 组件中缓存的两个结果之一相同，那也就不可能再出现推送新通知消息的情况出现了。
+这是因为在任务创建时，任务会首先执行一次，并将第一次执行的结果缓存进 STAGES 组件中。当后续执行中出现一个不相同的结果时，则会推送新的通知，并将新的结果缓存进 STAGES 组件中。值得注意的是，常规任务不同于观察任务，它并不会被移除旧的结果，而是与新结果一同缓存在 STAGES 组件当中。又因为这个示例任务的特殊性，即只存在两种可能性结果，所以此时无论后续执行会得出什么结果，它都会与 STAGES 组件中缓存的两个结果之一相同，那也就不可能再出现推送新通知的情况出现了。
 
 以上就是两种任务间区别的示例，具体行为可以通过选项页面中内部状态观察面板观测。
 
@@ -216,11 +219,11 @@ _为了安全性和避免可能发生某些未知的错误，扩展程序在内�
 
 1. 通过 `fetch` 函数
 
-你可以在 [Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API) 里查看 `fetch` 的使用方法，需要注意的是在 Gloria-X 环境下的 `fetch` 在创建请求时会自动附加目标 url 的 Cookie，以便可以利用到在目标网站上的登录状态，当然这样推送的通知显示内容里也许会包含你的私人信息 (具体显示内容取决于 `Gloria Notification` 对象是如何编写的)。
+你可以在 [Fetch API](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API) 里查看 `fetch` 的使用方法。需要注意的是在 Gloria-X 环境下的 `fetch` 在创建请求时会自动附加目标 url 的 Cookie，以便可以利用到在目标网站上的登录状态。当然这样推送的通知显示内容里也许会包含你的私人信息，具体显示内容取决于 `Gloria Notification` 对象是如何编写的。
 
 2. 通过 `XMLHttpRequest(XHR)` 对象
 
-你可以在 [XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest) 里查看 `XHR` 的使用方法，与 `fetch` 不同的时，Gloria-X 环境下的 `XHR` 不会自动附加目标 url 的 Cookie，也就无法获取到目标网站上的登录状态了。
+你可以在 [XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest) 里查看 `XHR` 的使用方法。与 `fetch` 不同的时，Gloria-X 环境下的 `XHR` 不会自动附加目标 url 的 Cookie，也就无法获取到目标网站上的登录状态了。
 
 #### 访问 URL 示例
 
@@ -242,11 +245,11 @@ fetch('https://infodev.cubejoy.com/Store/GetNews?area=2&pageindex=1&pagesize=15'
   });
 ```
 
-如果你了解 `fetch` 或 `XHR` 的话，通过这个任务应该也就能明白具体如何在任务代码中访问 url 了。
+如果你了解 `fetch` 或 `XHR` 的话，通过这个任务应该也就能明白具体如何在任务代码中访问 URL 了。
 
 ### 异步载入外部脚本
 
-虽然已经可以在任务代码中访问 url，但是并不是所有网站都存在类似上面示例中的返回 json 格式数据的 api 接口。这时候就需要直接访问 url 并读取 html 内容，再通过 `cheerio` 等模块处理 html。
+虽然已经可以在任务代码中访问 URL，但是并不是所有网站都存在类似上面示例中的返回 JSON 格式数据的 API 接口。这时候就需要直接访问 URL 并读取 HTML 内容，再通过 `cheerio` 等模块处理 HTML。
 
 在 Gloria-X 环境下可以像 Web Worker 通过 `importScripts` 方法载入外部脚本。
 
@@ -263,24 +266,24 @@ importScripts('script.js')
 
 Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `importScripts('gloria-utils')` 加载这些模块，所能使用的模块如下表所示：
 
-|                                            集成模块/版本                                             | Gloria(0.13.10) & Gloria-X |
-| :--------------------------------------------------------------------------------------------------: | :------------------------: |
-|               export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)'                |           0.22.0           |
-|                          export `co` from '[co](https://github.com/tj/co)'                           |           4.6.0            |
-|                  export `cookie` from '[cookie](https://github.com/jshttp/cookie)'                   |           0.3.1            |
-|         export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)'          |           3.8.1            |
-|                  export `is` from '[is_js](https://github.com/arasatasaygin/is.js)'                  |           0.9.0            |
-|                  export `lodash` from '[lodash](https://github.com/lodash/lodash)'                   |           4.16.4           |
-|                  export `moment` from '[moment](https://github.com/moment/moment)'                   |           2.18.1           |
-|                        export `qs` from '[qs](https://github.com/ljharb/qs)'                         |           6.3.0            |
-|                    export `ramda` from '[ramda](https://github.com/ramda/ramda)'                     |           0.24.1           |
-|                 export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)'                 |           4.1.0            |
-|     export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)'     |           1.13.0           |
-|              export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)'               |          0.20.14           |
-| export `underscoreString` from '[underscore.string](https://github.com/esamattis/underscore.string)' |           3.3.4            |
-|          export `validator` from '[validator](https://github.com/validatorjs/validator.js)'          |           7.1.0            |
-|          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           |           0.4.17           |
-|               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |           3.2.0            |
+|                                               集成模块                                               |  版本   |
+| :--------------------------------------------------------------------------------------------------: | :-----: |
+|               export `cheerio` from '[cheerio](https://github.com/cheeriojs/cheerio)'                | 0.22.0  |
+|                          export `co` from '[co](https://github.com/tj/co)'                           |  4.6.0  |
+|                  export `cookie` from '[cookie](https://github.com/jshttp/cookie)'                   |  0.3.1  |
+|         export `immutable` from '[immutable](https://github.com/immutable-js/immutable-js)'          |  3.8.1  |
+|                  export `is` from '[is_js](https://github.com/arasatasaygin/is.js)'                  |  0.9.0  |
+|                  export `lodash` from '[lodash](https://github.com/lodash/lodash)'                   | 4.16.4  |
+|                  export `moment` from '[moment](https://github.com/moment/moment)'                   | 2.18.1  |
+|                        export `qs` from '[qs](https://github.com/ljharb/qs)'                         |  6.3.0  |
+|                    export `ramda` from '[ramda](https://github.com/ramda/ramda)'                     | 0.24.1  |
+|                 export `rx` from '[rx](https://github.com/Reactive-Extensions/RxJS)'                 |  4.1.0  |
+|     export `sanitizeHtml` from '[sanitize-html](https://github.com/apostrophecms/sanitize-html)'     | 1.13.0  |
+|              export `SystemJS` from '[systemjs](https://github.com/systemjs/systemjs)'               | 0.20.14 |
+| export `underscoreString` from '[underscore.string](https://github.com/esamattis/underscore.string)' |  3.3.4  |
+|          export `validator` from '[validator](https://github.com/validatorjs/validator.js)'          |  7.1.0  |
+|          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           | 0.4.17  |
+|               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |  3.2.0  |
 
 ## 额外功能
 
@@ -300,7 +303,7 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 
 可以在扩展程序选项页面的"任务调试"分页中找到调试任务的面板。
 
-在代码输入框中输入需要调试的任务代码后，点击页面上方的"测试"按钮，即可查看测试输出结果 (当然，异步执行的任务代码可能需要等上一会儿)，并且所得到的测试结果既不会经过内部的 STAGES 组件 (一个用于缓存消息的组件)，也不会经过 Reducer 函数 (见后面介绍)，而是直接生成相应的通知消息。
+在代码输入框中输入需要调试的任务代码后，点击页面上方的"测试"按钮，即可查看测试输出结果 (当然，异步执行的任务代码可能需要等上一会儿)，并且所得到的测试结果既不会经过内部的 STAGES 组件 (一个用于缓存通知的组件)，也不会经过 Reducer 函数 (见后面介绍)，而是直接生成相应的通知。
 
 若任务代码中存在语法等错误，也会显示在面板中 (_注：仅支持捕获同步执行代码的错误，采用异步执行的代码的错误或者是在代码中使用 `console` 语句的输出需要打开扩展程序的背景页<"background.html">进行查看_)。
 
@@ -320,13 +323,15 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 
 #### Reducer 介绍
 
-如果你需要对任务执行后所得到的新通知在被正式推送之前进行一些二次操作的话，那么你就需要使用到 Reducer 函数。 Reducer 函数是 Gloria-X 提供的一个特殊函数 (当然，你同样可以在 Gloria 里找到它)。与之前任务代码中的 `commit` 函数不同，它不会出现在任务代码当中，而是单独地在选项页面里进行设置。如果你提供了 Reducer 函数，那么所有的任务都会使用同一个 Reducer 函数。
+如果你需要对任务执行后所得到的新通知在被正式推送之前进行一些二次操作的话，那么你就需要使用到 Reducer 函数。Reducer 函数是 Gloria-X 提供的一个特殊函数 (当然，你同样可以在 Gloria 里找到它)。与之前任务代码中的 `commit` 函数不同，它不会出现在任务代码当中，而是单独地在选项页面里进行设置。如果你提供了 Reducer 函数，那么所有的任务都会使用同一个 Reducer 函数。
 
 #### 工作方式
 
 Reducer 是一个同步执行的函数，当一个任务执行完成后若存在需要进行推送的新 `Gloria Notification` 对象时，该对象会作为参数被传递进 Reducer 函数中执行一次操作。
 
-注意：在 Reducer 函数执行之前，消息的对比和缓存都已经完成，Reducer 函数的操作只会影响到后面通知的显示和记录中的内容。它的执行时机大概是像下面这样的：
+注意：在 Reducer 函数执行之前，通知的对比和缓存都已经完成，Reducer 函数的操作只会影响到后面通知的显示和记录中的内容。
+
+它的执行时机大概是像下面这样的：
 
 ```
 Task(Execute) => commit => Gloria Notification(s) => STAGES(Compare and cache) => Reducer => Popup Notifications
@@ -334,7 +339,7 @@ Task(Execute) => commit => Gloria Notification(s) => STAGES(Compare and cache) =
 
 #### 作用
 
-在 Reducer 函数中，你可以完成修改、过滤以及通过 http 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version)等)将消息同步至其他设备当中的操作。
+在 Reducer 函数中，你可以完成修改、过滤以及通过 HTTP 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version))将通知同步至其他设备当中的操作。
 
 #### 具体用法
 
@@ -416,7 +421,7 @@ function reducer(notification) {
 
 在 Reducer 设置面板中你还可以对所编写的 Reducer 函数进行一些简单的测试。
 
-你可以在测试对象输入框中填入一个由 `Gloria Notification` 对象或其所组成的数组序列化后的 **JSON 字符串**，其实也就是直接模拟出一个任务执行后得出的结果，然后再点击测试按钮后就可以查看 Reducer 函数的返回值及弹出的窗口效果了。
+你可以在测试对象输入框中填入一个由 `Gloria Notification` 对象或其所组成的数组序列化后的 **JSON 字符串**，其实也就是直接模拟出一个任务执行后得出的结果，然后再点击测试按钮后就可以查看 Reducer 函数的返回值及弹出的通知效果了。
 
 至于 Reducer 函数的代码错误或者是在 Reducer 函数中使用 `console` 语句的输出需要打开扩展程序的背景页<"background.html">进行查看。
 
@@ -460,13 +465,13 @@ function reducer(notification) {
 以下是 Firefox 版本相对 Chrome 版本所<u>不支持</u>的功能：
 
 - 弹出的通知需要手动关闭的可选选项
-- 在弹出的通知消息中显示图片
-- 在弹出的通知消息中提供操作按钮
+- 在弹出的通知中显示图片
+- 在弹出的通知中提供操作按钮
 - 自定义通知是否发出提示音
 
 以下是 Firefox 版本相对 Chrome 版本一些处理逻辑上的区别：
 
-- 如果启用了"在扩展程序图标上显示未读通知数量标记"功能，当点击通知消息的关闭按钮时，并不会使数量标记值减少 (若通知消息关联着网址，点击通知打开网址时才会)
+- 如果启用了"在扩展程序图标上显示未读通知数量标记"功能，当点击通知的关闭按钮时，并不会使数量标记值减少。(若通知关联着网址，点击通知打开网址时才会标记值减少。)
 
 ## 开发编译
 
