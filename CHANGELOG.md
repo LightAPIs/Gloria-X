@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/LightAPIs/Gloria-X/compare/v1.4.3...v1.4.4) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webrequest:** 修复当任务中请求的网址存在重定向时导致扩展程序出错并使浏览器无法联网的问题 ([5dbaccc](https://github.com/LightAPIs/Gloria-X/commit/5dbaccc021d7c19bf7922ee2a5d48b158ed79ff8))
+
 ### [1.4.3](https://github.com/LightAPIs/Gloria-X/compare/v1.4.2...v1.4.3) (2021-03-23)
 
 
