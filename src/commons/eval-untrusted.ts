@@ -17,7 +17,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
 
   if (initiator && initiator.includes(chrome.i18n.getMessage('@@extension_id'))) {
     if (window.sessionStorage[idName]) {
-      for (let i = 0; requestHeaders.length; i++) {
+      for (let i = 0; i < requestHeaders.length; i++) {
         const header = requestHeaders[i];
         if (header && header.name) {
           switch (header.name.toLowerCase()) {
