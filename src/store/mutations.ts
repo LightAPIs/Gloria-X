@@ -1,6 +1,6 @@
 import { now } from '@/commons/calc';
 import ChromeStorage from './storage';
-import { defaultTask } from './state';
+import { defaultTask, normalizeTask } from './state';
 
 const chromeStorage = new ChromeStorage();
 const STAGE_LIMIT = 200;
@@ -70,7 +70,7 @@ export default {
 
   setTasks(state: store.VuexState, newTasks: store.GloriaTask[]) {
     if (newTasks && Array.isArray(newTasks) && newTasks.length > 0) {
-      state.tasks = newTasks.map(task => Object.assign(defaultTask(), task));
+      state.tasks = newTasks.map(task => Object.assign(defaultTask(), normalizeTask(task)));
     } else {
       state.tasks = [];
     }
@@ -82,12 +82,12 @@ export default {
         let merge = false;
         for (let j = 0; j < length; j++) {
           if (newTasks[i].id === state.tasks[j].id) {
-            Object.assign(state.tasks[j], newTasks[i]);
+            Object.assign(state.tasks[j], normalizeTask(newTasks[i]));
             merge = true;
             break;
           }
         }
-        !merge && state.tasks.push(Object.assign(defaultTask(), newTasks[i]));
+        !merge && state.tasks.push(Object.assign(defaultTask(), normalizeTask(newTasks[i])));
       }
 
       chromeStorage.setTasks(state.tasks, 'merge tasks.');
@@ -162,18 +162,31 @@ export default {
       if (state.tasks[i].id === taskId) {
         state.tasks[i].triggerCount++;
         state.tasks[i].triggerDate = now();
-        state.tasks[i].lastExecutionError = false;
         trigger = true;
         break;
       }
     }
     trigger && chromeStorage.setTasks(state.tasks, `trigger task: "${taskId}".`);
   },
-  executionError(state: store.VuexState, taskId: string) {
+  executionTaskSuccess(state: store.VuexState, taskId: string) {
+    let reset = false;
+    for (let i = 0; i < state.tasks.length; i++) {
+      if (state.tasks[i].id === taskId) {
+        if (state.tasks[i].executionError > 0) {
+          state.tasks[i].executionError = 0;
+          reset = true;
+        }
+        break;
+      }
+    }
+
+    reset && chromeStorage.setTasks(state.tasks, `task execution success: "${taskId}".`);
+  },
+  executionTaskError(state: store.VuexState, taskId: string) {
     let err = false;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === taskId) {
-        state.tasks[i].lastExecutionError = true;
+        state.tasks[i].executionError++;
         err = true;
         break;
       }

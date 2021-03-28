@@ -25,6 +25,8 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
             return;
           }
 
+          store.commit('executionTaskSuccess', id);
+
           store.dispatch('handleData', {
             taskId: id,
             data: commitFormat(dataList as store.CommitData | store.CommitData[]),
@@ -61,7 +63,7 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
             });
 
           //* 将错误记录至任务中
-          store.commit('executionError', id);
+          store.commit('executionTaskError', id);
         });
     }, 0);
   }
@@ -504,7 +506,7 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
     pushCount: 0,
     triggerDate: '',
     pushDate: '',
-    lastExecutionError: false,
+    executionError: 0,
   };
 
   (dataList as store.MessageData[]).forEach(item => {

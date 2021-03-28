@@ -45,7 +45,7 @@ declare namespace store {
     pushCount: number;
     triggerDate: string;
     pushDate: string;
-    lastExecutionError: boolean;
+    executionError: number;
   }
 
   interface GloriaNotification {

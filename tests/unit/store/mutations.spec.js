@@ -22,7 +22,8 @@ const {
   createTaskBasic,
   removeTaskItem,
   triggerTask,
-  executionError,
+  executionTaskSuccess,
+  executionTaskError,
   clearTasks,
   disconnectTask,
   setStages,
@@ -431,18 +432,35 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: executionError', function() {
+  describe('Method: executionTaskSuccess', function() {
+    it('task is trigger.', function() {
+      const state = {
+        tasks: [
+          {
+            id: '1',
+            executionError: 2,
+          },
+        ],
+      };
+      executionTaskSuccess(state, '1');
+      expect(state.tasks[0].executionError).to.equal(0);
+    });
+  });
+
+  describe('Method: executionTaskError', function() {
     it('task execution error.', function() {
       const state = {
         tasks: [
           {
             id: '1',
-            lastExecutionError: false,
+            executionError: 0,
           },
         ],
       };
-      executionError(state, '1');
-      expect(state.tasks[0].lastExecutionError).to.be.true;
+      executionTaskError(state, '1');
+      expect(state.tasks[0].executionError).to.equal(1);
+      executionTaskError(state, '1');
+      expect(state.tasks[0].executionError).to.equal(2);
     });
   });
 

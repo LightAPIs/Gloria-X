@@ -18,14 +18,14 @@
         {{ i18n('popupTaskNeedInteractionTag') }}
       </el-tag>
       <el-tag
-        v-if="lastExecutionError"
+        v-if="executionError > 0"
         type="danger"
         size="mini"
         effect="dark"
-        :title="i18n('popupTaskLastExecutionErrorText')"
+        :title="i18n('popupTaskLastExecutionErrorText', executionError.toString())"
         class="tag"
       >
-        {{ i18n('popupTaskLastExecutionErrorTag') }}
+        {{ i18n('popupTaskLastExecutionErrorTag', executionError.toString()) }}
       </el-tag>
       <span class="float-right">
         <el-popconfirm
@@ -162,9 +162,9 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
-    lastExecutionError: {
-      type: Boolean,
-      default: false,
+    executionError: {
+      type: Number,
+      default: 0,
     },
     filterText: {
       type: String,

@@ -78,10 +78,22 @@
     "message": "Perform tasks strictly in accordance with time intervals"
   },
   "popupTaskLastExecutionErrorTag": {
-    "message": "Error"
+    "message": "Error ($count$)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "popupTaskLastExecutionErrorText": {
-    "message": "Error in last execution"
+    "message": "Number of consecutive errors: $count$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "popupTaskDialogTitle": {
     "message": "Edit task"

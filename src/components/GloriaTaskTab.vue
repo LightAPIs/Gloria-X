@@ -19,7 +19,7 @@
           :origin="task.origin"
           :need-interaction="task.needInteraction"
           :on-time-mode="task.onTimeMode"
-          :last-execution-error="task.lastExecutionError"
+          :execution-error="task.executionError"
           :filter-text="filterText"
           @task-edit="onTaskEdit"
         ></gloria-task-item>

@@ -1,3 +1,19 @@
+const taskKeys = [
+  'id',
+  'name',
+  'code',
+  'origin',
+  'triggerInterval',
+  'needInteraction',
+  'onTimeMode',
+  'triggerCount',
+  'pushCount',
+  'triggerDate',
+  'pushDate',
+  'isEnable',
+  'executionError',
+];
+
 function defaultConfigs(): store.GloriaConfig {
   return {
     taskAutoCheckUpdate: false,
@@ -40,10 +56,20 @@ function defaultTask(): store.GloriaTask {
     pushCount: 0,
     triggerDate: '',
     pushDate: '',
-    origin: '',
     isEnable: true,
-    lastExecutionError: false,
+    executionError: 0,
   };
 }
 
-export { defaultConfigs, defaultTaskBasic, defaultTask };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeTask(task: any): store.GloriaTask {
+  Object.keys(task).forEach(key => {
+    if (!taskKeys.includes(key)) {
+      delete task[key];
+    }
+  });
+
+  return task;
+}
+
+export { defaultConfigs, defaultTaskBasic, defaultTask, normalizeTask };

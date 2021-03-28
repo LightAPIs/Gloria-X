@@ -78,10 +78,22 @@
     "message": "严格按照时间间隔执行任务"
   },
   "popupTaskLastExecutionErrorTag": {
-    "message": "错误"
+    "message": "错误 ($count$)",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "popupTaskLastExecutionErrorText": {
-    "message": "上次执行时出现错误"
+    "message": "已连续出现 $count$ 次错误",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "popupTaskDialogTitle": {
     "message": "编辑任务"
