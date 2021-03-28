@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/LightAPIs/Gloria-X/compare/v1.4.4...v1.5.0) (2021-03-28)
+
+
+### Features
+
+* **task:** 支持标识任务连续执行出错的次数 ([bd3eb68](https://github.com/LightAPIs/Gloria-X/commit/bd3eb687ce5853dc6caf839f375960f7d5d8d5a0))
+
 ### [1.4.4](https://github.com/LightAPIs/Gloria-X/compare/v1.4.3...v1.4.4) (2021-03-25)
 
 
