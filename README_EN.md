@@ -158,6 +158,8 @@ According to the difference of the parameters passed to `commit`, tasks are divi
 
 When a single `Gloria Notification` object is passed to the `commit` function, the task will be recognized as an "Observation task", which compares the `Gloria Notification` object obtained each time with the `Gloria Notification` object recorded last time, and pushes a new notification when it is not the same.
 
+_Note: If `null` or `undefined` is returned in the Observation task, the execution result is ignored, not cached and used for comparison._
+
 ##### General task
 
 When an array of `Gloria Notification` objects is passed to the `commit` function, the task will be recognized as a "General task", and each collection is cached in an internal "Stages" component so that the notification is pushed only when the object is new.
