@@ -371,6 +371,9 @@
   "settingsClear": {
     "message": "清理功能"
   },
+  "settingsClearCompleted": {
+    "message": "清理完成！"
+  },
   "settingsClearNotifications": {
     "message": "清除通知记录"
   },

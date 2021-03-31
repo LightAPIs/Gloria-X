@@ -77,6 +77,8 @@ export default Vue.extend({
           });
           break;
       }
+
+      this.$message.success(this.i18n('settingsClearCompleted'));
     },
   },
 });
