@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/LightAPIs/Gloria-X/compare/v1.5.0...v1.5.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **clear:** 补充在清理操作完成后弹出提示消息 ([d483c18](https://github.com/LightAPIs/Gloria-X/commit/d483c186512c2b0b91d1d50c49719b0f3d7efa6d))
+* **test:** 修复在测试观察任务中返回 null/undefined 时会认为任务出错的问题 ([9d4e670](https://github.com/LightAPIs/Gloria-X/commit/9d4e6701f80f19ddd84d6af41c3f6b81ae1923da))
+
 ## [1.5.0](https://github.com/LightAPIs/Gloria-X/compare/v1.4.4...v1.5.0) (2021-03-28)
 
 
