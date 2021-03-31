@@ -521,7 +521,9 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     case 'testCode':
       evalUntrusted(data)
         .then(res => {
-          const formatRes = commitFormat(res as store.CommitData | store.CommitData[]);
+          const formatRes = res
+            ? commitFormat(res as store.CommitData | store.CommitData[])
+            : (res as store.CommitData | store.CommitData[]);
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
@@ -546,7 +548,9 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     case 'testNoMsgCode':
       evalUntrusted(data)
         .then(res => {
-          const formatRes = commitFormat(res as store.CommitData | store.CommitData[]);
+          const formatRes = res
+            ? commitFormat(res as store.CommitData | store.CommitData[])
+            : (res as store.CommitData | store.CommitData[]);
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
