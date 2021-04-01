@@ -211,6 +211,28 @@ export default Vue.extend({
     onContextmenu(event: Event) {
       const { id, name, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
       const items = [
+        isEnable
+          ? {
+              label: this.i18n('popupContextExecuteTask'),
+              icon: 'el-icon-video-play',
+              divided: true,
+              onClick: () => {
+                chrome.runtime.sendMessage(
+                  {
+                    type: 'executeTask',
+                    data: id,
+                  },
+                  res => {
+                    if (res) {
+                      this.$message.success(this.i18n('popupContextExecuteTaskSuccess'));
+                    } else {
+                      this.$message.success(this.i18n('popupContextExecuteTaskError'));
+                    }
+                  }
+                );
+              },
+            }
+          : {},
         {
           label: this.i18n('popupContextTaskCopyName'),
           icon: 'el-icon-copy-document',

@@ -146,6 +146,15 @@
   "popupNotificationFrom": {
     "message": "來自： "
   },
+  "popupContextExecuteTask": {
+    "message": "立即執行該任務"
+  },
+  "popupContextExecuteTaskSuccess": {
+    "message": "手動執行任務成功"
+  },
+  "popupContextExecuteTaskError": {
+    "message": "手動執行任務失敗"
+  },
   "popupContextTaskCopyName": {
     "message": "複製任務名稱"
   },
@@ -297,7 +306,7 @@
     "message": "自動檢查任務程式碼更新"
   },
   "settingsTaskOnTimeMode": {
-    "message": "對於新創建或安裝的任務，默認開啟\"$option$\"選項",
+    "message": "對於新創建或安裝的任務，預設開啟\"$option$\"選項",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -306,7 +315,7 @@
     }
   },
   "settingsTaskNeedInteraction": {
-    "message": "對於新創建或安裝的任務，默認開啟\"$option$\"選項",
+    "message": "對於新創建或安裝的任務，預設開啟\"$option$\"選項",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -318,7 +327,7 @@
     "message": "新增的任務位於任務列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "新創建或安裝的任務默認執行間隔："
+    "message": "新創建或安裝的任務預設執行間隔："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任務列表的頂部顯示任務篩選輸入框"
@@ -336,10 +345,10 @@
     "message": "允許訊息發出提示音"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定義的訊息提示音 (如果您的系統是 Windows 7 或系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設置為 Disabled 時，需要開啟該選項訊息才能發出聲音。)"
+    "message": "使用自定義的訊息提示音 (如果您的系統是 Windows 7 或系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設定為 Disabled 時，需要開啟該選項訊息才能發出聲音。)"
   },
   "settingsNotificationLaterMark": {
-    "message": "支持在訊息提醒中標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
+    "message": "支援在訊息提醒中標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
   },
   "settingsNotificationDetectIcon": {
     "message": "允許自動檢測並獲取網站圖示"
@@ -432,13 +441,13 @@
     "message": "匯入任務完成"
   },
   "settingsImportTooltip": {
-    "message": "從 json 或 txt 文件中匯入任務 (支持從 Gloria 所匯出的任務)"
+    "message": "從 json 或 txt 文件中匯入任務 (支援從 Gloria 所匯出的任務)"
   },
   "settingsExportJson": {
     "message": "明文匯出任務"
   },
   "settingsExportJsonTooltip": {
-    "message": "匯出任務為 json 文件 (支持匯入到 Gloria 中)"
+    "message": "匯出任務為 json 文件 (支援匯入到 Gloria 中)"
   },
   "settingsExportJsonSuccess": {
     "message": "成功匯出 json 文件"
@@ -558,10 +567,10 @@
     "message": "傳入的測試對象不正確"
   },
   "aboutSupport": {
-    "message": "支持"
+    "message": "支援"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X 是一款免費開源的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私資訊。"
+    "message": "Gloria-X 是一款免費開源的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私訊息。"
   },
   "aboutSourceCode": {
     "message": "Gloria-X 程式码 (MIT License) 和使用指南"
@@ -579,7 +588,7 @@
     "message": "鳴謝"
   },
   "aboutThanksLabel": {
-    "message": "Gloria-X 的誕生，離不開以下開源專案所提供的支持和幫助："
+    "message": "Gloria-X 的誕生，離不開以下開源專案所提供的支援和幫助："
   },
   "calcUndefined": {
     "message": "無"

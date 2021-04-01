@@ -146,6 +146,15 @@
   "popupNotificationFrom": {
     "message": "From: "
   },
+  "popupContextExecuteTask": {
+    "message": "Execute task immediately"
+  },
+  "popupContextExecuteTaskSuccess": {
+    "message": "Task executed successfully"
+  },
+  "popupContextExecuteTaskError": {
+    "message": "Task execution failed"
+  },
   "popupContextTaskCopyName": {
     "message": "Copy task name"
   },

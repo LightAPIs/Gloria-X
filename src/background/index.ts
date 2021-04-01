@@ -69,6 +69,9 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
   }
 
   if (immediately) {
+    alarmsManager.add(id, -1, triggerInterval, run);
+    run();
+  } else {
     if (onTimeMode) {
       if (isAfterInterval(triggerDate, triggerInterval)) {
         alarmsManager.add(id, -1, triggerInterval, run);
@@ -80,8 +83,6 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
       alarmsManager.add(id, -1, triggerInterval, run);
       run();
     }
-  } else {
-    alarmsManager.add(id, -1, triggerInterval, run);
   }
 }
 
@@ -169,9 +170,9 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
   }
 }
 
-function resetTaskTimer(task: store.GloriaTask) {
+function resetTaskTimer(task: store.GloriaTask, immediately: boolean) {
   alarmsManager.remove(task.id, () => {
-    createTaskTimer(task, true);
+    createTaskTimer(task, immediately);
   });
 }
 
@@ -276,7 +277,7 @@ function syncTasks() {
       const { tasks } = state;
       tasks.forEach(task => {
         if (task.isEnable) {
-          createTaskTimer(task, true);
+          createTaskTimer(task, false);
           activeTaskIdList.add(task.id);
         }
       });
@@ -290,7 +291,7 @@ function syncTasks() {
       activeTaskIdList.clear();
       tasks.forEach(task => {
         if (task.isEnable) {
-          createTaskTimer(task, true);
+          createTaskTimer(task, false);
           activeTaskIdList.add(task.id);
         }
       });
@@ -299,7 +300,7 @@ function syncTasks() {
     if (mutation.type.includes('createTaskBasic')) {
       const { operationTask } = state;
       if (operationTask && operationTask.isEnable) {
-        createTaskTimer(operationTask, true);
+        createTaskTimer(operationTask, false);
         activeTaskIdList.add(operationTask.id);
       }
     }
@@ -308,7 +309,7 @@ function syncTasks() {
       const { operationTask } = state;
       if (operationTask) {
         if (operationTask.isEnable) {
-          createTaskTimer(operationTask, true);
+          createTaskTimer(operationTask, false);
           activeTaskIdList.add(operationTask.id);
         } else {
           removeTaskTimer(operationTask);
@@ -320,7 +321,7 @@ function syncTasks() {
     if (mutation.type.includes('updateTaskBasic')) {
       const { operationTask } = state;
       if (operationTask && operationTask.isEnable) {
-        resetTaskTimer(operationTask);
+        resetTaskTimer(operationTask, false);
       }
     }
 
@@ -518,6 +519,17 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   const { type, data } = message;
   switch (type) {
+    case 'executeTask':
+      for (let i = 0; i < store.state.tasks.length; i++) {
+        if (store.state.tasks[i].id === data) {
+          resetTaskTimer(store.state.tasks[i], true);
+          sendResponse({
+            result: 'success',
+          });
+          break;
+        }
+      }
+      return true;
     case 'testCode':
       evalUntrusted(data)
         .then(res => {
