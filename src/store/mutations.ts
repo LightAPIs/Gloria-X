@@ -96,6 +96,7 @@ export default {
   updateIsEnable(state: store.VuexState, newChecked: store.SwitchChecked) {
     const { id, checked } = newChecked;
     let mod = false;
+    state.operationTask = null;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === id) {
         state.tasks[i].isEnable = checked;
@@ -110,6 +111,7 @@ export default {
   updateTaskBasic(state: store.VuexState, taskBasic: store.GloriaTaskBasic) {
     const { id, ...rest } = taskBasic;
     let mod = false;
+    state.operationTask = null;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === id) {
         Object.assign(state.tasks[i], rest);
@@ -135,6 +137,7 @@ export default {
   removeTaskItem(state: store.VuexState, taskId: string) {
     let del = false,
       delStage = false;
+    state.operationTask = null;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === taskId) {
         state.operationTask = state.tasks[i];
