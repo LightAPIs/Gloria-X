@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/LightAPIs/Gloria-X/compare/v1.5.1...v1.6.0) (2021-04-02)
+
+
+### Features
+
+* **task:** 添加允许立即执行任务的功能 ([319c467](https://github.com/LightAPIs/Gloria-X/commit/319c4670cebc011c579e015625a2ff4835be7115))
+* **tasks:** 支持按分类对任务进行筛选的功能 ([25ff7c1](https://github.com/LightAPIs/Gloria-X/commit/25ff7c1a09ae407da84b57f0b1eb087f930695f3))
+
 ### [1.5.1](https://github.com/LightAPIs/Gloria-X/compare/v1.5.0...v1.5.1) (2021-03-31)
 
 
