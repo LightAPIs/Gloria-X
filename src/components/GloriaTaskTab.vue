@@ -2,7 +2,7 @@
   <div class="tab-content">
     <el-container class="task-container" direction="vertical">
       <el-header v-if="configs.taskShowSearchInput" height="32px">
-        <gloria-search-input type="tasks" @filter="onFilter"></gloria-search-input>
+        <gloria-search-input type="tasks" @filter-text="onFilterText" @filter-type="onFilterType"></gloria-search-input>
       </el-header>
       <el-main>
         <gloria-task-item
@@ -21,6 +21,7 @@
           :on-time-mode="task.onTimeMode"
           :execution-error="task.executionError"
           :filter-text="filterText"
+          :filter-type="filterType"
           @task-edit="onTaskEdit"
         ></gloria-task-item>
       </el-main>
@@ -69,6 +70,7 @@ export default Vue.extend({
         needInteraction: false,
       },
       filterText: '',
+      filterType: 'all',
     };
   },
   computed: {
@@ -103,8 +105,11 @@ export default Vue.extend({
 
       !editStatus && this.$message.error(this.i18n('popupTaskErrorEdit'));
     },
-    onFilter(text: string) {
+    onFilterText(text: string) {
       this.filterText = text;
+    },
+    onFilterType(command: string) {
+      this.filterType = command;
     },
   },
 });

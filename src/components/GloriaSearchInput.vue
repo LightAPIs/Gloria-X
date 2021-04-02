@@ -5,7 +5,37 @@
     :placeholder="type === 'tasks' ? i18n('searchTaskPlaceholder') : i18n('searchNotificationPlaceholder')"
     v-model="filterText"
     clearable
-  ></el-input>
+  >
+    <el-dropdown v-if="type === 'tasks'" slot="append" split-button trigger="click" @command="handleCommand">
+      <span>{{ dropdownText }}</span>
+      <el-dropdown-menu>
+        <el-dropdown-item command="all">
+          {{ i18n('searchTaskFilterAll') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="enabled">
+          {{ i18n('searchTaskFilterEnabled') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="disabled">
+          {{ i18n('searchTaskFilterDisabled') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="onTime">
+          {{ i18n('popupTaskOnTimeModeTag') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="needInteraction">
+          {{ i18n('popupTaskNeedInteractionTag') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="error">
+          {{ i18n('searchTaskFilterError') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="install">
+          {{ i18n('searchTaskFilterInstall') }}
+        </el-dropdown-item>
+        <el-dropdown-item command="local">
+          {{ i18n('searchTaskFilterLocal') }}
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </el-input>
 </template>
 
 <script lang="ts">
@@ -23,6 +53,8 @@ export default Vue.extend({
   data() {
     return {
       filterText: '',
+      filterType: 'all',
+      dropdownText: this.i18n('searchTaskFilterAll'),
       searching: false,
     };
   },
@@ -30,7 +62,7 @@ export default Vue.extend({
     filterText(val) {
       this.searching = true;
       this.getRemote(() => {
-        this.$emit('filter', val);
+        this.$emit('filter-text', val);
         this.$nextTick(() => {
           this.searching = false;
         });
@@ -47,6 +79,39 @@ export default Vue.extend({
         trailing: true,
       }
     ),
+    handleCommand(command: string) {
+      this.filterType = command || 'all';
+
+      switch (this.filterType) {
+        case 'enabled':
+          this.dropdownText = this.i18n('searchTaskFilterEnabled');
+          break;
+        case 'disabled':
+          this.dropdownText = this.i18n('searchTaskFilterDisabled');
+          break;
+        case 'onTime':
+          this.dropdownText = this.i18n('popupTaskOnTimeModeTag');
+          break;
+        case 'needInteraction':
+          this.dropdownText = this.i18n('popupTaskNeedInteractionTag');
+          break;
+        case 'error':
+          this.dropdownText = this.i18n('searchTaskFilterError');
+          break;
+        case 'install':
+          this.dropdownText = this.i18n('searchTaskFilterInstall');
+          break;
+        case 'local':
+          this.dropdownText = this.i18n('searchTaskFilterLocal');
+          break;
+        case 'all':
+        default:
+          this.dropdownText = this.i18n('searchTaskFilterAll');
+          break;
+      }
+
+      this.$emit('filter-type', this.filterType);
+    },
   },
 });
 </script>

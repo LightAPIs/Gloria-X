@@ -278,6 +278,24 @@
   "searchTaskPlaceholder": {
     "message": "输入关键字对任务进行过滤"
   },
+  "searchTaskFilterAll": {
+    "message": "全部"
+  },
+  "searchTaskFilterEnabled": {
+    "message": "已启用的"
+  },
+  "searchTaskFilterDisabled": {
+    "message": "已禁用的"
+  },
+  "searchTaskFilterError": {
+    "message": "存在错误"
+  },
+  "searchTaskFilterInstall": {
+    "message": "网络安装"
+  },
+  "searchTaskFilterLocal": {
+    "message": "本地创建"
+  },
   "searchNotificationPlaceholder": {
     "message": "输入关键字对通知进行过滤"
   },

@@ -1,5 +1,20 @@
 <template>
-  <el-card v-show="itemShow" class="tab-card" shadow="hover" @contextmenu.native.prevent="onContextmenu">
+  <el-card
+    v-show="
+      itemShow &&
+        ((filterType === 'enabled' && isEnable) ||
+          (filterType === 'disabled' && !isEnable) ||
+          (filterType === 'onTime' && onTimeMode) ||
+          (filterType === 'needInteraction' && needInteraction) ||
+          (filterType === 'error' && executionError > 0) ||
+          (filterType === 'install' && origin) ||
+          (filterType === 'local' && !origin) ||
+          filterType === 'all')
+    "
+    class="tab-card"
+    shadow="hover"
+    @contextmenu.native.prevent="onContextmenu"
+  >
     <span slot="header">
       <span class="header-text">
         {{ name }}
@@ -169,6 +184,10 @@ export default Vue.extend({
     filterText: {
       type: String,
       default: '',
+    },
+    filterType: {
+      type: String,
+      default: 'all',
     },
   },
   data() {

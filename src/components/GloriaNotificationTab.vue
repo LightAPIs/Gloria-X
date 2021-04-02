@@ -6,7 +6,7 @@
       </el-aside>
       <el-container direction="vertical">
         <el-header v-if="configs.notificationShowSearchInput" height="32px">
-          <gloria-search-input type="notifications" @filter="onFilter"></gloria-search-input>
+          <gloria-search-input type="notifications" @filter-text="onFilterText"></gloria-search-input>
         </el-header>
         <el-main>
           <div class="history">
@@ -62,7 +62,7 @@ export default Vue.extend({
     onSelectMenu(key: string) {
       this.menuKey = key;
     },
-    onFilter(text: string) {
+    onFilterText(text: string) {
       this.filterText = text;
     },
   },

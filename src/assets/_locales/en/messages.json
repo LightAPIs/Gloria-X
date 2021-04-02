@@ -278,6 +278,24 @@
   "searchTaskPlaceholder": {
     "message": "Enter keywords to filter tasks"
   },
+  "searchTaskFilterAll": {
+    "message": "All"
+  },
+  "searchTaskFilterEnabled": {
+    "message": "Enabled"
+  },
+  "searchTaskFilterDisabled": {
+    "message": "Disabled"
+  },
+  "searchTaskFilterError": {
+    "message": "Error"
+  },
+  "searchTaskFilterInstall": {
+    "message": "Install"
+  },
+  "searchTaskFilterLocal": {
+    "message": "Local"
+  },
   "searchNotificationPlaceholder": {
     "message": "Enter keywords to filter notifications"
   },

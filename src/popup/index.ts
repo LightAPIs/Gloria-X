@@ -16,6 +16,9 @@ import {
   Col,
   Container,
   Dialog,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
   Form,
   FormItem,
   Header,
@@ -70,6 +73,9 @@ Vue.use(Image);
 Vue.use(Badge);
 Vue.use(Contextmenu);
 Vue.use(LazyRender);
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 Vue.mixin({

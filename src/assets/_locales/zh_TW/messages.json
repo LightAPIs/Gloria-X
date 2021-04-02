@@ -278,6 +278,24 @@
   "searchTaskPlaceholder": {
     "message": "輸入關鍵字對任務進行過濾"
   },
+  "searchTaskFilterAll": {
+    "message": "全部"
+  },
+  "searchTaskFilterEnabled": {
+    "message": "已啟用的"
+  },
+  "searchTaskFilterDisabled": {
+    "message": "已禁用的"
+  },
+  "searchTaskFilterError": {
+    "message": "存在錯誤"
+  },
+  "searchTaskFilterInstall": {
+    "message": "網路安裝"
+  },
+  "searchTaskFilterLocal": {
+    "message": "本地創建"
+  },
   "searchNotificationPlaceholder": {
     "message": "輸入關鍵字對訊息進行過濾"
   },
