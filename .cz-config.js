@@ -40,7 +40,7 @@ module.exports = {
     },
     {
       value: 'build',
-      name: 'build:    打包',
+      name: 'build:    构造工具的或者外部依赖的改动(如 webpack, npm)',
     },
   ],
   // override the messages, defaults are as follows
