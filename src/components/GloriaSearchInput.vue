@@ -6,43 +6,47 @@
     v-model="filterText"
     clearable
   >
-    <el-dropdown v-if="type === 'tasks'" slot="append" split-button trigger="click" @command="handleCommand">
-      <span>{{ dropdownText }}</span>
-      <el-dropdown-menu>
-        <el-dropdown-item command="all">
-          {{ i18n('searchTaskFilterAll') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="enabled">
-          {{ i18n('searchTaskFilterEnabled') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="disabled">
-          {{ i18n('searchTaskFilterDisabled') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="onTime">
-          {{ i18n('popupTaskOnTimeModeTag') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="needInteraction">
-          {{ i18n('popupTaskNeedInteractionTag') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="error">
-          {{ i18n('searchTaskFilterError') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="install">
-          {{ i18n('searchTaskFilterInstall') }}
-        </el-dropdown-item>
-        <el-dropdown-item command="local">
-          {{ i18n('searchTaskFilterLocal') }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+    <template #append v-if="type === 'tasks'">
+      <el-dropdown split-button trigger="click" @command="handleCommand">
+        <span>{{ dropdownText }}</span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="all">
+              {{ i18n('searchTaskFilterAll') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="enabled">
+              {{ i18n('searchTaskFilterEnabled') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="disabled">
+              {{ i18n('searchTaskFilterDisabled') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="onTime">
+              {{ i18n('popupTaskOnTimeModeTag') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="needInteraction">
+              {{ i18n('popupTaskNeedInteractionTag') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="error">
+              {{ i18n('searchTaskFilterError') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="install">
+              {{ i18n('searchTaskFilterInstall') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="local">
+              {{ i18n('searchTaskFilterLocal') }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </template>
   </el-input>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, nextTick } from 'vue';
 import debounce from 'lodash.debounce';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-search-input',
   props: {
     type: {
@@ -50,6 +54,22 @@ export default Vue.extend({
       required: true,
     },
   },
+  setup() {
+    const getRemote = debounce(
+      function (func) {
+        func();
+      },
+      1000,
+      {
+        trailing: true,
+      }
+    );
+
+    return {
+      getRemote,
+    };
+  },
+  emits: ['filter-text', 'filter-type'],
   data() {
     return {
       filterText: '',
@@ -59,26 +79,17 @@ export default Vue.extend({
     };
   },
   watch: {
-    filterText(val) {
+    filterText(val: string) {
       this.searching = true;
       this.getRemote(() => {
         this.$emit('filter-text', val);
-        this.$nextTick(() => {
+        nextTick(() => {
           this.searching = false;
         });
       });
     },
   },
   methods: {
-    getRemote: debounce(
-      function(func) {
-        func();
-      },
-      1000,
-      {
-        trailing: true,
-      }
-    ),
     handleCommand(command: string) {
       this.filterType = command || 'all';
 

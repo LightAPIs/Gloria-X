@@ -3,26 +3,27 @@
     <span v-for="(item, index) in buttonGroup" :key="index" class="clear-btn">
       <el-popconfirm
         placement="top-start"
-        :title="i18n('settingsClearConfirm')"
+        :title="i18n(item.tip)"
         :confirm-button-text="i18n('confirmText')"
         :cancel-button-text="i18n('cancelText')"
         @confirm="handleClear(item.key)"
       >
-        <el-tooltip slot="reference" placement="top-start" :enterable="false" :content="i18n(item.tip)">
+        <template #reference>
           <el-button type="danger" size="small">
             {{ i18n(item.name) }}
           </el-button>
-        </el-tooltip>
+        </template>
       </el-popconfirm>
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapMutations } from 'vuex';
+import { ElMessage } from 'element-plus';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-settings-clear',
   data() {
     return {
@@ -78,7 +79,7 @@ export default Vue.extend({
           break;
       }
 
-      this.$message.success(this.i18n('settingsClearCompleted'));
+      ElMessage.success(this.i18n('settingsClearCompleted'));
     },
   },
 });

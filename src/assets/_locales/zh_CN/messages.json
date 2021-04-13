@@ -173,12 +173,6 @@
   "popupContextTaskCopyIdCompleted": {
     "message": "已成功将任务 ID 复制到剪贴板中"
   },
-  "popupContextTaskEnable": {
-    "message": "启用任务"
-  },
-  "popupContextTaskDisable": {
-    "message": "禁用任务"
-  },
   "popupContextTaskOnTimeEnable": {
     "message": "启用准时模式"
   },
@@ -190,15 +184,6 @@
   },
   "popupContextTaskNeedInteractionDisable": {
     "message": "禁用手动关闭"
-  },
-  "popupContextTaskEdit": {
-    "message": "编辑此任务 ..."
-  },
-  "popupContextTaskDisconnect": {
-    "message": "停止检查此任务的远程更新"
-  },
-  "popupContextTaskDelete": {
-    "message": "删除此任务"
   },
   "popupContextNotificationMenuCopy": {
     "message": "复制此分类名称"
@@ -223,9 +208,6 @@
   },
   "popupContextNotificationMenuClear": {
     "message": "清除此分类下的所有通知记录"
-  },
-  "popupContextNotificationItemOpen": {
-    "message": "打开通知链接"
   },
   "popupContextNotificationItemCopyLink": {
     "message": "复制通知链接"
@@ -405,34 +387,31 @@
     "message": "清除通知记录"
   },
   "settingsClearNotificationsTip": {
-    "message": "清理所有通知的历史记录"
+    "message": "确认要清理所有通知的历史记录吗？"
   },
   "settingsClearTasks": {
     "message": "清除所有任务"
   },
   "settingsClearTasksTip": {
-    "message": "删除掉所有已添加的任务"
+    "message": "确认要删除掉所有已添加的任务吗？"
   },
   "settingsClearStages": {
-    "message": "清理所有 Stages"
+    "message": "清除所有 Stages"
   },
   "settingsClearStagesTip": {
-    "message": "清理所有任务的通知缓存"
+    "message": "确认要清理所有任务的通知缓存吗？"
   },
   "settingsClearExpiredStages": {
-    "message": "清理过期 Stages"
+    "message": "清除过期 Stages"
   },
   "settingsClearExpiredStagesTip": {
-    "message": "清理缺失相对应任务的通知缓存"
+    "message": "确认要清理缺失相对应任务的通知缓存吗？"
   },
   "settingsClearCaches": {
-    "message": "清理 Caches"
+    "message": "清除 Caches"
   },
   "settingsClearCachesTip": {
-    "message": "清理所有网络请求缓存"
-  },
-  "settingsClearConfirm": {
-    "message": "确认要清理吗？"
+    "message": "确认要清理所有网络请求缓存吗？"
   },
   "settingsImportExport": {
     "message": "导入/导出"

@@ -14,10 +14,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import GloriaDebugCode from '@/components/GloriaDebugCode.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'router-debug',
   components: {
     GloriaDebugCode,

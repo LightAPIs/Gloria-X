@@ -476,13 +476,11 @@ npm install
 Here, I would like to express my heartfelt thanks to Gloria author [BlackGlory](https://github.com/BlackGlory) and all related projects personnel. :heart:
 
 - [BlackGlory/Gloria](https://github.com/BlackGlory/Gloria)
-- [a62527776a/vue-floating-action-button](https://github.com/a62527776a/vue-floating-action-button)
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
-- [ElemeFE/element](https://github.com/ElemeFE/element)
+- [element-plus/element-plus](https://github.com/element-plus/element-plus)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
 - [Simonwep/selection](https://github.com/Simonwep/selection)
-- [vuejs/vue](https://github.com/vuejs/vue)
-- [yeyuqiudeng/vue-lazy-render](https://github.com/yeyuqiudeng/vue-lazy-render)
+- [vuejs/vue-next](https://github.com/vuejs/vue-next)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)
 
 ## Licence

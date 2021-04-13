@@ -17,34 +17,34 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, ref } from 'vue';
 import GloriaOptionsMenu from '@/components/GloriaOptionsMenu.vue';
 import GloriaOptionsBreadcrumb from '@/components/GloriaOptionsBreadcrumb.vue';
 
-const { hash } = location;
-let activeIndex = 'settings';
-if (hash.includes('#/debug')) {
-  activeIndex = 'debug';
-} else if (hash.includes('#/state')) {
-  activeIndex = 'state';
-} else if (hash.includes('#/reducer')) {
-  activeIndex = 'reducer';
-} else if (hash.includes('#/about')) {
-  activeIndex = 'about';
-} else {
-  activeIndex = 'settings';
-}
-
-export default Vue.extend({
+export default defineComponent({
   name: 'app',
-  components: {
-    GloriaOptionsMenu,
-    GloriaOptionsBreadcrumb,
-  },
-  data() {
+  setup() {
+    const { hash } = location;
+    let activeIndex = ref('settings');
+    if (hash.includes('#/debug')) {
+      activeIndex.value = 'debug';
+    } else if (hash.includes('#/state')) {
+      activeIndex.value = 'state';
+    } else if (hash.includes('#/reducer')) {
+      activeIndex.value = 'reducer';
+    } else if (hash.includes('#/about')) {
+      activeIndex.value = 'about';
+    } else {
+      activeIndex.value = 'settings';
+    }
+
     return {
       activeIndex,
     };
+  },
+  components: {
+    GloriaOptionsMenu,
+    GloriaOptionsBreadcrumb,
   },
   methods: {
     menuClick(index: string) {

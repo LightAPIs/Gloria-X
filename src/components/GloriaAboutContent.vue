@@ -36,9 +36,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-about-content',
   data() {
     return {
@@ -67,16 +67,12 @@ export default Vue.extend({
           title: 'BlackGlory/Gloria (MIT License)',
         },
         {
-          url: 'https://github.com/a62527776a/vue-floating-action-button',
-          title: 'a62527776a/vue-floating-action-button (MIT License)',
-        },
-        {
           url: 'https://github.com/akanshgulati/scrap-favicon',
           title: 'akanshgulati/scrap-favicon (MIT License)',
         },
         {
-          url: 'https://github.com/ElemeFE/element',
-          title: 'ElemeFE/element (MIT License)',
+          url: 'https://github.com/element-plus/element-plus',
+          title: 'element-plus/element-plus (MIT License)',
         },
         {
           url: 'https://github.com/GitHub-Laziji/menujs',
@@ -87,12 +83,8 @@ export default Vue.extend({
           title: 'Simonwep/selection (MIT License)',
         },
         {
-          url: 'https://github.com/vuejs/vue',
-          title: 'vuejs/vue (MIT License)',
-        },
-        {
-          url: 'https://github.com/yeyuqiudeng/vue-lazy-render',
-          title: 'yeyuqiudeng/vue-lazy-render (MIT License)',
+          url: 'https://github.com/vuejs/vue-next',
+          title: 'vuejs/vue-next (MIT License)',
         },
         {
           url: 'https://github.com/yyf1994gggg/vuex-chrome',

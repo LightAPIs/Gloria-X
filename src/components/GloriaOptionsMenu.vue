@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-options-menu',
   props: {
     activeIndex: {
@@ -33,6 +33,7 @@ export default Vue.extend({
       required: true,
     },
   },
+  emits: ['menu-click'],
   methods: {
     handleSelect(index: string) {
       this.$emit('menu-click', index);

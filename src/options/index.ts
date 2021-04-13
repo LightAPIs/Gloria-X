@@ -1,65 +1,59 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App/App.vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '../store';
 import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
 import {
-  Aside,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Col,
-  Container,
-  Divider,
-  Header,
-  Input,
-  InputNumber,
-  Link,
-  Main,
-  Menu,
-  MenuItem,
-  Message,
-  Popconfirm,
-  Popover,
-  Row,
-  Switch,
-  Tooltip,
-} from 'element-ui';
+  ElAside,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElButton,
+  ElCol,
+  ElContainer,
+  ElDivider,
+  ElHeader,
+  ElInput,
+  ElInputNumber,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElPopconfirm,
+  ElPopover,
+  ElRow,
+  ElSwitch,
+  ElTooltip,
+} from 'element-plus';
+import 'element-plus/packages/theme-chalk/src/base.scss';
+import 'element-plus/packages/theme-chalk/src/popper.scss';
 const RouterSettings = () => import(/* webpackChunkName: "options-group" */ '../router/RouterSettings.vue');
 const RouterDebug = () => import(/* webpackChunkName: "options-group" */ '../router/RouterDebug.vue');
 const RouterState = () => import(/* webpackChunkName: "options-group" */ '../router/RouterState.vue');
 const RouterReducer = () => import(/* webpackChunkName: "options-group" */ '../router/RouterReducer.vue');
 const RouterAbout = () => import(/* webpackChunkName: "options-group" */ '../router/RouterAbout.vue');
 
-Vue.use(VueRouter);
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Header);
-Vue.use(Main);
-Vue.use(Menu);
-Vue.use(MenuItem);
-Vue.use(Breadcrumb);
-Vue.use(BreadcrumbItem);
-Vue.use(Divider);
-Vue.use(Switch);
-Vue.use(InputNumber);
-Vue.use(Button);
-Vue.use(Tooltip);
-Vue.use(Input);
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Popover);
-Vue.use(Popconfirm);
-Vue.use(Link);
-Vue.prototype.$message = Message;
-Vue.config.productionTip = false;
-Vue.mixin({
-  methods: {
-    ...ui,
-    ...calc,
-  },
-});
+const components = [
+  ElAside,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElButton,
+  ElCol,
+  ElContainer,
+  ElDivider,
+  ElHeader,
+  ElInput,
+  ElInputNumber,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElPopconfirm,
+  ElPopover,
+  ElRow,
+  ElSwitch,
+  ElTooltip,
+];
 
 const routes = [
   {
@@ -88,25 +82,32 @@ const routes = [
     component: RouterAbout,
   },
   {
-    path: '*',
+    path: '/:pathMatch(.*)*',
     redirect: '/settings',
   },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(),
   routes,
 });
 
-document.title = ui.i18n('optionsTitle');
+const app = createApp(App);
 
-new Vue({
-  el: '#options-app',
-  store,
-  router,
-  components: {
-    App,
-  },
-  render(h) {
-    return h(App);
+components.forEach(component => {
+  app.component(component.name, component);
+});
+
+app.use(router);
+app.use(store);
+
+app.mixin({
+  methods: {
+    ...ui,
+    ...calc,
   },
 });
+
+app.mount('#options-app');
+
+document.title = ui.i18n('optionsTitle');

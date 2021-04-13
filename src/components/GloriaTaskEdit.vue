@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="type === 'edit' ? i18n('popupTaskDialogTitle') : i18n('popupTaskDialogCreateTitle')"
-    :visible="dialogVisible"
+    :model-value="dialogVisible"
     fullscreen
     center
     @close="$emit('close-dialog')"
@@ -16,7 +16,7 @@
           :placeholder="i18n('popupTaskFormCodePlaceholder')"
           type="textarea"
           :rows="8"
-          @keydown.native.tab="textareaTab($refs.taskInput, $event)"
+          @keydown.tab="textareaTab($refs.taskInput, $event)"
           ref="taskInput"
         ></el-input>
       </el-form-item>
@@ -50,11 +50,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Form as ElForm } from 'element-ui';
+import { defineComponent } from 'vue';
+import { ElForm } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'glorai-task-edit',
   props: {
     dialogVisible: {
@@ -90,6 +90,7 @@ export default Vue.extend({
       default: false,
     },
   },
+  emits: ['close-dialog'],
   data() {
     return {
       form: {
@@ -162,7 +163,7 @@ export default Vue.extend({
   methods: {
     ...mapMutations(['updateTaskBasic', 'createTaskBasic']),
     onSubmit() {
-      (this.$refs.form as ElForm).validate((valid: boolean) => {
+      (this.$refs.form as InstanceType<typeof ElForm>).validate((valid?: boolean) => {
         if (valid) {
           const {
             form: { id, name, code, day, hour, minute, onTimeMode, needInteraction },
@@ -196,7 +197,7 @@ export default Vue.extend({
       });
     },
     onReset() {
-      this.$refs.form && (this.$refs.form as ElForm).resetFields();
+      this.$refs.form && (this.$refs.form as InstanceType<typeof ElForm>).resetFields();
     },
   },
 });

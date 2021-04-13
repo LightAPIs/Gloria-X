@@ -173,12 +173,6 @@
   "popupContextTaskCopyIdCompleted": {
     "message": "已成功將任務 ID 複製到剪貼板中"
   },
-  "popupContextTaskEnable": {
-    "message": "啟用任務"
-  },
-  "popupContextTaskDisable": {
-    "message": "禁用任務"
-  },
   "popupContextTaskOnTimeEnable": {
     "message": "啟用準時模式"
   },
@@ -190,15 +184,6 @@
   },
   "popupContextTaskNeedInteractionDisable": {
     "message": "禁用手動關閉"
-  },
-  "popupContextTaskEdit": {
-    "message": "編輯此任務 ..."
-  },
-  "popupContextTaskDisconnect": {
-    "message": "停止檢查此任務的遠程更新"
-  },
-  "popupContextTaskDelete": {
-    "message": "移除此任務"
   },
   "popupContextNotificationMenuCopy": {
     "message": "複製此分類名稱"
@@ -223,9 +208,6 @@
   },
   "popupContextNotificationMenuClear": {
     "message": "清除此分類下的所有訊息記錄"
-  },
-  "popupContextNotificationItemOpen": {
-    "message": "打開訊息鏈接"
   },
   "popupContextNotificationItemCopyLink": {
     "message": "複製訊息鏈接"
@@ -405,34 +387,31 @@
     "message": "清除訊息記錄"
   },
   "settingsClearNotificationsTip": {
-    "message": "清理所有訊息的歷史記錄"
+    "message": "確認要清理所有訊息的歷史記錄嗎？"
   },
   "settingsClearTasks": {
     "message": "清除所有任務"
   },
   "settingsClearTasksTip": {
-    "message": "移除掉所有已添加的任務"
+    "message": "確認要移除掉所有已添加的任務嗎？"
   },
   "settingsClearStages": {
-    "message": "清理所有 Stages"
+    "message": "清除所有 Stages"
   },
   "settingsClearStagesTip": {
-    "message": "清理所有任務的訊息快取"
+    "message": "確認要清理所有任務的訊息快取嗎？"
   },
   "settingsClearExpiredStages": {
-    "message": "清理過期 Stages"
+    "message": "清除過期 Stages"
   },
   "settingsClearExpiredStagesTip": {
-    "message": "清理缺失相對應任務的訊息快取"
+    "message": "確認要清理缺失相對應任務的訊息快取嗎？"
   },
   "settingsClearCaches": {
-    "message": "清理 Caches"
+    "message": "清除 Caches"
   },
   "settingsClearCachesTip": {
-    "message": "清理所有網路請求快取"
-  },
-  "settingsClearConfirm": {
-    "message": "確認要清理嗎？"
+    "message": "確認要清理所有網路請求快取嗎？"
   },
   "settingsImportExport": {
     "message": "匯入/匯出"

@@ -1,36 +1,38 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App/App.vue';
 import store from '../store';
 import * as ui from '@/commons/ui';
 import * as calc from '@/commons/calc';
-import { Button, Checkbox, Col, Container, Form, FormItem, Header, Input, InputNumber, Main, Row } from 'element-ui';
+import {
+  ElButton,
+  ElCheckbox,
+  ElCol,
+  ElContainer,
+  ElForm,
+  ElFormItem,
+  ElHeader,
+  ElInput,
+  ElInputNumber,
+  ElMain,
+  ElRow,
+} from 'element-plus';
+import 'element-plus/packages/theme-chalk/src/base.scss';
 
-Vue.use(Container);
-Vue.use(Header);
-Vue.use(Main);
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Input);
-Vue.use(Form);
-Vue.use(FormItem);
-Vue.use(InputNumber);
-Vue.use(Checkbox);
-Vue.use(Button);
-Vue.config.productionTip = false;
-Vue.mixin({
+const components = [ElButton, ElCheckbox, ElCol, ElContainer, ElForm, ElFormItem, ElHeader, ElInput, ElInputNumber, ElMain, ElRow];
+
+const app = createApp(App);
+
+components.forEach(component => {
+  app.component(component.name, component);
+});
+
+app.mixin({
   methods: {
     ...ui,
     ...calc,
   },
 });
 
-new Vue({
-  el: '#generation-app',
-  store,
-  components: {
-    App,
-  },
-  render(h) {
-    return h(App);
-  },
-});
+app.use(store);
+
+app.mount('#generation-app');

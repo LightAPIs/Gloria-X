@@ -173,12 +173,6 @@
   "popupContextTaskCopyIdCompleted": {
     "message": "The task ID was successfully copied to the clipboard"
   },
-  "popupContextTaskEnable": {
-    "message": "Enable the task"
-  },
-  "popupContextTaskDisable": {
-    "message": "Disable the task"
-  },
   "popupContextTaskOnTimeEnable": {
     "message": "Enable On-Time mode"
   },
@@ -190,15 +184,6 @@
   },
   "popupContextTaskNeedInteractionDisable": {
     "message": "Disable Interaction"
-  },
-  "popupContextTaskEdit": {
-    "message": "Edit this task ..."
-  },
-  "popupContextTaskDisconnect": {
-    "message": "Disconnect remote update"
-  },
-  "popupContextTaskDelete": {
-    "message": "Delete this task"
   },
   "popupContextNotificationMenuCopy": {
     "message": "Copy this category name"
@@ -223,9 +208,6 @@
   },
   "popupContextNotificationMenuClear": {
     "message": "Clear all notification records for this"
-  },
-  "popupContextNotificationItemOpen": {
-    "message": "Open notification link"
   },
   "popupContextNotificationItemCopyLink": {
     "message": "Copy notification link"
@@ -405,34 +387,31 @@
     "message": "Clear notification records"
   },
   "settingsClearNotificationsTip": {
-    "message": "Clear the history of all notifications"
+    "message": "Are you sure you want to clear the history of all notifications?"
   },
   "settingsClearTasks": {
     "message": "Clear tasks"
   },
   "settingsClearTasksTip": {
-    "message": "Delete all added tasks"
+    "message": "Are you sure you want to delete all added tasks?"
   },
   "settingsClearStages": {
     "message": "Clear Stages"
   },
   "settingsClearStagesTip": {
-    "message": "Clear the notification cache for all tasks"
+    "message": "Are you sure you want to clear the notification cache for all tasks?"
   },
   "settingsClearExpiredStages": {
     "message": "Clear expired Stages"
   },
   "settingsClearExpiredStagesTip": {
-    "message": "Clear the notification cache of missing corresponding tasks"
+    "message": "Are you sure you want to clear the notification cache of missing corresponding tasks?"
   },
   "settingsClearCaches": {
     "message": "Clear Caches"
   },
   "settingsClearCachesTip": {
-    "message": "Clear all network request cache"
-  },
-  "settingsClearConfirm": {
-    "message": "Are you sure you want to clean this up?"
+    "message": "Are you sure you want to clear all network request cache?"
   },
   "settingsImportExport": {
     "message": "Import/Export"

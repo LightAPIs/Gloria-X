@@ -11,7 +11,7 @@
       index="-1"
       class="history-menu-item"
       :title="i18n('popupNotificationAll')"
-      @contextmenu.native.prevent="onContextmenu($event, '-1')"
+      @contextmenu.prevent="onContextmenu($event, '-1')"
     >
       <template v-if="configs.notificationShowMenuCount">
         <el-row type="flex">
@@ -31,10 +31,10 @@
       index="-2"
       class="history-menu-item"
       :title="i18n('popupNotificationLater')"
-      @contextmenu.native.prevent="onContextmenu($event, '-2')"
+      @contextmenu.prevent="onContextmenu($event, '-2')"
     >
       {{ i18n('popupNotificationLater') }}
-      <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" />
+      <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" type="danger" />
     </el-menu-item>
     <el-menu-item
       v-for="(item, index) in notificationsTitleList"
@@ -42,7 +42,7 @@
       :index="index.toString()"
       class="history-menu-item"
       :title="item"
-      @contextmenu.native.prevent="onContextmenu($event, index.toString())"
+      @contextmenu.prevent="onContextmenu($event, index.toString())"
     >
       <template v-if="configs.notificationShowMenuCount">
         <el-row type="flex">
@@ -62,11 +62,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
+import { ElMessage } from 'element-plus';
 import { mapState, mapGetters, mapMutations } from 'vuex';
 
-export default Vue.extend({
+/* global myStore */
+
+export default defineComponent({
   name: 'gloria-notification-menu',
+  emits: ['select-menu', 'menu-contextmenu'],
   data() {
     return {
       activeIndex: '-1',
@@ -88,7 +92,7 @@ export default Vue.extend({
     handleSelect(key: string) {
       this.$emit('select-menu', key);
     },
-    onContextmenu(event: Event, index: string) {
+    onContextmenu(event: MouseEvent, index: string) {
       const { notificationsTitleList, laterCount, laterList } = this;
       const items = [];
 
@@ -102,10 +106,10 @@ export default Vue.extend({
               this.copyToClip(
                 notificationsTitleList[index],
                 () => {
-                  this.$message.success(this.i18n('popupContextNotificationMenuCopyCompletd'));
+                  ElMessage.success(this.i18n('popupContextNotificationMenuCopyCompletd'));
                 },
                 () => {
-                  this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                  ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
                 }
               );
             },
@@ -168,13 +172,13 @@ export default Vue.extend({
         }
       }
 
-      this.$contextmenu({
+      this.$emit('menu-contextmenu', {
         items,
         event,
       });
       return false;
     },
-    openLinks(list: store.GloriaNotification[]) {
+    openLinks(list: myStore.GloriaNotification[]) {
       const links = new Set([] as string[]);
       list.forEach(ele => {
         const {

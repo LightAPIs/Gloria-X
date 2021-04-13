@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import GloriaAboutContent from '@/components/GloriaAboutContent.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'router-about',
   components: {
     GloriaAboutContent,

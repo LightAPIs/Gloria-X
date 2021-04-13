@@ -7,7 +7,7 @@
             <div class="left-header">{{ i18n('generationSelected') }}</div>
             <div v-for="(item, index) in elements" :key="index">
               <el-input v-model="item.value" class="path-input">
-                <template slot="prepend">
+                <template #prepend>
                   {{ i18n('generationElement', [(index + 1).toString()]) }}
                 </template>
               </el-input>
@@ -48,7 +48,7 @@
               id="debug-code-input"
               type="textarea"
               :rows="9"
-              @keydown.native.tab="textareaTab($refs.codeInput, $event)"
+              @keydown.tab="textareaTab($refs.codeInput, $event)"
               @change="onCodeChange"
               ref="codeInput"
             ></el-input>
@@ -92,7 +92,7 @@
               id="task-code-input"
               type="textarea"
               :rows="9"
-              @keydown.native.tab="textareaTab($refs.codeInput, $event)"
+              @keydown.tab="textareaTab($refs.codeInput, $event)"
               disabled
               readonly
             ></el-input>
@@ -143,12 +143,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Form as ElForm } from 'element-ui';
+import { defineComponent } from 'vue';
+import { ElForm } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
 import { v4 as uuid } from 'uuid';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-generation-content',
   data() {
     return {
@@ -291,7 +291,7 @@ export default Vue.extend({
       });
     },
     onTaskSubmit() {
-      (this.$refs.taskForm as ElForm).validate((valid: boolean) => {
+      (this.$refs.taskForm as InstanceType<typeof ElForm>).validate((valid?: boolean) => {
         if (valid) {
           const {
             code,

@@ -15,11 +15,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import GloriaStateContent from '@/components/GloriaStateContent.vue';
 import GloriaSettingsClear from '@/components/GloriaSettingsClear.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'router-state',
   components: {
     GloriaStateContent,

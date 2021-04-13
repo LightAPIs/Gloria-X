@@ -25,9 +25,7 @@
 
 通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒。
 
-本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍生版本，用于修改及扩充 Gloria 中的部分功能，并添加我个人所需要的一些特性，所以 Gloria-X 可以理解为是一个以 Gloria 为核心，并~~提供功能增强~~*胡乱瞎改*的版本。
-
-**声明 ：** 我决定编写这个项目的初衷并不是因为原本的 Gloria 存在任何影响使用的缺陷或问题，相反地，作为 Gloria 的忠实用户，我用它完成了各式各样的网页监视和消息通知等任务，是我浏览器上必备的扩展程序之一。我之所以选择编写这个工具的原因旨在学习 TypeScript，提高编程水平，顺便根据自己的使用习惯改写部分工具特性。
+本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍生版本，用于修改及扩充 Gloria 中的部分功能，并添加我个人所需要的一些特性，所以 Gloria-X 可以理解为是一个以 Gloria 为核心，并提供功能增强的版本。
 
 ## 目录
 
@@ -507,13 +505,11 @@ npm install
 在此，向 Gloria 作者 [BlackGlory](https://github.com/BlackGlory) 以及所有相关项目人员表示由衷的感谢。:heart:
 
 - [BlackGlory/Gloria](https://github.com/BlackGlory/Gloria)
-- [a62527776a/vue-floating-action-button](https://github.com/a62527776a/vue-floating-action-button)
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
-- [ElemeFE/element](https://github.com/ElemeFE/element)
+- [element-plus/element-plus](https://github.com/element-plus/element-plus)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
 - [Simonwep/selection](https://github.com/Simonwep/selection)
-- [vuejs/vue](https://github.com/vuejs/vue)
-- [yeyuqiudeng/vue-lazy-render](https://github.com/yeyuqiudeng/vue-lazy-render)
+- [vuejs/vue-next](https://github.com/vuejs/vue-next)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)
 
 ## 许可证

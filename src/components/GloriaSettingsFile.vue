@@ -27,21 +27,18 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
+import { ElMessage } from 'element-plus';
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 
 const secretKey = '048e0efc-da28-4322-a93c-37fa69e84df8';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-settings-file',
-  computed: {
-    ...mapState(['tasks']),
-  },
-  methods: {
-    ...mapMutations(['mergeTasks']),
-    exportFile(content: string, filename: string, completed?: () => void) {
+  setup() {
+    const exportFile = (content: string, filename: string, completed?: () => void) => {
       const exportBlob = new Blob([content]);
       const saveLink = document.createElement('a');
       saveLink.href = URL.createObjectURL(exportBlob);
@@ -65,8 +62,9 @@ export default Vue.extend({
       saveLink.dispatchEvent(ev);
 
       typeof completed === 'function' && completed();
-    },
-    importFile(callback: (status: boolean, content: string) => void) {
+    };
+
+    const importFile = (callback: (status: boolean, content: string) => void) => {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.accept = '.txt, .text, .json, .conf, .config';
@@ -88,7 +86,7 @@ export default Vue.extend({
           }
 
           const reader = new FileReader();
-          reader.onload = function(e) {
+          reader.onload = function (e) {
             const { target } = e;
             if (target) {
               const data = target.result;
@@ -102,7 +100,18 @@ export default Vue.extend({
       });
 
       fileInput.click();
-    },
+    };
+
+    return {
+      exportFile,
+      importFile,
+    };
+  },
+  computed: {
+    ...mapState(['tasks']),
+  },
+  methods: {
+    ...mapMutations(['mergeTasks']),
     onImport() {
       try {
         this.importFile((status, content) => {
@@ -116,16 +125,16 @@ export default Vue.extend({
                 this.handleImport(originalText);
               }
             } else {
-              this.$message.error(this.i18n('settingsImportEmpty'));
+              ElMessage.error(this.i18n('settingsImportEmpty'));
             }
           } else {
-            content === 'no file' && this.$message.warning(this.i18n('settingsImoprtNoFile'));
-            content === 'invalid' && this.$message.error(this.i18n('settingsImportInvalid'));
+            content === 'no file' && ElMessage.warning(this.i18n('settingsImoprtNoFile'));
+            content === 'invalid' && ElMessage.error(this.i18n('settingsImportInvalid'));
           }
         });
       } catch (e) {
         console.error(e);
-        this.$message.error(this.i18n('settingsImportUnkown'));
+        ElMessage.error(this.i18n('settingsImportUnkown'));
       }
     },
     handleImport(content: string) {
@@ -133,25 +142,25 @@ export default Vue.extend({
         const importArr = JSON.parse(content);
         if (Array.isArray(importArr)) {
           this.mergeTasks(importArr);
-          this.$message.success(this.i18n('settingsImportSuccess'));
+          ElMessage.success(this.i18n('settingsImportSuccess'));
         } else {
-          this.$message.warning(this.i18n('settingsImportNoArray'));
+          ElMessage.warning(this.i18n('settingsImportNoArray'));
         }
       } catch (e) {
         console.error(e);
-        this.$message.error(this.i18n('settingsImportUnkown'));
+        ElMessage.error(this.i18n('settingsImportUnkown'));
       }
     },
     onExoprtJson() {
       const { tasks } = this;
       this.exportFile(JSON.stringify(tasks, null, 2), 'tasks.json', () => {
-        this.$message.success(this.i18n('settingsExportJsonSuccess'));
+        ElMessage.success(this.i18n('settingsExportJsonSuccess'));
       });
     },
     onExportText() {
       const { tasks } = this;
       this.exportFile(AES.encrypt(JSON.stringify(tasks), secretKey).toString(), 'tasks.txt', () => {
-        this.$message.success(this.i18n('settingsExportTextSuccess'));
+        ElMessage.success(this.i18n('settingsExportTextSuccess'));
       });
     },
   },

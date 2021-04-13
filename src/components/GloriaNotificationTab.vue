@@ -2,7 +2,7 @@
   <div class="tab-content">
     <el-container class="history-container">
       <el-aside width="200px" class="history-aside">
-        <gloria-notification-menu @select-menu="onSelectMenu"></gloria-notification-menu>
+        <gloria-notification-menu @select-menu="onSelectMenu" @menu-contextmenu="onContextmenu"></gloria-notification-menu>
       </el-aside>
       <el-container direction="vertical">
         <el-header v-if="configs.notificationShowSearchInput" height="32px">
@@ -10,7 +10,7 @@
         </el-header>
         <el-main>
           <div class="history">
-            <el-timeline class="history-timeline">
+            <el-timeline class="history-timeline" color="#0bbd87">
               <gloria-notification-item
                 v-for="info in notifications"
                 :key="info.id"
@@ -26,33 +26,47 @@
                 :image-url="info.options.imageUrl"
                 :url="info.options.url"
                 :filter-text="filterText"
+                @notification-contextmenu="onContextmenu"
               ></gloria-notification-item>
             </el-timeline>
           </div>
         </el-main>
       </el-container>
     </el-container>
+    <gloria-context-menu
+      :is-show="context.isShow"
+      :items="context.items"
+      :context-event="context.event"
+      @close="onContextmenuClose"
+    ></gloria-context-menu>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapState } from 'vuex';
 import GloriaNotificationMenu from './GloriaNotificationMenu.vue';
 import GloriaSearchInput from './GloriaSearchInput.vue';
 import GloriaNotificationItem from './GloriaNotificationItem.vue';
+import GloriaContextMenu from './GloriaContextMenu.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-notification-tab',
   components: {
     GloriaNotificationMenu,
     GloriaSearchInput,
     GloriaNotificationItem,
+    GloriaContextMenu,
   },
   data() {
     return {
       menuKey: '-1',
       filterText: '',
+      context: {
+        isShow: false,
+        items: [],
+        event: null,
+      },
     };
   },
   computed: {
@@ -64,6 +78,14 @@ export default Vue.extend({
     },
     onFilterText(text: string) {
       this.filterText = text;
+    },
+    onContextmenu(context: unknown) {
+      Object.assign(this.context, context, {
+        isShow: true,
+      });
+    },
+    onContextmenuClose() {
+      this.context.isShow = false;
     },
   },
 });

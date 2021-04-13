@@ -78,7 +78,7 @@
         {{ i18n('settingsNotificationMaxinum') }}
       </span>
       <el-input-number
-        :value="configs.notificationMaxinum"
+        :model-value="configs.notificationMaxinum"
         :min="50"
         :max="500"
         controls-position="right"
@@ -90,9 +90,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-settings-notification',
   data() {
     return {

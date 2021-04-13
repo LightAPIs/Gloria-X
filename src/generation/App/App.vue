@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import GloriaGenerationContent from '@/components/GloriaGenerationContent.vue';
 import GloriaGenerationToolbar from '@/components/GloriaGenerationToolbar.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'app',
   components: {
     GloriaGenerationContent,

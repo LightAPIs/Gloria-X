@@ -1,35 +1,37 @@
 <template>
   <el-timeline-item v-show="matchMenu && itemShow" :timestamp="displayTime(eventTime)" placement="top">
-    <el-badge is-dot :hidden="!later" class="notification-item">
-      <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.native.prevent="onContextmenu">
-        <div slot="header" class="card-header">
-          <el-row>
-            <el-col :span="4">
-              <el-avatar class="card-icon" shape="square" fit="fill" :size="68" :src="displayIcon"></el-avatar>
-            </el-col>
-            <el-col :span="20" class="header-title">
-              <template v-if="isLink(url)">
-                <template v-if="configs.notificationShowUrl">
-                  <div class="title-text">
+    <el-badge is-dot :hidden="!later" type="danger" class="notification-item">
+      <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.prevent="onContextmenu">
+        <template #header>
+          <div class="card-header">
+            <el-row>
+              <el-col :span="4">
+                <el-avatar class="card-icon" shape="square" fit="fill" :size="68" :src="displayIcon"></el-avatar>
+              </el-col>
+              <el-col :span="20" class="header-title">
+                <template v-if="isLink(url)">
+                  <template v-if="configs.notificationShowUrl">
+                    <div class="title-text">
+                      {{ title || url }}
+                    </div>
+                    <el-link type="primary" @click="openLink" class="url-text">
+                      {{ url }}
+                    </el-link>
+                  </template>
+                  <el-link v-else type="primary" @click="openLink">
                     {{ title || url }}
-                  </div>
-                  <el-link type="primary" @click="openLink" class="url-text">
-                    {{ url }}
                   </el-link>
                 </template>
-                <el-link v-else type="primary" @click="openLink">
-                  {{ title || url }}
-                </el-link>
-              </template>
-              <div v-else class="title-text">
-                {{ title }}
-              </div>
-              <div class="context-message">
-                {{ i18n('popupNotificationFrom') + contextMessage }}
-              </div>
-            </el-col>
-          </el-row>
-        </div>
+                <div v-else class="title-text">
+                  {{ title }}
+                </div>
+                <div class="context-message">
+                  {{ i18n('popupNotificationFrom') + contextMessage }}
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </template>
         <span>
           {{ message }}
         </span>
@@ -40,11 +42,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapGetters, mapState, mapMutations } from 'vuex';
+import { ElMessage } from 'element-plus';
 import { APP_ICON_URL } from '@/commons/var';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-notification-item',
   props: {
     menuKey: {
@@ -69,9 +72,11 @@ export default Vue.extend({
     },
     title: {
       type: String,
+      default: '',
     },
     message: {
       type: String,
+      default: '',
     },
     contextMessage: {
       type: String,
@@ -92,6 +97,7 @@ export default Vue.extend({
       default: '',
     },
   },
+  emits: ['notification-contextmenu'],
   computed: {
     ...mapState(['configs']),
     ...mapGetters(['notificationsTitleList']),
@@ -161,51 +167,39 @@ export default Vue.extend({
         this.checkedNotification(id);
       }
     },
-    onContextmenu(event: Event) {
+    onContextmenu(event: MouseEvent) {
       const { id, url, title, message, iconUrl, imageUrl, later } = this;
       const items = [];
 
       url &&
-        items.push(
-          {
-            label: this.i18n('popupContextNotificationItemOpen'),
-            icon: 'el-icon-view',
-            divided: true,
-            onClick: () => {
-              this.openLink();
-            },
+        items.push({
+          label: this.i18n('popupContextNotificationItemCopyLink'),
+          icon: 'el-icon-link',
+          onClick: () => {
+            this.copyToClip(
+              url,
+              () => {
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
+              },
+              () => {
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
+              }
+            );
           },
-          {
-            label: this.i18n('popupContextNotificationItemCopyLink'),
-            icon: 'el-icon-link',
-            divided: !title,
-            onClick: () => {
-              this.copyToClip(
-                url,
-                () => {
-                  this.$message.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
-                },
-                () => {
-                  this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
-                }
-              );
-            },
-          }
-        );
+        });
 
       title &&
         items.push({
           label: this.i18n('popupContextNotificationItemCopyTitle'),
           icon: 'el-icon-chat-dot-round',
-          divided: !message,
           onClick: () => {
             this.copyToClip(
               title,
               () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyTitleCompleted'));
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyTitleCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -215,15 +209,14 @@ export default Vue.extend({
         items.push({
           label: this.i18n('popupContextNotificationItemCopyMessage'),
           icon: 'el-icon-chat-line-round',
-          divided: !iconUrl,
           onClick: () => {
             this.copyToClip(
               message,
               () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyMessageCompleted'));
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyMessageCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -233,15 +226,14 @@ export default Vue.extend({
         items.push({
           label: this.i18n('popupContextNotificationItemCopyIconUrl'),
           icon: 'el-icon-picture-outline-round',
-          divided: !imageUrl,
           onClick: () => {
             this.copyToClip(
               iconUrl,
               () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyIconUrlCompleted'));
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyIconUrlCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -251,15 +243,14 @@ export default Vue.extend({
         items.push({
           label: this.i18n('popupContextNotificationItemCopyImageUrl'),
           icon: 'el-icon-picture-outline',
-          divided: !id,
           onClick: () => {
             this.copyToClip(
               imageUrl,
               () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyImageUrlCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -274,10 +265,10 @@ export default Vue.extend({
             this.copyToClip(
               id,
               () => {
-                this.$message.success(this.i18n('popupContextNotificationItemCopyIdCompleted'));
+                ElMessage.success(this.i18n('popupContextNotificationItemCopyIdCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -306,7 +297,7 @@ export default Vue.extend({
         },
       });
 
-      this.$contextmenu({
+      this.$emit('notification-contextmenu', {
         items,
         event,
       });

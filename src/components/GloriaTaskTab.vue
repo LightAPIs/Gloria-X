@@ -23,10 +23,17 @@
           :filter-text="filterText"
           :filter-type="filterType"
           @task-edit="onTaskEdit"
+          @task-contextmenu="onTaskContextmenu"
         ></gloria-task-item>
       </el-main>
     </el-container>
     <gloria-task-fab @add-task="onAddTask"></gloria-task-fab>
+    <gloria-context-menu
+      :is-show="context.isShow"
+      :items="context.items"
+      :context-event="context.event"
+      @close="onContextmenuClose"
+    ></gloria-context-menu>
     <gloria-task-edit
       :dialog-visible="dialogVisible"
       :type="formType"
@@ -42,20 +49,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapState, mapMutations } from 'vuex';
 import GloriaTaskItem from './GloriaTaskItem.vue';
 import GloriaTaskFab from './GloriaTaskFab.vue';
 import GloriaTaskEdit from './GloriaTaskEdit.vue';
 import GloriaSearchInput from './GloriaSearchInput.vue';
+import GloriaContextMenu from './GloriaContextMenu.vue';
+import { ElMessage } from 'element-plus';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-task-tab',
   components: {
     GloriaTaskItem,
     GloriaTaskFab,
     GloriaTaskEdit,
     GloriaSearchInput,
+    GloriaContextMenu,
   },
   data() {
     return {
@@ -71,6 +81,11 @@ export default Vue.extend({
       },
       filterText: '',
       filterType: 'all',
+      context: {
+        isShow: false,
+        items: [],
+        event: null,
+      },
     };
   },
   computed: {
@@ -103,13 +118,21 @@ export default Vue.extend({
         }
       }
 
-      !editStatus && this.$message.error(this.i18n('popupTaskErrorEdit'));
+      !editStatus && ElMessage.error(this.i18n('popupTaskErrorEdit'));
     },
     onFilterText(text: string) {
       this.filterText = text;
     },
     onFilterType(command: string) {
       this.filterType = command;
+    },
+    onTaskContextmenu(context: unknown) {
+      Object.assign(this.context, context, {
+        isShow: true,
+      });
+    },
+    onContextmenuClose() {
+      this.context.isShow = false;
     },
   },
 });

@@ -1,6 +1,5 @@
+import { toRaw } from 'vue';
 import debounce from 'lodash.debounce';
-
-const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 
 class ChromeStorage {
   static readonly WAIT_TIME = 500;
@@ -23,7 +22,7 @@ class ChromeStorage {
     this.blockLog = blockLog || false;
 
     this.implicitPush = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -31,7 +30,7 @@ class ChromeStorage {
     );
 
     this.lastActiveTab = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -39,7 +38,7 @@ class ChromeStorage {
     );
 
     this.lastCheckTasksUpdate = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -47,7 +46,7 @@ class ChromeStorage {
     );
 
     this.tasks = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -55,7 +54,7 @@ class ChromeStorage {
     );
 
     this.notifications = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -63,7 +62,7 @@ class ChromeStorage {
     );
 
     this.stages = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -71,7 +70,7 @@ class ChromeStorage {
     );
 
     this.configs = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -79,7 +78,7 @@ class ChromeStorage {
     );
 
     this.reducer = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -87,7 +86,7 @@ class ChromeStorage {
     );
 
     this.unread = debounce(
-      function(func) {
+      function (func) {
         func();
       },
       ChromeStorage.WAIT_TIME,
@@ -95,15 +94,11 @@ class ChromeStorage {
     );
   }
 
-  shallowCopy(data: object) {
-    return JSON.parse(JSON.stringify(data));
-  }
-
-  setImplicitPush(data: boolean, message?: string) {
+  setImplicitPush(data: boolean, message?: string): void {
     this.implicitPush(() => {
       chrome.storage.local.set(
         {
-          implicitPush: data,
+          implicitPush: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -112,11 +107,11 @@ class ChromeStorage {
     });
   }
 
-  setLastActiveTab(data: string, message?: string) {
+  setLastActiveTab(data: string, message?: string): void {
     this.lastActiveTab(() => {
       chrome.storage.local.set(
         {
-          lastActiveTab: data,
+          lastActiveTab: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -125,11 +120,11 @@ class ChromeStorage {
     });
   }
 
-  setLastCheckTasksUpdate(data: string, message?: string) {
+  setLastCheckTasksUpdate(data: string, message?: string): void {
     this.lastCheckTasksUpdate(() => {
       chrome.storage.local.set(
         {
-          lastCheckTasksUpdate: data,
+          lastCheckTasksUpdate: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -138,11 +133,11 @@ class ChromeStorage {
     });
   }
 
-  setTasks(data: store.GloriaTask[], message?: string) {
+  setTasks(data: myStore.GloriaTask[], message?: string): void {
     this.tasks(() => {
       chrome.storage.local.set(
         {
-          tasks: isChrome ? data : this.shallowCopy(data),
+          tasks: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -151,11 +146,11 @@ class ChromeStorage {
     });
   }
 
-  setNotifications(data: store.GloriaNotification[], message?: string) {
+  setNotifications(data: myStore.GloriaNotification[], message?: string): void {
     this.notifications(() => {
       chrome.storage.local.set(
         {
-          notifications: isChrome ? data : this.shallowCopy(data),
+          notifications: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -164,11 +159,11 @@ class ChromeStorage {
     });
   }
 
-  setStages(data: store.GloriaStage[], message?: string) {
+  setStages(data: myStore.GloriaStage[], message?: string): void {
     this.stages(() => {
       chrome.storage.local.set(
         {
-          stages: isChrome ? data : this.shallowCopy(data),
+          stages: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -177,11 +172,11 @@ class ChromeStorage {
     });
   }
 
-  setConfigs(data: store.GloriaConfig, message?: string) {
+  setConfigs(data: myStore.GloriaConfig, message?: string): void {
     this.configs(() => {
       chrome.storage.local.set(
         {
-          configs: isChrome ? data : Object.assign({}, data),
+          configs: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -190,11 +185,11 @@ class ChromeStorage {
     });
   }
 
-  setReducer(data: string, message?: string) {
+  setReducer(data: string, message?: string): void {
     this.reducer(() => {
       chrome.storage.local.set(
         {
-          reducer: data,
+          reducer: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);
@@ -203,11 +198,11 @@ class ChromeStorage {
     });
   }
 
-  setUnread(data: number, message?: string) {
+  setUnread(data: number, message?: string): void {
     this.unread(() => {
       chrome.storage.local.set(
         {
-          unread: data,
+          unread: toRaw(data),
         },
         () => {
           !this.blockLog && message && console.log(message);

@@ -12,7 +12,7 @@
             type="textarea"
             :rows="32"
             :placeholder="i18n('debugCodePlaceholder')"
-            @keydown.native.tab="textareaTab($refs.codeInput, $event)"
+            @keydown.tab="textareaTab($refs.codeInput, $event)"
             ref="codeInput"
           ></el-input>
         </div>
@@ -44,9 +44,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-debug-code',
   props: {
     testing: {
@@ -58,6 +58,7 @@ export default Vue.extend({
       required: true,
     },
   },
+  emits: ['stop-test'],
   data() {
     return {
       code: '',

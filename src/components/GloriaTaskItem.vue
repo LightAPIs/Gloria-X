@@ -2,97 +2,101 @@
   <el-card
     v-show="
       itemShow &&
-        ((filterType === 'enabled' && isEnable) ||
-          (filterType === 'disabled' && !isEnable) ||
-          (filterType === 'onTime' && onTimeMode) ||
-          (filterType === 'needInteraction' && needInteraction) ||
-          (filterType === 'error' && executionError > 0) ||
-          (filterType === 'install' && origin) ||
-          (filterType === 'local' && !origin) ||
-          filterType === 'all')
+      ((filterType === 'enabled' && isEnable) ||
+        (filterType === 'disabled' && !isEnable) ||
+        (filterType === 'onTime' && onTimeMode) ||
+        (filterType === 'needInteraction' && needInteraction) ||
+        (filterType === 'error' && executionError > 0) ||
+        (filterType === 'install' && origin) ||
+        (filterType === 'local' && !origin) ||
+        filterType === 'all')
     "
     class="tab-card"
     shadow="hover"
-    @contextmenu.native.prevent="onContextmenu"
+    @contextmenu.prevent="onContextmenu"
   >
-    <span slot="header">
-      <span class="header-text">
-        {{ name }}
-      </span>
-      <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
-        {{ i18n('popupTaskOnTimeModeTag') }}
-      </el-tag>
-      <el-tag
-        v-if="needInteraction && isChrome"
-        type="warning"
-        size="mini"
-        effect="dark"
-        :title="i18n('popupTaskNeedInteractionText')"
-        class="tag"
-      >
-        {{ i18n('popupTaskNeedInteractionTag') }}
-      </el-tag>
-      <el-tag
-        v-if="executionError > 0"
-        type="danger"
-        size="mini"
-        effect="dark"
-        :title="i18n('popupTaskLastExecutionErrorText', executionError.toString())"
-        class="tag"
-      >
-        {{ i18n('popupTaskLastExecutionErrorTag', executionError.toString()) }}
-      </el-tag>
-      <span class="float-right">
-        <el-popconfirm
-          v-if="origin"
-          class="disconnect-btn"
-          :title="i18n('popupTaskDisconnectConfirm')"
-          :confirm-button-text="i18n('popupTaskDisconnectOk')"
-          confirm-button-type="warning"
-          :cancel-button-text="i18n('cancelText')"
-          @confirm="onDisconnect"
-        >
-          <el-button
-            slot="reference"
-            type="warning"
-            size="mini"
-            icon="el-icon-scissors"
-            circle
-            class="card-button"
-            :title="i18n('popupTaskDisconnect')"
-          ></el-button>
-        </el-popconfirm>
-        <el-popconfirm
-          class="delete-btn"
-          :title="i18n('popupTaskDeleteConfirm')"
-          :confirm-button-text="i18n('popupTaskDeleteOk')"
-          confirm-button-type="danger"
-          :cancel-button-text="i18n('cancelText')"
-          icon="el-icon-warning"
-          @confirm="onDelete"
-        >
-          <el-button
-            slot="reference"
-            type="danger"
-            size="mini"
-            icon="el-icon-delete"
-            circle
-            class="card-button"
-            :title="i18n('popupTaskDelete')"
-          ></el-button>
-        </el-popconfirm>
-        <el-button
-          type="primary"
+    <template #header>
+      <span>
+        <span class="header-text">
+          {{ name }}
+        </span>
+        <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
+          {{ i18n('popupTaskOnTimeModeTag') }}
+        </el-tag>
+        <el-tag
+          v-if="needInteraction && isChrome"
+          type="warning"
           size="mini"
-          icon="el-icon-edit"
-          circle
-          class="card-button"
-          :title="i18n('popupTaskEdit')"
-          @click="onEdit"
-        ></el-button>
-        <el-switch :value="isEnable" active-color="#13ce66" inactive-color="#ff4949" class="switch" @change="onSwitchChange"></el-switch>
+          effect="dark"
+          :title="i18n('popupTaskNeedInteractionText')"
+          class="tag"
+        >
+          {{ i18n('popupTaskNeedInteractionTag') }}
+        </el-tag>
+        <el-tag
+          v-if="executionError > 0"
+          type="danger"
+          size="mini"
+          effect="dark"
+          :title="i18n('popupTaskLastExecutionErrorText', executionError.toString())"
+          class="tag"
+        >
+          {{ i18n('popupTaskLastExecutionErrorTag', executionError.toString()) }}
+        </el-tag>
+        <span class="float-right">
+          <el-popconfirm
+            v-if="origin"
+            class="disconnect-btn"
+            :title="i18n('popupTaskDisconnectConfirm')"
+            :confirm-button-text="i18n('popupTaskDisconnectOk')"
+            confirm-button-type="warning"
+            :cancel-button-text="i18n('cancelText')"
+            @confirm="onDisconnect"
+          >
+            <template #reference>
+              <el-button
+                type="warning"
+                size="mini"
+                icon="el-icon-scissors"
+                circle
+                class="card-button"
+                :title="i18n('popupTaskDisconnect')"
+              ></el-button>
+            </template>
+          </el-popconfirm>
+          <el-popconfirm
+            class="delete-btn"
+            :title="i18n('popupTaskDeleteConfirm')"
+            :confirm-button-text="i18n('popupTaskDeleteOk')"
+            confirm-button-type="danger"
+            :cancel-button-text="i18n('cancelText')"
+            icon="el-icon-warning"
+            @confirm="onDelete"
+          >
+            <template #reference>
+              <el-button
+                type="danger"
+                size="mini"
+                icon="el-icon-delete"
+                circle
+                class="card-button"
+                :title="i18n('popupTaskDelete')"
+              ></el-button>
+            </template>
+          </el-popconfirm>
+          <el-button
+            type="primary"
+            size="mini"
+            icon="el-icon-edit"
+            circle
+            class="card-button"
+            :title="i18n('popupTaskEdit')"
+            @click="onEdit"
+          ></el-button>
+          <el-switch :value="isEnable" active-color="#13ce66" inactive-color="#ff4949" class="switch" @change="onSwitchChange"></el-switch>
+        </span>
       </span>
-    </span>
+    </template>
     <div>
       <span>
         {{ i18n('popupTaskTriggerInterval') + intervalTime(triggerInterval) }}
@@ -127,10 +131,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
+import { ElMessage } from 'element-plus';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-task-item',
   props: {
     id: {
@@ -190,9 +195,11 @@ export default Vue.extend({
       default: 'all',
     },
   },
-  data() {
+  emits: ['task-edit', 'task-contextmenu'],
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
     return {
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
+      isChrome,
     };
   },
   computed: {
@@ -227,8 +234,8 @@ export default Vue.extend({
       const { id } = this;
       this.disconnectTask(id);
     },
-    onContextmenu(event: Event) {
-      const { id, name, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
+    onContextmenu(event: MouseEvent) {
+      const { id, name, isEnable, onTimeMode, needInteraction, isChrome } = this;
       const items = [
         isEnable
           ? {
@@ -243,9 +250,9 @@ export default Vue.extend({
                   },
                   res => {
                     if (res) {
-                      this.$message.success(this.i18n('popupContextExecuteTaskSuccess'));
+                      ElMessage.success(this.i18n('popupContextExecuteTaskSuccess'));
                     } else {
-                      this.$message.success(this.i18n('popupContextExecuteTaskError'));
+                      ElMessage.success(this.i18n('popupContextExecuteTaskError'));
                     }
                   }
                 );
@@ -259,10 +266,10 @@ export default Vue.extend({
             this.copyToClip(
               name,
               () => {
-                this.$message.success(this.i18n('popupContextTaskCopyNameCompleted'));
+                ElMessage.success(this.i18n('popupContextTaskCopyNameCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -274,10 +281,10 @@ export default Vue.extend({
             this.copyToClip(
               this.taskCode(id),
               () => {
-                this.$message.success(this.i18n('popupContextTaskCopyCodeCompleted'));
+                ElMessage.success(this.i18n('popupContextTaskCopyCodeCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
@@ -290,28 +297,17 @@ export default Vue.extend({
             this.copyToClip(
               id,
               () => {
-                this.$message.success(this.i18n('popupContextTaskCopyIdCompleted'));
+                ElMessage.success(this.i18n('popupContextTaskCopyIdCompleted'));
               },
               () => {
-                this.$message.error(this.i18n('popupContextNotificationItemCopyError'));
+                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
           },
         },
         {
-          label: isEnable ? this.i18n('popupContextTaskDisable') : this.i18n('popupContextTaskEnable'),
-          icon: 'el-icon-switch-button',
-          onClick: () => {
-            this.updateIsEnable({
-              id,
-              checked: !isEnable,
-            });
-          },
-        },
-        {
           label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
           icon: 'el-icon-alarm-clock',
-          divided: !isChrome,
           onClick: () => {
             this.updateTaskBasic({
               id,
@@ -325,7 +321,6 @@ export default Vue.extend({
                 ? this.i18n('popupContextTaskNeedInteractionDisable')
                 : this.i18n('popupContextTaskNeedInteractionEnable'),
               icon: 'el-icon-thumb',
-              divided: true,
               onClick: () => {
                 this.updateTaskBasic({
                   id,
@@ -334,33 +329,9 @@ export default Vue.extend({
               },
             }
           : {},
-        {
-          label: this.i18n('popupContextTaskEdit'),
-          icon: 'el-icon-edit-outline',
-          onClick: () => {
-            this.$emit('task-edit', id);
-          },
-        },
       ];
 
-      origin &&
-        items.push({
-          label: this.i18n('popupContextTaskDisconnect'),
-          icon: 'el-icon-connection',
-          onClick: () => {
-            this.disconnectTask(id);
-          },
-        });
-
-      items.push({
-        label: this.i18n('popupContextTaskDelete'),
-        icon: 'el-icon-delete',
-        onClick: () => {
-          this.removeTaskItem(id);
-        },
-      });
-
-      this.$contextmenu({
+      this.$emit('task-contextmenu', {
         items,
         event,
       });
@@ -389,12 +360,8 @@ export default Vue.extend({
   .switch {
     margin-left: 10px;
   }
-  .delete-btn,
-  .disconnect-btn {
-    margin-right: 10px;
-  }
   .tag {
-    margin-right: 5px;
+    margin-left: 5px;
   }
 }
 </style>

@@ -4,13 +4,15 @@
       <el-col :span="12" class="padding-col">
         <div class="font-16">
           <el-tooltip placement="right-start">
-            <div slot="content">
-              {{ i18n('reducerTip') }}
-              <br />
-              <el-link type="danger" href="https://github.com/LightAPIs/Gloria-X#通知-Reducer" target="_blank" icon="el-icon-view">
-                {{ i18n('reducerLink') }}
-              </el-link>
-            </div>
+            <template #content>
+              <div>
+                {{ i18n('reducerTip') }}
+                <br />
+                <el-link type="danger" href="https://github.com/LightAPIs/Gloria-X#通知-Reducer" target="_blank" icon="el-icon-view">
+                  {{ i18n('reducerLink') }}
+                </el-link>
+              </div>
+            </template>
             <span>
               <i class="el-icon-warning"></i>
               {{ i18n('reducerLabel') }}
@@ -26,7 +28,7 @@
             :placeholder="i18n('reducerPlacehoder')"
             :disabled="!editable"
             @input="handleReducer"
-            @keydown.native.tab="textareaTab($refs.reducerInput, $event)"
+            @keydown.tab="textareaTab($refs.reducerInput, $event)"
             ref="reducerInput"
           ></el-input>
         </div>
@@ -59,7 +61,7 @@
             type="textarea"
             :rows="15"
             :placeholder="i18n('reducerTestContent', [example])"
-            @keydown.native.tab="textareaTab($refs.testInput, $event)"
+            @keydown.tab="textareaTab($refs.testInput, $event)"
             ref="testInput"
           ></el-input>
         </div>
@@ -90,11 +92,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 import { APP_ICON_URL } from '@/commons/var';
 
-const example: store.CommitData = {
+/* global myStore */
+
+const example: myStore.CommitData = {
   title: 'Test Title',
   message: 'This i a test.',
   iconUrl: APP_ICON_URL,
@@ -103,7 +107,7 @@ const example: store.CommitData = {
   id: 'Optional',
 };
 
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-reducer-content',
   data() {
     return {

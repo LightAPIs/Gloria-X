@@ -42,11 +42,11 @@
       <span class="font-14">
         {{ i18n('settingsTaskTriggerInterval') }}
       </span>
-      <el-input-number :value="day" :min="0" :max="6" step-strictly @change="onTriggerInterval('day', $event)"></el-input-number>
+      <el-input-number :model-value="day" :min="0" :max="6" step-strictly @change="onTriggerInterval('day', $event)"></el-input-number>
       {{ ' ' + i18n('dayText') }}
       <el-input-number
         class="time-input-number"
-        :value="hour"
+        :model-value="hour"
         :min="0"
         :max="23"
         step-strictly
@@ -55,7 +55,7 @@
       {{ ' ' + i18n('hourText') }}
       <el-input-number
         class="time-input-number"
-        :value="minute"
+        :model-value="minute"
         :min="0"
         :max="59"
         step-strictly
@@ -67,9 +67,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
-export default Vue.extend({
+export default defineComponent({
   name: 'gloria-settings-task',
   data() {
     return {

@@ -1,5 +1,5 @@
 export default {
-  activeTab(state: store.VuexState) {
+  activeTab(state: myStore.VuexState): string {
     const { lastActiveTab } = state;
     let tab = 'tasks';
     if (lastActiveTab && ['tasks', 'notifications'].includes(lastActiveTab)) {
@@ -7,7 +7,7 @@ export default {
     }
     return tab;
   },
-  notificationsTitleList(state: store.VuexState) {
+  notificationsTitleList(state: myStore.VuexState): string[] {
     const titleList: string[] = [];
     state.notifications.forEach(info => {
       const { options } = info;
@@ -17,10 +17,10 @@ export default {
     });
     return titleList;
   },
-  hasInstalledTask: (state: store.VuexState) => (url: string) => {
+  hasInstalledTask: (state: myStore.VuexState) => (url: string): myStore.GloriaTask | undefined => {
     return state.tasks.find(task => task.origin === url);
   },
-  laterCount: (state: store.VuexState) => {
+  laterCount: (state: myStore.VuexState): number => {
     let num = 0;
     const { notifications } = state;
     notifications.forEach(notify => {
@@ -28,8 +28,8 @@ export default {
     });
     return num;
   },
-  laterList(state: store.VuexState) {
-    const arr: store.GloriaNotification[] = [];
+  laterList(state: myStore.VuexState): myStore.GloriaNotification[] {
+    const arr: myStore.GloriaNotification[] = [];
     const { notifications } = state;
     notifications.forEach(notify => {
       if (notify.later) {
@@ -38,7 +38,7 @@ export default {
     });
     return arr;
   },
-  notificationCount: (state: store.VuexState) => (name: string) => {
+  notificationCount: (state: myStore.VuexState) => (name: string): number => {
     let count = 0;
     const { notifications } = state;
     notifications.forEach(notify => {
@@ -48,17 +48,73 @@ export default {
     });
     return count;
   },
-  notificationsAllCount(state: store.VuexState) {
+  notificationsAllCount(state: myStore.VuexState): number {
     return state.notifications.length;
   },
-  taskCode: (state: store.VuexState) => (id: string) => {
+  taskIsEnable: (state: myStore.VuexState) => (id: string): boolean => {
+    let is = false;
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === id) {
+        is = task.isEnable;
+        break;
+      }
+    }
+    return is;
+  },
+  taskName: (state: myStore.VuexState) => (id: string): string => {
+    let name = '';
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === id) {
+        name = task.name;
+        break;
+      }
+    }
+    return name;
+  },
+  taskCode: (state: myStore.VuexState) => (id: string): string => {
     let code = '';
     const { tasks } = state;
     for (const task of tasks) {
       if (task.id === id) {
         code = task.code;
+        break;
       }
     }
     return code;
+  },
+  taskOnTimeMode: (state: myStore.VuexState) => (id: string): boolean => {
+    let onTime = false;
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === id) {
+        onTime = task.onTimeMode;
+        break;
+      }
+    }
+    return onTime;
+  },
+  taskNeedInteraction: (state: myStore.VuexState) => (id: string): boolean => {
+    let need = false;
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === id) {
+        need = task.needInteraction;
+        break;
+      }
+    }
+    return need;
+  },
+  activeTask: (state: myStore.VuexState) => (taskId: string): myStore.GloriaTask | null => {
+    let active: myStore.GloriaTask | null = null;
+    const { tasks } = state;
+    for (const task of tasks) {
+      if (task.id === taskId) {
+        active = task;
+        break;
+      }
+    }
+    return active;
   },
 };

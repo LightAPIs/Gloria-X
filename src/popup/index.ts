@@ -1,84 +1,92 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App/App.vue';
 import store from '../store';
 import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
 import { v4 as uuid } from 'uuid';
-import VueFab from 'vue-float-action-button';
-import LazyRender from 'vue-lazy-render';
 import {
-  Aside,
-  Avatar,
-  Badge,
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Container,
-  Dialog,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  Form,
-  FormItem,
-  Header,
-  Image,
-  Input,
-  InputNumber,
-  Link,
-  Main,
-  Menu,
-  MenuItem,
-  Message,
-  Popconfirm,
-  Popover,
-  Row,
-  Switch,
-  TabPane,
-  Tabs,
-  Tag,
-  Timeline,
-  TimelineItem,
-} from 'element-ui';
-import Contextmenu from 'vue-contextmenujs';
+  ElAffix,
+  ElAside,
+  ElAvatar,
+  ElBadge,
+  ElButton,
+  ElCard,
+  ElCheckbox,
+  ElCol,
+  ElContainer,
+  ElDialog,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElForm,
+  ElFormItem,
+  ElHeader,
+  ElImage,
+  ElInput,
+  ElInputNumber,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElPopconfirm,
+  ElPopover,
+  ElRow,
+  ElSwitch,
+  ElTabPane,
+  ElTabs,
+  ElTag,
+  ElTimeline,
+  ElTimelineItem,
+} from 'element-plus';
+import 'element-plus/packages/theme-chalk/src/base.scss';
+import 'element-plus/packages/theme-chalk/src/popper.scss';
 
-Vue.use(Tabs);
-Vue.use(TabPane);
-Vue.use(Card);
-Vue.use(Switch);
-Vue.use(Button);
-Vue.use(Popconfirm);
-Vue.use(Popover);
-Vue.use(Tag);
-Vue.use(Dialog);
-Vue.use(Form);
-Vue.use(FormItem);
-Vue.use(Input);
-Vue.use(InputNumber);
-Vue.use(Checkbox);
-Vue.use(VueFab);
-Vue.use(Menu);
-Vue.use(MenuItem);
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Header);
-Vue.use(Main);
-Vue.use(Timeline);
-Vue.use(TimelineItem);
-Vue.use(Avatar);
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Link);
-Vue.use(Image);
-Vue.use(Badge);
-Vue.use(Contextmenu);
-Vue.use(LazyRender);
-Vue.use(Dropdown);
-Vue.use(DropdownMenu);
-Vue.use(DropdownItem);
-Vue.prototype.$message = Message;
-Vue.config.productionTip = false;
-Vue.mixin({
+const components = [
+  ElAside,
+  ElAvatar,
+  ElBadge,
+  ElButton,
+  ElCard,
+  ElCheckbox,
+  ElCol,
+  ElContainer,
+  ElDialog,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElForm,
+  ElFormItem,
+  ElHeader,
+  ElImage,
+  ElInput,
+  ElInputNumber,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElPopconfirm,
+  ElPopover,
+  ElRow,
+  ElSwitch,
+  ElTabPane,
+  ElTabs,
+  ElTag,
+  ElTimeline,
+  ElTimelineItem,
+  ElAffix,
+];
+
+calc.dayjsLocale();
+
+const app = createApp(App);
+
+components.forEach(component => {
+  app.component(component.name, component);
+});
+
+app.use(store);
+
+app.mixin({
   methods: {
     ...ui,
     ...calc,
@@ -86,15 +94,4 @@ Vue.mixin({
   },
 });
 
-calc.dayjsLocale();
-
-new Vue({
-  el: '#popup-app',
-  store,
-  components: {
-    App,
-  },
-  render(h) {
-    return h(App);
-  },
-});
+app.mount('#popup-app');

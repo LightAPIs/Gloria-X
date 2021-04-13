@@ -1,15 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import createLogger from 'vuex/dist/logger';
+import { createStore, createLogger } from 'vuex';
 import VuexChromePlugin from 'vuex-chrome-plugin';
-import { defaultConfigs } from './state';
+import { defaultConfigs } from './basic';
 import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
 
-Vue.use(Vuex);
-
 const devMode = process.env.NODE_ENV !== 'production';
+
 const defaultconf = defaultConfigs();
 
 const logger = createLogger({
@@ -24,19 +21,21 @@ const logger = createLogger({
   logMutations: devMode,
 });
 
-export default new Vuex.Store({
-  state: {
-    implicitPush: false,
-    lastActiveTab: 'tasks',
-    lastCheckTasksUpdate: '',
-    tasks: [],
-    operationTask: null,
-    notifications: [],
-    stages: [],
-    configs: defaultconf,
-    reducer: '',
-    unread: 0,
-  } as store.VuexState,
+const store = createStore({
+  state() {
+    return {
+      implicitPush: false,
+      lastActiveTab: 'tasks',
+      lastCheckTasksUpdate: '',
+      tasks: [],
+      operationTask: null,
+      notifications: [],
+      stages: [],
+      configs: defaultconf,
+      reducer: '',
+      unread: 0,
+    } as myStore.VuexState;
+  },
   getters,
   mutations,
   actions,
@@ -44,3 +43,5 @@ export default new Vuex.Store({
   strict: devMode,
   plugins: [logger, VuexChromePlugin()],
 });
+
+export default store;
