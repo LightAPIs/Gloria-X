@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import GloriaSettingsTask from '@/components/GloriaSettingsTask.vue';
 import GloriaSettingsNotification from '@/components/GloriaSettingsNotification.vue';
 
 import GloriaSettingsFile from '@/components/GloriaSettingsFile.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'router-settings',
   components: {
     GloriaSettingsTask,
