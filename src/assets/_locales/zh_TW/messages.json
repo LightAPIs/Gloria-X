@@ -596,6 +596,9 @@
   "contextMenusSelection": {
     "message": "選取網頁元素進行監視 ..."
   },
+  "contextMenusMore": {
+    "message": "更多選項"
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {

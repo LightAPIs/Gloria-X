@@ -596,6 +596,9 @@
   "contextMenusSelection": {
     "message": "选取网页元素进行监视 ..."
   },
+  "contextMenusMore": {
+    "message": "更多选项"
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {

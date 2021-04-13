@@ -596,6 +596,9 @@
   "contextMenusSelection": {
     "message": "Monitor elements ..."
   },
+  "contextMenusMore": {
+    "message": "More"
+  },
   "notificationContextMessage": {
     "message": "$time$ $task$",
     "placeholders": {

@@ -446,6 +446,7 @@ function registerMenu() {
     id: 'gloriaXSelection',
     title: i18n('contextMenusSelection'),
     contexts: ['browser_action', 'page'],
+    documentUrlPatterns: ['http://*/*', 'https://*/*', 'file://*/*', 'ftp://*/*'],
     onclick() {
       if (!chrome.runtime.lastError) {
         chrome.tabs.query(
@@ -467,6 +468,12 @@ function registerMenu() {
     },
   });
 
+  chrome.contextMenus.create({
+    id: 'gloriaXSeparator',
+    type: 'separator',
+    contexts: ['browser_action'],
+  });
+
   if (!IS_CHROME) {
     chrome.contextMenus.create({
       id: 'gloriaXSettings',
@@ -481,6 +488,66 @@ function registerMenu() {
       },
     });
   }
+
+  chrome.contextMenus.create({
+    id: 'gloriaXDebug',
+    title: i18n('optionsDebugMenu'),
+    contexts: ['browser_action'],
+    onclick() {
+      if (!chrome.runtime.lastError) {
+        chrome.tabs.create({
+          url: './options.html#/debug',
+        });
+      }
+    },
+  });
+
+  const MoreMenus = [
+    {
+      id: 'gloriaXState',
+      title: 'optionsStateMenu',
+      url: './options.html#/state',
+    },
+    {
+      id: 'gloriaXReducer',
+      title: 'optionsReducerMenu',
+      url: './options.html#/reducer',
+    },
+    {
+      id: 'gloriaXShare',
+      title: 'popupTaskShare',
+      url: 'https://gloria.pub/',
+    },
+    {
+      id: 'gloriaXBook',
+      title: 'popupTaskBook',
+      url: 'https://github.com/LightAPIs/Gloria-X',
+    },
+  ];
+
+  chrome.contextMenus.create({
+    id: 'gloriaXMore',
+    title: i18n('contextMenusMore'),
+    contexts: ['browser_action'],
+  });
+
+  MoreMenus.forEach(menu => {
+    if (menu) {
+      chrome.contextMenus.create({
+        id: menu.id,
+        parentId: 'gloriaXMore',
+        title: i18n(menu.title),
+        contexts: ['browser_action'],
+        onclick() {
+          if (!chrome.runtime.lastError) {
+            chrome.tabs.create({
+              url: menu.url,
+            });
+          }
+        },
+      });
+    }
+  });
 }
 
 function testVirtualNotification(dataList: myStore.CommitData | myStore.CommitData[]) {
