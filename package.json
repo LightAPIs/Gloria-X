@@ -15,7 +15,8 @@
     "fix": "eslint --fix 'src/**/*.{ts,js,vue,scss}'",
     "format": "prettier --write 'src/**/*.{ts,js,vue,scss}'",
     "release": "standard-version",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@simonwep/selection-js": "^2.0.3",
@@ -66,7 +67,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.8.0",
-    "husky": "^6.0.0",
+    "husky": "^4.3.8",
     "jsdom": "^16.4.0",
     "lint-staged": "^10.5.4",
     "patch-package": "^6.4.7",
