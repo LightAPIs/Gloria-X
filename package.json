@@ -15,8 +15,7 @@
     "fix": "eslint --fix 'src/**/*.{ts,js,vue,scss}'",
     "format": "prettier --write 'src/**/*.{ts,js,vue,scss}'",
     "release": "standard-version",
-    "postinstall": "patch-package",
-    "prepare": "husky install"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@simonwep/selection-js": "^2.0.3",
