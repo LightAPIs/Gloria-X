@@ -3,7 +3,7 @@
 import { expect } from 'chai';
 import chrome from 'sinon-chrome';
 import mutations from '@/store/mutations';
-import { defaultConfigs } from '@/store/state';
+import { defaultConfigs } from '@/store/basic';
 
 const {
   setImplicitPush,
@@ -69,13 +69,13 @@ function createNewConfigs() {
   };
 }
 
-describe('Test mutations:', function() {
-  before(function() {
+describe('Test mutations:', function () {
+  before(function () {
     global.chrome = chrome;
   });
 
-  describe('Method: setImplicitPush', function() {
-    it('state.implicitPush is set.', function() {
+  describe('Method: setImplicitPush', function () {
+    it('state.implicitPush is set.', function () {
       const state = {
         implicitPush: null,
       };
@@ -84,8 +84,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateImplicitPush', function() {
-    it('state.implicitPush is update.', function() {
+  describe('Method: updateImplicitPush', function () {
+    it('state.implicitPush is update.', function () {
       const state = {
         implicitPush: false,
       };
@@ -94,8 +94,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: switchImplicitPush', function() {
-    it('state.implicitPush is normal.', function() {
+  describe('Method: switchImplicitPush', function () {
+    it('state.implicitPush is normal.', function () {
       const state = {
         implicitPush: false,
       };
@@ -106,8 +106,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setLastActiveTab', function() {
-    it('state.lastActiveTab is normal.', function() {
+  describe('Method: setLastActiveTab', function () {
+    it('state.lastActiveTab is normal.', function () {
       const state = {
         lastActiveTab: '',
       };
@@ -116,8 +116,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateLastActiveTab', function() {
-    it('update lastActiveTab.', function() {
+  describe('Method: updateLastActiveTab', function () {
+    it('update lastActiveTab.', function () {
       const state = {
         lastActiveTab: '',
       };
@@ -126,8 +126,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setLastCheckTasksUpdate', function() {
-    it('state.lastCheckTasksUpdate is normal.', function() {
+  describe('Method: setLastCheckTasksUpdate', function () {
+    it('state.lastCheckTasksUpdate is normal.', function () {
       const state = {
         lastCheckTasksUpdate: '',
       };
@@ -138,8 +138,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: triggerLastCheckTasksUpdate', function() {
-    it('trigger check tasks update.', function() {
+  describe('Method: triggerLastCheckTasksUpdate', function () {
+    it('trigger check tasks update.', function () {
       const state = {
         lastCheckTasksUpdate: '',
       };
@@ -148,74 +148,74 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setConfigs', function() {
+  describe('Method: setConfigs', function () {
     const state = {
       configs: {},
     };
     const newConfigs = createNewConfigs();
     const keyLen = Object.keys(newConfigs).length;
     setConfigs(state, newConfigs);
-    it('state.configs size is normal.', function() {
+    it('state.configs size is normal.', function () {
       expect(Object.keys(state.configs)).to.have.lengthOf(keyLen);
     });
-    it('taskAutoCheckUpdate is set.', function() {
+    it('taskAutoCheckUpdate is set.', function () {
       expect(state.configs.taskAutoCheckUpdate).to.be.true;
     });
-    it('taskOnTimeMode is set.', function() {
+    it('taskOnTimeMode is set.', function () {
       expect(state.configs.taskOnTimeMode).to.be.true;
     });
-    it('taskNeedInteraction is set.', function() {
+    it('taskNeedInteraction is set.', function () {
       expect(state.configs.taskNeedInteraction).to.be.true;
     });
-    it('taskOnTop is set.', function() {
+    it('taskOnTop is set.', function () {
       expect(state.configs.taskOnTop).to.be.true;
     });
-    it('taskShowSearchInput is set.', function() {
+    it('taskShowSearchInput is set.', function () {
       expect(state.configs.taskShowSearchInput).to.be.true;
     });
-    it('taskAutoRemoveStage is set.', function() {
+    it('taskAutoRemoveStage is set.', function () {
       expect(state.configs.taskAutoRemoveStage).to.be.true;
     });
-    it('taskTriggerInterval is set.', function() {
+    it('taskTriggerInterval is set.', function () {
       expect(state.configs.taskTriggerInterval).to.equal(1440);
     });
-    it('notificationSound is set.', function() {
+    it('notificationSound is set.', function () {
       expect(state.configs.notificationSound).to.be.true;
     });
-    it('notificationCustomSound is set.', function() {
+    it('notificationCustomSound is set.', function () {
       expect(state.configs.notificationCustomSound).to.be.true;
     });
-    it('notificationLaterMark is set.', function() {
+    it('notificationLaterMark is set.', function () {
       expect(state.configs.notificationLaterMark).to.be.true;
     });
-    it('notificationDetectIcon is set.', function() {
+    it('notificationDetectIcon is set.', function () {
       expect(state.configs.notificationDetectIcon).to.be.true;
     });
-    it('notificationDisableError is set.', function() {
+    it('notificationDisableError is set.', function () {
       expect(state.configs.notificationDisableError).to.be.true;
     });
-    it('notificationShowUrl is set.', function() {
+    it('notificationShowUrl is set.', function () {
       expect(state.configs.notificationShowUrl).to.be.true;
     });
-    it('notificationLazyLoading is set.', function() {
+    it('notificationLazyLoading is set.', function () {
       expect(state.configs.notificationLazyLoading).to.be.true;
     });
-    it('notificationShowSearchInput is set.', function() {
+    it('notificationShowSearchInput is set.', function () {
       expect(state.configs.notificationShowSearchInput).to.be.true;
     });
-    it('notificationShowBadge is set.', function() {
+    it('notificationShowBadge is set.', function () {
       expect(state.configs.notificationShowBadge).to.be.false;
     });
-    it('notificationShowMenuCount is set.', function() {
+    it('notificationShowMenuCount is set.', function () {
       expect(state.configs.notificationShowMenuCount).to.be.true;
     });
-    it('notificationMaxinum is set.', function() {
+    it('notificationMaxinum is set.', function () {
       expect(state.configs.notificationMaxinum).to.equal(500);
     });
   });
 
-  describe('Method: updateConfigs', function() {
-    it('state.configs is normal.', function() {
+  describe('Method: updateConfigs', function () {
+    it('state.configs is normal.', function () {
       const state = {
         configs: defaultConfigs(),
         notifications: [],
@@ -233,8 +233,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setTasks', function() {
-    it('state.tasks is normal.', function() {
+  describe('Method: setTasks', function () {
+    it('state.tasks is normal.', function () {
       const state = {
         tasks: [],
       };
@@ -243,8 +243,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: mergeTasks', function() {
-    it('state.tasks is normal.', function() {
+  describe('Method: mergeTasks', function () {
+    it('state.tasks is normal.', function () {
       const state = {
         tasks: [
           {
@@ -297,8 +297,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateIsEnable', function() {
-    it('isEnable is update.', function() {
+  describe('Method: updateIsEnable', function () {
+    it('isEnable is update.', function () {
       const state = {
         tasks: [
           {
@@ -317,8 +317,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateTaskBasic', function() {
-    it('task is update.', function() {
+  describe('Method: updateTaskBasic', function () {
+    it('task is update.', function () {
       const state = {
         tasks: [
           {
@@ -363,8 +363,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: createTaskBasic', function() {
-    it('task is create.', function() {
+  describe('Method: createTaskBasic', function () {
+    it('task is create.', function () {
       const state = {
         tasks: [
           {
@@ -390,8 +390,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: removeTaskItem', function() {
-    it('task is remove.', function() {
+  describe('Method: removeTaskItem', function () {
+    it('task is remove.', function () {
       const state = {
         tasks: [
           {
@@ -415,8 +415,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: triggerTask', function() {
-    it('task is trigger.', function() {
+  describe('Method: triggerTask', function () {
+    it('task is trigger.', function () {
       const state = {
         tasks: [
           {
@@ -432,8 +432,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: executionTaskSuccess', function() {
-    it('task is trigger.', function() {
+  describe('Method: executionTaskSuccess', function () {
+    it('task is trigger.', function () {
       const state = {
         tasks: [
           {
@@ -447,8 +447,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: executionTaskError', function() {
-    it('task execution error.', function() {
+  describe('Method: executionTaskError', function () {
+    it('task execution error.', function () {
       const state = {
         tasks: [
           {
@@ -464,8 +464,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearTasks', function() {
-    it('task is clear.', function() {
+  describe('Method: clearTasks', function () {
+    it('task is clear.', function () {
       const state = {
         tasks: [
           {
@@ -496,8 +496,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: disconnectTask', function() {
-    it('disconnect task.', function() {
+  describe('Method: disconnectTask', function () {
+    it('disconnect task.', function () {
       const state = {
         tasks: [
           {
@@ -511,8 +511,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setStages', function() {
-    it('state.stages is normal.', function() {
+  describe('Method: setStages', function () {
+    it('state.stages is normal.', function () {
       const state = {
         stages: [],
       };
@@ -521,8 +521,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateStage', function() {
-    it('state.stages is update.', function() {
+  describe('Method: updateStage', function () {
+    it('state.stages is update.', function () {
       const state = {
         stages: [
           {
@@ -538,7 +538,7 @@ describe('Test mutations:', function() {
       expect(state.stages[0].stage).to.be.an.instanceof(Array);
     });
 
-    it('state.stages is update.', function() {
+    it('state.stages is update.', function () {
       const state = {
         stages: [
           {
@@ -555,8 +555,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: addStage', function() {
-    it('add stages.', function() {
+  describe('Method: addStage', function () {
+    it('add stages.', function () {
       const state = {
         stages: [],
       };
@@ -568,8 +568,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearStages', function() {
-    it('state.stages is clear.', function() {
+  describe('Method: clearStages', function () {
+    it('state.stages is clear.', function () {
       const state = {
         stages: [
           {
@@ -585,9 +585,9 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearExpiredStages', function() {
-    it('clear expired stages.', function() {
-      it('state.stages is normal.', function() {
+  describe('Method: clearExpiredStages', function () {
+    it('clear expired stages.', function () {
+      it('state.stages is normal.', function () {
         const state = {
           tasks: [
             {
@@ -612,8 +612,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: addMessageFlow', function() {
-    it('add message flow.', function() {
+  describe('Method: addMessageFlow', function () {
+    it('add message flow.', function () {
       const state = {
         configs: {
           notificationShowBadge: true,
@@ -641,8 +641,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setNotifications', function() {
-    it('state.notifications is normal.', function() {
+  describe('Method: setNotifications', function () {
+    it('state.notifications is normal.', function () {
       const state = {
         notifications: [],
       };
@@ -651,8 +651,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateNotification', function() {
-    it('update notification.', function() {
+  describe('Method: updateNotification', function () {
+    it('update notification.', function () {
       const state = {
         notifications: [
           {
@@ -671,8 +671,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: markLaterNotification', function() {
-    it('mark later notificaiton.', function() {
+  describe('Method: markLaterNotification', function () {
+    it('mark later notificaiton.', function () {
       const state = {
         notifications: [
           {
@@ -686,8 +686,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: checkedNotification', function() {
-    it('checked notification.', function() {
+  describe('Method: checkedNotification', function () {
+    it('checked notification.', function () {
       const state = {
         notifications: [
           {
@@ -701,8 +701,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: removeNotification', function() {
-    it('remove notification.', function() {
+  describe('Method: removeNotification', function () {
+    it('remove notification.', function () {
       const state = {
         notifications: [
           {
@@ -723,8 +723,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearLaterCount', function() {
-    it('clear later count.', function() {
+  describe('Method: clearLaterCount', function () {
+    it('clear later count.', function () {
       const state = {
         notifications: [
           {
@@ -748,8 +748,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearNotifications', function() {
-    it('clear notifications.', function() {
+  describe('Method: clearNotifications', function () {
+    it('clear notifications.', function () {
       const state = {
         notifications: [
           {
@@ -768,8 +768,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setReducer', function() {
-    it('set reducer.', function() {
+  describe('Method: setReducer', function () {
+    it('set reducer.', function () {
       const state = {
         reducer: '',
       };
@@ -778,8 +778,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: updateReducer', function() {
-    it('update reducer.', function() {
+  describe('Method: updateReducer', function () {
+    it('update reducer.', function () {
       const state = {
         reducer: 'test code.',
       };
@@ -788,8 +788,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: setUnread', function() {
-    it('set unread number.', function() {
+  describe('Method: setUnread', function () {
+    it('set unread number.', function () {
       const state = {
         unread: 0,
       };
@@ -798,8 +798,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: decreaseUnread', function() {
-    it('decrease unread num.', function() {
+  describe('Method: decreaseUnread', function () {
+    it('decrease unread num.', function () {
       const state = {
         unread: 1,
       };
@@ -810,8 +810,8 @@ describe('Test mutations:', function() {
     });
   });
 
-  describe('Method: clearUnread', function() {
-    it('clear unread num.', function() {
+  describe('Method: clearUnread', function () {
+    it('clear unread num.', function () {
       const state = {
         unread: 5,
       };
@@ -820,7 +820,7 @@ describe('Test mutations:', function() {
     });
   });
 
-  after(function() {
+  after(function () {
     chrome.flush();
     delete global.chrome;
   });

@@ -1,22 +1,22 @@
 // Syntactic sugar
 
-function i18n(first: string, sub?: string[]) {
+function i18n(first: string, sub?: string[]): string {
   return chrome.i18n.getMessage(first, sub);
 }
 
-function n2br(val: string) {
+function n2br(val: string): string | undefined {
   return val ? val.replace(/\n/g, '<br>') : undefined;
 }
 
-function nbsp(val: string) {
+function nbsp(val: string): string | undefined {
   return val ? val.replace(/\s/g, '&nbsp;') : undefined;
 }
 
-function isLink(url: string) {
+function isLink(url: string): boolean {
   return /^(?:https?|ftp):/i.test(url);
 }
 
-function asteriskLink(url: string) {
+function asteriskLink(url: string): string {
   let tempUrl = url.replace(/^(?:https?|ftp)/i, '*');
   if (/^\*:\/\/[^/]*$/i.test(tempUrl)) {
     tempUrl += '/';
@@ -30,7 +30,7 @@ function asteriskLink(url: string) {
  * @param element input 元素
  * @param event 按键事件
  */
-function textareaTab(element: HTMLInputElement, event: KeyboardEvent) {
+function textareaTab(element: HTMLInputElement, event: KeyboardEvent): void {
   if (event && event.code === 'Tab') {
     event.preventDefault();
 
@@ -47,7 +47,7 @@ function textareaTab(element: HTMLInputElement, event: KeyboardEvent) {
         let insertStr = tabStr;
         let newEnd = (end || 0) + tabLen;
 
-        insertStr += text.slice(start || 0, end || 0).replace(/\n/g, function() {
+        insertStr += text.slice(start || 0, end || 0).replace(/\n/g, function () {
           newEnd += tabLen;
           return '\n' + tabStr;
         });
@@ -62,7 +62,7 @@ function textareaTab(element: HTMLInputElement, event: KeyboardEvent) {
   }
 }
 
-function copyToClip(content: string, copyCompleted?: () => void, copyError?: () => void) {
+function copyToClip(content: string, copyCompleted?: () => void, copyError?: () => void): void {
   navigator.clipboard
     .writeText(content)
     .then(() => {

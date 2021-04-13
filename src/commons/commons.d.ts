@@ -1,4 +1,4 @@
-declare namespace commons {
+declare namespace myCommons {
   interface Job {
     (): void;
   }

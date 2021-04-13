@@ -3,9 +3,9 @@
 import { expect } from 'chai';
 import { commitFormat, reduceNotification } from '@/store/reducer';
 
-describe('Test reducer:', function() {
-  describe('Method: commitFormat', function() {
-    it('commitFormat is normal.', function() {
+describe('Test reducer:', function () {
+  describe('Method: commitFormat', function () {
+    it('commitFormat is normal.', function () {
       const commitData = {
         id: '1',
         title: 'Test',
@@ -20,8 +20,8 @@ describe('Test reducer:', function() {
     });
   });
 
-  describe('Method: reduceNotification', function() {
-    it('reduceNotification is normal.', function() {
+  describe('Method: reduceNotification', function () {
+    it('reduceNotification is normal.', function () {
       const commitData1 = {
         id: '1',
         title: '1',

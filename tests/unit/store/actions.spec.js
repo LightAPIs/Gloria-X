@@ -7,13 +7,13 @@ import actions from '@/store/actions';
 
 const { handleData } = actions;
 
-describe('Test actions:', function() {
-  before(function() {
+describe('Test actions:', function () {
+  before(function () {
     global.chrome = chrome;
   });
 
-  describe('Method: handleData', function() {
-    it('handleData is normal.', function() {
+  describe('Method: handleData', function () {
+    it('handleData is normal.', function () {
       const state = {
         reducer: '',
         stages: [],
@@ -63,7 +63,7 @@ describe('Test actions:', function() {
     });
   });
 
-  after(function() {
+  after(function () {
     chrome.flush();
     delete global.chrome;
   });

@@ -5,9 +5,9 @@ import getters from '@/store/getters';
 
 const { activeTab, notificationsTitleList, hasInstalledTask, laterCount, laterList, notificationCount } = getters;
 
-describe('Test getters:', function() {
-  describe('Attribute: activeTab', function() {
-    it('activeTab is normal.', function() {
+describe('Test getters:', function () {
+  describe('Attribute: activeTab', function () {
+    it('activeTab is normal.', function () {
       const state = {
         lastActiveTab: 'tasks',
       };
@@ -22,8 +22,8 @@ describe('Test getters:', function() {
     });
   });
 
-  describe('Attribute: notificationsTitleList', function() {
-    it('notificationsTitleList is normal.', function() {
+  describe('Attribute: notificationsTitleList', function () {
+    it('notificationsTitleList is normal.', function () {
       const state = {
         notifications: [
           {
@@ -68,8 +68,8 @@ describe('Test getters:', function() {
     });
   });
 
-  describe('Attribute: hasInstalledTask', function() {
-    it('hasInstalledTask is normal.', function() {
+  describe('Attribute: hasInstalledTask', function () {
+    it('hasInstalledTask is normal.', function () {
       const state = {
         tasks: [
           {
@@ -93,8 +93,8 @@ describe('Test getters:', function() {
     });
   });
 
-  describe('Attribute: laterCount', function() {
-    it('laterCount is normal.', function() {
+  describe('Attribute: laterCount', function () {
+    it('laterCount is normal.', function () {
       const state = {
         notifications: [
           {
@@ -115,8 +115,8 @@ describe('Test getters:', function() {
     });
   });
 
-  describe('Attribute: laterList', function() {
-    it('laterList is normal.', function() {
+  describe('Attribute: laterList', function () {
+    it('laterList is normal.', function () {
       const state = {
         notifications: [
           {
@@ -138,8 +138,8 @@ describe('Test getters:', function() {
     });
   });
 
-  describe('Attribute: notificationCount', function() {
-    it('notificationCount is normal.', function() {
+  describe('Attribute: notificationCount', function () {
+    it('notificationCount is normal.', function () {
       const state = {
         notifications: [
           {

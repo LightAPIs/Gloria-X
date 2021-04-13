@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ActionContext } from 'vuex';
 import { diff } from '@/commons/calc';
 import { v4 as uuid } from 'uuid';
 import { reduceNotification } from './reducer';
 
 export default {
-  installTask(context: any, newTask: store.GloriaTaskBasic) {
+  installTask(context: ActionContext<myStore.VuexState, unknown>, newTask: myStore.GloriaTaskBasic): void {
     const { commit, state } = context;
-    const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = state.configs as store.GloriaConfig;
+    const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = state.configs;
     commit(
       'createTaskBasic',
       Object.assign(
@@ -19,9 +19,11 @@ export default {
       )
     );
   },
-  updateTaskByOrigin(context: any, originData: { url: string; code: store.OriginCode }) {
-    const { commit, state } = context;
-    const { tasks } = state as store.VuexState;
+  updateTaskByOrigin(context: ActionContext<myStore.VuexState, unknown>, originData: { url: string; code: myStore.OriginCode }): void {
+    const {
+      commit,
+      state: { tasks },
+    } = context;
     const { url, code } = originData;
     const originTasks = tasks.filter(task => task.origin === url);
     originTasks.forEach(item => {
@@ -33,21 +35,28 @@ export default {
       );
     });
   },
-  removeTaskByOrigin(context: any, origin: string) {
-    const { commit, state } = context;
-    const { tasks } = state as store.VuexState;
+  removeTaskByOrigin(context: ActionContext<myStore.VuexState, unknown>, origin: string): void {
+    const {
+      commit,
+      state: { tasks },
+    } = context;
     const originTasks = tasks.filter(task => task.origin === origin);
     originTasks.forEach(item => {
       commit('removeTaskItem', item.id);
     });
   },
 
-  handleData(context: any, commitData: { taskId: string; data: store.CommitData | store.CommitData[] }) {
-    const { commit, state } = context;
-    const { stages, reducer } = state as store.VuexState;
+  handleData(
+    context: ActionContext<myStore.VuexState, unknown>,
+    commitData: { taskId: string; data: myStore.CommitData | myStore.CommitData[] }
+  ): void {
+    const {
+      commit,
+      state: { stages, reducer },
+    } = context;
     const { taskId: id, data } = commitData;
     let hasId = false;
-    for (const stagesItem of stages as store.GloriaStage[]) {
+    for (const stagesItem of stages) {
       if (stagesItem.id === id) {
         hasId = true;
         if (Array.isArray(data)) {
@@ -57,7 +66,7 @@ export default {
               pushData = [];
             for (const dataItem of data) {
               let d = true;
-              const singleStage: store.Stage = {
+              const singleStage: myStore.Stage = {
                 id: dataItem.id || '',
                 title: dataItem.title || '',
                 message: dataItem.message || '',
@@ -84,7 +93,7 @@ export default {
                 stage: newStage,
               });
               //* 处理 Reducer 函数
-              const reduceArray: store.CommitData[] = reduceNotification(pushData, reducer);
+              const reduceArray: myStore.CommitData[] = reduceNotification(pushData, reducer);
               //* 将常规任务的通知推入虚拟消息流中
               reduceArray.length > 0 &&
                 commit('addMessageFlow', {
@@ -112,7 +121,7 @@ export default {
             });
           }
         } else {
-          const singleStage: store.Stage = {
+          const singleStage: myStore.Stage = {
             id: data.id || '',
             title: data.title || '',
             message: data.message || '',
@@ -126,7 +135,7 @@ export default {
             });
           } else {
             //* 处理的数据和 STAGES 中缓存的数据均为单一对象时
-            const lhs: store.Stage = {
+            const lhs: myStore.Stage = {
               id: stagesItem.stage.id,
               title: stagesItem.stage.title,
               message: stagesItem.stage.message,

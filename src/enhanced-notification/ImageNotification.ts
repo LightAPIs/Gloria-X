@@ -19,8 +19,13 @@ class ImageNotification extends Notification<enhanced.ImageNotificationOptions> 
     imageUrl: Notification.DEFAULT_IMAGE_URL,
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-  protected optionsSetter = (options: enhanced.ImageNotificationOptions, prop: string, value: any, _receiver: any): boolean => {
+  protected optionsSetter = (
+    options: enhanced.ImageNotificationOptions,
+    prop: string,
+    value: string | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _receiver: unknown
+  ): boolean => {
     let status = false;
     switch (prop) {
       case 'imageUrl':

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createGloriaSandbox } from 'gloria-sandbox';
 
-function getOrigin(url: string) {
+function getOrigin(url: string): string {
   return new URL(url).origin;
 }
 
-function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDetails) {
+function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDetails): chrome.webRequest.BlockingResponse {
   const { requestHeaders = [], requestId, url, type, initiator } = details;
   let cookieIndex = -1,
     originIndex = -1,
@@ -185,7 +185,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
   };
 }
 
-function evalUntrusted(code: string) {
+function evalUntrusted(code: string): Promise<unknown> {
   return new Promise((resolve, reject) => {
     createGloriaSandbox().then((sandbox: any) => {
       sandbox.addEventListener('error', ({ detail }: any) => {

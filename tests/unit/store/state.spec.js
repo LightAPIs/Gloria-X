@@ -1,11 +1,11 @@
 'use strict';
 
 import { expect } from 'chai';
-import { normalizeTask } from '@/store/state';
+import { normalizeTask } from '@/store/basic';
 
-describe('Test state:', function() {
-  describe('Method: normalizeTask', function() {
-    it('normalize task.', function() {
+describe('Test state:', function () {
+  describe('Method: normalizeTask', function () {
+    it('normalize task.', function () {
       const task = {
         id: '06bdc119',
         name: 'Save',

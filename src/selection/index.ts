@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SelectionArea from '@simonwep/selection-js';
+import { IS_CHROME } from '@/commons/var';
 
 function addStyle(cssContent: string) {
   const style = document.createElement('style'),
@@ -109,8 +110,6 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
       }`);
     (window as any).gloriaXAddedCss = true;
   }
-
-  const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 
   const selection = new SelectionArea({
     document: window.document,
@@ -244,7 +243,7 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
         pathList.push(cssPath(el));
       });
 
-      if (isChrome) {
+      if (IS_CHROME) {
         chrome.runtime.sendMessage({
           type: 'path',
           data: pathList,

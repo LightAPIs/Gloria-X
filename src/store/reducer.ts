@@ -1,8 +1,8 @@
 import isNull from 'lodash.isnull';
 
-function handleFormat(commitData: store.CommitData): store.CommitData {
+function handleFormat(commitData: myStore.CommitData): myStore.CommitData {
   const { title, message, iconUrl, imageUrl, url, id } = commitData;
-  const formatData: store.CommitData = {};
+  const formatData: myStore.CommitData = {};
 
   if (title) {
     formatData.title = title;
@@ -32,9 +32,9 @@ function handleFormat(commitData: store.CommitData): store.CommitData {
   return formatData;
 }
 
-function commitFormat(commitData: store.CommitData | store.CommitData[]): store.CommitData | store.CommitData[] {
+function commitFormat(commitData: myStore.CommitData | myStore.CommitData[]): myStore.CommitData | myStore.CommitData[] {
   if (Array.isArray(commitData)) {
-    const formatArray: store.CommitData[] = [];
+    const formatArray: myStore.CommitData[] = [];
 
     commitData.forEach(data => {
       if (typeof data === 'object' && !isNull(data)) {
@@ -48,7 +48,7 @@ function commitFormat(commitData: store.CommitData | store.CommitData[]): store.
   }
 }
 
-function handleReducer(commitData: store.CommitData, reducer: string): store.CommitData {
+function handleReducer(commitData: myStore.CommitData, reducer: string): myStore.CommitData {
   if (reducer && reducer.trim()) {
     try {
       const reducerFunc = eval(`(function() {return ${reducer.trim()}})()`);
@@ -72,15 +72,15 @@ function handleReducer(commitData: store.CommitData, reducer: string): store.Com
   }
 }
 
-function reduceNotification<T extends store.CommitData | store.CommitData[]>(commitData: T, reducer: string): T {
+function reduceNotification<T extends myStore.CommitData | myStore.CommitData[]>(commitData: T, reducer: string): T {
   if (Array.isArray(commitData)) {
-    const dataArray: store.CommitData[] = [];
+    const dataArray: myStore.CommitData[] = [];
     commitData.forEach(data => {
       dataArray.push(handleReducer(data, reducer));
     });
     return dataArray.filter(v => v) as T;
   } else {
-    return handleReducer(commitData as store.CommitData, reducer) as T;
+    return handleReducer(commitData as myStore.CommitData, reducer) as T;
   }
 }
 

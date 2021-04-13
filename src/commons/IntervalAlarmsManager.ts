@@ -1,5 +1,5 @@
 class IntervalAlarmsManager {
-  jobs: commons.Jobs;
+  jobs: myCommons.Jobs;
   constructor() {
     this.jobs = {};
     chrome.alarms.onAlarm.addListener(({ name }) => {
@@ -10,13 +10,13 @@ class IntervalAlarmsManager {
       }
     });
   }
-  addJob(name: string, job: commons.Job) {
+  addJob(name: string, job: myCommons.Job): void {
     this.jobs[name] = job;
   }
-  removeJob(name: string) {
+  removeJob(name: string): void {
     delete this.jobs[name];
   }
-  add(name: string, delayInMinutes: number | undefined, periodInMinutes: number, job: commons.Job) {
+  add(name: string, delayInMinutes: number | undefined, periodInMinutes: number, job: myCommons.Job): void {
     if (delayInMinutes) {
       if (delayInMinutes <= 0) {
         delayInMinutes = undefined;
@@ -35,7 +35,7 @@ class IntervalAlarmsManager {
       periodInMinutes,
     });
   }
-  remove(name: string, callback?: () => void) {
+  remove(name: string, callback?: () => void): void {
     chrome.alarms.clear(name, () => {
       chrome.runtime.lastError && console.error(chrome.runtime.lastError);
       this.removeJob(name);

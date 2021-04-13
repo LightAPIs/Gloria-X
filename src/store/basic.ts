@@ -14,7 +14,7 @@ const taskKeys = [
   'executionError',
 ];
 
-function defaultConfigs(): store.GloriaConfig {
+function defaultConfigs(): myStore.GloriaConfig {
   return {
     taskAutoCheckUpdate: false,
     taskOnTimeMode: false,
@@ -37,7 +37,7 @@ function defaultConfigs(): store.GloriaConfig {
   };
 }
 
-function defaultTaskBasic(): store.GloriaTaskBasic {
+function defaultTaskBasic(): myStore.GloriaTaskBasic {
   return {
     id: '',
     name: '',
@@ -49,7 +49,7 @@ function defaultTaskBasic(): store.GloriaTaskBasic {
   };
 }
 
-function defaultTask(): store.GloriaTask {
+function defaultTask(): myStore.GloriaTask {
   return {
     ...defaultTaskBasic(),
     triggerCount: 0,
@@ -61,8 +61,7 @@ function defaultTask(): store.GloriaTask {
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function normalizeTask(task: any): store.GloriaTask {
+function normalizeTask(task: myStore.GloriaTask): myStore.GloriaTask {
   Object.keys(task).forEach(key => {
     if (!taskKeys.includes(key)) {
       delete task[key];

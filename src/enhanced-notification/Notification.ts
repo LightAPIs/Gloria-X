@@ -3,13 +3,11 @@ import debounce from 'lodash.debounce';
 import isInteger from 'lodash.isinteger';
 import isNull from 'lodash.isnull';
 import { asLink } from '@/commons/ui';
-import { APP_ICON_URL } from '@/commons/var';
+import { APP_ICON_URL, IS_CHROME } from '@/commons/var';
 import { TRANSPARENT_IMAGE, loadImage, imageToDataURI } from './common';
 import { v4 as uuid } from 'uuid';
 import scrapFavicon from 'scrap-favicon';
 import store from '@/store';
-
-const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 
 enum NotificationState {
   IDLE,
@@ -30,7 +28,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
   protected abstract readonly finalType: enhanced.NotificationTypes;
 
-  protected readonly allowOptions: string[] = isChrome
+  protected readonly allowOptions: string[] = IS_CHROME
     ? [
         'buttons', // Text and icons for up to two notification action buttons.
         'contextMessage',
@@ -322,7 +320,11 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     return true;
   }
 
-  format(options: { [key: string]: any }) {
+  format(options: {
+    [key: string]: any;
+  }): T & {
+    [key: string]: any;
+  } {
     const strictOptions: { [key: string]: any } = {};
     for (const key of Object.keys(options)) {
       if (this.allowOptions.includes(key) && !this.disallowOptions.includes(key)) {
@@ -436,7 +438,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
 
     if (!this.options.onClose) {
       this.onclose = async (_id: string, byUser: boolean) => {
-        if (byUser && isChrome) {
+        if (byUser && IS_CHROME) {
           //* 仅用户手动点击关闭按钮会触发
           !this.options.isTest && store.commit('decreaseUnread');
         }
@@ -611,7 +613,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
   }
 
   static audioDebounce = debounce(
-    function(func) {
+    function (func) {
       func();
     },
     2000,
@@ -621,7 +623,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
     }
   );
 
-  audio() {
+  audio(): void {
     Notification.audioDebounce(() => {
       const sound = new Audio('sound/bell.ogg');
       sound.play();

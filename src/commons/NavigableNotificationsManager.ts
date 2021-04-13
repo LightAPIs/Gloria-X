@@ -3,7 +3,7 @@ import ImageNotification from '@/enhanced-notification/ImageNotification';
 import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
 
 class NavigableNotificationsManager {
-  add(options: enhanced.NotificationOptions) {
+  add(options: enhanced.NotificationOptions): void {
     try {
       const cn = this.notification(options);
       cn && cn.create();
@@ -12,7 +12,7 @@ class NavigableNotificationsManager {
     }
   }
 
-  notification(options: enhanced.NotificationOptions) {
+  notification(options: enhanced.NotificationOptions): BasicNotification | ImageNotification | null {
     options.defaultIconUrl = DEFAULT_ICON_URL;
 
     if (!(typeof options.detectIcon === 'string')) {

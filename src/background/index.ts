@@ -4,16 +4,15 @@ import NotificationsManager from '@/commons/NavigableNotificationsManager';
 import store from '../store';
 import { isAfterInterval, remainingTime, nowLTS, dayjsLocale } from '@/commons/calc';
 import { i18n } from '@/commons/ui';
-import { APP_ICON_URL as DEFAULT_ICON_URL } from '@/commons/var';
+import { APP_ICON_URL as DEFAULT_ICON_URL, IS_CHROME } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
 
-const isChrome = process.env.VUE_APP_TITLE === 'chrome';
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 dayjsLocale();
 
-function createTaskTimer(task: store.GloriaTask, immediately = false) {
+function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
   const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;
   const { id, code, triggerInterval, triggerDate, onTimeMode, name } = task;
   function run() {
@@ -29,7 +28,7 @@ function createTaskTimer(task: store.GloriaTask, immediately = false) {
 
           store.dispatch('handleData', {
             taskId: id,
-            data: commitFormat(dataList as store.CommitData | store.CommitData[]),
+            data: commitFormat(dataList as myStore.CommitData | myStore.CommitData[]),
           });
         })
         .catch(err => {
@@ -170,13 +169,13 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
   }
 }
 
-function resetTaskTimer(task: store.GloriaTask, immediately: boolean) {
+function resetTaskTimer(task: myStore.GloriaTask, immediately: boolean) {
   alarmsManager.remove(task.id, () => {
     createTaskTimer(task, immediately);
   });
 }
 
-function removeTaskTimer(task: store.GloriaTask) {
+function removeTaskTimer(task: myStore.GloriaTask) {
   alarmsManager.remove(task.id);
 }
 
@@ -198,7 +197,7 @@ function createNotification(options: enhanced.NotificationOptions) {
   notificationsManager.add(options);
 }
 
-function createNotificationOptions(task: store.GloriaTask, data: store.MessageData, configs: store.GloriaConfig, isTest?: boolean) {
+function createNotificationOptions(task: myStore.GloriaTask, data: myStore.MessageData, configs: myStore.GloriaConfig, isTest?: boolean) {
   const { name, needInteraction } = task;
   const { notificationId, title, message, iconUrl, url, imageUrl } = data;
   const { notificationSound, notificationCustomSound, notificationDetectIcon, notificationLaterMark } = configs;
@@ -251,7 +250,7 @@ function syncCodeUpdate() {
   }
 
   store.watch(
-    (state: store.VuexState): boolean => state.configs.taskAutoCheckUpdate,
+    (state: myStore.VuexState): boolean => state.configs.taskAutoCheckUpdate,
     (val: boolean) => {
       if (val) {
         if (checkCodeUpdateIdList.size === 0) {
@@ -354,7 +353,7 @@ function syncMessageFlow() {
       if (!implicitPush && !pushMessageList.has(id)) {
         for (const task of tasks) {
           if (task.id === taskId) {
-            data.forEach((item: store.MessageData) => {
+            data.forEach((item: myStore.MessageData) => {
               const options = createNotificationOptions(task, item, configs);
               createNotification(options);
             });
@@ -373,7 +372,7 @@ function syncUnreadNumber() {
   });
 
   store.watch(
-    (state: store.VuexState): number => state.unread,
+    (state: myStore.VuexState): number => state.unread,
     (val: number) => {
       if (val > 0) {
         chrome.browserAction.setBadgeText({
@@ -404,7 +403,7 @@ function syncImplicitStatus() {
   });
 
   store.watch(
-    (state: store.VuexState): boolean => state.implicitPush,
+    (state: myStore.VuexState): boolean => state.implicitPush,
     (val: boolean) => {
       if (val) {
         chrome.browserAction.setIcon({
@@ -468,7 +467,7 @@ function registerMenu() {
     },
   });
 
-  if (!isChrome) {
+  if (!IS_CHROME) {
     chrome.contextMenus.create({
       id: 'gloriaXSettings',
       title: i18n('optionsTitle'),
@@ -484,7 +483,7 @@ function registerMenu() {
   }
 }
 
-function testVirtualNotification(dataList: store.CommitData | store.CommitData[]) {
+function testVirtualNotification(dataList: myStore.CommitData | myStore.CommitData[]) {
   if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {
     return;
   }
@@ -494,7 +493,7 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
   }
 
   const { configs } = store.state;
-  const virtualTask: store.GloriaTask = {
+  const virtualTask: myStore.GloriaTask = {
     id: '',
     code: '',
     name: i18n('notificationTestName'),
@@ -510,7 +509,7 @@ function testVirtualNotification(dataList: store.CommitData | store.CommitData[]
     executionError: 0,
   };
 
-  (dataList as store.MessageData[]).forEach(item => {
+  (dataList as myStore.MessageData[]).forEach(item => {
     const options = createNotificationOptions(virtualTask, item, configs, true);
     createNotification(options);
   });
@@ -534,8 +533,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       evalUntrusted(data)
         .then(res => {
           const formatRes = res
-            ? commitFormat(res as store.CommitData | store.CommitData[])
-            : (res as store.CommitData | store.CommitData[]);
+            ? commitFormat(res as myStore.CommitData | myStore.CommitData[])
+            : (res as myStore.CommitData | myStore.CommitData[]);
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
@@ -561,8 +560,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       evalUntrusted(data)
         .then(res => {
           const formatRes = res
-            ? commitFormat(res as store.CommitData | store.CommitData[])
-            : (res as store.CommitData | store.CommitData[]);
+            ? commitFormat(res as myStore.CommitData | myStore.CommitData[])
+            : (res as myStore.CommitData | myStore.CommitData[]);
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
@@ -860,7 +859,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   {
     urls: ['<all_urls>'],
   },
-  isChrome ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
+  IS_CHROME ? ['blocking', 'requestHeaders', 'extraHeaders'] : ['blocking', 'requestHeaders']
 );
 
 chrome.webRequest.onCompleted.addListener(

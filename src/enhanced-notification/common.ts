@@ -1,15 +1,15 @@
 const TRANSPARENT_IMAGE =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=';
 
-function resolveUrl(url: string, base: string) {
+function resolveUrl(url: string, base: string): string {
   return new URL(url, base).href;
 }
 
-async function textFetcher(url: string) {
+async function textFetcher(url: string): Promise<string> {
   return await fetch(url).then(res => res.text());
 }
 
-async function bufferFetcher(url: string) {
+async function bufferFetcher(url: string): Promise<ArrayBuffer> {
   return await fetch(url).then(res => res.arrayBuffer());
 }
 

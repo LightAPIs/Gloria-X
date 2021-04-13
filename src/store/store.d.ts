@@ -1,4 +1,4 @@
-declare namespace store {
+declare namespace myStore {
   interface Stage {
     id: string;
     title: string;
@@ -40,6 +40,7 @@ declare namespace store {
   }
 
   interface GloriaTask extends GloriaTaskBasic {
+    [key: string]: string | number | boolean;
     isEnable: boolean;
     triggerCount: number;
     pushCount: number;
