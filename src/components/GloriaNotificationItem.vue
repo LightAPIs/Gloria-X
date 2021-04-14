@@ -14,11 +14,11 @@
                     <div class="title-text">
                       {{ title || url }}
                     </div>
-                    <el-link type="primary" @click="openLink" class="url-text">
+                    <el-link type="primary" href="#" @click="openLink" class="url-text">
                       {{ url }}
                     </el-link>
                   </template>
-                  <el-link v-else type="primary" @click="openLink">
+                  <el-link v-else type="primary" href="#" @click="openLink">
                     {{ title || url }}
                   </el-link>
                 </template>
