@@ -1,5 +1,5 @@
 <template>
-  <el-timeline-item v-show="matchMenu && itemShow" :timestamp="displayTime(eventTime)" placement="top">
+  <el-timeline-item :timestamp="displayTime(eventTime)" placement="top" color="#0bbd87">
     <el-badge is-dot :hidden="!later" type="danger" class="notification-item">
       <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.prevent="onContextmenu">
         <template #header>
@@ -43,17 +43,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapGetters, mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import { ElMessage } from 'element-plus';
 import { APP_ICON_URL } from '@/commons/var';
 
 export default defineComponent({
   name: 'GloriaNotificationItem',
   props: {
-    menuKey: {
-      type: String,
-      required: true,
-    },
     id: {
       type: String,
       required: true,
@@ -94,42 +90,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    filterText: {
-      type: String,
-      default: '',
-    },
   },
   emits: ['notification-contextmenu'],
   computed: {
     ...mapState(['configs']),
-    ...mapGetters(['notificationsTitleList']),
-    matchMenu() {
-      const { menuKey, contextMessage, later } = this;
-      let show = true;
-      if (menuKey != '-1' && menuKey != '-2') {
-        const menuName = this.notificationsTitleList[menuKey];
-        if (menuName !== contextMessage) {
-          show = false;
-        }
-      } else if (menuKey == '-2') {
-        if (!later) {
-          show = false;
-        }
-      }
-      return show;
-    },
-    itemShow() {
-      let show = false;
-      const { filterText, title, message } = this;
-      if (
-        !filterText ||
-        title.toLowerCase().includes(filterText.toLowerCase()) ||
-        message.toLowerCase().includes(filterText.toLowerCase())
-      ) {
-        show = true;
-      }
-      return show;
-    },
     displayIcon(): string {
       const { iconUrl } = this;
       if (!iconUrl) {

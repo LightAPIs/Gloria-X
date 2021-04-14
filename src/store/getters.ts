@@ -38,6 +38,59 @@ export default {
     });
     return arr;
   },
+  notificationsList: (state: myStore.VuexState) => (
+    loadIndex: number,
+    menuName: string,
+    filterText: string,
+    isLater: boolean
+  ): myStore.GloriaNotification[] => {
+    const { notifications } = state;
+    const notifyList: myStore.GloriaNotification[] = [];
+
+    for (const notify of notifications) {
+      if (isLater) {
+        if (notify.later) {
+          if (filterText) {
+            if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
+            } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
+            }
+          } else {
+            notifyList.push(notify);
+          }
+        }
+      } else if (menuName) {
+        if (notify.options.contextMessage === menuName) {
+          if (filterText) {
+            if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
+            } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
+            }
+          } else {
+            notifyList.push(notify);
+          }
+        }
+      } else {
+        if (filterText) {
+          if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
+            notifyList.push(notify);
+          } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
+            notifyList.push(notify);
+          }
+        } else {
+          notifyList.push(notify);
+        }
+      }
+
+      if (notifyList.length >= loadIndex) {
+        break;
+      }
+    }
+
+    return notifyList;
+  },
   notificationCount: (state: myStore.VuexState) => (name: string): number => {
     let count = 0;
     const { notifications } = state;

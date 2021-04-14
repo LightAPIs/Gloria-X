@@ -10,12 +10,11 @@
         </el-header>
         <el-main>
           <div v-infinite-scroll="onInfiniteLoad" class="history">
-            <el-timeline class="history-timeline" color="#0bbd87">
+            <el-timeline class="history-timeline">
               <gloria-notification-item
-                v-for="info in notifications"
+                v-for="info in notificationsList(loadIndex, menuName, filterText, isLater)"
                 :id="info.id"
                 :key="info.id"
-                :menu-key="menuKey"
                 :later="info.later"
                 :event-time="info.options.eventTime"
                 :type="info.options.type"
@@ -25,7 +24,6 @@
                 :icon-url="info.options.iconUrl"
                 :image-url="info.options.imageUrl"
                 :url="info.options.url"
-                :filter-text="filterText"
                 @notification-contextmenu="onContextmenu"
               ></gloria-notification-item>
             </el-timeline>
@@ -44,7 +42,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import GloriaNotificationMenu from './GloriaNotificationMenu.vue';
 import GloriaSearchInput from './GloriaSearchInput.vue';
 import GloriaNotificationItem from './GloriaNotificationItem.vue';
@@ -60,7 +58,8 @@ export default defineComponent({
   },
   data() {
     return {
-      menuKey: '-1',
+      menuName: '',
+      isLater: false,
       filterText: '',
       loadIndex: 5,
       context: {
@@ -71,11 +70,13 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(['notifications', 'configs']),
+    ...mapState(['configs']),
+    ...mapGetters(['notificationsList']),
   },
   methods: {
-    onSelectMenu(key: string) {
-      this.menuKey = key;
+    onSelectMenu(menuObj: { menuName: string; isLater: boolean }) {
+      this.menuName = menuObj.menuName;
+      this.isLater = menuObj.isLater;
     },
     onFilterText(text: string) {
       this.filterText = text;

@@ -22,6 +22,7 @@ import {
   ElFormItem,
   ElHeader,
   ElImage,
+  ElInfiniteScroll,
   ElInput,
   ElInputNumber,
   ElLink,
@@ -76,12 +77,18 @@ const components = [
   ElAffix,
 ];
 
+const plugins = [ElInfiniteScroll];
+
 calc.dayjsLocale();
 
 const app = createApp(App);
 
 components.forEach(component => {
   app.component(component.name, component);
+});
+
+plugins.forEach(plugin => {
+  app.use(plugin);
 });
 
 app.use(store);

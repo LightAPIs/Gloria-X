@@ -1,7 +1,7 @@
 <template>
   <el-menu
     class="history-menu"
-    :default-active="activeIndex"
+    default-active="-1"
     background-color="#545c64"
     active-text-color="#ffd04b"
     text-color="#fff"
@@ -71,11 +71,6 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
 export default defineComponent({
   name: 'GloriaNotificationMenu',
   emits: ['select-menu', 'menu-contextmenu'],
-  data() {
-    return {
-      activeIndex: '-1',
-    };
-  },
   computed: {
     ...mapState(['configs']),
     ...mapGetters(['notificationsTitleList', 'laterCount', 'laterList', 'notificationCount', 'notificationsAllCount']),
@@ -90,7 +85,18 @@ export default defineComponent({
       'removeNotificationsByName',
     ]),
     handleSelect(key: string) {
-      this.$emit('select-menu', key);
+      let menuName = '';
+      let isLater = false;
+      if (key == '-2') {
+        isLater = true;
+      } else if (key != '-1') {
+        menuName = this.notificationsTitleList[key];
+      }
+
+      this.$emit('select-menu', {
+        menuName,
+        isLater,
+      });
     },
     onContextmenu(event: MouseEvent, index: string) {
       const { notificationsTitleList, laterCount, laterList } = this;
