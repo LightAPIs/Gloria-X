@@ -30,10 +30,8 @@
     "scrap-favicon": "^1.0.4",
     "uuid": "^8.3.2",
     "vue": "^3.0.11",
-    "vue-lazy-render": "^1.0.20",
     "vue-router": "^4.0.5",
-    "vuex": "^4.0.0",
-    "vuex-chrome-plugin": "^0.1.1"
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^12.1.1",

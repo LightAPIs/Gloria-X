@@ -1,5 +1,5 @@
 import { createStore, createLogger } from 'vuex';
-import VuexChromePlugin from 'vuex-chrome-plugin';
+import VuexChromePlugin from '../vuex-extensions';
 import { defaultConfigs } from './basic';
 import getters from './getters';
 import mutations from './mutations';
@@ -39,7 +39,6 @@ const store = createStore({
   getters,
   mutations,
   actions,
-  // modules: {},
   strict: devMode,
   plugins: [logger, VuexChromePlugin()],
 });
