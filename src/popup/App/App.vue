@@ -1,7 +1,7 @@
 <template>
   <div id="popup-app">
     <el-tabs :model-value="activeTab" class="tabs" stretch type="border-card" :before-leave="leaveTab">
-      <el-tab-pane class="tab-pane" name="tasks">
+      <el-tab-pane class="tab-pane" name="tasks" lazy>
         <template #label>
           <span>
             <i class="el-icon-s-order"></i>
@@ -13,7 +13,7 @@
         </template>
         <gloria-task-tab></gloria-task-tab>
       </el-tab-pane>
-      <el-tab-pane class="tab-pane" name="notifications">
+      <el-tab-pane class="tab-pane" name="notifications" lazy>
         <template #label>
           <span>
             <i class="el-icon-notebook-2"></i>
