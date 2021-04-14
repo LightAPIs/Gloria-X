@@ -7,8 +7,8 @@
       <el-main>
         <gloria-task-item
           v-for="task in tasks"
-          :key="task.id"
           :id="task.id"
+          :key="task.id"
           :name="task.name"
           :is-enable="task.isEnable"
           :trigger-interval="task.triggerInterval"
@@ -35,9 +35,9 @@
       @close="onContextmenuClose"
     ></gloria-context-menu>
     <gloria-task-edit
+      :id="form.id"
       :dialog-visible="dialogVisible"
       :type="formType"
-      :id="form.id"
       :name="form.name"
       :code="form.code"
       :trigger-interval="form.triggerInterval"
@@ -59,7 +59,7 @@ import GloriaContextMenu from './GloriaContextMenu.vue';
 import { ElMessage } from 'element-plus';
 
 export default defineComponent({
-  name: 'gloria-task-tab',
+  name: 'GloriaTaskTab',
   components: {
     GloriaTaskItem,
     GloriaTaskFab,

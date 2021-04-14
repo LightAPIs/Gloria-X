@@ -93,7 +93,7 @@
 import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default defineComponent({
-  name: 'gloria-settings-notification',
+  name: 'GloriaSettingsNotification',
   data() {
     return {
       isChrome: process.env.VUE_APP_TITLE === 'chrome',

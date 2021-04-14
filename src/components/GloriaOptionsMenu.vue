@@ -26,7 +26,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'gloria-options-menu',
+  name: 'GloriaOptionsMenu',
   props: {
     activeIndex: {
       type: String,

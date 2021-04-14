@@ -1,11 +1,11 @@
 <template>
   <el-menu
+    class="history-menu"
     :default-active="activeIndex"
     background-color="#545c64"
     active-text-color="#ffd04b"
     text-color="#fff"
     @select="handleSelect"
-    class="history-menu"
   >
     <el-menu-item
       index="-1"
@@ -69,7 +69,7 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
 /* global myStore */
 
 export default defineComponent({
-  name: 'gloria-notification-menu',
+  name: 'GloriaNotificationMenu',
   emits: ['select-menu', 'menu-contextmenu'],
   data() {
     return {

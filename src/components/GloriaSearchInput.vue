@@ -1,12 +1,12 @@
 <template>
   <el-input
+    v-model="filterText"
     size="mini"
     :prefix-icon="searching ? 'el-icon-loading' : 'el-icon-search'"
     :placeholder="type === 'tasks' ? i18n('searchTaskPlaceholder') : i18n('searchNotificationPlaceholder')"
-    v-model="filterText"
     clearable
   >
-    <template #append v-if="type === 'tasks'">
+    <template v-if="type === 'tasks'" #append>
       <el-dropdown split-button trigger="click" @command="handleCommand">
         <span>{{ dropdownText }}</span>
         <template #dropdown>
@@ -47,13 +47,14 @@ import { defineComponent, nextTick } from 'vue';
 import debounce from 'lodash.debounce';
 
 export default defineComponent({
-  name: 'gloria-search-input',
+  name: 'GloriaSearchInput',
   props: {
     type: {
       type: String,
       required: true,
     },
   },
+  emits: ['filter-text', 'filter-type'],
   setup() {
     const getRemote = debounce(
       function (func) {
@@ -69,7 +70,6 @@ export default defineComponent({
       getRemote,
     };
   },
-  emits: ['filter-text', 'filter-type'],
   data() {
     return {
       filterText: '',

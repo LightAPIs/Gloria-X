@@ -2,7 +2,7 @@
   <div class="gloria-settings-file">
     <span class="file-btn">
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsImportTooltip')">
-        <el-button type="primary" @click="onImport" size="small">
+        <el-button type="primary" size="small" @click="onImport">
           {{ i18n('settingsImport') }}
         </el-button>
       </el-tooltip>
@@ -10,7 +10,7 @@
 
     <span class="file-btn">
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsExportJsonTooltip')">
-        <el-button type="info" @click="onExoprtJson" size="small">
+        <el-button type="info" size="small" @click="onExoprtJson">
           {{ i18n('settingsExportJson') }}
         </el-button>
       </el-tooltip>
@@ -18,7 +18,7 @@
 
     <span class="file-btn">
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsExportTextTooltip')">
-        <el-button type="info" @click="onExportText" size="small">
+        <el-button type="info" size="small" @click="onExportText">
           {{ i18n('settingsExportText') }}
         </el-button>
       </el-tooltip>
@@ -36,7 +36,7 @@ import encUtf8 from 'crypto-js/enc-utf8';
 const secretKey = '048e0efc-da28-4322-a93c-37fa69e84df8';
 
 export default defineComponent({
-  name: 'gloria-settings-file',
+  name: 'GloriaSettingsFile',
   setup() {
     const exportFile = (content: string, filename: string, completed?: () => void) => {
       const exportBlob = new Blob([content]);

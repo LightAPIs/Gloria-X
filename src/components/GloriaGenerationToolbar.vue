@@ -44,7 +44,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
-  name: 'gloria-generation-toolbar',
+  name: 'GloriaGenerationToolbar',
   data() {
     return {
       minus: false,

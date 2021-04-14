@@ -136,7 +136,7 @@ import { mapGetters, mapMutations } from 'vuex';
 import { ElMessage } from 'element-plus';
 
 export default defineComponent({
-  name: 'gloria-task-item',
+  name: 'GloriaTaskItem',
   props: {
     id: {
       type: String,

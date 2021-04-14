@@ -13,7 +13,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'gloria-options-header',
+  name: 'GloriaOptionsHeader',
   props: {
     breadcrumbIndex: {
       type: String,

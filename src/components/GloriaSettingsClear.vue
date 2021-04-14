@@ -24,7 +24,7 @@ import { mapMutations } from 'vuex';
 import { ElMessage } from 'element-plus';
 
 export default defineComponent({
-  name: 'gloria-settings-clear',
+  name: 'GloriaSettingsClear',
   data() {
     return {
       buttonGroup: [

@@ -18,7 +18,7 @@ import { defineComponent } from 'vue';
 import GloriaDebugCode from '@/components/GloriaDebugCode.vue';
 
 export default defineComponent({
-  name: 'router-debug',
+  name: 'RouterDebug',
   components: {
     GloriaDebugCode,
   },

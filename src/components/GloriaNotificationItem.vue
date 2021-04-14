@@ -14,7 +14,7 @@
                     <div class="title-text">
                       {{ title || url }}
                     </div>
-                    <el-link type="primary" href="#" @click="openLink" class="url-text">
+                    <el-link type="primary" href="#" class="url-text" @click="openLink">
                       {{ url }}
                     </el-link>
                   </template>
@@ -48,7 +48,7 @@ import { ElMessage } from 'element-plus';
 import { APP_ICON_URL } from '@/commons/var';
 
 export default defineComponent({
-  name: 'gloria-notification-item',
+  name: 'GloriaNotificationItem',
   props: {
     menuKey: {
       type: String,
@@ -88,9 +88,11 @@ export default defineComponent({
     },
     imageUrl: {
       type: String,
+      default: '',
     },
     url: {
       type: String,
+      default: '',
     },
     filterText: {
       type: String,

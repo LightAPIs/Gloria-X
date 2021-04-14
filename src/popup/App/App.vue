@@ -36,7 +36,7 @@ import GloriaTaskTab from '@/components/GloriaTaskTab.vue';
 import GloriaNotificationTab from '@/components/GloriaNotificationTab.vue';
 
 export default defineComponent({
-  name: 'app',
+  name: 'App',
   components: { GloriaTaskTab, GloriaNotificationTab },
   computed: {
     ...mapGetters(['activeTab']),

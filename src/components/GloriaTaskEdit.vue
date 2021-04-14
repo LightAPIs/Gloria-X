@@ -6,26 +6,26 @@
     center
     @close="$emit('close-dialog')"
   >
-    <el-form :model="form" :rules="rules" label-width="120px" ref="form">
+    <el-form ref="form" :model="form" :rules="rules" label-width="120px">
       <el-form-item :label="i18n('popupTaskFormNameLabel')" prop="name">
         <el-input v-model="form.name" clearable :placeholder="i18n('popupTaskFormNamePlaceholder')" prefix-icon="el-icon-view"></el-input>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormCodeLabel')" prop="code">
         <el-input
+          ref="taskInput"
           v-model="form.code"
           :placeholder="i18n('popupTaskFormCodePlaceholder')"
           type="textarea"
           :rows="8"
           @keydown.tab="textareaTab($refs.taskInput, $event)"
-          ref="taskInput"
         ></el-input>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
         <el-input-number v-model="form.day" :min="0" :max="6" step-strictly></el-input-number>
         {{ ' ' + i18n('dayText') }}
-        <el-input-number class="time-input-number" v-model="form.hour" :min="0" :max="23" step-strictly></el-input-number>
+        <el-input-number v-model="form.hour" class="time-input-number" :min="0" :max="23" step-strictly></el-input-number>
         {{ ' ' + i18n('hourText') }}
-        <el-input-number class="time-input-number" v-model="form.minute" :min="0" :max="59" step-strictly></el-input-number>
+        <el-input-number v-model="form.minute" class="time-input-number" :min="0" :max="59" step-strictly></el-input-number>
         {{ ' ' + i18n('minuteText') }}
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
@@ -55,7 +55,7 @@ import { ElForm } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
 
 export default defineComponent({
-  name: 'glorai-task-edit',
+  name: 'GloraiTaskEdit',
   props: {
     dialogVisible: {
       type: Boolean,

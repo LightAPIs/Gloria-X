@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
-  name: 'gloria-task-fab',
+  name: 'GloriaTaskFab',
   emits: ['add-task'],
   methods: {
     onClick() {

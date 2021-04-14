@@ -17,7 +17,7 @@ import GloriaGenerationContent from '@/components/GloriaGenerationContent.vue';
 import GloriaGenerationToolbar from '@/components/GloriaGenerationToolbar.vue';
 
 export default defineComponent({
-  name: 'app',
+  name: 'App',
   components: {
     GloriaGenerationContent,
     GloriaGenerationToolbar,

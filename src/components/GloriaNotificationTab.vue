@@ -9,12 +9,12 @@
           <gloria-search-input type="notifications" @filter-text="onFilterText"></gloria-search-input>
         </el-header>
         <el-main>
-          <div class="history">
+          <div v-infinite-scroll="onInfiniteLoad" class="history">
             <el-timeline class="history-timeline" color="#0bbd87">
               <gloria-notification-item
                 v-for="info in notifications"
-                :key="info.id"
                 :id="info.id"
+                :key="info.id"
                 :menu-key="menuKey"
                 :later="info.later"
                 :event-time="info.options.eventTime"
@@ -51,7 +51,7 @@ import GloriaNotificationItem from './GloriaNotificationItem.vue';
 import GloriaContextMenu from './GloriaContextMenu.vue';
 
 export default defineComponent({
-  name: 'gloria-notification-tab',
+  name: 'GloriaNotificationTab',
   components: {
     GloriaNotificationMenu,
     GloriaSearchInput,
@@ -62,6 +62,7 @@ export default defineComponent({
     return {
       menuKey: '-1',
       filterText: '',
+      loadIndex: 5,
       context: {
         isShow: false,
         items: [],
@@ -86,6 +87,9 @@ export default defineComponent({
     },
     onContextmenuClose() {
       this.context.isShow = false;
+    },
+    onInfiniteLoad() {
+      this.loadIndex += 2;
     },
   },
 });

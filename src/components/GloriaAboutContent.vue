@@ -39,7 +39,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'gloria-about-content',
+  name: 'GloriaAboutContent',
   data() {
     return {
       version: process.env.VUE_APP_VERSION,

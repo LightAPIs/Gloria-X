@@ -1,14 +1,14 @@
 <template>
   <div
     v-if="isShow"
+    ref="menu"
     class="context-menu gloria-context-menu"
     :style="{ left: left + 'px', top: top + 'px' }"
-    ref="menu"
     @contextmenu="e => e.preventDefault()"
   >
     <div class="menu-body">
       <template v-for="(item, index) in items">
-        <div :key="index" v-if="item.label" class="menu-item" :class="{ 'menu-divided': item.divided }" @click="item.onClick">
+        <div v-if="item.label" :key="index" class="menu-item" :class="{ 'menu-divided': item.divided }" @click="item.onClick">
           <i class="menu-item-icon" :class="item.icon"></i>
           <span>{{ item.label }}</span>
         </div>
@@ -21,7 +21,7 @@
 import { defineComponent, nextTick } from 'vue';
 
 export default defineComponent({
-  name: 'gloria-context-menu',
+  name: 'GloriaContextMenu',
   props: {
     isShow: {
       type: Boolean,
@@ -33,6 +33,7 @@ export default defineComponent({
     },
     contextEvent: {
       type: MouseEvent,
+      default: null,
     },
   },
   emits: ['close'],
@@ -59,28 +60,6 @@ export default defineComponent({
         temp = contextEvent.clientY;
       }
       return temp;
-    },
-  },
-  methods: {
-    mouseClickListener() {
-      this.$emit('close');
-    },
-    mouseWheelListener() {
-      this.$emit('close');
-    },
-    addListener() {
-      if (!this.mosueListening) {
-        document.addEventListener('click', this.mouseClickListener);
-        document.addEventListener('mousewheel', this.mouseWheelListener);
-        this.mosueListening = true;
-      }
-    },
-    removeListener() {
-      if (this.mosueListening) {
-        document.removeEventListener('click', this.mouseClickListener);
-        document.removeEventListener('mousewheel', this.mouseWheelListener);
-        this.mosueListening = false;
-      }
     },
   },
   mounted() {
@@ -111,6 +90,28 @@ export default defineComponent({
   },
   unmounted() {
     this.removeListener();
+  },
+  methods: {
+    mouseClickListener() {
+      this.$emit('close');
+    },
+    mouseWheelListener() {
+      this.$emit('close');
+    },
+    addListener() {
+      if (!this.mosueListening) {
+        document.addEventListener('click', this.mouseClickListener);
+        document.addEventListener('mousewheel', this.mouseWheelListener);
+        this.mosueListening = true;
+      }
+    },
+    removeListener() {
+      if (this.mosueListening) {
+        document.removeEventListener('click', this.mouseClickListener);
+        document.removeEventListener('mousewheel', this.mouseWheelListener);
+        this.mosueListening = false;
+      }
+    },
   },
 });
 </script>

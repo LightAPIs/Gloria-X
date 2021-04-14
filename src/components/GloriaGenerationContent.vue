@@ -28,7 +28,7 @@
                   <el-input v-model="selectionForm.url" clearable :placeholder="i18n('generationSelectionUrl')"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" size="small" @click="onSelectionSubmit" :disabled="elements.length === 0">
+                  <el-button type="primary" size="small" :disabled="elements.length === 0" @click="onSelectionSubmit">
                     {{ i18n('generationSelectionSubmit') }}
                   </el-button>
                 </el-form-item>
@@ -44,13 +44,13 @@
           <div class="left-content">
             <div class="left-header">{{ i18n('generationCode') }}</div>
             <el-input
-              v-model="code"
               id="debug-code-input"
+              ref="codeInput"
+              v-model="code"
               type="textarea"
               :rows="9"
               @keydown.tab="textareaTab($refs.codeInput, $event)"
               @change="onCodeChange"
-              ref="codeInput"
             ></el-input>
           </div>
         </el-col>
@@ -62,7 +62,7 @@
             <el-button type="warning" size="small" @click="onBackSelection">
               {{ i18n('generationLast') }}
             </el-button>
-            <el-button type="success" size="small" @click="onNext" :disabled="!next">
+            <el-button type="success" size="small" :disabled="!next" @click="onNext">
               {{ i18n('generationNext') }}
             </el-button>
             <div class="result">
@@ -70,8 +70,8 @@
                 {{ i18n('debugResult') }}
               </label>
               <el-input
-                :value="result"
                 id="debug-code-result"
+                :value="result"
                 type="textarea"
                 :rows="8"
                 :placeholder="i18n('debugResultPlaceholder')"
@@ -88,19 +88,19 @@
           <div class="left-content">
             <div class="left-header">{{ i18n('generationCode') }}</div>
             <el-input
-              :value="code"
               id="task-code-input"
+              :value="code"
               type="textarea"
               :rows="9"
-              @keydown.tab="textareaTab($refs.codeInput, $event)"
               disabled
               readonly
+              @keydown.tab="textareaTab($refs.codeInput, $event)"
             ></el-input>
           </div>
         </el-col>
         <el-col :span="12" class="padding-col">
           <div class="right-content">
-            <el-form :model="taskForm" :rules="taskRules" label-width="120px" ref="taskForm">
+            <el-form ref="taskForm" :model="taskForm" :rules="taskRules" label-width="120px">
               <el-form-item>
                 <el-button type="primary" size="small" @click="onTaskSubmit">
                   {{ i18n('generationTaskSubmit') }}
@@ -120,9 +120,9 @@
               <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
                 <el-input-number v-model="taskForm.day" :min="0" :max="6" step-strictly></el-input-number>
                 {{ ' ' + i18n('dayText') }}
-                <el-input-number class="time-input-number" v-model="taskForm.hour" :min="0" :max="23" step-strictly></el-input-number>
+                <el-input-number v-model="taskForm.hour" class="time-input-number" :min="0" :max="23" step-strictly></el-input-number>
                 {{ ' ' + i18n('hourText') }}
-                <el-input-number class="time-input-number" v-model="taskForm.minute" :min="0" :max="59" step-strictly></el-input-number>
+                <el-input-number v-model="taskForm.minute" class="time-input-number" :min="0" :max="59" step-strictly></el-input-number>
                 {{ ' ' + i18n('minuteText') }}
               </el-form-item>
               <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
@@ -149,7 +149,7 @@ import { mapMutations, mapState } from 'vuex';
 import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
-  name: 'gloria-generation-content',
+  name: 'GloriaGenerationContent',
   data() {
     return {
       pageUrl: '',
@@ -197,6 +197,19 @@ export default defineComponent({
   },
   computed: {
     ...mapState(['configs']),
+  },
+  created() {
+    this.getPageUrl();
+    chrome.runtime.onMessage.addListener(message => {
+      if (message.type === 'path') {
+        this.elements = [];
+        message.data.forEach((value: string) => {
+          this.elements.push({
+            value,
+          });
+        });
+      }
+    });
   },
   methods: {
     ...mapMutations(['createTaskBasic']),
@@ -426,19 +439,6 @@ export default defineComponent({
         });
       }
     },
-  },
-  created() {
-    this.getPageUrl();
-    chrome.runtime.onMessage.addListener(message => {
-      if (message.type === 'path') {
-        this.elements = [];
-        message.data.forEach((value: string) => {
-          this.elements.push({
-            value,
-          });
-        });
-      }
-    });
   },
 });
 </script>

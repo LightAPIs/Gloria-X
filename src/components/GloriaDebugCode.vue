@@ -7,13 +7,13 @@
             {{ i18n('debugCodeLabel') }}
           </label>
           <el-input
-            v-model="code"
             id="debug-code-input"
+            ref="codeInput"
+            v-model="code"
             type="textarea"
             :rows="32"
             :placeholder="i18n('debugCodePlaceholder')"
             @keydown.tab="textareaTab($refs.codeInput, $event)"
-            ref="codeInput"
           ></el-input>
         </div>
       </el-col>
@@ -23,8 +23,8 @@
             {{ i18n('debugResult') }}
           </label>
           <el-input
-            :value="result"
             id="debug-code-result"
+            :value="result"
             type="textarea"
             :rows="15"
             :placeholder="i18n('debugResultPlaceholder')"
@@ -35,7 +35,7 @@
           <label for="debug-code-error" class="input-label">
             {{ i18n('debugError') }}
           </label>
-          <el-input :value="error" id="debug-code-error" type="textarea" :rows="15" :placeholder="i18n('debugErrorPlaceholder')" readonly>
+          <el-input id="debug-code-error" :value="error" type="textarea" :rows="15" :placeholder="i18n('debugErrorPlaceholder')" readonly>
           </el-input>
         </div>
       </el-col>
@@ -47,7 +47,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'gloria-debug-code',
+  name: 'GloriaDebugCode',
   props: {
     testing: {
       type: Boolean,

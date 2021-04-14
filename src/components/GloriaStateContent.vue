@@ -7,8 +7,8 @@
             {{ i18n('stateNotifications') }}
           </label>
           <el-input
-            :value="notificationsView"
             id="state-notifications-view"
+            :value="notificationsView"
             type="textarea"
             :rows="30"
             :placeholder="i18n('stateNotificationsPlaceholder')"
@@ -22,8 +22,8 @@
             {{ i18n('stateTasks') }}
           </label>
           <el-input
-            :value="tasksView"
             id="satae-tasks-view"
+            :value="tasksView"
             type="textarea"
             :rows="30"
             :placeholder="i18n('stateTasksPlaceholder')"
@@ -37,8 +37,8 @@
             {{ i18n('stateStages') }}
           </label>
           <el-input
-            :value="stagesView"
             id="state-stages-view"
+            :value="stagesView"
             type="textarea"
             :rows="30"
             :placeholder="i18n('stateStagesPlaceholder')"
@@ -55,7 +55,7 @@ import { defineComponent } from 'vue';
 import { mapState } from 'vuex';
 
 export default defineComponent({
-  name: 'gloria-state-content',
+  name: 'GloriaStateContent',
   props: {
     watching: {
       type: Boolean,

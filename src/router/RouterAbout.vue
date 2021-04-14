@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import GloriaAboutContent from '@/components/GloriaAboutContent.vue';
 
 export default defineComponent({
-  name: 'router-about',
+  name: 'RouterAbout',
   components: {
     GloriaAboutContent,
   },

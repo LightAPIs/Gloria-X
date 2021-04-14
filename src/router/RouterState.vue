@@ -20,7 +20,7 @@ import GloriaStateContent from '@/components/GloriaStateContent.vue';
 import GloriaSettingsClear from '@/components/GloriaSettingsClear.vue';
 
 export default defineComponent({
-  name: 'router-state',
+  name: 'RouterState',
   components: {
     GloriaStateContent,
     GloriaSettingsClear,

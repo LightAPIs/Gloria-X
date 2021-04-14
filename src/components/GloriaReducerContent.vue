@@ -21,30 +21,30 @@
         </div>
         <div>
           <el-input
-            :value="currentReducer"
             id="reducer-code"
+            ref="reducerInput"
+            :value="currentReducer"
             type="textarea"
             :rows="32"
             :placeholder="i18n('reducerPlacehoder')"
             :disabled="!editable"
             @input="handleReducer"
             @keydown.tab="textareaTab($refs.reducerInput, $event)"
-            ref="reducerInput"
           ></el-input>
         </div>
         <div class="margin-top">
           <span class="reducer-btn">
-            <el-button type="primary" size="small" @click="handleEdit" :disabled="editable">
+            <el-button type="primary" size="small" :disabled="editable" @click="handleEdit">
               {{ i18n('reducerEdit') }}
             </el-button>
           </span>
           <span class="reducer-btn">
-            <el-button type="success" size="small" @click="handleSave" :disabled="!editable">
+            <el-button type="success" size="small" :disabled="!editable" @click="handleSave">
               {{ i18n('reducerSave') }}
             </el-button>
           </span>
           <span class="reducer-btn">
-            <el-button type="info" size="small" @click="handleCancel" :disabled="!editable">
+            <el-button type="info" size="small" :disabled="!editable" @click="handleCancel">
               {{ i18n('reducerCancel') }}
             </el-button>
           </span>
@@ -56,20 +56,20 @@
             {{ i18n('reducerTestContentLabel') }}
           </label>
           <el-input
-            v-model="testContent"
             id="reducer-test-content"
+            ref="testInput"
+            v-model="testContent"
             type="textarea"
             :rows="15"
             :placeholder="i18n('reducerTestContent', [example])"
             @keydown.tab="textareaTab($refs.testInput, $event)"
-            ref="testInput"
           ></el-input>
         </div>
         <div class="margin-top">
-          <el-button type="primary" size="small" @click="handleTest('testReducer')" :disabled="editable">
+          <el-button type="primary" size="small" :disabled="editable" @click="handleTest('testReducer')">
             {{ i18n('reducerTest') }}
           </el-button>
-          <el-button type="warning" size="small" @click="handleTest('testReducerNoMsg')" :disabled="editable">
+          <el-button type="warning" size="small" :disabled="editable" @click="handleTest('testReducerNoMsg')">
             {{ i18n('reducerTestNoMsg') }}
           </el-button>
         </div>
@@ -78,8 +78,8 @@
             {{ i18n('reducerTestResultLabel') }}
           </label>
           <el-input
-            :value="testResult"
             id="reducer-test-result"
+            :value="testResult"
             type="textarea"
             :rows="15"
             :placeholder="i18n('reducerTestResult')"
@@ -108,7 +108,7 @@ const example: myStore.CommitData = {
 };
 
 export default defineComponent({
-  name: 'gloria-reducer-content',
+  name: 'GloriaReducerContent',
   data() {
     return {
       example: JSON.stringify(example, null, 4),
@@ -126,6 +126,10 @@ export default defineComponent({
     reducer(val) {
       this.currentReducer = val;
     },
+  },
+  created() {
+    //? 确保切换分页后内容存在
+    this.currentReducer = this.reducer;
   },
   methods: {
     ...mapMutations(['updateReducer']),
@@ -175,10 +179,6 @@ export default defineComponent({
     handleReducer(val: string) {
       this.currentReducer = val;
     },
-  },
-  created() {
-    //? 确保切换分页后内容存在
-    this.currentReducer = this.reducer;
   },
 });
 </script>

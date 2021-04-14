@@ -70,7 +70,7 @@
 import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default defineComponent({
-  name: 'gloria-settings-task',
+  name: 'GloriaSettingsTask',
   data() {
     return {
       day: 0,
@@ -81,6 +81,12 @@ export default defineComponent({
   },
   computed: {
     ...mapState(['configs']),
+  },
+  created() {
+    const { taskTriggerInterval } = this.configs;
+    this.day = this.days(taskTriggerInterval);
+    this.hour = this.hours(taskTriggerInterval);
+    this.minute = this.minutes(taskTriggerInterval);
   },
   methods: {
     ...mapMutations(['updateConfigs']),
@@ -109,12 +115,6 @@ export default defineComponent({
         value: triggerTime,
       });
     },
-  },
-  created() {
-    const { taskTriggerInterval } = this.configs;
-    this.day = this.days(taskTriggerInterval);
-    this.hour = this.hours(taskTriggerInterval);
-    this.minute = this.minutes(taskTriggerInterval);
   },
 });
 </script>

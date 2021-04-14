@@ -23,7 +23,7 @@ import GloriaSettingsNotification from '@/components/GloriaSettingsNotification.
 import GloriaSettingsFile from '@/components/GloriaSettingsFile.vue';
 
 export default defineComponent({
-  name: 'router-settings',
+  name: 'RouterSettings',
   components: {
     GloriaSettingsTask,
     GloriaSettingsNotification,

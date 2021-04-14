@@ -22,7 +22,11 @@ import GloriaOptionsMenu from '@/components/GloriaOptionsMenu.vue';
 import GloriaOptionsBreadcrumb from '@/components/GloriaOptionsBreadcrumb.vue';
 
 export default defineComponent({
-  name: 'app',
+  name: 'App',
+  components: {
+    GloriaOptionsMenu,
+    GloriaOptionsBreadcrumb,
+  },
   setup() {
     const { hash } = location;
     let activeIndex = ref('settings');
@@ -41,10 +45,6 @@ export default defineComponent({
     return {
       activeIndex,
     };
-  },
-  components: {
-    GloriaOptionsMenu,
-    GloriaOptionsBreadcrumb,
   },
   methods: {
     menuClick(index: string) {
