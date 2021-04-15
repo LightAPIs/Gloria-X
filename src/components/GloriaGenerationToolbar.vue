@@ -45,11 +45,16 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'GloriaGenerationToolbar',
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    return {
+      isChrome,
+    };
+  },
   data() {
     return {
       minus: false,
       floatRight: true,
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   methods: {

@@ -91,6 +91,12 @@ export default defineComponent({
     },
   },
   emits: ['close-dialog'],
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    return {
+      isChrome,
+    };
+  },
   data() {
     return {
       form: {
@@ -119,7 +125,6 @@ export default defineComponent({
           },
         ],
       },
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {

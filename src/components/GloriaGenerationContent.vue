@@ -150,6 +150,12 @@ import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
   name: 'GloriaGenerationContent',
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    return {
+      isChrome,
+    };
+  },
   data() {
     return {
       pageUrl: '',
@@ -192,7 +198,6 @@ export default defineComponent({
           },
         ],
       },
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {
