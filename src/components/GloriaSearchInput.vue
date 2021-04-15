@@ -23,7 +23,7 @@
             <el-dropdown-item command="onTime">
               {{ i18n('popupTaskOnTimeModeTag') }}
             </el-dropdown-item>
-            <el-dropdown-item command="needInteraction">
+            <el-dropdown-item v-if="isChrome" command="needInteraction">
               {{ i18n('popupTaskNeedInteractionTag') }}
             </el-dropdown-item>
             <el-dropdown-item command="error">
@@ -66,8 +66,11 @@ export default defineComponent({
       }
     );
 
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+
     return {
       getRemote,
+      isChrome,
     };
   },
   data() {
