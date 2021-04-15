@@ -2,7 +2,9 @@
 import { handleConnection } from './chromeUtils';
 import { checkConnectId, removeConnectId } from './idUtils';
 import { bgPrefix } from './const';
+import { toRaw } from 'vue';
 import { Store, MutationTree } from 'vuex';
+import { IS_CHROME } from '@/commons/var';
 
 declare interface chromeStore extends Store<myData> {
   type: string;
@@ -54,7 +56,7 @@ class BackgroundScript {
 
     connection.postMessage({
       type: '@@STORE_INITIAL_STATE',
-      data: this.store.state,
+      data: IS_CHROME ? this.store.state : toRaw(this.store.state),
     });
   }
 
