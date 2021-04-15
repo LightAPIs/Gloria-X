@@ -14,11 +14,11 @@
                     <div class="title-text">
                       {{ title || url }}
                     </div>
-                    <el-link type="primary" href="#" class="url-text" @click="openLink">
+                    <el-link type="primary" href="#" class="url-text" @click="openLink(false)">
                       {{ url }}
                     </el-link>
                   </template>
-                  <el-link v-else type="primary" href="#" @click="openLink">
+                  <el-link v-else type="primary" href="#" @click="openLink(false)">
                     {{ title || url }}
                   </el-link>
                 </template>
@@ -105,7 +105,7 @@ export default defineComponent({
   },
   methods: {
     ...mapMutations(['checkedNotification', 'markLaterNotification', 'removeNotification']),
-    openLink() {
+    openLink(active: boolean) {
       const { url, later, id } = this;
       if (url && this.isLink(url)) {
         chrome.tabs.query(
@@ -123,7 +123,7 @@ export default defineComponent({
             } else {
               chrome.tabs.create({
                 url,
-                active: false,
+                active,
               });
             }
           }
@@ -138,21 +138,31 @@ export default defineComponent({
       const items = [];
 
       url &&
-        items.push({
-          label: this.i18n('popupContextNotificationItemCopyLink'),
-          icon: 'el-icon-link',
-          onClick: () => {
-            this.copyToClip(
-              url,
-              () => {
-                ElMessage.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
-              },
-              () => {
-                ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
-              }
-            );
+        items.push(
+          {
+            label: this.i18n('popupContextNotificationItemOpenLink'),
+            icon: 'el-icon-view',
+            divided: true,
+            onClick: () => {
+              this.openLink(true);
+            },
           },
-        });
+          {
+            label: this.i18n('popupContextNotificationItemCopyLink'),
+            icon: 'el-icon-link',
+            onClick: () => {
+              this.copyToClip(
+                url,
+                () => {
+                  ElMessage.success(this.i18n('popupContextNotificationItemCopyLinkCompleted'));
+                },
+                () => {
+                  ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
+                }
+              );
+            },
+          }
+        );
 
       title &&
         items.push({

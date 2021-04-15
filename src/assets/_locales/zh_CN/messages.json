@@ -209,6 +209,9 @@
   "popupContextNotificationMenuClear": {
     "message": "清除此分类下的所有通知记录"
   },
+  "popupContextNotificationItemOpenLink": {
+    "message": "新建前台标签打开链接"
+  },
   "popupContextNotificationItemCopyLink": {
     "message": "复制通知链接"
   },
@@ -345,7 +348,7 @@
     "message": "允许通知发出提示音"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定义的通知提示音 (如果您的系统是 Windows 7 或系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出声音。)"
+    "message": "使用自定义的通知提示音 (如果您的系统是 Windows 7，或者系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出提示音。)"
   },
   "settingsNotificationLaterMark": {
     "message": "支持在通知消息中标识稍后查阅通知 (仅针对提供了 url 的通知消息)"

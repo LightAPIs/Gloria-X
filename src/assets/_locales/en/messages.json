@@ -209,6 +209,9 @@
   "popupContextNotificationMenuClear": {
     "message": "Clear all notification records for this"
   },
+  "popupContextNotificationItemOpenLink": {
+    "message": "Open in new foreground tab"
+  },
   "popupContextNotificationItemCopyLink": {
     "message": "Copy notification link"
   },

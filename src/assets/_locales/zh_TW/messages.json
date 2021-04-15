@@ -192,7 +192,7 @@
     "message": "已成功將分類名稱複製到剪貼板中"
   },
   "popupContextNotificationMenuOpenLater": {
-    "message": "打開所有稍後查閱的訊息"
+    "message": "開啓所有稍後查閱的訊息"
   },
   "popupContextNotificationMenuCheckedLater": {
     "message": "移除所有稍後查閱標識"
@@ -209,11 +209,14 @@
   "popupContextNotificationMenuClear": {
     "message": "清除此分類下的所有訊息記錄"
   },
+  "popupContextNotificationItemOpenLink": {
+    "message": "新增前景分頁開啓網址"
+  },
   "popupContextNotificationItemCopyLink": {
-    "message": "複製訊息鏈接"
+    "message": "複製訊息網址"
   },
   "popupContextNotificationItemCopyLinkCompleted": {
-    "message": "已成功將訊息鏈接複製到剪貼板中"
+    "message": "已成功將訊息網址複製到剪貼板中"
   },
   "popupContextNotificationItemCopyTitle": {
     "message": "複製訊息標題"
@@ -342,10 +345,10 @@
     "message": "隱式推送訊息 (只將新訊息記錄在訊息歷史中，不彈出訊息提示)"
   },
   "settingsNotificationSound": {
-    "message": "允許訊息發出提示音"
+    "message": "允許訊息發出提示音效"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定義的訊息提示音 (如果您的系統是 Windows 7 或系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設定為 Disabled 時，需要開啟該選項訊息才能發出聲音。)"
+    "message": "使用自定義的訊息提示音效 (如果您的系統是 Windows 7，或者系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設定為 Disabled 時，需要開啟該選項訊息才能發出提示音效。)"
   },
   "settingsNotificationLaterMark": {
     "message": "支援在訊息提醒中標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
@@ -567,10 +570,10 @@
     "message": "支援"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X 是一款免費開源的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私訊息。"
+    "message": "Gloria-X 是一款免費開放原始碼的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私訊息。"
   },
   "aboutSourceCode": {
-    "message": "Gloria-X 程式码 (MIT License) 和使用指南"
+    "message": "Gloria-X 原始碼 (MIT License) 和說明頁面"
   },
   "aboutIssues": {
     "message": "問題反饋"
@@ -585,7 +588,7 @@
     "message": "鳴謝"
   },
   "aboutThanksLabel": {
-    "message": "Gloria-X 的誕生，離不開以下開源專案所提供的支援和幫助："
+    "message": "Gloria-X 的誕生，離不開以下開放原始碼專案所提供的支援和幫助："
   },
   "calcUndefined": {
     "message": "無"
@@ -715,7 +718,7 @@
     "message": "可選，訊息的圖示"
   },
   "generationSelectionUrl": {
-    "message": "可選，點擊訊息打開的網址"
+    "message": "可選，點擊訊息開啓的網址"
   },
   "generationSelectionSubmit": {
     "message": "生成任務程式碼"
