@@ -308,8 +308,11 @@
   "settingsTaskAutoCheckUpdate": {
     "message": "自动检查任务代码更新"
   },
+  "settingsTaskAutoCheckUpdateTip": {
+    "message": "仅适用于通过 https://gloria.pub/ 安装的任务"
+  },
   "settingsTaskOnTimeMode": {
-    "message": "对于新创建或安装的任务，默认开启\"$option$\"选项",
+    "message": "默认开启\"$option$\"选项",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -318,7 +321,7 @@
     }
   },
   "settingsTaskNeedInteraction": {
-    "message": "对于新创建或安装的任务，默认开启\"$option$\"选项",
+    "message": "默认开启\"$option$\"选项",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -326,11 +329,14 @@
       }
     }
   },
+  "settingsTaskNewTips": {
+    "message": "仅针对新创建或安装的任务"
+  },
   "settingsTaskOnTop": {
     "message": "新添加的任务位于任务列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "新创建或安装的任务默认执行间隔："
+    "message": "任务的默认执行间隔："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任务列表的顶部显示任务筛选输入框"
@@ -342,25 +348,40 @@
     "message": "通知"
   },
   "settingsImplicitPush": {
-    "message": "隐式推送通知 (只将新消息记录在通知历史中，不弹出通知提示)"
+    "message": "隐式推送通知"
+  },
+  "settingsImplicitPushTip": {
+    "message": "只将新消息记录在通知历史记录中，不弹出通知提示"
   },
   "settingsNotificationSound": {
     "message": "允许通知发出提示音"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定义的通知提示音 (如果您的系统是 Windows 7，或者系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出提示音。)"
+    "message": "使用自定义的通知提示音"
+  },
+  "settingsNotificationCustomSoundTip": {
+    "message": "如果您的系统是 Windows 7，或者系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出提示音。"
   },
   "settingsNotificationLaterMark": {
-    "message": "支持在通知消息中标识稍后查阅通知 (仅针对提供了 url 的通知消息)"
+    "message": "支持在通知消息中标识稍后查阅通知"
+  },
+  "settingsNotificationLaterMarkTip": {
+    "message": "仅针对提供了 url 的通知消息"
   },
   "settingsNotificationDetectIcon": {
     "message": "允许自动检测并获取网站图标"
   },
   "settingsNotificationDisableError": {
-    "message": "禁用任务执行出错的通知 (不推荐)"
+    "message": "禁用任务执行出错的通知"
+  },
+  "settingsNotificationDisableErrorTip": {
+    "message": "不推荐开启"
   },
   "settingsNotificationShowUrl": {
-    "message": "在通知记录中显示通知的网址 (如果存在)"
+    "message": "在通知记录中显示通知的网址"
+  },
+  "settingsNotificationShowUrlTip": {
+    "message": "如果通知存在网址"
   },
   "settingsNotificationLazyLoading": {
     "message": "对通知记录里的通知图片启用懒加载"

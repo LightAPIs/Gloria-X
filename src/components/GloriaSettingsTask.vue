@@ -6,6 +6,9 @@
         :active-text="i18n('settingsTaskAutoCheckUpdate')"
         @change="onChange('taskAutoCheckUpdate', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskAutoCheckUpdateTip')">
+        <span class="options-tip-icon"><i class="el-icon-question"></i></span>
+      </el-tooltip>
     </div>
     <div class="margin-top">
       <el-switch
@@ -13,6 +16,9 @@
         :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeText'))"
         @change="onChange('taskOnTimeMode', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskNewTips')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
     </div>
     <div v-if="isChrome" class="margin-top">
       <el-switch
@@ -20,6 +26,9 @@
         :active-text="i18n('settingsTaskNeedInteraction', i18n('popupTaskNeedInteractionText'))"
         @change="onChange('taskNeedInteraction', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskNewTips')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
     </div>
     <div class="margin-top">
       <el-switch :value="configs.taskOnTop" :active-text="i18n('settingsTaskOnTop')" @change="onChange('taskOnTop', $event)"></el-switch>
@@ -71,12 +80,17 @@ import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default defineComponent({
   name: 'GloriaSettingsTask',
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    return {
+      isChrome,
+    };
+  },
   data() {
     return {
       day: 0,
       hour: 0,
       minute: 0,
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
     };
   },
   computed: {

@@ -73,5 +73,13 @@ body {
     padding: 24px;
     background-color: #0b1a29;
   }
+
+  .options-tip-icon {
+    margin-left: 5px;
+
+    i {
+      font-size: 1.25em;
+    }
+  }
 }
 </style>

@@ -308,8 +308,11 @@
   "settingsTaskAutoCheckUpdate": {
     "message": "Automatically check for task code updates"
   },
+  "settingsTaskAutoCheckUpdateTip": {
+    "message": "Only applicable to tasks installed via https://gloria.pub/"
+  },
   "settingsTaskOnTimeMode": {
-    "message": "For newly created or installed tasks, the \"$option$\" option is turned on by default",
+    "message": "The \"$option$\" option is turned on by default",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -318,7 +321,7 @@
     }
   },
   "settingsTaskNeedInteraction": {
-    "message": "For newly created or installed tasks, the \"$option$\" option is turned on by default",
+    "message": "The \"$option$\" option is turned on by default",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -326,11 +329,14 @@
       }
     }
   },
+  "settingsTaskNewTips": {
+    "message": "Only for newly created or installed tasks"
+  },
   "settingsTaskOnTop": {
     "message": "The newly added task is at the top of the task list"
   },
   "settingsTaskTriggerInterval": {
-    "message": "The default execution interval of newly created or installed tasks:"
+    "message": "Default execution interval of task:"
   },
   "settingsTaskShowSearchInput": {
     "message": "Display the task filter input box at the top of the task list"
@@ -342,7 +348,10 @@
     "message": "Notification"
   },
   "settingsImplicitPush": {
-    "message": "Implicit push notifications (only record new messages in notification records, no notification prompts)"
+    "message": "Implicit push notifications"
+  },
+  "settingsImplicitPushTip": {
+    "message": "Only record new messages in notification records, no notification prompts"
   },
   "settingsNotificationSound": {
     "message": "The notification is allowed to sound"
@@ -351,16 +360,25 @@
     "message": "Use a custom notification sound (you need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled.)"
   },
   "settingsNotificationLaterMark": {
-    "message": "Support for marking the notification in message for later review (only for notification messages with URL provided)"
+    "message": "Support for marking the notification in message for later review"
+  },
+  "settingsNotificationLaterMarkTip": {
+    "message": "Only for notification messages with URL provided"
   },
   "settingsNotificationDetectIcon": {
     "message": "Allow automatic detection and acquisition of website icons"
   },
   "settingsNotificationDisableError": {
-    "message": "Disable notification of task execution errors (deprecated)"
+    "message": "Disable notification of task execution errors"
+  },
+  "settingsNotificationDisableErrorTip": {
+    "message": "Not recommended"
   },
   "settingsNotificationShowUrl": {
-    "message": "Display the URL of the notification in notification records (if it exists)"
+    "message": "Display the URL of the notification in notification records"
+  },
+  "settingsNotificationShowUrlTip": {
+    "message": "If the notification has a URL"
   },
   "settingsNotificationLazyLoading": {
     "message": "Enable lazy loading of the notification image in notification records"

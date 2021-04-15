@@ -2,6 +2,9 @@
   <div>
     <div>
       <el-switch :value="implicitPush" :active-text="i18n('settingsImplicitPush')" @change="onChange('implicitPush', $event)"></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsImplicitPushTip')">
+        <span class="options-tip-icon"><i class="el-icon-info"></i></span>
+      </el-tooltip>
     </div>
     <div v-if="isChrome" class="margin-top">
       <el-switch
@@ -16,6 +19,9 @@
         :active-text="i18n('settingsNotificationCustomSound')"
         @change="onChange('notificationCustomSound', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsNotificationCustomSoundTip')">
+        <span class="options-tip-icon"><i class="el-icon-question"></i></span>
+      </el-tooltip>
     </div>
     <div v-if="isChrome" class="margin-top">
       <el-switch
@@ -23,6 +29,9 @@
         :active-text="i18n('settingsNotificationLaterMark')"
         @change="onChange('notificationLaterMark', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsNotificationLaterMarkTip')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
     </div>
     <div class="margin-top">
       <el-switch
@@ -37,6 +46,9 @@
         :active-text="i18n('settingsNotificationDisableError')"
         @change="onChange('notificationDisableError', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsNotificationDisableErrorTip')">
+        <span class="options-tip-icon"><i class="el-icon-remove"></i></span>
+      </el-tooltip>
     </div>
     <div class="margin-top">
       <el-switch
@@ -44,6 +56,9 @@
         :active-text="i18n('settingsNotificationShowUrl')"
         @change="onChange('notificationShowUrl', $event)"
       ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsNotificationShowUrlTip')">
+        <span class="options-tip-icon"><i class="el-icon-info"></i></span>
+      </el-tooltip>
     </div>
     <div class="margin-top">
       <el-switch
@@ -94,9 +109,10 @@ import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 export default defineComponent({
   name: 'GloriaSettingsNotification',
-  data() {
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
     return {
-      isChrome: process.env.VUE_APP_TITLE === 'chrome',
+      isChrome,
     };
   },
   computed: {

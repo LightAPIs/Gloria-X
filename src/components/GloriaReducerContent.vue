@@ -3,19 +3,21 @@
     <el-row>
       <el-col :span="12" class="padding-col">
         <div class="font-16">
+          <span>
+            {{ i18n('reducerLabel') }}
+          </span>
           <el-tooltip placement="right-start">
             <template #content>
               <div>
                 {{ i18n('reducerTip') }}
                 <br />
-                <el-link type="danger" href="https://github.com/LightAPIs/Gloria-X#通知-Reducer" target="_blank" icon="el-icon-view">
+                <el-link type="danger" href="https://github.com/LightAPIs/Gloria-X" target="_blank" icon="el-icon-view">
                   {{ i18n('reducerLink') }}
                 </el-link>
               </div>
             </template>
             <span>
               <i class="el-icon-warning"></i>
-              {{ i18n('reducerLabel') }}
             </span>
           </el-tooltip>
         </div>

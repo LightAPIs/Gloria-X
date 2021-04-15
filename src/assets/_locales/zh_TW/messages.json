@@ -308,8 +308,11 @@
   "settingsTaskAutoCheckUpdate": {
     "message": "自動檢查任務程式碼更新"
   },
+  "settingsTaskAutoCheckUpdateTip": {
+    "message": "僅適用於通過 https://gloria.pub/ 安裝的任務"
+  },
   "settingsTaskOnTimeMode": {
-    "message": "對於新創建或安裝的任務，預設開啟\"$option$\"選項",
+    "message": "預設開啟\"$option$\"選項",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -318,7 +321,7 @@
     }
   },
   "settingsTaskNeedInteraction": {
-    "message": "對於新創建或安裝的任務，預設開啟\"$option$\"選項",
+    "message": "預設開啟\"$option$\"選項",
     "placeholders": {
       "option": {
         "content": "$1",
@@ -326,11 +329,14 @@
       }
     }
   },
+  "settingsTaskNewTips": {
+    "message": "僅針對新創建或安裝的任務"
+  },
   "settingsTaskOnTop": {
     "message": "新增的任務位於任務列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "新創建或安裝的任務預設執行間隔："
+    "message": "任務的預設執行間隔："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任務列表的頂部顯示任務篩選輸入框"
@@ -342,7 +348,10 @@
     "message": "訊息"
   },
   "settingsImplicitPush": {
-    "message": "隱式推送訊息 (只將新訊息記錄在訊息歷史中，不彈出訊息提示)"
+    "message": "隱式推送訊息"
+  },
+  "settingsImplicitPushTip": {
+    "message": "只將新訊息記錄在訊息歷史中，不彈出訊息提示"
   },
   "settingsNotificationSound": {
     "message": "允許訊息發出提示音效"
@@ -351,16 +360,25 @@
     "message": "使用自定義的訊息提示音效 (如果您的系統是 Windows 7，或者系統是 Windows 10 但是將 chrome://flags/#enable-native-notifications 設定為 Disabled 時，需要開啟該選項訊息才能發出提示音效。)"
   },
   "settingsNotificationLaterMark": {
-    "message": "支援在訊息提醒中標識稍後查閱訊息 (僅針對提供了 url 的訊息)"
+    "message": "支援在訊息提醒中標識稍後查閱訊息"
+  },
+  "settingsNotificationLaterMarkTip": {
+    "message": "僅針對提供了 url 的訊息"
   },
   "settingsNotificationDetectIcon": {
     "message": "允許自動檢測並獲取網站圖示"
   },
   "settingsNotificationDisableError": {
-    "message": "禁用任務執行出錯的訊息 (不推薦)"
+    "message": "禁用任務執行出錯的訊息"
+  },
+  "settingsNotificationDisableErrorTip": {
+    "message": "不建議開啓"
   },
   "settingsNotificationShowUrl": {
-    "message": "在訊息記錄中顯示訊息的網址 (如果存在)"
+    "message": "在訊息記錄中顯示訊息的網址"
+  },
+  "settingsNotificationShowUrlTip": {
+    "message": "如果訊息擁有網址"
   },
   "settingsNotificationLazyLoading": {
     "message": "對訊息記錄里的訊息圖像啟用懶載入"
