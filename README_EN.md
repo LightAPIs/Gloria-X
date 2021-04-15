@@ -222,7 +222,25 @@ You can check the usage of `XHR` in [XMLHttpRequest](https://developer.mozilla.o
 
 #### Access URL example
 
-I found a simple and runnable task on Gloria's task code [sharing website](https://gloria.pub/). [SaveCoins on Sale](https://gloria.pub/task/6042d625ab474400108be626):
+For example, create a simple Observation task that detects the latest version of this project:
+
+```javascript
+fetch('https://api.github.com/repos/LightAPIs/Gloria-X/releases/latest')
+  .then(res => res.json())
+  .then(json => {
+    const message = json.tag_name;
+    const url = json.html_url;
+    commit({
+      title: 'Gloria-X',
+      message,
+      url,
+    });
+  });
+```
+
+I also found a runnable task on Gloria's task code [sharing website](https://gloria.pub/).
+
+[SaveCoins on Sale](https://gloria.pub/task/6042d625ab474400108be626):
 
 ```javascript
 fetch('https://api-savecoins.nznweb.com.br/v1/games?currency=USD&locale=en&order=discount_begin_date_desc&filter[on_sale]=true')
@@ -251,7 +269,7 @@ fetch('https://api-savecoins.nznweb.com.br/v1/games?currency=USD&locale=en&order
   });
 ```
 
-If you know `fetch` or `XHR`, you should be able to understand how to access the URL in the task code through this task.
+If you know `fetch` or `XHR`, you should be able to understand how to access the URL in the task code through these tasks.
 
 ### Load external scripts async
 
@@ -290,6 +308,27 @@ Gloria-X and Gloria also have some commonly used modules built in, and these mod
 |          export `validator` from '[validator](https://github.com/validatorjs/validator.js)'          |  7.1.0  |
 |          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           | 0.4.17  |
 |               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |  3.2.0  |
+
+For example, you can use `cheerio` to parse a page:
+
+```javascript
+(async () => {
+  const { cheerio } = await importScripts('gloria-utils');
+  const html = await fetch('https://github.com/LightAPIs/Gloria-X/releases').then(res => res.text());
+  const $ = cheerio.load(html);
+  return $('.release-main-section.commit')
+    .map((_i, ele) => {
+      const link = $(ele).find('.release-header .f1 a');
+      const title = link.text().trim();
+      const url = 'https://github.com/' + link.attr('href');
+      return {
+        title,
+        url,
+      };
+    })
+    .get();
+})().then(commit);
+```
 
 ## Extra features
 

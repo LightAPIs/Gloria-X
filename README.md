@@ -227,7 +227,25 @@ _当然这两个任务并没有任何实际意义，仅供用来测试参考两�
 
 #### 访问 URL 示例
 
-我在 Gloria 的[任务代码分享网站](https://gloria.pub/)里找了一个简单且可运行的任务，[方块游戏 新闻资讯](https://gloria.pub/task/5f4e832dab474400108be608)：
+比如创建一个检测本项目的最新版本的简单观察任务：
+
+```javascript
+fetch('https://api.github.com/repos/LightAPIs/Gloria-X/releases/latest')
+  .then(res => res.json())
+  .then(json => {
+    const message = json.tag_name;
+    const url = json.html_url;
+    commit({
+      title: 'Gloria-X',
+      message,
+      url,
+    });
+  });
+```
+
+我还在 Gloria 的[任务代码分享网站](https://gloria.pub/)里找了一个可实际运行的任务。
+
+[方块游戏 新闻资讯](https://gloria.pub/task/5f4e832dab474400108be608)：
 
 ```javascript
 fetch('https://infodev.cubejoy.com/Store/GetNews?area=2&pageindex=1&pagesize=15')
@@ -245,7 +263,7 @@ fetch('https://infodev.cubejoy.com/Store/GetNews?area=2&pageindex=1&pagesize=15'
   });
 ```
 
-如果你了解 `fetch` 或 `XHR` 的话，通过这个任务应该也就能明白具体如何在任务代码中访问 URL 了。
+如果你了解 `fetch` 或 `XHR` 的话，通过这些任务应该也就能明白具体如何在任务代码中访问 URL 了。
 
 ### 异步载入外部脚本
 
@@ -284,6 +302,27 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 |          export `validator` from '[validator](https://github.com/validatorjs/validator.js)'          |  7.1.0  |
 |          export `xml2js` from '[xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)'           | 0.4.17  |
 |               export `XRegExp` from '[xregexp](https://github.com/slevithan/xregexp)'                |  3.2.0  |
+
+例如，你可以使用 `cheerio` 来解析一个页面：
+
+```javascript
+(async () => {
+  const { cheerio } = await importScripts('gloria-utils');
+  const html = await fetch('https://github.com/LightAPIs/Gloria-X/releases').then(res => res.text());
+  const $ = cheerio.load(html);
+  return $('.release-main-section.commit')
+    .map((_i, ele) => {
+      const link = $(ele).find('.release-header .f1 a');
+      const title = link.text().trim();
+      const url = 'https://github.com/' + link.attr('href');
+      return {
+        title,
+        url,
+      };
+    })
+    .get();
+})().then(commit);
+```
 
 ## 额外功能
 
