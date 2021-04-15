@@ -1,5 +1,5 @@
 <template>
-  <el-timeline-item :timestamp="displayTime(eventTime)" placement="top" color="#0bbd87">
+  <el-timeline-item :timestamp="displayTime(eventTime)" placement="top" :color="later ? '#f56c6c' : '#0bbd87'">
     <el-badge is-dot :hidden="!later" type="danger" class="notification-item">
       <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.prevent="onContextmenu">
         <template #header>
