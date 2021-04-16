@@ -702,6 +702,15 @@
   "generationUsage": {
     "message": "Tip: Hold down Ctrl to make multiple selections."
   },
+  "generationStep1": {
+    "message": "Select element"
+  },
+  "generationStep2": {
+    "message": "Generate code"
+  },
+  "generationStep3": {
+    "message": "Create task"
+  },
   "generationMinus": {
     "message": "Minimize"
   },
@@ -749,6 +758,9 @@
   },
   "generationNext": {
     "message": "Next"
+  },
+  "generationNextTip": {
+    "message": "The next step is to test the code successfully"
   },
   "generationCode": {
     "message": "Task code:"

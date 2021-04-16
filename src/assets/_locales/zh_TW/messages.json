@@ -702,6 +702,15 @@
   "generationUsage": {
     "message": "提示：使用滑鼠左鍵單擊點選網頁內元素，可以按住 Ctrl 鍵進行多選。"
   },
+  "generationStep1": {
+    "message": "選取元素"
+  },
+  "generationStep2": {
+    "message": "生成程式碼"
+  },
+  "generationStep3": {
+    "message": "創建任務"
+  },
   "generationMinus": {
     "message": "最小化"
   },
@@ -749,6 +758,9 @@
   },
   "generationNext": {
     "message": "下一步"
+  },
+  "generationNextTip": {
+    "message": "僅任務程式碼測試成功才能執行下一步"
   },
   "generationCode": {
     "message": "任務程式碼："

@@ -15,10 +15,26 @@ import {
   ElInputNumber,
   ElMain,
   ElRow,
+  ElStep,
+  ElSteps,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
 
-const components = [ElButton, ElCheckbox, ElCol, ElContainer, ElForm, ElFormItem, ElHeader, ElInput, ElInputNumber, ElMain, ElRow];
+const components = [
+  ElButton,
+  ElCheckbox,
+  ElCol,
+  ElContainer,
+  ElForm,
+  ElFormItem,
+  ElHeader,
+  ElInput,
+  ElInputNumber,
+  ElMain,
+  ElRow,
+  ElStep,
+  ElSteps,
+];
 
 const app = createApp(App);
 

@@ -2,10 +2,10 @@
   <div id="gloria-generation-app">
     <el-container>
       <el-header height="30px">
-        <gloria-generation-toolbar></gloria-generation-toolbar>
+        <gloria-generation-toolbar :active="active"></gloria-generation-toolbar>
       </el-header>
       <el-main class="generation-main">
-        <gloria-generation-content></gloria-generation-content>
+        <gloria-generation-content @active-index="onActiveIndex"></gloria-generation-content>
       </el-main>
     </el-container>
   </div>
@@ -21,6 +21,16 @@ export default defineComponent({
   components: {
     GloriaGenerationContent,
     GloriaGenerationToolbar,
+  },
+  data() {
+    return {
+      active: 0,
+    };
+  },
+  methods: {
+    onActiveIndex(index: number) {
+      this.active = index;
+    },
   },
 });
 </script>

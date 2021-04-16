@@ -338,7 +338,7 @@ For example, you can use `cheerio` to parse a page:
 
 The feature can be found in the right-click menu of the web page or the right-click menu of the extension icon.
 
-After triggering this feature, it will enter the mode of selecting web page elements. You can click on the elements in the web page with the left mouse button, hold down the Ctrl key while you can make multiple selections, and then click the "Generate Task Code" button to generate the corresponding task Code.
+After triggering this feature, it will enter the mode of selecting web page elements. You can click on the elements in the web page with the left mouse button, hold down the Ctrl key while you can make multiple selections. After completing the element selection, click the "Generate" button to generate the corresponding task code. The next step is to test the task code, which executes successfully to create the task.
 
 It is important to note that this feature is essentially a shortcut generator for [Observation task](#Obervation-task). In principly, it can not generate [General task](#General-task), and it may not be able to monitor all types of web pages, such as dynacically loaded web pages based on Ajax technology.
 
@@ -348,7 +348,7 @@ It is important to note that this feature is essentially a shortcut generator fo
 
 The panel for debugging tasks can be found in the "Task debug" tab of the extension options page.
 
-After entering the task code to be debugged in the code input box, click the "Test" button at the top of the page to view the test output results (of course, the task code executed async may have to wait a while), and the test results obtained are both It does not pass through the internal STAGES component (a component used to cache notifications) or the Reducer function (see later introduction), but directly generates the corresponding notifications.
+After entering the task code to be debugged in the code input box, click the "Testing" button at the top of the page to view the test output results (of course, the task code executed async may have to wait a while), and the test results obtained are both It does not pass through the internal STAGES component (a component used to cache notifications) or the Reducer function (see later introduction), but directly generates the corresponding notifications.
 
 Errors such as syntax errors in the task code are also displayed in the panel (_Note: It only supports capturing the errors of synchronous code, and the errors of asynchronous code or the output of 'console' statement in the code need to open the background page<"background.html"> to view_)。
 

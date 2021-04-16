@@ -1,7 +1,11 @@
 <template>
   <div class="gloria-generation-toolbar">
     <div v-show="!minus" class="float-left">
-      {{ i18n('generationUsage') }}
+      <el-steps :active="active" simple finish-status="success">
+        <el-step icon="el-icon-thumb" :title="i18n('generationStep1')"></el-step>
+        <el-step icon="el-icon-cpu" :title="i18n('generationStep2')"></el-step>
+        <el-step icon="el-icon-document-add" :title="i18n('generationStep3')"></el-step>
+      </el-steps>
     </div>
     <div class="float-right">
       <el-button
@@ -45,6 +49,12 @@
 import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'GloriaGenerationToolbar',
+  props: {
+    active: {
+      type: Number,
+      default: 0,
+    },
+  },
   setup() {
     const isChrome = process.env.VUE_APP_TITLE === 'chrome';
     return {
@@ -128,6 +138,11 @@ export default defineComponent({
 .gloria-generation-toolbar {
   .float-left {
     float: left;
+    width: 80%;
+
+    .el-steps {
+      height: 0px;
+    }
   }
   .float-right {
     float: right;

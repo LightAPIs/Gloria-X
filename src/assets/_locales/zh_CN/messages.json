@@ -705,6 +705,15 @@
   "generationUsage": {
     "message": "提示：使用鼠标左键单击点选网页内元素，可以按住 Ctrl 键进行多选。"
   },
+  "generationStep1": {
+    "message": "选取元素"
+  },
+  "generationStep2": {
+    "message": "生成代码"
+  },
+  "generationStep3": {
+    "message": "创建任务"
+  },
   "generationMinus": {
     "message": "最小化"
   },
@@ -752,6 +761,9 @@
   },
   "generationNext": {
     "message": "下一步"
+  },
+  "generationNextTip": {
+    "message": "仅任务代码测试成功才能执行下一步"
   },
   "generationCode": {
     "message": "任务代码："

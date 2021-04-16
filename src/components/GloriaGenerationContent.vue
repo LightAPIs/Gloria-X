@@ -4,7 +4,8 @@
       <el-row>
         <el-col :span="12" class="padding-col">
           <div class="left-content">
-            <div class="left-header">{{ i18n('generationSelected') }}</div>
+            <div class="select-tip">{{ i18n('generationUsage') }}</div>
+            <h3 class="left-header">{{ i18n('generationSelected') }}</h3>
             <div v-for="(item, index) in elements" :key="index">
               <el-input v-model="item.value" class="path-input">
                 <template #prepend>
@@ -62,7 +63,7 @@
             <el-button type="warning" size="small" @click="onBackSelection">
               {{ i18n('generationLast') }}
             </el-button>
-            <el-button type="success" size="small" :disabled="!next" @click="onNext">
+            <el-button type="success" size="small" :disabled="!next" :title="i18n('generationNextTip')" @click="onNext">
               {{ i18n('generationNext') }}
             </el-button>
             <div class="result">
@@ -150,6 +151,7 @@ import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
   name: 'GloriaGenerationContent',
+  emits: ['active-index'],
   setup() {
     const isChrome = process.env.VUE_APP_TITLE === 'chrome';
     return {
@@ -253,6 +255,7 @@ export default defineComponent({
         this.disableSelection();
         this.code = this.generationCode();
         this.progress = 'test';
+        this.$emit('active-index', 1);
         this.next = false;
       } else {
         return false;
@@ -289,13 +292,16 @@ export default defineComponent({
     onBackSelection() {
       if (this.progress === 'test') {
         this.progress = 'selection';
+        this.$emit('active-index', 0);
         this.enableSelection();
       } else {
         this.progress = 'test';
+        this.$emit('active-index', 1);
       }
     },
     onNext() {
       this.progress = 'task';
+      this.$emit('active-index', 2);
       const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = this.configs;
       const day = this.days(taskTriggerInterval);
       const hour = this.hours(taskTriggerInterval);
