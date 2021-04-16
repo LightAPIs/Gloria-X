@@ -45,10 +45,10 @@
     "message": "Disconnect"
   },
   "popupTaskTriggerDate": {
-    "message": "Last execution time: "
+    "message": "Last execution: "
   },
   "popupTaskPushDate": {
-    "message": "Last push time: "
+    "message": "Last push: "
   },
   "popupTaskTriggerCount": {
     "message": "Total execution times: "
@@ -159,19 +159,19 @@
     "message": "Copy task name"
   },
   "popupContextTaskCopyNameCompleted": {
-    "message": "The task name was successfully copied to the clipboard"
+    "message": "The task name copied successfully."
   },
   "popupContextTaskCopyCode": {
     "message": "Copy task code"
   },
   "popupContextTaskCopyCodeCompleted": {
-    "message": "The task code was successfully copied to the clipboard"
+    "message": "The task code copied successfully."
   },
   "popupContextTaskCopyId": {
     "message": "Copy task ID"
   },
   "popupContextTaskCopyIdCompleted": {
-    "message": "The task ID was successfully copied to the clipboard"
+    "message": "The task ID copied successfully."
   },
   "popupContextTaskOnTimeEnable": {
     "message": "Enable On-Time mode"
@@ -188,8 +188,8 @@
   "popupContextNotificationMenuCopy": {
     "message": "Copy this category name"
   },
-  "popupContextNotificationMenuCopyCompletd": {
-    "message": "The category name was successfully copied to the clipboard"
+  "popupContextNotificationMenuCopyCompleted": {
+    "message": "The category name copied successfully."
   },
   "popupContextNotificationMenuOpenLater": {
     "message": "Open all notifications for later review"
@@ -216,37 +216,37 @@
     "message": "Copy notification link"
   },
   "popupContextNotificationItemCopyLinkCompleted": {
-    "message": "The notification link has been successfully copied to the clipboard"
+    "message": "The notification link copied successfully."
   },
   "popupContextNotificationItemCopyTitle": {
     "message": "Copy notification title"
   },
   "popupContextNotificationItemCopyTitleCompleted": {
-    "message": "The notification title has been successfully copied to the clipboard"
+    "message": "The notification title copied successfully."
   },
   "popupContextNotificationItemCopyMessage": {
     "message": "Copy notification content"
   },
   "popupContextNotificationItemCopyMessageCompleted": {
-    "message": "The notification content has been successfully copied to the clipboard"
+    "message": "The notification content copied successfully."
   },
   "popupContextNotificationItemCopyIconUrl": {
     "message": "Copy icon address"
   },
   "popupContextNotificationItemCopyIconUrlCompleted": {
-    "message": "The notification icon address has been successfully copied to the clipboard"
+    "message": "The icon address copied successfully."
   },
   "popupContextNotificationItemCopyImageUrl": {
     "message": "Copy image address"
   },
   "popupContextNotificationItemCopyImageUrlCompleted": {
-    "message": "The notification image address has been successfully copied to the clipboard"
+    "message": "The image address copied successfully."
   },
   "popupContextNotificationItemCopyId": {
     "message": "Copy ID"
   },
   "popupContextNotificationItemCopyIdCompleted": {
-    "message": "The notification ID has been successfully copied to the clipboard"
+    "message": "The notification ID copied successfully."
   },
   "popupContextNotificationItemMarkLater": {
     "message": "Mark for later review"

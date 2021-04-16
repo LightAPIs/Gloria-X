@@ -188,7 +188,7 @@
   "popupContextNotificationMenuCopy": {
     "message": "复制此分类名称"
   },
-  "popupContextNotificationMenuCopyCompletd": {
+  "popupContextNotificationMenuCopyCompleted": {
     "message": "已成功将分类名称复制到剪贴板中"
   },
   "popupContextNotificationMenuOpenLater": {

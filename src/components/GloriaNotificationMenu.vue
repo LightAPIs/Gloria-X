@@ -114,7 +114,7 @@ export default defineComponent({
               this.copyToClip(
                 notificationsTitleList[index],
                 () => {
-                  ElMessage.success(this.i18n('popupContextNotificationMenuCopyCompletd'));
+                  ElMessage.success(this.i18n('popupContextNotificationMenuCopyCompleted'));
                 },
                 () => {
                   ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
