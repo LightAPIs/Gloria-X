@@ -5,7 +5,6 @@ import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
 import { v4 as uuid } from 'uuid';
 import {
-  ElAffix,
   ElAside,
   ElAvatar,
   ElBadge,
@@ -32,6 +31,7 @@ import {
   ElPopconfirm,
   ElPopover,
   ElRow,
+  ElScrollbar,
   ElSwitch,
   ElTabPane,
   ElTabs,
@@ -68,13 +68,13 @@ const components = [
   ElPopconfirm,
   ElPopover,
   ElRow,
+  ElScrollbar,
   ElSwitch,
   ElTabPane,
   ElTabs,
   ElTag,
   ElTimeline,
   ElTimelineItem,
-  ElAffix,
 ];
 
 const plugins = [ElInfiniteScroll];

@@ -8,9 +8,15 @@
         <el-header v-if="configs.notificationShowSearchInput" height="32px">
           <gloria-search-input type="notifications" @filter-text="onFilterText"></gloria-search-input>
         </el-header>
-        <el-main>
-          <div v-infinite-scroll="onInfiniteLoad" class="history">
-            <el-timeline class="history-timeline">
+        <el-main class="notifications-main">
+          <el-scrollbar
+            :native="false"
+            :noresize="false"
+            wrap-class="notifications-scroll-wrap"
+            view-class="notifications-scroll-view"
+            tag="div"
+          >
+            <el-timeline v-infinite-scroll="onInfiniteLoad" class="history-timeline">
               <gloria-notification-item
                 v-for="info in notificationsList(loadIndex, menuName, filterText, isLater)"
                 :id="info.id"
@@ -27,7 +33,7 @@
                 @notification-contextmenu="onContextmenu"
               ></gloria-notification-item>
             </el-timeline>
-          </div>
+          </el-scrollbar>
         </el-main>
       </el-container>
     </el-container>
@@ -105,5 +111,19 @@ export default defineComponent({
   .history-timeline {
     padding-inline-start: 0px;
   }
+}
+
+.notifications-main {
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+.notifications-scroll-wrap {
+  margin-right: 15px;
+}
+
+.notifications-scroll-view {
+  margin-left: 1px;
+  margin-right: 5px;
 }
 </style>

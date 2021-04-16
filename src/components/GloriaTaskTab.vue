@@ -4,28 +4,30 @@
       <el-header v-if="configs.taskShowSearchInput" height="32px">
         <gloria-search-input type="tasks" @filter-text="onFilterText" @filter-type="onFilterType"></gloria-search-input>
       </el-header>
-      <el-main>
-        <gloria-task-item
-          v-for="task in tasks"
-          :id="task.id"
-          :key="task.id"
-          :name="task.name"
-          :is-enable="task.isEnable"
-          :trigger-interval="task.triggerInterval"
-          :trigger-count="task.triggerCount"
-          :trigger-date="task.triggerDate"
-          :push-count="task.pushCount"
-          :push-date="task.pushDate"
-          :origin="task.origin"
-          :need-interaction="task.needInteraction"
-          :on-time-mode="task.onTimeMode"
-          :execution-error="task.executionError"
-          :filter-text="filterText"
-          :filter-type="filterType"
-          @task-edit="onTaskEdit"
-          @task-contextmenu="onTaskContextmenu"
-        ></gloria-task-item>
-      </el-main>
+      <el-scrollbar :native="false" :noresize="false" tag="div">
+        <el-main>
+          <gloria-task-item
+            v-for="task in tasks"
+            :id="task.id"
+            :key="task.id"
+            :name="task.name"
+            :is-enable="task.isEnable"
+            :trigger-interval="task.triggerInterval"
+            :trigger-count="task.triggerCount"
+            :trigger-date="task.triggerDate"
+            :push-count="task.pushCount"
+            :push-date="task.pushDate"
+            :origin="task.origin"
+            :need-interaction="task.needInteraction"
+            :on-time-mode="task.onTimeMode"
+            :execution-error="task.executionError"
+            :filter-text="filterText"
+            :filter-type="filterType"
+            @task-edit="onTaskEdit"
+            @task-contextmenu="onTaskContextmenu"
+          ></gloria-task-item>
+        </el-main>
+      </el-scrollbar>
     </el-container>
     <gloria-task-fab @add-task="onAddTask"></gloria-task-fab>
     <gloria-context-menu

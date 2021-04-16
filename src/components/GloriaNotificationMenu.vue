@@ -1,64 +1,66 @@
 <template>
-  <el-menu
-    class="history-menu"
-    default-active="-1"
-    background-color="#545c64"
-    active-text-color="#ffd04b"
-    text-color="#fff"
-    @select="handleSelect"
-  >
-    <el-menu-item
-      index="-1"
-      class="history-menu-item"
-      :title="i18n('popupNotificationAll')"
-      @contextmenu.prevent="onContextmenu($event, '-1')"
+  <el-scrollbar :native="false" :noresize="false">
+    <el-menu
+      class="history-menu"
+      default-active="-1"
+      background-color="#545c64"
+      active-text-color="#ffd04b"
+      text-color="#fff"
+      @select="handleSelect"
     >
-      <template v-if="configs.notificationShowMenuCount">
-        <el-row type="flex">
-          <el-col :span="22">
-            <span class="menu-item-text">{{ i18n('popupNotificationAll') }}</span>
-          </el-col>
-          <el-col :span="2">
-            <strong class="menu-item-count">{{ notificationsAllCount }}</strong>
-          </el-col>
-        </el-row>
-      </template>
-      <span v-else>
-        {{ i18n('popupNotificationAll') }}
-      </span>
-    </el-menu-item>
-    <el-menu-item
-      index="-2"
-      class="history-menu-item"
-      :title="i18n('popupNotificationLater')"
-      @contextmenu.prevent="onContextmenu($event, '-2')"
-    >
-      {{ i18n('popupNotificationLater') }}
-      <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" type="danger" />
-    </el-menu-item>
-    <el-menu-item
-      v-for="(item, index) in notificationsTitleList"
-      :key="index"
-      :index="index.toString()"
-      class="history-menu-item"
-      :title="item"
-      @contextmenu.prevent="onContextmenu($event, index.toString())"
-    >
-      <template v-if="configs.notificationShowMenuCount">
-        <el-row type="flex">
-          <el-col :span="22">
-            <span class="menu-item-text">{{ item }}</span>
-          </el-col>
-          <el-col :span="2">
-            <strong class="menu-item-count">{{ notificationCount(item) }}</strong>
-          </el-col>
-        </el-row>
-      </template>
-      <span v-else>
-        {{ item }}
-      </span>
-    </el-menu-item>
-  </el-menu>
+      <el-menu-item
+        index="-1"
+        class="history-menu-item"
+        :title="i18n('popupNotificationAll')"
+        @contextmenu.prevent="onContextmenu($event, '-1')"
+      >
+        <template v-if="configs.notificationShowMenuCount">
+          <el-row type="flex">
+            <el-col :span="22">
+              <span class="menu-item-text">{{ i18n('popupNotificationAll') }}</span>
+            </el-col>
+            <el-col :span="2">
+              <strong class="menu-item-count">{{ notificationsAllCount }}</strong>
+            </el-col>
+          </el-row>
+        </template>
+        <span v-else>
+          {{ i18n('popupNotificationAll') }}
+        </span>
+      </el-menu-item>
+      <el-menu-item
+        index="-2"
+        class="history-menu-item"
+        :title="i18n('popupNotificationLater')"
+        @contextmenu.prevent="onContextmenu($event, '-2')"
+      >
+        {{ i18n('popupNotificationLater') }}
+        <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" type="danger" />
+      </el-menu-item>
+      <el-menu-item
+        v-for="(item, index) in notificationsTitleList"
+        :key="index"
+        :index="index.toString()"
+        class="history-menu-item"
+        :title="item"
+        @contextmenu.prevent="onContextmenu($event, index.toString())"
+      >
+        <template v-if="configs.notificationShowMenuCount">
+          <el-row type="flex">
+            <el-col :span="22">
+              <span class="menu-item-text">{{ item }}</span>
+            </el-col>
+            <el-col :span="2">
+              <strong class="menu-item-count">{{ notificationCount(item) }}</strong>
+            </el-col>
+          </el-row>
+        </template>
+        <span v-else>
+          {{ item }}
+        </span>
+      </el-menu-item>
+    </el-menu>
+  </el-scrollbar>
 </template>
 
 <script lang="ts">
@@ -226,6 +228,7 @@ export default defineComponent({
 <style lang="scss">
 .history-menu {
   height: 510px;
+  border-right: 1px solid #545c64;
   .history-menu-item {
     overflow: hidden;
     text-overflow: ellipsis;

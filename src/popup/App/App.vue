@@ -1,5 +1,5 @@
 <template>
-  <div id="popup-app">
+  <div id="gloria-popup-app">
     <el-tabs :model-value="activeTab" class="tabs" stretch type="border-card" :before-leave="leaveTab">
       <el-tab-pane class="tab-pane" name="tasks" lazy>
         <template #label>
@@ -56,7 +56,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#popup-app {
+#gloria-popup-app {
   width: 750px;
   height: 580px;
   .tab-pane {
@@ -112,6 +112,10 @@ export default defineComponent({
         border-bottom-color: #ebeef5;
       }
     }
+  }
+
+  .el-scrollbar__thumb {
+    background-color: rgba(144, 147, 194, 1);
   }
 }
 </style>

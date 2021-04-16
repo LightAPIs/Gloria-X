@@ -22,6 +22,7 @@ import {
   ElPopconfirm,
   ElPopover,
   ElRow,
+  ElScrollbar,
   ElSwitch,
   ElTooltip,
 } from 'element-plus';
@@ -51,6 +52,7 @@ const components = [
   ElPopconfirm,
   ElPopover,
   ElRow,
+  ElScrollbar,
   ElSwitch,
   ElTooltip,
 ];

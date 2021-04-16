@@ -18,7 +18,7 @@ export default defineComponent({
 <style>
 .fab-button {
   position: fixed;
-  right: 45px;
+  right: 35px;
   bottom: 15px;
 }
 </style>

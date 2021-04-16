@@ -1,5 +1,5 @@
 <template>
-  <div id="options-app">
+  <div id="gloria-options-app">
     <el-container class="options-container">
       <el-aside class="options-aside">
         <gloria-options-menu :active-index="activeIndex" @menu-click="menuClick"></gloria-options-menu>
@@ -8,9 +8,11 @@
         <el-header class="options-header">
           <gloria-options-breadcrumb :breadcrumb-index="activeIndex"></gloria-options-breadcrumb>
         </el-header>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
+        <el-scrollbar :native="false" :noresize="false" tag="div">
+          <el-main>
+            <router-view></router-view>
+          </el-main>
+        </el-scrollbar>
       </el-container>
     </el-container>
   </div>
@@ -58,10 +60,12 @@ export default defineComponent({
 body {
   overflow: hidden;
 }
-#options-app {
+#gloria-options-app {
   position: absolute;
-  height: 99%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
+  margin-left: -8px;
+  margin-top: -8px;
   .options-container {
     height: 100%;
   }

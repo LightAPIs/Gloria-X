@@ -1,5 +1,5 @@
 <template>
-  <div id="generation-app">
+  <div id="gloria-generation-app">
     <el-container>
       <el-header height="30px">
         <gloria-generation-toolbar></gloria-generation-toolbar>
