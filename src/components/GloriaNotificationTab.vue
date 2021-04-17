@@ -22,6 +22,7 @@
                 :id="info.id"
                 :key="info.id"
                 :later="info.later"
+                :visited="info.visited"
                 :event-time="info.options.eventTime"
                 :type="info.options.type"
                 :title="info.options.title"

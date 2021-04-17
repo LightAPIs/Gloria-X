@@ -234,6 +234,7 @@ export default {
   },
   updateStage(state: myStore.VuexState, newStage: { id: string; stage: myStore.Stage | myStore.Stage[] }): void {
     const { id, stage } = newStage;
+    let upd = false;
     for (let i = 0; i < state.stages.length; i++) {
       if (id === state.stages[i].id) {
         if (Array.isArray(stage) && stage.length > STAGE_LIMIT) {
@@ -241,10 +242,12 @@ export default {
         }
 
         state.stages[i].stage = stage || [];
+        upd = true;
+        break;
       }
     }
 
-    chromeStorage.setStages(state.stages, `set "stages -> ${id}".`);
+    upd && chromeStorage.setStages(state.stages, `set "stages -> ${id}".`);
   },
   addStage(state: myStore.VuexState, newStage: { id: string; stage: myStore.Stage | myStore.Stage[] }): void {
     const { id, stage } = newStage;
@@ -312,6 +315,7 @@ export default {
               iconUrl: iconUrl || '',
             },
             later: false,
+            visited: false,
           });
         });
         //* 处理通知记录数量上限
@@ -337,9 +341,13 @@ export default {
     }
   },
 
-  setNotifications(state: myStore.VuexState, newNotifications: myStore.GloriaConfig): void {
+  setNotifications(state: myStore.VuexState, newNotifications: myStore.GloriaNotification[]): void {
     if (newNotifications && Array.isArray(newNotifications) && newNotifications.length > 0) {
-      state.notifications = [...newNotifications];
+      state.notifications = newNotifications.map(notify => {
+        notify.later = notify.later || false;
+        notify.visited = notify.visited || false;
+        return notify;
+      });
     } else {
       state.notifications = [];
     }
@@ -362,6 +370,7 @@ export default {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = true;
         mark = true;
+        break;
       }
     }
 
@@ -373,10 +382,23 @@ export default {
       if (notificationId === state.notifications[i].id) {
         state.notifications[i].later = false;
         checked = true;
+        break;
       }
     }
 
     checked && chromeStorage.setNotifications(state.notifications, `checked notification -> "${notificationId}".`);
+  },
+  visitNotification(state: myStore.VuexState, notificationId: string): void {
+    let v = false;
+    for (let i = 0; i < state.notifications.length; i++) {
+      if (notificationId === state.notifications[i].id) {
+        state.notifications[i].visited = true;
+        v = true;
+        break;
+      }
+    }
+
+    v && chromeStorage.setNotifications(state.notifications, `visited notification -> "${notificationId}".`);
   },
   removeNotification(state: myStore.VuexState, notificationId: string): void {
     let del = false;

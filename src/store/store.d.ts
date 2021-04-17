@@ -52,6 +52,7 @@ declare namespace myStore {
   interface GloriaNotification {
     readonly id: string;
     later?: boolean;
+    visited?: boolean;
     options: GloriaNotificationOptions;
   }
 

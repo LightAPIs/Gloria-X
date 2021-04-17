@@ -1,5 +1,5 @@
 <template>
-  <el-timeline-item :timestamp="displayTime(eventTime)" placement="top" :color="later ? '#f56c6c' : '#0bbd87'">
+  <el-timeline-item :timestamp="displayTime(eventTime)" placement="top" :color="nodeColor">
     <el-badge is-dot :hidden="!later" type="danger" class="notification-item">
       <el-card :body-style="{ padding: '5px 15px' }" class="history-card" @contextmenu.prevent="onContextmenu">
         <template #header>
@@ -58,6 +58,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    visited: {
+      type: Boolean,
+      default: false,
+    },
     eventTime: {
       type: Number || String,
       required: true,
@@ -102,11 +106,25 @@ export default defineComponent({
         return iconUrl;
       }
     },
+    nodeColor(): string {
+      let color = '#909399';
+      const { later, visited, url, type } = this;
+      if (later) {
+        color = '#f56c6c';
+      } else if (visited) {
+        color = '#0bbd87';
+      } else if (url) {
+        color = '#3a8ee6';
+      } else if (type === 'image') {
+        color = '#a56b56';
+      }
+      return color;
+    },
   },
   methods: {
-    ...mapMutations(['checkedNotification', 'markLaterNotification', 'removeNotification']),
+    ...mapMutations(['checkedNotification', 'visitNotification', 'markLaterNotification', 'removeNotification']),
     openLink(active: boolean) {
-      const { url, later, id } = this;
+      const { url, later, visited, id } = this;
       if (url && this.isLink(url)) {
         chrome.tabs.query(
           {
@@ -129,9 +147,9 @@ export default defineComponent({
           }
         );
       }
-      if (later) {
-        this.checkedNotification(id);
-      }
+
+      !visited && this.visitNotification(id);
+      later && this.checkedNotification(id);
     },
     onContextmenu(event: MouseEvent) {
       const { id, url, title, message, iconUrl, imageUrl, later } = this;
