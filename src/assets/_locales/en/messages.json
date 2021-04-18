@@ -194,6 +194,21 @@
   "popupContextTaskDebugError": {
     "message": "Task execution error!"
   },
+  "popupContextTaskCheckUpdate": {
+    "message": "Check for task updates"
+  },
+  "popupContextTaskCheckUpdateNo": {
+    "message": "There is no update for this task."
+  },
+  "popupContextTaskCheckUpdateYes": {
+    "message": "The task has an update!"
+  },
+  "popupContextTaskCheckUpdateEmpty": {
+    "message": "The URL did not return the correct data!"
+  },
+  "popupContextTaskCheckUpdateError": {
+    "message": "Error checking update!"
+  },
   "popupContextNotificationMenuCopy": {
     "message": "Copy this category name"
   },

@@ -235,7 +235,7 @@ export default defineComponent({
       this.disconnectTask(id);
     },
     onContextmenu(event: MouseEvent) {
-      const { id, name, isEnable, onTimeMode, needInteraction, isChrome } = this;
+      const { id, name, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
       const items = [
         isEnable
           ? {
@@ -353,6 +353,38 @@ export default defineComponent({
             );
           },
         },
+        origin
+          ? {
+              label: this.i18n('popupContextTaskCheckUpdate'),
+              icon: 'el-icon-link',
+              onClick: () => {
+                chrome.runtime.sendMessage(
+                  {
+                    type: 'manuallyCheckUpdate',
+                    data: origin.replace('gloria.pub', 'api.gloria.pub'),
+                  },
+                  res => {
+                    if (res) {
+                      const { result, err } = res;
+                      if (result) {
+                        if (result === this.taskCode(id).trim()) {
+                          ElMessage.info(this.i18n('popupContextTaskCheckUpdateNo'));
+                        } else {
+                          ElMessage.success(this.i18n('popupContextTaskCheckUpdateYes'));
+                        }
+                      } else {
+                        if (err) {
+                          ElMessage.error(this.i18n('popupContextTaskCheckUpdateError'));
+                        } else {
+                          ElMessage.warning(this.i18n('popupContextTaskCheckUpdateEmpty'));
+                        }
+                      }
+                    }
+                  }
+                );
+              },
+            }
+          : {},
       ];
 
       this.$emit('task-contextmenu', {

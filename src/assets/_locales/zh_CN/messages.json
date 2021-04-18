@@ -194,6 +194,21 @@
   "popupContextTaskDebugError": {
     "message": "任务执行出错！"
   },
+  "popupContextTaskCheckUpdate": {
+    "message": "检查任务更新"
+  },
+  "popupContextTaskCheckUpdateNo": {
+    "message": "该任务不存在更新。"
+  },
+  "popupContextTaskCheckUpdateYes": {
+    "message": "该任务存在更新！"
+  },
+  "popupContextTaskCheckUpdateEmpty": {
+    "message": "网站没有返回正确的数据！"
+  },
+  "popupContextTaskCheckUpdateError": {
+    "message": "检测更新出现错误！"
+  },
   "popupContextNotificationMenuCopy": {
     "message": "复制此分类名称"
   },

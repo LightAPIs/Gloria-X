@@ -194,6 +194,21 @@
   "popupContextTaskDebugError": {
     "message": "任務執行出錯！"
   },
+  "popupContextTaskCheckUpdate": {
+    "message": "檢查任務更新"
+  },
+  "popupContextTaskCheckUpdateNo": {
+    "message": "該任務不存在更新。"
+  },
+  "popupContextTaskCheckUpdateYes": {
+    "message": "該任務存在更新！"
+  },
+  "popupContextTaskCheckUpdateEmpty": {
+    "message": "網站沒有返回正確的數據！"
+  },
+  "popupContextTaskCheckUpdateError": {
+    "message": "檢測更新出現錯誤！"
+  },
   "popupContextNotificationMenuCopy": {
     "message": "複製此分類名稱"
   },

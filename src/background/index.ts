@@ -714,6 +714,41 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         });
       }
       return true;
+    case 'manuallyCheckUpdate':
+      try {
+        fetch(data)
+          .then(res => {
+            if (res.status >= 200 && res.status < 300) {
+              return res.json();
+            } else {
+              return res.text().then(msg => {
+                throw {
+                  status: res.status,
+                  statusText: msg,
+                };
+              });
+            }
+          })
+          .then(r => {
+            if (r.code.trim()) {
+              sendResponse({
+                result: r.code.trim(),
+              });
+            } else {
+              sendResponse({
+                result: false,
+              });
+            }
+          });
+      } catch (e) {
+        sendResponse({
+          result: false,
+          err: {
+            message: JSON.stringify(e),
+          },
+        });
+      }
+      return true;
     case 'checkInstall':
       if (store.getters.hasInstalledTask(data)) {
         sendResponse({
