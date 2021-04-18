@@ -1,5 +1,6 @@
 import { toRaw } from 'vue';
 import debounce from 'lodash.debounce';
+import dayjs from 'dayjs';
 
 class ChromeStorage {
   static readonly WAIT_TIME = 500;
@@ -94,6 +95,12 @@ class ChromeStorage {
     );
   }
 
+  consoleLog(color: string, message?: string): void {
+    if (message) {
+      console.log(`%c${message}  @ %s`, `color: ${color};`, dayjs().format('HH:mm:ss.SSS'));
+    }
+  }
+
   setImplicitPush(data: boolean, message?: string): void {
     this.implicitPush(() => {
       chrome.storage.local.set(
@@ -101,7 +108,7 @@ class ChromeStorage {
           implicitPush: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#ffff99', message);
         }
       );
     });
@@ -114,7 +121,7 @@ class ChromeStorage {
           lastActiveTab: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#99CC99', message);
         }
       );
     });
@@ -127,7 +134,7 @@ class ChromeStorage {
           lastCheckTasksUpdate: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#666600', message);
         }
       );
     });
@@ -140,7 +147,7 @@ class ChromeStorage {
           tasks: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#66CC66', message);
         }
       );
     });
@@ -153,7 +160,7 @@ class ChromeStorage {
           notifications: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#CCCC33', message);
         }
       );
     });
@@ -166,7 +173,7 @@ class ChromeStorage {
           stages: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#663300', message);
         }
       );
     });
@@ -179,7 +186,7 @@ class ChromeStorage {
           configs: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#cc9966', message);
         }
       );
     });
@@ -192,7 +199,7 @@ class ChromeStorage {
           reducer: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#003300', message);
         }
       );
     });
@@ -205,7 +212,7 @@ class ChromeStorage {
           unread: toRaw(data),
         },
         () => {
-          !this.blockLog && message && console.log(message);
+          !this.blockLog && this.consoleLog('#333300', message);
         }
       );
     });
