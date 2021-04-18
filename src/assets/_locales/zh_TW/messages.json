@@ -185,6 +185,15 @@
   "popupContextTaskNeedInteractionDisable": {
     "message": "禁用手動關閉"
   },
+  "popupContextTaskDebug": {
+    "message": "測試該任務"
+  },
+  "popupContextTaskDebugCompleted": {
+    "message": "任務執行成功!"
+  },
+  "popupContextTaskDebugError": {
+    "message": "任務執行出錯！"
+  },
   "popupContextNotificationMenuCopy": {
     "message": "複製此分類名稱"
   },

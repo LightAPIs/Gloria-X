@@ -185,6 +185,15 @@
   "popupContextTaskNeedInteractionDisable": {
     "message": "Disable Interaction"
   },
+  "popupContextTaskDebug": {
+    "message": "Test the task"
+  },
+  "popupContextTaskDebugCompleted": {
+    "message": "Task execution successful!"
+  },
+  "popupContextTaskDebugError": {
+    "message": "Task execution error!"
+  },
   "popupContextNotificationMenuCopy": {
     "message": "Copy this category name"
   },

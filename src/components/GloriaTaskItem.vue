@@ -308,6 +308,7 @@ export default defineComponent({
         {
           label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
           icon: 'el-icon-alarm-clock',
+          divided: !isChrome,
           onClick: () => {
             this.updateTaskBasic({
               id,
@@ -321,6 +322,7 @@ export default defineComponent({
                 ? this.i18n('popupContextTaskNeedInteractionDisable')
                 : this.i18n('popupContextTaskNeedInteractionEnable'),
               icon: 'el-icon-thumb',
+              divided: true,
               onClick: () => {
                 this.updateTaskBasic({
                   id,
@@ -329,6 +331,28 @@ export default defineComponent({
               },
             }
           : {},
+        {
+          label: this.i18n('popupContextTaskDebug'),
+          icon: 'el-icon-view',
+          onClick: () => {
+            chrome.runtime.sendMessage(
+              {
+                type: 'testCode',
+                data: this.taskCode(id),
+              },
+              res => {
+                if (res) {
+                  const { result, err } = res;
+                  if (result) {
+                    ElMessage.success(this.i18n('popupContextTaskDebugCompleted'));
+                  } else if (err) {
+                    ElMessage.error(this.i18n('popupContextTaskDebugError'));
+                  }
+                }
+              }
+            );
+          },
+        },
       ];
 
       this.$emit('task-contextmenu', {
