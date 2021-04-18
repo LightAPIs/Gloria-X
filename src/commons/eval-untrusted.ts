@@ -185,7 +185,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
   };
 }
 
-function evalUntrusted(code: string): Promise<unknown> {
+function evalUntrusted(code: string): Promise<myStore.CommitData | myStore.CommitData[]> {
   return new Promise((resolve, reject) => {
     createGloriaSandbox().then((sandbox: any) => {
       sandbox.addEventListener('error', ({ detail }: any) => {

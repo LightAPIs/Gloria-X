@@ -79,6 +79,10 @@ export default defineComponent({
           title: 'GitHub-Laziji/menujs (MIT License)',
         },
         {
+          url: 'https://github.com/ReactiveX/RxJS',
+          title: 'ReactiveX/rxjs',
+        },
+        {
           url: 'https://github.com/Simonwep/selection',
           title: 'Simonwep/selection (MIT License)',
         },

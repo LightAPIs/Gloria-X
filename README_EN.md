@@ -518,6 +518,7 @@ Here, I would like to express my heartfelt thanks to Gloria author [BlackGlory](
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
 - [element-plus/element-plus](https://github.com/element-plus/element-plus)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
+- [ReactiveX/rxjs](https://github.com/ReactiveX/RxJS)
 - [Simonwep/selection](https://github.com/Simonwep/selection)
 - [vuejs/vue-next](https://github.com/vuejs/vue-next)
 - [yyf1994gggg/vuex-chrome](https://github.com/yyf1994gggg/vuex-chrome)

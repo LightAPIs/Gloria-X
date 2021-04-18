@@ -7,64 +7,100 @@ import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL, IS_CHROME } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
+import { Observable, Observer, Subject } from 'rxjs';
 
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 dayjsLocale();
+const taskList: Observable<unknown>[] = [];
+const taskSubject = new Subject();
+
+taskSubject.subscribe({
+  next: v => {
+    if (v) {
+      if (taskList.length > 0) {
+        const subscription = taskList[0].subscribe({
+          next: func => {
+            if (typeof func === 'function') {
+              func();
+            }
+          },
+          complete: () => {
+            if (taskList.length > 0) {
+              taskList.shift();
+              subscription.unsubscribe();
+              taskSubject.next(true);
+            }
+          },
+        });
+      }
+    }
+  },
+});
 
 function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
   const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;
   const { id, code, triggerInterval, triggerDate, onTimeMode, name } = task;
   function run() {
-    store.commit('triggerTask', id);
-    setTimeout(() => {
-      evalUntrusted(code)
-        .then(dataList => {
-          if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {
-            return;
-          }
+    const taskObservable = new Observable((obsever: Observer<unknown>) => {
+      obsever.next(() => {
+        store.commit('triggerTask', id);
+        evalUntrusted(code)
+          .then(dataList => {
+            if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {
+              return;
+            }
 
-          store.commit('executionTaskSuccess', id);
+            store.commit('executionTaskSuccess', id);
 
-          store.dispatch('handleData', {
-            taskId: id,
-            data: commitFormat(dataList as myStore.CommitData | myStore.CommitData[]),
-          });
-        })
-        .catch(err => {
-          console.error(err);
-          !notificationDisableError &&
-            notificationsManager.add({
-              title: i18n('notificationCodeError', [name]),
-              message: err.message,
-              iconUrl: DEFAULT_ICON_URL,
-              type: 'basic',
-              id: uuid(),
-              contextMessage: 'Gloria-X',
-              requireInteraction: false,
-              eventTime: Date.now(),
-              priority: 0,
-              silent: !notificationSound,
-              customSound: notificationCustomSound,
-              detectIcon: false,
-              isTest: true,
-              buttons: [
-                {
-                  title: i18n('notificationTerminateTask'),
-                },
-              ],
-              onButton0Click: () => {
-                store.commit('updateIsEnable', {
-                  id,
-                  checked: false,
-                });
-              },
+            store.dispatch('handleData', {
+              taskId: id,
+              data: commitFormat(dataList),
             });
+          })
+          .catch(err => {
+            console.error(err);
+            !notificationDisableError &&
+              notificationsManager.add({
+                title: i18n('notificationCodeError', [name]),
+                message: err.message,
+                iconUrl: DEFAULT_ICON_URL,
+                type: 'basic',
+                id: uuid(),
+                contextMessage: 'Gloria-X',
+                requireInteraction: false,
+                eventTime: Date.now(),
+                priority: 0,
+                silent: !notificationSound,
+                customSound: notificationCustomSound,
+                detectIcon: false,
+                isTest: true,
+                buttons: [
+                  {
+                    title: i18n('notificationTerminateTask'),
+                  },
+                ],
+                onButton0Click: () => {
+                  store.commit('updateIsEnable', {
+                    id,
+                    checked: false,
+                  });
+                },
+              });
 
-          //* 将错误记录至任务中
-          store.commit('executionTaskError', id);
-        });
-    }, 0);
+            //* 将错误记录至任务中
+            store.commit('executionTaskError', id);
+          })
+          .finally(() => {
+            obsever.complete();
+          });
+      });
+    });
+
+    taskList.push(taskObservable);
+    if (taskList.length === 1) {
+      taskSubject.next(true);
+    }
   }
 
   if (immediately) {
@@ -157,6 +193,9 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
   }
 
   if (immediately) {
+    alarmsManager.add(checkId, -1, 60 * 6, check);
+    check();
+  } else {
     const { lastCheckTasksUpdate } = store.state;
     if (isAfterInterval(lastCheckTasksUpdate, 60 * 6)) {
       alarmsManager.add(checkId, -1, 60 * 6, check);
@@ -164,8 +203,6 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
     } else {
       alarmsManager.add(checkId, remainingTime(lastCheckTasksUpdate, 60 * 6), 60 * 6, check);
     }
-  } else {
-    alarmsManager.add(checkId, -1, 60 * 6, check);
   }
 }
 
@@ -245,7 +282,7 @@ function syncCodeUpdate() {
   const { taskAutoCheckUpdate } = store.state.configs;
   if (taskAutoCheckUpdate) {
     const checkId = uuid();
-    createCheckCodeUpdateTimer(checkId, true);
+    createCheckCodeUpdateTimer(checkId);
     checkCodeUpdateIdList.add(checkId);
   }
 
@@ -255,7 +292,7 @@ function syncCodeUpdate() {
       if (val) {
         if (checkCodeUpdateIdList.size === 0) {
           const checkId = uuid();
-          createCheckCodeUpdateTimer(checkId, true);
+          createCheckCodeUpdateTimer(checkId);
           checkCodeUpdateIdList.add(checkId);
         }
       } else {
@@ -599,9 +636,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     case 'testCode':
       evalUntrusted(data)
         .then(res => {
-          const formatRes = res
-            ? commitFormat(res as myStore.CommitData | myStore.CommitData[])
-            : (res as myStore.CommitData | myStore.CommitData[]);
+          const formatRes = res ? commitFormat(res) : res;
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
@@ -626,9 +661,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     case 'testNoMsgCode':
       evalUntrusted(data)
         .then(res => {
-          const formatRes = res
-            ? commitFormat(res as myStore.CommitData | myStore.CommitData[])
-            : (res as myStore.CommitData | myStore.CommitData[]);
+          const formatRes = res ? commitFormat(res) : res;
           console.debug(formatRes);
           sendResponse({
             result: formatRes,
