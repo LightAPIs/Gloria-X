@@ -86,4 +86,8 @@ body {
     }
   }
 }
+
+.el-scrollbar__thumb {
+  background-color: rgb(36, 46, 68, 0.5);
+}
 </style>
