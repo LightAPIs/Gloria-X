@@ -51,7 +51,14 @@
       <span class="font-14">
         {{ i18n('settingsTaskTriggerInterval') }}
       </span>
-      <el-input-number :model-value="day" :min="0" :max="6" step-strictly @change="onTriggerInterval('day', $event)"></el-input-number>
+      <el-input-number
+        :model-value="day"
+        :min="0"
+        :max="6"
+        step-strictly
+        size="medium"
+        @change="onTriggerInterval('day', $event)"
+      ></el-input-number>
       {{ ' ' + i18n('dayText') }}
       <el-input-number
         class="time-input-number"
@@ -59,6 +66,7 @@
         :min="0"
         :max="23"
         step-strictly
+        size="medium"
         @change="onTriggerInterval('hour', $event)"
       ></el-input-number>
       {{ ' ' + i18n('hourText') }}
@@ -68,6 +76,7 @@
         :min="0"
         :max="59"
         step-strictly
+        size="medium"
         @change="onTriggerInterval('minute', $event)"
       ></el-input-number>
       {{ ' ' + i18n('minuteText') }}

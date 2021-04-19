@@ -98,6 +98,7 @@
         :max="500"
         controls-position="right"
         step-strictly
+        size="medium"
         @change="onChange('notificationMaxinum', $event)"
       ></el-input-number>
     </div>
