@@ -95,7 +95,7 @@
       <el-input-number
         :model-value="configs.notificationMaxinum"
         :min="50"
-        :max="500"
+        :max="1000"
         controls-position="right"
         step-strictly
         size="medium"
