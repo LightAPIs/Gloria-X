@@ -555,7 +555,7 @@
     "message": "The internal status of all tasks is displayed here"
   },
   "stateStages": {
-    "message": "STAGES (Used to determine whether to push new notifications):"
+    "message": "STAGES:"
   },
   "stateStagesPlaceholder": {
     "message": "The internal cache of all messages is displayed here"
@@ -573,7 +573,7 @@
     "message": "Test content (JSON):"
   },
   "reducerTestContent": {
-    "message": "Please provide a serialized JSON of the Gloria Notification object or an array of the objects, for example, the following:\n\n$test$",
+    "message": "Provide a serialized JSON of the Gloria Notification object or an array of the objects",
     "placeholders": {
       "test": {
         "content": "$1",
@@ -584,11 +584,11 @@
   "reducerTestResultLabel": {
     "message": "Test results:"
   },
-  "reducerTestRedult": {
+  "reducerTestResult": {
     "message": "Test results are shown here"
   },
   "reducerPlacehoder": {
-    "message": ">-------------------------------------------------<\nExample:\n\nfunction reducer(notification) {\n  ...\n return notification || null;\n}\n\nPlease use the Reducer function carefully!\n>-------------------------------------------------<"
+    "message": "e.g.  function reducer(notification) { /* your code */ return notification || null; }"
   },
   "reducerEdit": {
     "message": "Edit"

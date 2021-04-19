@@ -558,7 +558,7 @@
     "message": "此处显示所有任务的内部状态"
   },
   "stateStages": {
-    "message": "STAGES (用于判定是否推送新通知):"
+    "message": "STAGES:"
   },
   "stateStagesPlaceholder": {
     "message": "此处显示所有消息的内部缓存情况"
@@ -576,22 +576,16 @@
     "message": "测试内容 (JSON)："
   },
   "reducerTestContent": {
-    "message": "请提供一个由 Gloria Notification 对象或者该对象所组成的数组序列化后的 JSON，例如下面这样：\n\n$test$",
-    "placeholders": {
-      "test": {
-        "content": "$1",
-        "example": "{...}"
-      }
-    }
+    "message": "请提供一个由 Gloria Notification 对象或者该对象所组成的数组序列化后的 JSON"
   },
   "reducerTestResultLabel": {
     "message": "测试结果："
   },
-  "reducerTestRedult": {
+  "reducerTestResult": {
     "message": "此处显示测试结果"
   },
   "reducerPlacehoder": {
-    "message": ">-----------------------------------------------------------<\n示例:\n\nfunction reducer(notification){\n  ...\n  return notification || null;\n}\n\n请务必小心使用 Reducer 函数！\n>-----------------------------------------------------------<"
+    "message": "示例:  function reducer(notification) { /* your code */ return notification || null; }"
   },
   "reducerEdit": {
     "message": "编辑"

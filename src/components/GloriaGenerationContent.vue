@@ -44,15 +44,16 @@
         <el-col :span="12" class="padding-col">
           <div class="left-content">
             <div class="left-header">{{ i18n('generationCode') }}</div>
-            <el-input
-              id="debug-code-input"
-              ref="codeInput"
-              v-model="code"
-              type="textarea"
-              :rows="9"
-              @keydown.tab="textareaTab($refs.codeInput, $event)"
+            <v-ace-editor
+              v-model:value="code"
+              lang="javascript"
+              theme="sqlserver"
+              wrap
+              :print-margin="false"
+              :options="{ tabSize: 2 }"
+              style="height: 220px; font-size: 15px; border: 1px solid #b32929"
               @change="onCodeChange"
-            ></el-input>
+            />
           </div>
         </el-col>
         <el-col :span="12" class="padding-col">
@@ -60,24 +61,27 @@
             <el-button type="primary" size="small" @click="onTestCode">
               {{ i18n('generationTest') }}
             </el-button>
-            <el-button type="warning" size="small" @click="onBackSelection">
+            <el-button type="warning" size="small" @click="onBack">
               {{ i18n('generationLast') }}
             </el-button>
             <el-button type="success" size="small" :disabled="!next" :title="i18n('generationNextTip')" @click="onNext">
               {{ i18n('generationNext') }}
             </el-button>
             <div class="result">
-              <label for="debug-code-result" class="input-label">
+              <label class="input-label">
                 {{ i18n('debugResult') }}
               </label>
-              <el-input
-                id="debug-code-result"
+              <v-ace-editor
                 :value="result"
-                type="textarea"
-                :rows="8"
+                lang="json"
+                theme="sqlserver"
                 :placeholder="i18n('debugResultPlaceholder')"
+                wrap
                 readonly
-              ></el-input>
+                :print-margin="false"
+                :options="{ tabSize: 2 }"
+                style="height: 180px; font-size: 15px; border: 1px solid #a08181"
+              />
             </div>
           </div>
         </el-col>
@@ -88,15 +92,16 @@
         <el-col :span="12" class="padding-col">
           <div class="left-content">
             <div class="left-header">{{ i18n('generationCode') }}</div>
-            <el-input
-              id="task-code-input"
+            <v-ace-editor
               :value="code"
-              type="textarea"
-              :rows="9"
-              disabled
+              lang="javascript"
+              theme="sqlserver"
+              wrap
               readonly
-              @keydown.tab="textareaTab($refs.codeInput, $event)"
-            ></el-input>
+              :print-margin="false"
+              :options="{ tabSize: 2 }"
+              style="height: 220px; font-size: 15px; border: 1px solid #a08181"
+            />
           </div>
         </el-col>
         <el-col :span="12" class="padding-col">
@@ -106,7 +111,7 @@
                 <el-button type="primary" size="small" @click="onTaskSubmit">
                   {{ i18n('generationTaskSubmit') }}
                 </el-button>
-                <el-button type="warning" size="small" @click="onBackSelection">
+                <el-button type="warning" size="small" @click="onBack">
                   {{ i18n('generationLast') }}
                 </el-button>
               </el-form-item>
@@ -148,9 +153,17 @@ import { defineComponent } from 'vue';
 import { ElForm } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
 import { v4 as uuid } from 'uuid';
+import { VAceEditor } from 'vue3-ace-editor';
+import ace from 'ace-builds';
+ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
+ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
+ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
 
 export default defineComponent({
   name: 'GloriaGenerationContent',
+  components: {
+    VAceEditor,
+  },
   emits: ['active-index'],
   setup() {
     const isChrome = process.env.VUE_APP_TITLE === 'chrome';
@@ -281,7 +294,7 @@ export default defineComponent({
               if (err) {
                 this.result = err.message + '\n\n' + this.i18n('generationError');
               } else {
-                this.result = JSON.stringify(result, null, 4);
+                this.result = JSON.stringify(result, null, 2);
                 this.next = true;
               }
             }
@@ -289,9 +302,10 @@ export default defineComponent({
         );
       }
     },
-    onBackSelection() {
+    onBack() {
       if (this.progress === 'test') {
         this.progress = 'selection';
+        this.result = '';
         this.$emit('active-index', 0);
         this.enableSelection();
       } else {

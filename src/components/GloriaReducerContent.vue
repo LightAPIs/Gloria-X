@@ -21,18 +21,18 @@
             </span>
           </el-tooltip>
         </div>
-        <div>
-          <el-input
-            id="reducer-code"
-            ref="reducerInput"
-            :value="currentReducer"
-            type="textarea"
-            :rows="32"
+        <div id="reducer-code">
+          <v-ace-editor
+            v-model:value="currentReducer"
+            lang="javascript"
+            theme="sqlserver"
             :placeholder="i18n('reducerPlacehoder')"
-            :disabled="!editable"
-            @input="handleReducer"
-            @keydown.tab="textareaTab($refs.reducerInput, $event)"
-          ></el-input>
+            wrap
+            :readonly="!editable"
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 750px; font-size: 15px; border: 1px solid #b32929"
+          />
         </div>
         <div class="margin-top">
           <span class="reducer-btn">
@@ -54,18 +54,19 @@
       </el-col>
       <el-col :span="12" class="padding-col">
         <div class="test-content">
-          <label for="reducer-test-content" class="input-label">
+          <label class="input-label">
             {{ i18n('reducerTestContentLabel') }}
           </label>
-          <el-input
-            id="reducer-test-content"
-            ref="testInput"
-            v-model="testContent"
-            type="textarea"
-            :rows="15"
-            :placeholder="i18n('reducerTestContent', [example])"
-            @keydown.tab="textareaTab($refs.testInput, $event)"
-          ></el-input>
+          <v-ace-editor
+            v-model:value="testContent"
+            lang="json"
+            theme="sqlserver"
+            :placeholder="i18n('reducerTestContent')"
+            wrap
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 350px; font-size: 15px; border: 1px solid #b32929"
+          />
         </div>
         <div class="margin-top">
           <el-button type="primary" size="small" :disabled="editable" @click="handleTest('testReducer')">
@@ -76,17 +77,20 @@
           </el-button>
         </div>
         <div class="test-result">
-          <label for="reducer-test-result" class="input-label">
+          <label class="input-label">
             {{ i18n('reducerTestResultLabel') }}
           </label>
-          <el-input
-            id="reducer-test-result"
+          <v-ace-editor
             :value="testResult"
-            type="textarea"
-            :rows="15"
+            lang="json"
+            theme="sqlserver"
             :placeholder="i18n('reducerTestResult')"
+            wrap
             readonly
-          ></el-input>
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 350px; font-size: 15px; border: 1px solid #a08181"
+          />
         </div>
       </el-col>
     </el-row>
@@ -96,24 +100,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
-import { APP_ICON_URL } from '@/commons/var';
-
-/* global myStore */
-
-const example: myStore.CommitData = {
-  title: 'Test Title',
-  message: 'This i a test.',
-  iconUrl: APP_ICON_URL,
-  imageUrl: APP_ICON_URL,
-  url: 'https://github.com/LightAPIs/Gloria-X',
-  id: 'Optional',
-};
+import { VAceEditor } from 'vue3-ace-editor';
+import ace from 'ace-builds';
+ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
+ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
+ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
 
 export default defineComponent({
   name: 'GloriaReducerContent',
+  components: {
+    VAceEditor,
+  },
   data() {
     return {
-      example: JSON.stringify(example, null, 4),
       editable: false,
       currentReducer: '',
       testContent: '',
@@ -163,7 +162,7 @@ export default defineComponent({
                 const { result, err } = res;
                 console.log(err);
                 if (result) {
-                  this.testResult = JSON.stringify(result, null, 4);
+                  this.testResult = JSON.stringify(result, null, 2);
                 } else if (err) {
                   this.testResult = err;
                 }
@@ -192,7 +191,8 @@ export default defineComponent({
 .font-16 {
   font-size: 16px;
 }
-.test-result {
+.test-result,
+.margin-top {
   margin-top: 15px;
 }
 .reducer-btn {

@@ -516,6 +516,7 @@ Here, I would like to express my heartfelt thanks to Gloria author [BlackGlory](
 
 - [BlackGlory/Gloria](https://github.com/BlackGlory/Gloria)
 - [akanshgulati/scrap-favicon](https://github.com/akanshgulati/scrap-favicon)
+- [CarterLi/vue3-ace-editor](https://github.com/CarterLi/vue3-ace-editor)
 - [element-plus/element-plus](https://github.com/element-plus/element-plus)
 - [GitHub-Laziji/menujs](https://github.com/GitHub-Laziji/menujs)
 - [ReactiveX/rxjs](https://github.com/ReactiveX/RxJS)

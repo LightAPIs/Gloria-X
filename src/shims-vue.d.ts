@@ -8,7 +8,6 @@ declare module '@vue/runtime-core' {
     nbsp: (val: string) => string | undefined;
     isLink: (url: string) => boolean;
     asLink: (url: string) => string;
-    textareaTab: (element: HTMLInputElement, event: KeyboardEvent) => void;
     copyToClip: (content: string, copyCompleted?: () => void, copyError?: () => void) => void;
     displayTime: (d?: string | number) => string;
     intervalTime: (d: number) => string;

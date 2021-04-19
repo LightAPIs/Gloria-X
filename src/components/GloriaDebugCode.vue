@@ -3,40 +3,53 @@
     <el-row>
       <el-col :span="12" class="padding-col">
         <div class="test-code">
-          <label for="debug-code-input" class="input-label">
+          <label class="input-label">
             {{ i18n('debugCodeLabel') }}
           </label>
-          <el-input
-            id="debug-code-input"
-            ref="codeInput"
-            v-model="code"
-            type="textarea"
-            :rows="32"
+          <v-ace-editor
+            v-model:value="code"
+            lang="javascript"
+            theme="sqlserver"
             :placeholder="i18n('debugCodePlaceholder')"
-            @keydown.tab="textareaTab($refs.codeInput, $event)"
-          ></el-input>
+            wrap
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 700px; font-size: 15px; border: 1px solid #b32929"
+          />
         </div>
       </el-col>
       <el-col :span="12" class="padding-col">
         <div class="result">
-          <label for="debug-code-result" class="input-label">
+          <label class="input-label">
             {{ i18n('debugResult') }}
           </label>
-          <el-input
-            id="debug-code-result"
+          <v-ace-editor
             :value="result"
-            type="textarea"
-            :rows="15"
+            lang="json"
+            theme="sqlserver"
             :placeholder="i18n('debugResultPlaceholder')"
+            wrap
             readonly
-          ></el-input>
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 450px; font-size: 15px; border: 1px solid #a08181"
+          />
         </div>
         <div class="error">
-          <label for="debug-code-error" class="input-label">
+          <label class="input-label">
             {{ i18n('debugError') }}
           </label>
-          <el-input id="debug-code-error" :value="error" type="textarea" :rows="15" :placeholder="i18n('debugErrorPlaceholder')" readonly>
-          </el-input>
+          <v-ace-editor
+            :value="error"
+            lang="logtalk"
+            theme="sqlserver"
+            :placeholder="i18n('debugErrorPlaceholder')"
+            wrap
+            readonly
+            :print-margin="false"
+            :options="{ tabSize: 2 }"
+            style="height: 250px; font-size: 15px; border: 1px solid #a08181"
+          />
         </div>
       </el-col>
     </el-row>
@@ -45,9 +58,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { VAceEditor } from 'vue3-ace-editor';
+import ace from 'ace-builds';
+ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
+ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
+ace.config.setModuleUrl('ace/mode/logtalk', 'ace-editor/mode-logtalk.js');
+ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
 
 export default defineComponent({
   name: 'GloriaDebugCode',
+  components: {
+    VAceEditor,
+  },
   props: {
     testing: {
       type: Boolean,
@@ -81,7 +103,7 @@ export default defineComponent({
               if (res) {
                 const { result, err } = res;
                 if (result) {
-                  this.result = JSON.stringify(result, null, 4);
+                  this.result = JSON.stringify(result, null, 2);
                 }
 
                 if (err) {
@@ -108,7 +130,7 @@ export default defineComponent({
               if (res) {
                 const { result, err } = res;
                 if (result) {
-                  this.result = JSON.stringify(result, null, 4);
+                  this.result = JSON.stringify(result, null, 2);
                 }
 
                 if (err) {

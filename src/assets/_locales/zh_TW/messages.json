@@ -555,7 +555,7 @@
     "message": "此處顯示所有任務的內部狀態"
   },
   "stateStages": {
-    "message": "STAGES (用於判定是否推送新訊息):"
+    "message": "STAGES:"
   },
   "stateStagesPlaceholder": {
     "message": "此處顯示所有訊息的內部快取情況"
@@ -573,7 +573,7 @@
     "message": "測試內容 (JSON)："
   },
   "reducerTestContent": {
-    "message": "請提供一個由 Gloria Notification 對象或者該對象所組成的數組序列化後的 JSON，例如下面這樣：\n\n$test$",
+    "message": "請提供一個由 Gloria Notification 對象或者該對象所組成的數組序列化後的 JSON",
     "placeholders": {
       "test": {
         "content": "$1",
@@ -584,11 +584,11 @@
   "reducerTestResultLabel": {
     "message": "測試結果："
   },
-  "reducerTestRedult": {
+  "reducerTestResult": {
     "message": "此處顯示測試結果"
   },
   "reducerPlacehoder": {
-    "message": ">-----------------------------------------------------------<\n示例:\n\nfunction reducer(notification){\n  ...\n  return notification || null;\n}\n\n請務必小心使用 Reducer 函數！\n>-----------------------------------------------------------<"
+    "message": "示例:  function reducer(notification){ /* your code */ return notification || null; }"
   },
   "reducerEdit": {
     "message": "編輯"

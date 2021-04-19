@@ -1,6 +1,6 @@
 <template>
   <div id="state-router">
-    <el-button type="danger" size="small" @click="watchState">
+    <el-button type="primary" size="small" @click="watchState">
       {{ watching ? i18n('stateStopWatch') : i18n('stateWatch') }}
     </el-button>
     <el-divider content-position="left">

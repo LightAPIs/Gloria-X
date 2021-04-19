@@ -11,14 +11,16 @@
         <el-input v-model="form.name" clearable :placeholder="i18n('popupTaskFormNamePlaceholder')" prefix-icon="el-icon-view"></el-input>
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormCodeLabel')" prop="code">
-        <el-input
-          ref="taskInput"
-          v-model="form.code"
+        <v-ace-editor
+          v-model:value="form.code"
+          lang="javascript"
+          theme="sqlserver"
           :placeholder="i18n('popupTaskFormCodePlaceholder')"
-          type="textarea"
-          :rows="8"
-          @keydown.tab="textareaTab($refs.taskInput, $event)"
-        ></el-input>
+          wrap
+          :print-margin="false"
+          :options="{ tabSize: 2 }"
+          style="height: 180px; font-size: 15px; border: 1px solid #b32929"
+        />
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
         <el-input-number v-model="form.day" :min="0" :max="6" step-strictly></el-input-number>
@@ -53,9 +55,16 @@
 import { defineComponent } from 'vue';
 import { ElForm } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
+import { VAceEditor } from 'vue3-ace-editor';
+import ace from 'ace-builds';
+ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
+ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
 
 export default defineComponent({
   name: 'GloraiTaskEdit',
+  components: {
+    VAceEditor,
+  },
   props: {
     dialogVisible: {
       type: Boolean,

@@ -71,6 +71,10 @@ export default defineComponent({
           title: 'akanshgulati/scrap-favicon (MIT License)',
         },
         {
+          url: 'https://github.com/CarterLi/vue3-ace-editor',
+          title: 'CarterLi/vue3-ace-editor (MIT License)',
+        },
+        {
           url: 'https://github.com/element-plus/element-plus',
           title: 'element-plus/element-plus (MIT License)',
         },
@@ -80,7 +84,7 @@ export default defineComponent({
         },
         {
           url: 'https://github.com/ReactiveX/RxJS',
-          title: 'ReactiveX/rxjs',
+          title: 'ReactiveX/rxjs (Apache-2.0 License)',
         },
         {
           url: 'https://github.com/Simonwep/selection',
