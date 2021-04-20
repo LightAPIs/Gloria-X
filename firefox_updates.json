@@ -59,6 +59,15 @@
               "strict_min_version": "56.0"
             }
           }
+        },
+        {
+          "version": "2.0.0",
+          "update_link": "https://github.com/LightAPIs/Gloria-X/releases/download/v2.0.0/gloria_x-2.0.0-fx.xpi",
+          "browser_specific_settings": {
+            "gecko": {
+              "strict_min_version": "56.0"
+            }
+          }
         }
       ]
     }
