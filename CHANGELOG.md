@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/LightAPIs/Gloria-X/compare/v1.6.0...v2.0.0) (2021-04-20)
+
+
+### Features
+
+* **appearance:** 添加支持夜间模式 ([0c9bc51](https://github.com/LightAPIs/Gloria-X/commit/0c9bc5153f209844c484371deb1a6bc680cc7acc))
+* **contextmenus:** 在扩展程序图标上添加更多菜单项 ([e1caa86](https://github.com/LightAPIs/Gloria-X/commit/e1caa86698fc65cbf7ee57943b8efac5e00cc419))
+* **editor:** 更换使用支持代码高亮的编辑器 ([d86ab13](https://github.com/LightAPIs/Gloria-X/commit/d86ab13a37d635bab08ff68da60083d3cbf9dc65))
+* **generation:** 在选取元素生成任务的页面上添加步骤条 ([611738f](https://github.com/LightAPIs/Gloria-X/commit/611738ff1c814d03b595d49ae7c3d0c60e10571a))
+* **notifications:** 将通知记录中稍后查阅的通知的时间节点更换为醒目的颜色 ([d1208b4](https://github.com/LightAPIs/Gloria-X/commit/d1208b4cef8751ce1824ee38edb0d73bb4d4b17b))
+* **notifications:** 将通知历史记录修改为滚动加载 ([524c76f](https://github.com/LightAPIs/Gloria-X/commit/524c76f04e1554e28ca8cb4bc09cc65d482c4f49))
+* **notifications:** 为通知记录中不同类型的通知使用不同颜色的时间节点 ([7749d2a](https://github.com/LightAPIs/Gloria-X/commit/7749d2ac695e8a1fa3e2928b18236007335a9748))
+* **notifications:** 在通知记录的右键菜单中添加新建前台标签页打开链接的选项 ([2cc7263](https://github.com/LightAPIs/Gloria-X/commit/2cc7263912fa23866b73283baa4b154023a0993e))
+* **scrollbar:** 更换新的滚动条 ([678c9d2](https://github.com/LightAPIs/Gloria-X/commit/678c9d23c081b4f91e81acade3ee318c1b35079c))
+* **task:** 在任务的右键菜单中添加测试任务的选项 ([4fcc64f](https://github.com/LightAPIs/Gloria-X/commit/4fcc64fa7a6e343be178b7a9ba4d5b1c4ae50591))
+* **task:** 在任务的右键菜单中添加检查任务更新的选项 ([4cd1f9a](https://github.com/LightAPIs/Gloria-X/commit/4cd1f9a29b90e2180e7068a2f2c6742093f485b9))
+
+
+### Bug Fixes
+
+* **background:** 修复在同时执行大量任务时可能会造成扩展程序崩溃的问题 ([aa15272](https://github.com/LightAPIs/Gloria-X/commit/aa152724818142fb686da33f332d95b6f7f90974))
+* **notification-item:** 修复在新框架中点击打开通知链接时会出现重载弹出窗口的问题 ([3eb86f9](https://github.com/LightAPIs/Gloria-X/commit/3eb86f9232c0fc0924bf787f5aba882ce3df7063))
+* **popup:** 修复 Firefox 在英文环境下部分文字溢出的问题 ([3bc0e7b](https://github.com/LightAPIs/Gloria-X/commit/3bc0e7b746f8e70ec6c5316630bdae4d52724e32))
+* **popup:** 修复弹出窗口渲染有误的问题 ([96e0468](https://github.com/LightAPIs/Gloria-X/commit/96e0468f5bbc4b3364457d7fda010b024f76f534))
+* **settings:** 修复当选项页视窗过小时选项开关被文字遮挡的问题 ([62208ef](https://github.com/LightAPIs/Gloria-X/commit/62208ef0ad241a1b46bc5184845c2959afd764b9))
+* **tasks:** 修复在 Firefox 中任务的类别筛选里能看到"手动关闭"选项的问题 ([3cc1db5](https://github.com/LightAPIs/Gloria-X/commit/3cc1db52e94379ab980ea57c6292011781518449))
+* **vuex:** 修复在新框架下 Firefox 中各页面数据存取出错的问题 ([06880ed](https://github.com/LightAPIs/Gloria-X/commit/06880ed11f9a1630a89ae14984a98d8252e2e92a))
+
 ## [1.6.0](https://github.com/LightAPIs/Gloria-X/compare/v1.5.1...v1.6.0) (2021-04-02)
 
 
