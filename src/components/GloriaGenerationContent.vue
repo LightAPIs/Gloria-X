@@ -53,7 +53,7 @@
               wrap
               :print-margin="false"
               :options="{ tabSize: 2 }"
-              style="height: 220px; font-size: 15px; border: 1px solid #b32929"
+              style="height: 215px; font-size: 15px; border: 1px solid #b32929"
               @change="onCodeChange"
             />
           </div>
@@ -106,7 +106,7 @@
               readonly
               :print-margin="false"
               :options="{ tabSize: 2 }"
-              style="height: 220px; font-size: 15px; border: 1px solid #a08181"
+              style="height: 215px; font-size: 15px; border: 1px solid #a08181"
             />
           </div>
         </el-col>
