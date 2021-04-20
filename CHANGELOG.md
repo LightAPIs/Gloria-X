@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/LightAPIs/Gloria-X/compare/v2.0.0...v2.0.1) (2021-04-20)
+
+
+### Bug Fixes
+
+* **generation:** 修复在 Firefox 下自动生成任务页面中部分元素溢出的问题 ([437ec87](https://github.com/LightAPIs/Gloria-X/commit/437ec87b6ed18b882530283e551a395ddf66289c))
+* **language:** 修复选项页面中在部分文本显示有误的问题 ([9d1ac71](https://github.com/LightAPIs/Gloria-X/commit/9d1ac71016661d21fb0ff94835e0ae267dcc9705))
+
 ## [2.0.0](https://github.com/LightAPIs/Gloria-X/compare/v1.6.0...v2.0.0) (2021-04-20)
 
 
