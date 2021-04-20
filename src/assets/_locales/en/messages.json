@@ -330,7 +330,7 @@
     "message": "Appearance"
   },
   "settingsAppearanceInterface": {
-    "message": "Display mode:"
+    "message": "Display mode: "
   },
   "settingsAppearanceInterfaceDefault": {
     "message": "System"
@@ -375,7 +375,7 @@
     "message": "The newly added task is at the top of the task list"
   },
   "settingsTaskTriggerInterval": {
-    "message": "Default execution interval of task:"
+    "message": "Default execution interval of task: "
   },
   "settingsTaskShowSearchInput": {
     "message": "Display the task filter input box at the top of the task list"
@@ -396,7 +396,10 @@
     "message": "The notification is allowed to sound"
   },
   "settingsNotificationCustomSound": {
-    "message": "Use a custom notification sound (you need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled.)"
+    "message": "Use a custom notification sound"
+  },
+  "settingsNotificationCustomSoundTip": {
+    "message": "You need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled."
   },
   "settingsNotificationLaterMark": {
     "message": "Support for marking the notification in message for later review"
@@ -435,7 +438,7 @@
     "message": "Show the number of unread notifications mark on the Add-ons icon"
   },
   "settingsNotificationMaxinum": {
-    "message": "Maximum number of notification records:"
+    "message": "Maximum number of notification records: "
   },
   "settingsClear": {
     "message": "Clean"
@@ -588,13 +591,7 @@
     "message": "Test content (JSON):"
   },
   "reducerTestContent": {
-    "message": "Provide a serialized JSON of the Gloria Notification object or an array of the objects",
-    "placeholders": {
-      "test": {
-        "content": "$1",
-        "example": "{...}"
-      }
-    }
+    "message": "Provide a serialized JSON of the Gloria Notification object or an array of the objects"
   },
   "reducerTestResultLabel": {
     "message": "Test results:"
