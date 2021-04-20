@@ -9,31 +9,35 @@ import { v4 as uuid } from 'uuid';
 import { commitFormat, reduceNotification } from '@/store/reducer';
 import { Observable, Observer, Subject } from 'rxjs';
 
+dayjsLocale();
+let runningCount = 0;
+const RUN_LIMIT = 5;
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
-dayjsLocale();
 const taskList: Observable<unknown>[] = [];
-const taskSubject = new Subject();
+const taskSubject: Subject<Observable<unknown>> = new Subject();
 
 taskSubject.subscribe({
   next: v => {
-    if (v) {
-      if (taskList.length > 0) {
-        const subscription = taskList[0].subscribe({
-          next: func => {
-            if (typeof func === 'function') {
-              func();
-            }
-          },
-          complete: () => {
-            if (taskList.length > 0) {
-              taskList.shift();
-              subscription.unsubscribe();
-              taskSubject.next(true);
-            }
-          },
-        });
-      }
+    if (runningCount < RUN_LIMIT) {
+      runningCount++;
+      const subscription = v.subscribe({
+        next: func => {
+          if (typeof func === 'function') {
+            func();
+          }
+        },
+        complete: () => {
+          runningCount--;
+          subscription.unsubscribe();
+          if (taskList.length > 0) {
+            const top = taskList.shift();
+            top && taskSubject.next(top);
+          }
+        },
+      });
+    } else {
+      taskList.push(v);
     }
   },
 });
@@ -97,10 +101,7 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
       });
     });
 
-    taskList.push(taskObservable);
-    if (taskList.length === 1) {
-      taskSubject.next(true);
-    }
+    taskSubject.next(taskObservable);
   }
 
   if (immediately) {
