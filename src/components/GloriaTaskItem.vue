@@ -47,6 +47,7 @@
           <el-popconfirm
             v-if="origin"
             class="disconnect-btn"
+            effect="dark"
             :title="i18n('popupTaskDisconnectConfirm')"
             :confirm-button-text="i18n('popupTaskDisconnectOk')"
             confirm-button-type="warning"
@@ -66,6 +67,7 @@
           </el-popconfirm>
           <el-popconfirm
             class="delete-btn"
+            effect="dark"
             :title="i18n('popupTaskDeleteConfirm')"
             :confirm-button-text="i18n('popupTaskDeleteOk')"
             confirm-button-type="danger"

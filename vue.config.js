@@ -124,4 +124,21 @@ module.exports = {
       hints: false,
     };
   },
+  css: {
+    sourceMap: false,
+    loaderOptions: {
+      sass: {
+        // additionalData: `@import "~@/scss/index.scss"`,
+        sassOptions: {
+          fiber: false,
+        },
+      },
+      scss: {
+        // additionalData: `@import "~@/scss/index.scss";`,
+        sassOptions: {
+          fiber: false,
+        },
+      },
+    },
+  },
 };

@@ -67,7 +67,8 @@ declare namespace myStore {
   }
 
   interface GloriaConfig {
-    [key: string]: number | boolean;
+    [key: string]: number | boolean | string;
+    appearanceInterface: string;
     taskAutoCheckUpdate: boolean;
     taskOnTimeMode: boolean;
     taskNeedInteraction: boolean;

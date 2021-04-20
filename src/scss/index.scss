@@ -1,0 +1,242 @@
+//* index
+
+//! variables
+@import '~@/scss/variables.scss';
+
+//! common
+@import '~@/scss/common.scss';
+
+//// ----------------------------------------------------------------------------
+// theme-dark()
+//// ----------------------------------------------------------------------------
+@mixin theme-dark {
+  background-color: $dark-background-color-primary;
+
+  .el-button--danger:not(.is-disabled) {
+    background-color: $dark-button-danger-color;
+  }
+
+  .el-button--info:not(.is-disabled) {
+    background-color: $dark-button-info-color;
+  }
+
+  .el-button--success:not(.is-disabled) {
+    background-color: $dark-button-success-color;
+  }
+
+  .el-button--warning:not(.is-disabled) {
+    background-color: $dark-button-warning-color;
+  }
+
+  .el-checkbox__label {
+    color: $dark-text-color-primary;
+  }
+
+  .el-dialog {
+    background-color: $dark-background-color-primary;
+  }
+
+  .el-dialog__title {
+    color: $dark-text-color-primary;
+  }
+
+  .el-divider__text {
+    background-color: $dark-background-color-primary;
+    color: $dark-text-color-primary;
+  }
+
+  .el-form-item__content {
+    color: $dark-text-color-primary;
+  }
+
+  .el-form-item__label {
+    color: $dark-text-color-primary;
+  }
+
+  .el-input__inner {
+    background-color: $dark-input-background-color;
+    color: $dark-text-color-brighter;
+  }
+
+  .el-input-group__append,
+  .el-input-group__prepend {
+    background-color: $dark-radio-background-color;
+  }
+
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    background-color: $dark-radio-background-color;
+    color: $dark-text-color-primary;
+  }
+
+  .el-radio-button__inner {
+    background-color: $dark-radio-background-color;
+    color: $dark-text-color-brighter;
+
+    &:hover {
+      color: $dark-text-color-highlight;
+    }
+  }
+  .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+    background-color: $dark-radio-background-color-highlight;
+
+    &:hover {
+      color: $dark-text-color-brighter;
+    }
+  }
+
+  .el-scrollbar__thumb {
+    background-color: rgba(59, 95, 173, 0.5);
+
+    &:hover {
+      background-color: rgba(59, 95, 173, 0.8);
+    }
+  }
+
+  .el-step__head.is-process .el-step__icon-inner {
+    color: $dark-text-color-highlight;
+  }
+
+  .el-step__title.is-process {
+    color: $dark-text-color-highlight;
+  }
+
+  .el-steps--simple {
+    background-color: $dark-radio-background-color;
+  }
+
+  .el-switch__label {
+    color: $dark-text-color-primary;
+
+    &.is-active {
+      color: $dark-text-color-highlight;
+    }
+  }
+
+  .el-tabs {
+    background-color: $dark-background-color-primary;
+  }
+
+  .el-tabs__item {
+    background-color: $dark-tabs-item-background-color;
+
+    &.is-active {
+      background-color: $dark-tabs-item-background-color-height;
+      border-left-color: $dark-tabs-item-background-color-height;
+      border-right-color: $dark-tabs-item-background-color-height;
+    }
+  }
+
+  .el-timeline-item__tail {
+    border-left: 2px solid $dark-text-color-darker;
+  }
+
+  .font-14,
+  .font-16,
+  .gloria-about-content .header-text,
+  .gloria-about-content p,
+  .input-label,
+  .left-header,
+  .margin-top,
+  .options-tip-icon i,
+  .select-tip {
+    color: $dark-text-color-primary;
+  }
+
+  .gloria-about-content a {
+    color: $dark-text-color-highlight;
+
+    &:visited {
+      color: $dark-text-color-darker;
+    }
+  }
+
+  .notifications-main {
+    .el-card {
+      background-color: $dark-notify-card-background-color;
+
+      .title-text,
+      .message-text {
+        color: $dark-text-color-primary;
+      }
+    }
+
+    .history-card .card-icon {
+      background-color: $dark-notify-icon-background-color;
+    }
+  }
+
+  .tab-card {
+    background-color: $dark-tab-card-background-color;
+    color: $dark-text-color-primary;
+
+    a {
+      color: $dark-text-color-highlight;
+    }
+  }
+
+  &#gloria-popup-app {
+    .context-menu {
+      background-color: $dark-context-background-color;
+      color: $dark-text-color-darker;
+    }
+    .menu-body {
+      .menu-item:hover {
+        background: $dark-radio-background-color-highlight;
+        color: $dark-text-color-brighter;
+      }
+      .menu-divided {
+        border-bottom-color: $dark-context-divided-color;
+      }
+    }
+  }
+
+  &#gloria-generation-app {
+    .el-button--default:not(.is-disabled) {
+      background-color: $dark-button-default-color;
+      border-color: $dark-button-default-color;
+      color: $dark-text-color-primary;
+
+      &:hover {
+        background-color: $dark-buttom-default-hover-color;
+        border-color: $dark-buttom-default-hover-color;
+        color: $dark-text-color-brighter;
+      }
+    }
+  }
+}
+
+//// ----------------------------------------------------------------------------
+// gloria-dropdown-dark()
+//// ----------------------------------------------------------------------------
+@mixin gloria-dropdown-dark {
+  background-color: $dark-radio-background-color;
+
+  .el-dropdown-menu__item:not(.is-disabled):hover,
+  .el-dropdown-menu__item:focus {
+    background-color: $dark-radio-background-color-highlight;
+    color: $dark-text-color-brighter;
+  }
+}
+
+//// ----------------------------------------------------------------------------
+
+.gloria-theme.dark {
+  @include theme-dark();
+}
+
+.gloria-dropdown.dark {
+  @include gloria-dropdown-dark();
+}
+
+@media (prefers-color-scheme: dark) {
+  .gloria-theme.default {
+    @include theme-dark();
+  }
+
+  .gloria-dropdown.default {
+    @include gloria-dropdown-dark();
+  }
+}
+
+//// ----------------------------------------------------------------------------

@@ -25,7 +25,9 @@
           <v-ace-editor
             v-model:value="currentReducer"
             lang="javascript"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('reducerPlacehoder')"
             wrap
             :readonly="!editable"
@@ -60,7 +62,9 @@
           <v-ace-editor
             v-model:value="testContent"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('reducerTestContent')"
             wrap
             :print-margin="false"
@@ -83,7 +87,9 @@
           <v-ace-editor
             :value="testResult"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('reducerTestResult')"
             wrap
             readonly
@@ -105,11 +111,18 @@ import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
 ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
 ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
+ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
   name: 'GloriaReducerContent',
   components: {
     VAceEditor,
+  },
+  setup() {
+    const matches = matchMedia('(prefers-color-scheme: dark)').matches;
+    return {
+      matches,
+    };
   },
   data() {
     return {
@@ -120,7 +133,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(['reducer']),
+    ...mapState(['reducer', 'configs']),
   },
   watch: {
     //? 确保刷新页面后内容存在
@@ -185,14 +198,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.padding-col {
-  padding: 0px 10px;
-}
-.font-16 {
-  font-size: 16px;
-}
-.test-result,
-.margin-top {
+.test-result {
   margin-top: 15px;
 }
 .reducer-btn {

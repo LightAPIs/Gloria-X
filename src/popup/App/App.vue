@@ -1,5 +1,5 @@
 <template>
-  <div id="gloria-popup-app">
+  <div id="gloria-popup-app" class="gloria-theme" :class="configs.appearanceInterface">
     <el-tabs :model-value="activeTab" class="tabs" stretch type="border-card" :before-leave="leaveTab">
       <el-tab-pane class="tab-pane" name="tasks" lazy>
         <template #label>
@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapMutations, mapGetters } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import GloriaTaskTab from '@/components/GloriaTaskTab.vue';
 import GloriaNotificationTab from '@/components/GloriaNotificationTab.vue';
 
@@ -39,6 +39,7 @@ export default defineComponent({
   name: 'App',
   components: { GloriaTaskTab, GloriaNotificationTab },
   computed: {
+    ...mapState(['configs']),
     ...mapGetters(['activeTab']),
   },
   methods: {
@@ -56,6 +57,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '~@/scss/index.scss';
+
 #gloria-popup-app {
   width: 750px;
   height: 580px;
@@ -102,20 +105,25 @@ export default defineComponent({
         .menu-item-label {
           flex: 1;
         }
-      }
-      .menu-item:hover {
-        background: #ecf5ff;
-        color: #409eff;
+
+        &:hover {
+          background: #ecf5ff;
+          color: #409eff;
+        }
       }
 
       .menu-divided {
-        border-bottom-color: #ebeef5;
+        border-bottom-color: #d3d7df;
       }
     }
   }
 
   .el-scrollbar__thumb {
-    background-color: rgba(144, 147, 194, 1);
+    background-color: rgba(144, 147, 194, 0.6);
+
+    &:hover {
+      background-color: rgba(144, 147, 194, 0.9);
+    }
   }
 }
 </style>

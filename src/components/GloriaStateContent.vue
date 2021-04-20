@@ -9,7 +9,9 @@
           <v-ace-editor
             :value="notificationsView"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('stateNotificationsPlaceholder')"
             wrap
             readonly
@@ -27,7 +29,9 @@
           <v-ace-editor
             :value="tasksView"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('stateTasksPlaceholder')"
             wrap
             readonly
@@ -45,7 +49,9 @@
           <v-ace-editor
             :value="stagesView"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('stateStagesPlaceholder')"
             wrap
             readonly
@@ -66,6 +72,7 @@ import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
 ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
+ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
   name: 'GloriaStateContent',
@@ -78,8 +85,14 @@ export default defineComponent({
       required: true,
     },
   },
+  setup() {
+    const matches = matchMedia('(prefers-color-scheme: dark)').matches;
+    return {
+      matches,
+    };
+  },
   computed: {
-    ...mapState(['tasks', 'notifications', 'stages']),
+    ...mapState(['tasks', 'notifications', 'stages', 'configs']),
     tasksView() {
       if (this.watching) {
         return JSON.stringify(this.tasks, null, 2);
@@ -101,13 +114,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.padding-col {
-  padding: 0px 10px;
-}
-.input-label {
-  font-size: 14px;
-  margin: 0px 5px;
-}
-</style>

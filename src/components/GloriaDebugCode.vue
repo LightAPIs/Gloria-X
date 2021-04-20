@@ -9,7 +9,9 @@
           <v-ace-editor
             v-model:value="code"
             lang="javascript"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('debugCodePlaceholder')"
             wrap
             :print-margin="false"
@@ -26,7 +28,9 @@
           <v-ace-editor
             :value="result"
             lang="json"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('debugResultPlaceholder')"
             wrap
             readonly
@@ -42,7 +46,9 @@
           <v-ace-editor
             :value="error"
             lang="logtalk"
-            theme="sqlserver"
+            :theme="
+              configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+            "
             :placeholder="i18n('debugErrorPlaceholder')"
             wrap
             readonly
@@ -58,12 +64,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapState } from 'vuex';
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
 ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
 ace.config.setModuleUrl('ace/mode/logtalk', 'ace-editor/mode-logtalk.js');
 ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
+ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
   name: 'GloriaDebugCode',
@@ -81,12 +89,21 @@ export default defineComponent({
     },
   },
   emits: ['stop-test'],
+  setup() {
+    const matches = matchMedia('(prefers-color-scheme: dark)').matches;
+    return {
+      matches,
+    };
+  },
   data() {
     return {
       code: '',
       result: '',
       error: '',
     };
+  },
+  computed: {
+    ...mapState(['configs']),
   },
   watch: {
     testing(val) {
@@ -148,13 +165,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.padding-col {
-  padding: 0px 10px;
-}
-.input-label {
-  font-size: 14px;
-  margin: 0px 5px;
-}
 .error {
   margin-top: 15px;
 }

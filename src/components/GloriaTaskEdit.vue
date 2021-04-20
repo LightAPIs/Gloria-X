@@ -14,7 +14,7 @@
         <v-ace-editor
           v-model:value="form.code"
           lang="javascript"
-          theme="sqlserver"
+          :theme="configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'"
           :placeholder="i18n('popupTaskFormCodePlaceholder')"
           wrap
           :print-margin="false"
@@ -59,6 +59,7 @@ import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
 ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
+ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
   name: 'GloraiTaskEdit',
@@ -102,8 +103,10 @@ export default defineComponent({
   emits: ['close-dialog'],
   setup() {
     const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    const matches = matchMedia('(prefers-color-scheme: dark)').matches;
     return {
       isChrome,
+      matches,
     };
   },
   data() {
@@ -223,5 +226,9 @@ export default defineComponent({
 }
 .el-input-number {
   width: 140px;
+}
+
+.el-dialog--center .el-dialog__body {
+  padding-bottom: 5px;
 }
 </style>

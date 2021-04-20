@@ -7,10 +7,10 @@
     clearable
   >
     <template v-if="type === 'tasks'" #append>
-      <el-dropdown split-button trigger="click" @command="handleCommand">
+      <el-dropdown size="small" split-button trigger="click" @command="handleCommand">
         <span>{{ dropdownText }}</span>
         <template #dropdown>
-          <el-dropdown-menu>
+          <el-dropdown-menu class="gloria-dropdown" :class="configs.appearanceInterface">
             <el-dropdown-item command="all">
               {{ i18n('searchTaskFilterAll') }}
             </el-dropdown-item>
@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue';
+import { mapState } from 'vuex';
 import debounce from 'lodash.debounce';
 
 export default defineComponent({
@@ -80,6 +81,9 @@ export default defineComponent({
       dropdownText: this.i18n('searchTaskFilterAll'),
       searching: false,
     };
+  },
+  computed: {
+    ...mapState(['configs']),
   },
   watch: {
     filterText(val: string) {

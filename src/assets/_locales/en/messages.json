@@ -326,6 +326,21 @@
   "optionsAboutMenu": {
     "message": "About Gloria-X"
   },
+  "settingsAppearance": {
+    "message": "Appearance"
+  },
+  "settingsAppearanceInterface": {
+    "message": "Display mode:"
+  },
+  "settingsAppearanceInterfaceDefault": {
+    "message": "System"
+  },
+  "settingsAppearanceInterfaceLight": {
+    "message": "Light"
+  },
+  "settingsAppearanceInterfaceDark": {
+    "message": "Dark"
+  },
   "settingsTask": {
     "message": "Task"
   },

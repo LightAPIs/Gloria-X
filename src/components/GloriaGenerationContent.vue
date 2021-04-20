@@ -47,7 +47,9 @@
             <v-ace-editor
               v-model:value="code"
               lang="javascript"
-              theme="sqlserver"
+              :theme="
+                configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+              "
               wrap
               :print-margin="false"
               :options="{ tabSize: 2 }"
@@ -74,7 +76,9 @@
               <v-ace-editor
                 :value="result"
                 lang="json"
-                theme="sqlserver"
+                :theme="
+                  configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+                "
                 :placeholder="i18n('debugResultPlaceholder')"
                 wrap
                 readonly
@@ -95,7 +99,9 @@
             <v-ace-editor
               :value="code"
               lang="javascript"
-              theme="sqlserver"
+              :theme="
+                configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
+              "
               wrap
               readonly
               :print-margin="false"
@@ -158,6 +164,7 @@ import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
 ace.config.setModuleUrl('ace/mode/json', 'ace-editor/mode-json.js');
 ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
+ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
   name: 'GloriaGenerationContent',
@@ -167,8 +174,10 @@ export default defineComponent({
   emits: ['active-index'],
   setup() {
     const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    const matches = matchMedia('(prefers-color-scheme: dark)').matches;
     return {
       isChrome,
+      matches,
     };
   },
   data() {
@@ -470,9 +479,6 @@ export default defineComponent({
 
 <style lang="scss">
 .gloria-generation-content {
-  .padding-col {
-    padding: 0px 10px;
-  }
   .left-content {
     .left-header {
       margin-bottom: 10px;

@@ -32,7 +32,7 @@
             </el-row>
           </div>
         </template>
-        <span>
+        <span class="message-text">
           {{ message }}
         </span>
         <el-image v-if="type === 'image'" :lazy="configs.notificationLazyLoading" class="card-image" :src="imageUrl"></el-image>

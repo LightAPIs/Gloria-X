@@ -326,6 +326,21 @@
   "optionsAboutMenu": {
     "message": "关于 Gloria-X"
   },
+  "settingsAppearance": {
+    "message": "外观"
+  },
+  "settingsAppearanceInterface": {
+    "message": "显示模式："
+  },
+  "settingsAppearanceInterfaceDefault": {
+    "message": "跟随系统"
+  },
+  "settingsAppearanceInterfaceLight": {
+    "message": "明亮模式"
+  },
+  "settingsAppearanceInterfaceDark": {
+    "message": "黑暗模式"
+  },
   "settingsTask": {
     "message": "任务"
   },

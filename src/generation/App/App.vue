@@ -1,7 +1,7 @@
 <template>
-  <div id="gloria-generation-app">
+  <div id="gloria-generation-app" class="gloria-theme" :class="configs.appearanceInterface">
     <el-container>
-      <el-header height="30px">
+      <el-header height="30px" style="margin-top: 4px">
         <gloria-generation-toolbar :active="active"></gloria-generation-toolbar>
       </el-header>
       <el-main class="generation-main">
@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapState } from 'vuex';
 import GloriaGenerationContent from '@/components/GloriaGenerationContent.vue';
 import GloriaGenerationToolbar from '@/components/GloriaGenerationToolbar.vue';
 
@@ -27,6 +28,9 @@ export default defineComponent({
       active: 0,
     };
   },
+  computed: {
+    ...mapState(['configs']),
+  },
   methods: {
     onActiveIndex(index: number) {
       this.active = index;
@@ -35,11 +39,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
-body {
-  background: #ffffff;
-  overflow: hidden;
-}
+<style lang="scss">
+@import '~@/scss/index.scss';
+
 .generation-main {
   overflow: auto;
   max-height: 260px;

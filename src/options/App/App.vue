@@ -1,5 +1,5 @@
 <template>
-  <div id="gloria-options-app">
+  <div id="gloria-options-app" class="gloria-theme" :class="configs.appearanceInterface">
     <el-container class="options-container">
       <el-aside class="options-aside">
         <gloria-options-menu :active-index="activeIndex" @menu-click="menuClick"></gloria-options-menu>
@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { mapState } from 'vuex';
 import GloriaOptionsMenu from '@/components/GloriaOptionsMenu.vue';
 import GloriaOptionsBreadcrumb from '@/components/GloriaOptionsBreadcrumb.vue';
 
@@ -48,6 +49,9 @@ export default defineComponent({
       activeIndex,
     };
   },
+  computed: {
+    ...mapState(['configs']),
+  },
   methods: {
     menuClick(index: string) {
       this.activeIndex = index;
@@ -57,15 +61,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-body {
-  overflow: hidden;
-}
+@import '~@/scss/index.scss';
+
 #gloria-options-app {
   position: absolute;
   height: 100%;
   width: 100%;
-  margin-left: -8px;
-  margin-top: -8px;
   .options-container {
     height: 100%;
   }
@@ -89,5 +90,9 @@ body {
 
 .el-scrollbar__thumb {
   background-color: rgb(36, 46, 68, 0.5);
+
+  &:hover {
+    background-color: rgb(36, 46, 68, 0.8);
+  }
 }
 </style>

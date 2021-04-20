@@ -13,7 +13,7 @@
     "test:unit": "vue-cli-service test:unit tests/unit/**/*.js",
     "lint": "vue-cli-service lint",
     "fix": "eslint --fix 'src/**/*.{ts,js,vue,scss}'",
-    "format": "prettier --write 'src/**/*.{ts,js,vue,scss}'",
+    "format": "prettier --write 'src/**/*.{ts,js,vue}'",
     "release": "standard-version",
     "postinstall": "patch-package"
   },
@@ -73,7 +73,7 @@
     "prettier": "^2.2.1",
     "raw-loader": "^0.5.1",
     "sass": "^1.32.5",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^10.1.0",
     "sinon-chrome": "^3.0.1",
     "standard-version": "^9.1.1",
     "typescript": "^4.2.3",
@@ -95,7 +95,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,js,vue,scss}": [
+    "src/**/*.{ts,js,vue}": [
       "prettier --write",
       "eslint --fix"
     ]

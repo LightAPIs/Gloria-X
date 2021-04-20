@@ -48,6 +48,7 @@ const {
 
 function createNewConfigs() {
   return {
+    appearanceInterface: 'dark',
     taskAutoCheckUpdate: true,
     taskOnTimeMode: true,
     taskNeedInteraction: true,
@@ -157,6 +158,9 @@ describe('Test mutations:', function () {
     setConfigs(state, newConfigs);
     it('state.configs size is normal.', function () {
       expect(Object.keys(state.configs)).to.have.lengthOf(keyLen);
+    });
+    it('appearanceInterface is set.', function () {
+      expect(state.configs.appearanceInterface).to.equal('dark');
     });
     it('taskAutoCheckUpdate is set.', function () {
       expect(state.configs.taskAutoCheckUpdate).to.be.true;

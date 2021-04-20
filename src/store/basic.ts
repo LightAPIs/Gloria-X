@@ -16,6 +16,7 @@ const taskKeys = [
 
 function defaultConfigs(): myStore.GloriaConfig {
   return {
+    appearanceInterface: 'default',
     taskAutoCheckUpdate: false,
     taskOnTimeMode: false,
     taskNeedInteraction: false,

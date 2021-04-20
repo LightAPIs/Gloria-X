@@ -3,6 +3,7 @@
     <span v-for="(item, index) in buttonGroup" :key="index" class="clear-btn">
       <el-popconfirm
         placement="top-start"
+        effect="dark"
         :title="i18n(item.tip)"
         :confirm-button-text="i18n('confirmText')"
         :cancel-button-text="i18n('cancelText')"
