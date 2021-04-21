@@ -1,7 +1,7 @@
 <template>
   <div id="gloria-generation-app" class="gloria-theme" :class="configs.appearanceInterface">
     <el-container>
-      <el-header height="30px" style="margin-top: 4px">
+      <el-header height="32px" style="margin-top: 4px">
         <gloria-generation-toolbar :active="active"></gloria-generation-toolbar>
       </el-header>
       <el-main class="generation-main">
@@ -41,6 +41,10 @@ export default defineComponent({
 
 <style lang="scss">
 @import '~@/scss/index.scss';
+
+body {
+  background: #ffffff;
+}
 
 .generation-main {
   overflow: auto;

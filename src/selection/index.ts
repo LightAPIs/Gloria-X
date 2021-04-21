@@ -264,7 +264,7 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
   generation.id = 'gloria-x-generation-iframe';
   generation.setAttribute(
     'style',
-    `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 294px !important; width: calc(100% - 4px) !important;`
+    `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 295px !important; width: calc(100% - 4px) !important; box-sizing: border-box;`
   );
   generation.src = chrome.runtime.getURL('generation.html');
   document.body.after(generation);
@@ -283,22 +283,22 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
       if (data === 'minus') {
         generation.setAttribute(
           'style',
-          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 36px !important; width: 200px !important;`
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 40px !important; width: 200px !important; box-sizing: border-box;`
         );
       } else if (data === 'plus') {
         generation.setAttribute(
           'style',
-          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 294px !important; width: calc(100% - 4px) !important;`
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 295px !important; width: calc(100% - 4px) !important; box-sizing: border-box;`
         );
       } else if (data === 'left') {
         generation.setAttribute(
           'style',
-          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; left: 0px !important; z-index: 999999; height: 36px !important; width: 200px !important;`
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; left: 0px !important; z-index: 999999; height: 40px !important; width: 200px !important; box-sizing: border-box;`
         );
       } else if (data === 'right') {
         generation.setAttribute(
           'style',
-          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 36px !important; width: 200px !important;`
+          `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 40px !important; width: 200px !important; box-sizing: border-box;`
         );
       }
     } else if (type === 'destroy') {
