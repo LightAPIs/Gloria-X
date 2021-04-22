@@ -4,6 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '../store';
 import * as ui from '../commons/ui';
 import * as calc from '../commons/calc';
+import { v4 as uuid } from 'uuid';
 import {
   ElAside,
   ElBreadcrumb,
@@ -27,6 +28,10 @@ import {
   ElScrollbar,
   ElSwitch,
   ElTooltip,
+  ElDialog,
+  ElForm,
+  ElFormItem,
+  ElCheckbox,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
 import 'element-plus/packages/theme-chalk/src/popper.scss';
@@ -41,9 +46,13 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElButton,
+  ElCheckbox,
   ElCol,
   ElContainer,
+  ElDialog,
   ElDivider,
+  ElForm,
+  ElFormItem,
   ElHeader,
   ElInput,
   ElInputNumber,
@@ -111,6 +120,7 @@ app.mixin({
   methods: {
     ...ui,
     ...calc,
+    uuid,
   },
 });
 

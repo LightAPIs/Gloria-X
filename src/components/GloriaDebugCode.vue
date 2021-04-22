@@ -6,6 +6,9 @@
     <el-button type="warning" size="small" @click="evalTestNoMsg">
       {{ i18n('debugTestNoMsgCode') }}
     </el-button>
+    <el-button type="success" size="small" @click="dialogVisible = true">
+      {{ i18n('debugTestCreate') }}
+    </el-button>
     <el-divider content-position="left">
       {{ i18n('debugTest') }}
     </el-divider>
@@ -69,12 +72,20 @@
         </div>
       </el-col>
     </el-row>
+
+    <gloria-task-edit
+      :dialog-visible="dialogVisible"
+      type="testAdd"
+      :code="code.trim()"
+      @close-dialog="dialogVisible = false"
+    ></gloria-task-edit>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapState } from 'vuex';
+import GloriaTaskEdit from './GloriaTaskEdit.vue';
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 ace.config.setModuleUrl('ace/mode/javascript', 'ace-editor/mode-javascript.js');
@@ -87,6 +98,7 @@ export default defineComponent({
   name: 'GloriaDebugCode',
   components: {
     VAceEditor,
+    GloriaTaskEdit,
   },
   setup() {
     const matches = matchMedia('(prefers-color-scheme: dark)').matches;
@@ -99,6 +111,7 @@ export default defineComponent({
       code: '',
       result: '',
       error: '',
+      dialogVisible: false,
     };
   },
   computed: {

@@ -530,6 +530,12 @@
   "debugTestNoMsgCode": {
     "message": "测试 (无通知)"
   },
+  "debugTestCreate": {
+    "message": "创建任务"
+  },
+  "debugTestCreateTip": {
+    "message": "已完成创建新的任务！"
+  },
   "debugCodeLabel": {
     "message": "测试代码："
   },

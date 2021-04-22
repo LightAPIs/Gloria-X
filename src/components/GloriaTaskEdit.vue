@@ -2,7 +2,7 @@
   <el-dialog
     :title="type === 'edit' ? i18n('popupTaskDialogTitle') : i18n('popupTaskDialogCreateTitle')"
     :model-value="dialogVisible"
-    fullscreen
+    :fullscreen="type !== 'testAdd'"
     center
     @close="$emit('close-dialog')"
   >
@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ElForm } from 'element-plus';
+import { ElForm, ElMessage } from 'element-plus';
 import { mapMutations, mapState } from 'vuex';
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
@@ -62,7 +62,7 @@ ace.config.setModuleUrl('ace/theme/sqlserver', 'ace-editor/theme-sqlserver.js');
 ace.config.setModuleUrl('ace/theme/terminal', 'ace-editor/theme-terminal.js');
 
 export default defineComponent({
-  name: 'GloraiTaskEdit',
+  name: 'GloriaTaskEdit',
   components: {
     VAceEditor,
   },
@@ -166,7 +166,7 @@ export default defineComponent({
           Object.assign(this.form, {
             id: this.uuid(),
             name: '',
-            code: '',
+            code: type === 'testAdd' ? code : '',
             day: this.days(taskTriggerInterval),
             hour: this.hours(taskTriggerInterval),
             minute: this.minutes(taskTriggerInterval),
@@ -208,6 +208,8 @@ export default defineComponent({
           }
 
           this.$emit('close-dialog');
+
+          type === 'testAdd' && ElMessage.success(this.i18n('debugTestCreateTip'));
         } else {
           return false;
         }

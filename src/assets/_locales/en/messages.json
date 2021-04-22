@@ -530,6 +530,12 @@
   "debugTestNoMsgCode": {
     "message": "Testing (No Message)"
   },
+  "debugTestCreate": {
+    "message": "Create task"
+  },
+  "debugTestCreateTip": {
+    "message": "Create a new task completed!"
+  },
   "debugCodeLabel": {
     "message": "Test code:"
   },

@@ -194,7 +194,7 @@ Suppose there are two tasks, one for the observation task and one for the genera
 
 _Of course, these two tasks have no practical meaning, only for testing and referencing the difference between the two tasks._
 
-We used the `random` method in the `lodash` library for testing. Don't worry about what `importScripts ('glorai-utils')` is, as we will mention later, we only need to focus on the results of two tasks delivered to the `commit` function. In both tasks, the `title` attribute of the object is used `_.random(1).toString()` assignment, the result of which has only two possibilities, `"0"` or `"1"`.
+We used the `random` method in the `lodash` library for testing. Don't worry about what `importScripts ('gloria-utils')` is, as we will mention later, we only need to focus on the results of two tasks delivered to the `commit` function. In both tasks, the `title` attribute of the object is used `_.random(1).toString()` assignment, the result of which has only two possibilities, `"0"` or `"1"`.
 
 When you actually run these two tasks, you will find:
 
