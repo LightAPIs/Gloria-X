@@ -3,9 +3,6 @@
     <el-row>
       <el-col :span="12" class="padding-col">
         <div class="font-16">
-          <span>
-            {{ i18n('reducerLabel') }}
-          </span>
           <el-tooltip placement="right-start">
             <template #content>
               <div>
@@ -20,6 +17,12 @@
               <i class="el-icon-warning"></i>
             </span>
           </el-tooltip>
+          <span class="reducer-label">
+            {{ i18n('reducerLabel') }}
+          </span>
+          <span>
+            <i :class="editable ? 'el-icon-unlock' : 'el-icon-lock'"></i>
+          </span>
         </div>
         <div id="reducer-code">
           <v-ace-editor
@@ -203,5 +206,10 @@ export default defineComponent({
 }
 .reducer-btn {
   margin-right: 30px;
+}
+
+.reducer-label {
+  margin-left: 10px;
+  margin-right: 15px;
 }
 </style>
