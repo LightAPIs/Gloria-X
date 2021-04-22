@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/LightAPIs/Gloria-X/compare/v2.0.1...v2.1.0) (2021-04-22)
+
+
+### Features
+
+* **debug-code:** 添加支持在任务调试页面直接创建新任务的功能 ([a331ea2](https://github.com/LightAPIs/Gloria-X/commit/a331ea2d9a1b5a4e7f7422895269147ee0faed9d))
+
+
+### Bug Fixes
+
+* **generation:** 补充在自动生成代码并创建任务完成后的提示消息 ([85d8457](https://github.com/LightAPIs/Gloria-X/commit/85d84579faa0f569702ffe9dfe74a0ee7c36724d))
+* **generation:** 修复自动生成页面在明亮模式下背景空白的问题 ([b66403f](https://github.com/LightAPIs/Gloria-X/commit/b66403ffe4fd81c49d07efee2d31ad8eefdd2432))
+* **reducer:** 补充 reducer 是否可编辑的状态图标 ([1689983](https://github.com/LightAPIs/Gloria-X/commit/1689983278a824496530eaf2a174a3267d47e704))
+* **state:** 移除内部状态页面中多余的开始观察按钮 ([f8c3db2](https://github.com/LightAPIs/Gloria-X/commit/f8c3db28a61ca140fae41d033c0a85241921a221))
+* **unread:** 修复在点击通知打开网址时会使未读计数减 2 的问题 ([0eefa49](https://github.com/LightAPIs/Gloria-X/commit/0eefa49be3466feb497f0a25d7877a7da4e64c70))
+
 ### [2.0.1](https://github.com/LightAPIs/Gloria-X/compare/v2.0.0...v2.0.1) (2021-04-20)
 
 
