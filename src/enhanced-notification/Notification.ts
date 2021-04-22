@@ -420,7 +420,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
                   }
                 );
               }
-              !this.options.isTest && store.commit('decreaseUnread');
+
               if (!this.options.isTest) {
                 store.commit('decreaseUnread');
                 store.commit('visitNotification', this.options.id);
