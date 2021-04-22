@@ -1,5 +1,15 @@
 <template>
   <div class="gloria-debug-code">
+    <el-button type="primary" size="small" @click="evalTest">
+      {{ i18n('debugTestCode') }}
+    </el-button>
+    <el-button type="warning" size="small" @click="evalTestNoMsg">
+      {{ i18n('debugTestNoMsgCode') }}
+    </el-button>
+    <el-divider content-position="left">
+      {{ i18n('debugTest') }}
+    </el-divider>
+
     <el-row>
       <el-col :span="12" class="padding-col">
         <div class="test-code">
@@ -78,17 +88,6 @@ export default defineComponent({
   components: {
     VAceEditor,
   },
-  props: {
-    testing: {
-      type: Boolean,
-      required: true,
-    },
-    testingNoMsg: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  emits: ['stop-test'],
   setup() {
     const matches = matchMedia('(prefers-color-scheme: dark)').matches;
     return {
@@ -105,59 +104,53 @@ export default defineComponent({
   computed: {
     ...mapState(['configs']),
   },
-  watch: {
-    testing(val) {
-      if (val) {
-        this.result = '';
-        this.error = '';
-        if (this.code.trim()) {
-          chrome.runtime.sendMessage(
-            {
-              type: 'testCode',
-              data: this.code.trim(),
-            },
-            res => {
-              if (res) {
-                const { result, err } = res;
-                if (result) {
-                  this.result = JSON.stringify(result, null, 2);
-                }
+  methods: {
+    evalTest() {
+      this.result = '';
+      this.error = '';
+      if (this.code.trim()) {
+        chrome.runtime.sendMessage(
+          {
+            type: 'testCode',
+            data: this.code.trim(),
+          },
+          res => {
+            if (res) {
+              const { result, err } = res;
+              if (result) {
+                this.result = JSON.stringify(result, null, 2);
+              }
 
-                if (err) {
-                  this.error = err.message + '\n\n' + err.stack;
-                }
+              if (err) {
+                this.error = err.message + '\n\n' + err.stack;
               }
             }
-          );
-        }
-        this.$emit('stop-test');
+          }
+        );
       }
     },
-    testingNoMsg(val) {
-      if (val) {
-        this.result = '';
-        this.error = '';
-        if (this.code.trim()) {
-          chrome.runtime.sendMessage(
-            {
-              type: 'testNoMsgCode',
-              data: this.code.trim(),
-            },
-            res => {
-              if (res) {
-                const { result, err } = res;
-                if (result) {
-                  this.result = JSON.stringify(result, null, 2);
-                }
+    evalTestNoMsg() {
+      this.result = '';
+      this.error = '';
+      if (this.code.trim()) {
+        chrome.runtime.sendMessage(
+          {
+            type: 'testNoMsgCode',
+            data: this.code.trim(),
+          },
+          res => {
+            if (res) {
+              const { result, err } = res;
+              if (result) {
+                this.result = JSON.stringify(result, null, 2);
+              }
 
-                if (err) {
-                  this.error = err.message + '\n\n' + err.stack;
-                }
+              if (err) {
+                this.error = err.message + '\n\n' + err.stack;
               }
             }
-          );
-        }
-        this.$emit('stop-test');
+          }
+        );
       }
     },
   },
