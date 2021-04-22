@@ -551,15 +551,6 @@
   "stateLabel": {
     "message": "Internal state"
   },
-  "stateWatchingLabel": {
-    "message": "Under observation ..."
-  },
-  "stateWatch": {
-    "message": "Start looking inside"
-  },
-  "stateStopWatch": {
-    "message": "Stop looking inside"
-  },
   "stateNotifications": {
     "message": "Notification records:"
   },

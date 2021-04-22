@@ -551,15 +551,6 @@
   "stateLabel": {
     "message": "內部狀態"
   },
-  "stateWatchingLabel": {
-    "message": "正在觀測中 ..."
-  },
-  "stateWatch": {
-    "message": "開始觀測內部狀態"
-  },
-  "stateStopWatch": {
-    "message": "停止觀測內部狀態"
-  },
   "stateNotifications": {
     "message": "訊息記錄："
   },

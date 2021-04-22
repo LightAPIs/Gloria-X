@@ -7,7 +7,7 @@
             {{ i18n('stateNotifications') }}
           </label>
           <v-ace-editor
-            :value="notificationsView"
+            :value="JSON.stringify(notifications, null, 2)"
             lang="json"
             :theme="
               configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
@@ -27,7 +27,7 @@
             {{ i18n('stateTasks') }}
           </label>
           <v-ace-editor
-            :value="tasksView"
+            :value="JSON.stringify(tasks, null, 2)"
             lang="json"
             :theme="
               configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
@@ -47,7 +47,7 @@
             {{ i18n('stateStages') }}
           </label>
           <v-ace-editor
-            :value="stagesView"
+            :value="JSON.stringify(stages, null, 2)"
             lang="json"
             :theme="
               configs.appearanceInterface === 'dark' || (configs.appearanceInterface !== 'light' && matches) ? 'terminal' : 'sqlserver'
@@ -79,12 +79,6 @@ export default defineComponent({
   components: {
     VAceEditor,
   },
-  props: {
-    watching: {
-      type: Boolean,
-      required: true,
-    },
-  },
   setup() {
     const matches = matchMedia('(prefers-color-scheme: dark)').matches;
     return {
@@ -93,24 +87,6 @@ export default defineComponent({
   },
   computed: {
     ...mapState(['tasks', 'notifications', 'stages', 'configs']),
-    tasksView() {
-      if (this.watching) {
-        return JSON.stringify(this.tasks, null, 2);
-      }
-      return '';
-    },
-    notificationsView() {
-      if (this.watching) {
-        return JSON.stringify(this.notifications, null, 2);
-      }
-      return '';
-    },
-    stagesView() {
-      if (this.watching) {
-        return JSON.stringify(this.stages, null, 2);
-      }
-      return '';
-    },
   },
 });
 </script>
