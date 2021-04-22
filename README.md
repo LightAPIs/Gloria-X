@@ -11,6 +11,9 @@
   <a href="https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh">
     <img src="https://img.shields.io/chrome-web-store/v/npdafhgodaenfglcfkkbnmdbfkgfadbh?maxAge=86400" alt="Chrome Web Store" />
   </a>
+  <a href="https://github.com/LightAPIs/Gloria-X/releases/latest">
+    <img src="https://img.shields.io/badge/-mozilla_addons-lightgrey.svg" alt="Mozilla Addons" />
+  </a>
   <a href="./LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
   </a>
