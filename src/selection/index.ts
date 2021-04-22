@@ -87,6 +87,24 @@ function cssPath(el: Element) {
   return path.join(' > ');
 }
 
+function displayTips() {
+  let tips = document.getElementById('gloria-x-message-alert-tips');
+  if (!tips) {
+    tips = document.createElement('div');
+    tips.id = 'gloria-x-message-alert-tips';
+    tips.textContent = chrome.i18n.getMessage('debugTestCreateTip');
+
+    document.body.appendChild(tips);
+  }
+  tips.style.display = 'flex';
+
+  window.setTimeout(() => {
+    if (tips) {
+      tips.style.display = 'none';
+    }
+  }, 2000);
+}
+
 function handler(e: Event) {
   e.stopPropagation();
   e.preventDefault();
@@ -107,6 +125,28 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
       .gloria-x-selected {
         background: hsl(100, 80%, 65%);
         border: 2px solid rgba(0, 0, 0, 0.075);
+      }
+      #gloria-x-message-alert-tips {
+        position: fixed;
+        z-index: 10000;
+        min-width: 380px;
+        top: 36px;
+        left: 50%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #449a46;
+        font-size: 14px;
+        line-height: 1;
+        background-color: #f0f9eb;
+        border: 1px solid #d6e9c6;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transform: translateX(-50%);
+        transition: opacity .3s,transform .4s,top .4s;
+        padding: 15px 15px 15px 20px;
+        overflow: hidden;
+        display: none;
       }`);
     (window as any).gloriaXAddedCss = true;
   }
@@ -250,8 +290,11 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
         });
       } else {
         chrome.runtime.sendMessage({
-          type: 'path-firefox',
-          data: pathList,
+          type: 'firefox-message',
+          data: {
+            type: 'path',
+            data: pathList,
+          },
         });
       }
     });
@@ -301,7 +344,7 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
           `border: 2px solid #1f2d48; position: fixed !important; bottom: 0px !important; right: 0px !important; z-index: 999999; height: 40px !important; width: 200px !important; box-sizing: border-box;`
         );
       }
-    } else if (type === 'destroy') {
+    } else if (type === 'destroy' || type === 'completion') {
       document.removeEventListener('click', handler, true);
       selection.getSelection().forEach(el => {
         el.classList.remove('gloria-x-selected');
@@ -318,6 +361,9 @@ if ((window as any).gloriaXContentScriptInjected !== true) {
         } catch (e) {
           console.error(e);
         }
+      }
+      if (type === 'completion') {
+        displayTips();
       }
     }
   });

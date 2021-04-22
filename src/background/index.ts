@@ -922,7 +922,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         }
       );
       return true;
-    case 'path-firefox':
+    case 'firefox-message':
       chrome.tabs.query(
         {
           active: true,
@@ -931,56 +931,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         tabs => {
           if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
             chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'path',
-              data,
-            });
-          }
-        }
-      );
-      return true;
-    case 'float-firefox':
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'float',
-              data,
-            });
-          }
-        }
-      );
-      return true;
-    case 'directive-firefox':
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'directive',
-              data,
-            });
-          }
-        }
-      );
-      return true;
-    case 'destroy-firefox':
-      chrome.tabs.query(
-        {
-          active: true,
-          currentWindow: true,
-        },
-        tabs => {
-          if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              type: 'destroy',
-              data,
+              type: data.type,
+              data: data.data,
             });
           }
         }

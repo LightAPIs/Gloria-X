@@ -95,7 +95,14 @@
       <el-row>
         <el-col :span="12" class="padding-col">
           <div class="left-content">
-            <div class="left-header">{{ i18n('generationCode') }}</div>
+            <div class="left-header">
+              <span>
+                {{ i18n('generationCode') }}
+              </span>
+              <span class="gloria-lock-icon">
+                <i class="el-icon-lock"></i>
+              </span>
+            </div>
             <v-ace-editor
               :value="code"
               lang="javascript"
@@ -378,8 +385,11 @@ export default defineComponent({
         );
       } else {
         chrome.runtime.sendMessage({
-          type: 'directive-firefox',
-          data: 'disableSelection',
+          type: 'firefox-message',
+          data: {
+            type: 'directive',
+            data: 'disableSelection',
+          },
         });
       }
     },
@@ -401,8 +411,11 @@ export default defineComponent({
         );
       } else {
         chrome.runtime.sendMessage({
-          type: 'directive-firefox',
-          data: 'enableSelection',
+          type: 'firefox-message',
+          data: {
+            type: 'directive',
+            data: 'enableSelection',
+          },
         });
       }
     },
@@ -460,7 +473,7 @@ export default defineComponent({
           tabs => {
             if (!chrome.runtime.lastError && tabs && tabs[0] && tabs[0].id) {
               chrome.tabs.sendMessage(tabs[0].id, {
-                type: 'destroy',
+                type: 'completion',
                 data: '',
               });
             }
@@ -468,8 +481,11 @@ export default defineComponent({
         );
       } else {
         chrome.runtime.sendMessage({
-          type: 'destroy-firefox',
-          data: '',
+          type: 'firefox-message',
+          data: {
+            type: 'completion',
+            data: '',
+          },
         });
       }
     },
@@ -501,6 +517,10 @@ export default defineComponent({
   }
   .el-input-number {
     width: 140px;
+  }
+
+  .gloria-lock-icon {
+    margin-left: 10px;
   }
 }
 </style>

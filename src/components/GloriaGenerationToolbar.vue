@@ -102,8 +102,11 @@ export default defineComponent({
         );
       } else {
         chrome.runtime.sendMessage({
-          type: 'float-firefox',
-          data: type,
+          type: 'firefox-message',
+          data: {
+            type: 'float',
+            data: type,
+          },
         });
       }
     },
@@ -125,8 +128,11 @@ export default defineComponent({
         );
       } else {
         chrome.runtime.sendMessage({
-          type: 'destroy-firefox',
-          data: '',
+          type: 'firefox-message',
+          data: {
+            type: 'destroy',
+            data: '',
+          },
         });
       }
     },
