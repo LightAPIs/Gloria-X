@@ -343,7 +343,7 @@ The feature can be found in the right-click menu of the web page or the right-cl
 
 After triggering this feature, it will enter the mode of selecting web page elements. You can click on the elements in the web page with the left mouse button, hold down the Ctrl key while you can make multiple selections. After completing the element selection, click the "Generate" button to generate the corresponding task code. The next step is to test the task code, which executes successfully to create the task.
 
-It is important to note that this feature is essentially a shortcut generator for [Observation task](#Obervation-task). In principly, it can not generate [General task](#General-task), and it may not be able to monitor all types of web pages, such as dynacically loaded web pages based on Ajax technology.
+It is important to note that this feature is essentially a shortcut generator for [Observation task](#Observation-task). In principly, it can not generate [General task](#General-task), and it may not be able to monitor all types of web pages, such as dynacically loaded web pages based on Ajax technology.
 
 ## Advanced options
 
