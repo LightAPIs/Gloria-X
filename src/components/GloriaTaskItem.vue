@@ -344,11 +344,11 @@ export default defineComponent({
               },
               res => {
                 if (res) {
-                  const { result, err } = res;
-                  if (result) {
-                    ElMessage.success(this.i18n('popupContextTaskDebugCompleted'));
-                  } else if (err) {
+                  const { err } = res;
+                  if (err) {
                     ElMessage.error(this.i18n('popupContextTaskDebugError'));
+                  } else {
+                    ElMessage.success(this.i18n('popupContextTaskDebugCompleted'));
                   }
                 }
               }
