@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/LightAPIs/Gloria-X/compare/v2.1.0...v2.1.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **task-test:** 修复在任务列表中测试观察任务的结果为空时不会出现完成提示的问题 ([0d03c3f](https://github.com/LightAPIs/Gloria-X/commit/0d03c3fce7c5586bdadd12580c8bfaed9dd3e8e5))
+* **test:** 补充在测试观察任务结果为空时显示 null ([a89b7e6](https://github.com/LightAPIs/Gloria-X/commit/a89b7e6b26f9dc7d405b097a15e69ccb4ef14296))
+
 ## [2.1.0](https://github.com/LightAPIs/Gloria-X/compare/v2.0.1...v2.1.0) (2021-04-22)
 
 
