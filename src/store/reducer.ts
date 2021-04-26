@@ -57,7 +57,7 @@ function handleReducer(commitData: myStore.CommitData, reducer: string): myStore
         resultData = null;
       } else if (typeof resultData === 'object' && !isNull(resultData)) {
         resultData = handleFormat(resultData);
-      } else if (resultData) {
+      } else {
         resultData = null;
       }
       return resultData;

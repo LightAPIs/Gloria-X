@@ -1,9 +1,9 @@
 <template>
   <div class="gloria-debug-code">
-    <el-button type="primary" size="small" @click="evalTest">
+    <el-button type="primary" size="small" @click="evalTest('testCode')">
       {{ i18n('debugTestCode') }}
     </el-button>
-    <el-button type="warning" size="small" @click="evalTestNoMsg">
+    <el-button type="warning" size="small" @click="evalTest('testNoMsgCode')">
       {{ i18n('debugTestNoMsgCode') }}
     </el-button>
     <el-button type="success" size="small" @click="dialogVisible = true">
@@ -118,45 +118,19 @@ export default defineComponent({
     ...mapState(['configs']),
   },
   methods: {
-    evalTest() {
+    evalTest(type: string) {
       this.result = '';
       this.error = '';
       if (this.code.trim()) {
         chrome.runtime.sendMessage(
           {
-            type: 'testCode',
+            type,
             data: this.code.trim(),
           },
           res => {
             if (res) {
               const { result, err } = res;
-              if (result) {
-                this.result = JSON.stringify(result, null, 2);
-              }
-
-              if (err) {
-                this.error = err.message + '\n\n' + err.stack;
-              }
-            }
-          }
-        );
-      }
-    },
-    evalTestNoMsg() {
-      this.result = '';
-      this.error = '';
-      if (this.code.trim()) {
-        chrome.runtime.sendMessage(
-          {
-            type: 'testNoMsgCode',
-            data: this.code.trim(),
-          },
-          res => {
-            if (res) {
-              const { result, err } = res;
-              if (result) {
-                this.result = JSON.stringify(result, null, 2);
-              }
+              this.result = JSON.stringify(result, null, 2);
 
               if (err) {
                 this.error = err.message + '\n\n' + err.stack;

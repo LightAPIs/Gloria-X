@@ -176,11 +176,11 @@ export default defineComponent({
             res => {
               if (res) {
                 const { result, err } = res;
-                console.log(err);
-                if (result) {
-                  this.testResult = JSON.stringify(result, null, 2);
-                } else if (err) {
+                console.debug(err);
+                if (err) {
                   this.testResult = err;
+                } else {
+                  this.testResult = JSON.stringify(result, null, 2);
                 }
               }
             }
