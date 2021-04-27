@@ -13,7 +13,7 @@
                 </el-link>
               </div>
             </template>
-            <span>
+            <span class="reducer-tip-icon">
               <i class="el-icon-warning"></i>
             </span>
           </el-tooltip>
@@ -211,5 +211,9 @@ export default defineComponent({
 .reducer-label {
   margin-left: 10px;
   margin-right: 15px;
+}
+
+.reducer-tip-icon {
+  cursor: help;
 }
 </style>

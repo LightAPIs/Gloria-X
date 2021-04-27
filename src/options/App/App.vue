@@ -84,6 +84,7 @@ export default defineComponent({
 
     i {
       font-size: 1.25em;
+      cursor: help;
     }
   }
 }
