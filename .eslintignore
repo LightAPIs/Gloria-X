@@ -4,3 +4,4 @@
 /*.js
 /test/unit/coverage/
 /src/assets/ace-editor/
+/src/assets/ext-searchbox.js
