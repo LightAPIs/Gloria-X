@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/LightAPIs/Gloria-X/compare/v2.1.1...v2.2.0) (2021-05-01)
+
+
+### Features
+
+* **editor:** 添加支持在编辑器中按下 Ctrl+F 快捷键打开搜索框的功能 ([9c11f1c](https://github.com/LightAPIs/Gloria-X/commit/9c11f1c8d0a58ff9e0a8af2a75ea2e1bafded6cb))
+* **filter-text:** 添加在搜索筛选任务或通知记录时高亮显示匹配的字符串 ([4221c27](https://github.com/LightAPIs/Gloria-X/commit/4221c279a6fafed04293a24b8d23f133815ccab8))
+
+
+### Bug Fixes
+
+* **notifications:** 补充在搜索通知记录时允许匹配来源的任务名称 ([7ad169f](https://github.com/LightAPIs/Gloria-X/commit/7ad169f10a54d0e029afe6ed926179f985895219))
+
 ### [2.1.1](https://github.com/LightAPIs/Gloria-X/compare/v2.1.0...v2.1.1) (2021-04-26)
 
 
