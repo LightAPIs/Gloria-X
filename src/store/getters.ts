@@ -55,6 +55,8 @@ export default {
               notifyList.push(notify);
             } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
               notifyList.push(notify);
+            } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
             }
           } else {
             notifyList.push(notify);
@@ -67,6 +69,8 @@ export default {
               notifyList.push(notify);
             } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
               notifyList.push(notify);
+            } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
+              notifyList.push(notify);
             }
           } else {
             notifyList.push(notify);
@@ -77,6 +81,8 @@ export default {
           if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
             notifyList.push(notify);
           } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
+            notifyList.push(notify);
+          } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
             notifyList.push(notify);
           }
         } else {
