@@ -31,6 +31,7 @@
                 :icon-url="info.options.iconUrl"
                 :image-url="info.options.imageUrl"
                 :url="info.options.url"
+                :filter-text="filterText"
                 @notification-contextmenu="onContextmenu"
               ></gloria-notification-item>
             </el-timeline>

@@ -12,6 +12,36 @@ function nbsp(val: string): string | undefined {
   return val ? val.replace(/\s/g, '&nbsp;') : undefined;
 }
 
+function htmlEncode(str: string): string {
+  let res = '';
+  if (str) {
+    res = str.replace(/&/g, '&amp;');
+    res = res.replace(/</g, '&lt;');
+    res = res.replace(/>/g, '$gt;');
+    res = res.replace(/ /g, '&nbsp;');
+    res = res.replace(/'/g, '&#39;');
+    res = res.replace(/"/g, '&quot;');
+  }
+  return res;
+}
+
+function findAll(str: string, val: string): number[] {
+  const results: number[] = [];
+  const len = str.length,
+    width = val.length;
+  let pos = 0;
+  while (pos < len) {
+    pos = str.indexOf(val, pos);
+    if (pos === -1) {
+      break;
+    }
+    results.push(pos);
+    pos = pos + width;
+  }
+
+  return results;
+}
+
 function isLink(url: string): boolean {
   return /^(?:https?|ftp):/i.test(url);
 }
@@ -36,4 +66,4 @@ function copyToClip(content: string, copyCompleted?: () => void, copyError?: () 
     });
 }
 
-export { i18n, n2br, nbsp, isLink, asteriskLink as asLink, copyToClip };
+export { i18n, n2br, nbsp, isLink, asteriskLink as asLink, htmlEncode, findAll, copyToClip };

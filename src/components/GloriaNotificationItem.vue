@@ -12,28 +12,35 @@
                 <template v-if="isLink(url)">
                   <template v-if="configs.notificationShowUrl">
                     <div class="title-text">
-                      {{ title || url }}
+                      <gloria-text-highlight v-if="title" :text="title" :keyword="filterText"></gloria-text-highlight>
+                      <span v-else>
+                        {{ url }}
+                      </span>
                     </div>
                     <el-link type="primary" href="#" class="url-text" @click="openLink(false)">
                       {{ url }}
                     </el-link>
                   </template>
                   <el-link v-else type="primary" href="#" @click="openLink(false)">
-                    {{ title || url }}
+                    <gloria-text-highlight v-if="title" :text="title" :keyword="filterText"></gloria-text-highlight>
+                    <span v-else>
+                      {{ url }}
+                    </span>
                   </el-link>
                 </template>
                 <div v-else class="title-text">
-                  {{ title }}
+                  <gloria-text-highlight :text="title" :keyword="filterText"></gloria-text-highlight>
                 </div>
                 <div class="context-message">
-                  {{ i18n('popupNotificationFrom') + contextMessage }}
+                  {{ i18n('popupNotificationFrom') }}
+                  <gloria-text-highlight :text="contextMessage" :keyword="filterText"></gloria-text-highlight>
                 </div>
               </el-col>
             </el-row>
           </div>
         </template>
         <span class="message-text">
-          {{ message }}
+          <gloria-text-highlight :text="message" :keyword="filterText"></gloria-text-highlight>
         </span>
         <el-image v-if="type === 'image'" :lazy="configs.notificationLazyLoading" class="card-image" :src="imageUrl"></el-image>
       </el-card>
@@ -46,9 +53,13 @@ import { defineComponent } from 'vue';
 import { mapState, mapMutations } from 'vuex';
 import { ElMessage } from 'element-plus';
 import { APP_ICON_URL } from '@/commons/var';
+import GloriaTextHighlight from './GloriaTextHighlight.vue';
 
 export default defineComponent({
   name: 'GloriaNotificationItem',
+  components: {
+    GloriaTextHighlight,
+  },
   props: {
     id: {
       type: String,
@@ -91,6 +102,10 @@ export default defineComponent({
       default: '',
     },
     url: {
+      type: String,
+      default: '',
+    },
+    filterText: {
       type: String,
       default: '',
     },

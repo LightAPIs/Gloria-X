@@ -17,9 +17,7 @@
   >
     <template #header>
       <span>
-        <span class="header-text">
-          {{ name }}
-        </span>
+        <gloria-text-highlight class-name="header-text" :text="name" :keyword="filterText"></gloria-text-highlight>
         <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
           {{ i18n('popupTaskOnTimeModeTag') }}
         </el-tag>
@@ -136,9 +134,13 @@
 import { defineComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex';
 import { ElMessage } from 'element-plus';
+import GloriaTextHighlight from './GloriaTextHighlight.vue';
 
 export default defineComponent({
   name: 'GloriaTaskItem',
+  components: {
+    GloriaTextHighlight,
+  },
   props: {
     id: {
       type: String,

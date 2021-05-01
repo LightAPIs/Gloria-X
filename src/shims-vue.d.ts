@@ -8,6 +8,8 @@ declare module '@vue/runtime-core' {
     nbsp: (val: string) => string | undefined;
     isLink: (url: string) => boolean;
     asLink: (url: string) => string;
+    htmlEncode: (str: string) => string;
+    findAll: (str: string, val: string) => number[];
     copyToClip: (content: string, copyCompleted?: () => void, copyError?: () => void) => void;
     displayTime: (d?: string | number) => string;
     intervalTime: (d: number) => string;
