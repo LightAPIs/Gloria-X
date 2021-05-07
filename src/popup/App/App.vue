@@ -1,6 +1,6 @@
 <template>
   <div id="gloria-popup-app" class="gloria-theme" :class="configs.appearanceInterface">
-    <el-tabs :model-value="activeTab" class="tabs" stretch type="border-card" :before-leave="leaveTab">
+    <el-tabs :model-value="activeTab" class="gloria-tabs" stretch type="border-card" :before-leave="leaveTab">
       <el-tab-pane class="tab-pane" name="tasks" lazy>
         <template #label>
           <span>
@@ -62,6 +62,9 @@ export default defineComponent({
 #gloria-popup-app {
   width: 750px;
   height: 580px;
+  .gloria-tabs {
+    border: 0px;
+  }
   .tab-pane {
     height: 510px;
     overflow: auto;
