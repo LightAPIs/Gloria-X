@@ -77,11 +77,14 @@
 ### Chrome
 
 1. 前往 [Chrome 网上应用店](https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh) 进行下载安装。
-2. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序压缩包并进行解压，启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压文件的根目录即可完成扩展程序的安装。
+2. 启动浏览器在地址栏内输入 `chrome://extensions/` 进入扩展程序管理页面，点击网页右上角的开关以开启"开发者模式"：
+
+- a. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序 `crx` 文件，拖动至扩展程序管理页面进行安装。
+- b. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序压缩包 `zip` 文件并进行解压，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压文件的根目录即可完成扩展程序的安装。
 
 ### Firefox
 
-- 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载附加组件安装 _(由于声明了 `unsafe-eval` 权限，所以无法上架至 Mozilla Add-ons，仅可自行托管。)_
+- 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载附加组件 `xpi` 文件进行安装 _(由于声明了 `unsafe-eval` 权限，所以无法上架至 Mozilla Add-ons，仅可自行托管。)_
 
 ## 使用方法
 

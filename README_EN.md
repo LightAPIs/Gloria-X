@@ -75,11 +75,14 @@ It can capture the new content on the website and pop up notifications with a cu
 ### Chrome
 
 1. Go to the [Chrome Web Store](https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh) to download and install.
-2. Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download the extension package and unzip it. Start the browser and type `chrome://extensions/` in the address bar to enter Extensions Page, click the switch in the upper right corner of the webpage to turn on "Developer mode". And click "Load unpacked" button, select the root directory of the previously unzipped file to complete the installation of the extension.
+2. Start the browser and type `chrome://extensions/` in the address bar to enter Extensions Page, click the switch in the upper right corner of the webpage to turn on "Developer mode":
+
+- a. Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download the extension `crx` file. Drag to Extensions Page to install.
+- b. Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download the extension package `zip` file and unzip it. And click "Load unpacked" button, select the root directory of the previously unzipped file to complete the installation of the extension.
 
 ### Firefox
 
-- Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download and install. _(Because the permission `unsafe-eval` is declared, it can not be put on Mozilla Add-ons.)_
+- Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download `xpi` file and install. _(Because the permission `unsafe-eval` is declared, it can not be put on Mozilla Add-ons.)_
 
 ## Usage
 
