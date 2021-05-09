@@ -540,7 +540,7 @@ function registerMenu() {
     },
   });
 
-  const MoreMenus = [
+  const moreMenus = [
     {
       id: 'gloriaXState',
       title: 'optionsStateMenu',
@@ -569,7 +569,7 @@ function registerMenu() {
     contexts: ['browser_action'],
   });
 
-  MoreMenus.forEach(menu => {
+  moreMenus.forEach(menu => {
     if (menu) {
       chrome.contextMenus.create({
         id: menu.id,
