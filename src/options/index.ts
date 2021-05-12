@@ -34,7 +34,6 @@ import {
   ElCheckbox,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
-import 'element-plus/packages/theme-chalk/src/popper.scss';
 const RouterSettings = () => import(/* webpackChunkName: "options-group" */ '../router/RouterSettings.vue');
 const RouterDebug = () => import(/* webpackChunkName: "options-group" */ '../router/RouterDebug.vue');
 const RouterState = () => import(/* webpackChunkName: "options-group" */ '../router/RouterState.vue');

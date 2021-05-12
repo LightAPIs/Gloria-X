@@ -40,7 +40,6 @@ import {
   ElTimelineItem,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
-import 'element-plus/packages/theme-chalk/src/popper.scss';
 
 const components = [
   ElAside,
