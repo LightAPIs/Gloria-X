@@ -37,3 +37,9 @@ body {
 .el-tabs__item {
   user-select: none;
 }
+
+.el-popover.el-popper.is-dark {
+  color: #ffffff;
+  background: #303133;
+  border-color: #3f434c;
+}
