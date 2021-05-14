@@ -8,7 +8,7 @@
   >
     <div class="menu-body">
       <template v-for="(item, index) in items">
-        <div v-if="item.label" :key="index" class="menu-item" :class="{ 'menu-divided': item.divided }" @click="item.onClick">
+        <div v-if="item.label" :key="index" class="menu-item" :class="{ 'menu-divided': item.divided }" @click="clickHandle(item.onClick)">
           <i class="menu-item-icon" :class="item.icon"></i>
           <span>{{ item.label }}</span>
         </div>
@@ -92,22 +92,37 @@ export default defineComponent({
     this.removeListener();
   },
   methods: {
-    mouseClickListener() {
+    clickHandle(func: unknown) {
+      if (typeof func === 'function') {
+        func();
+      }
       this.$emit('close');
+    },
+    mouseMousedownListener(e: MouseEvent) {
+      const el = e.target;
+      if (el) {
+        const menu = this.$refs.menu as HTMLElement;
+        const parent = (el as HTMLElement).closest('.gloria-context-menu');
+        if (parent !== menu) {
+          this.$emit('close');
+        }
+      } else {
+        this.$emit('close');
+      }
     },
     mouseWheelListener() {
       this.$emit('close');
     },
     addListener() {
       if (!this.mosueListening) {
-        document.addEventListener('click', this.mouseClickListener);
+        document.addEventListener('mousedown', this.mouseMousedownListener);
         document.addEventListener('mousewheel', this.mouseWheelListener);
         this.mosueListening = true;
       }
     },
     removeListener() {
       if (this.mosueListening) {
-        document.removeEventListener('click', this.mouseClickListener);
+        document.removeEventListener('mousedown', this.mouseMousedownListener);
         document.removeEventListener('mousewheel', this.mouseWheelListener);
         this.mosueListening = false;
       }
