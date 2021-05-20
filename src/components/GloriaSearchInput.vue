@@ -61,7 +61,7 @@ export default defineComponent({
       function (func) {
         func();
       },
-      1000,
+      500,
       {
         trailing: true,
       }
