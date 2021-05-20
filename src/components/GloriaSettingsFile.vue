@@ -23,6 +23,13 @@
         </el-button>
       </el-tooltip>
     </span>
+    <gloria-task-selector
+      :visible="visible"
+      :title="title"
+      :table-data="tableData"
+      @close-selector="closeSelector"
+      @on-selection="onSelection"
+    ></gloria-task-selector>
   </div>
 </template>
 
@@ -30,6 +37,7 @@
 import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
 import { ElMessage } from 'element-plus';
+import GloriaTaskSelector from './GloriaTaskSelector.vue';
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 
@@ -37,6 +45,9 @@ const secretKey = '048e0efc-da28-4322-a93c-37fa69e84df8';
 
 export default defineComponent({
   name: 'GloriaSettingsFile',
+  components: {
+    GloriaTaskSelector,
+  },
   setup() {
     const exportFile = (content: string, filename: string, completed?: () => void) => {
       const exportBlob = new Blob([content]);
@@ -107,6 +118,14 @@ export default defineComponent({
       importFile,
     };
   },
+  data() {
+    return {
+      type: '',
+      title: '',
+      visible: false,
+      tableData: [] as unknown[],
+    };
+  },
   computed: {
     ...mapState(['tasks']),
   },
@@ -141,8 +160,10 @@ export default defineComponent({
       try {
         const importArr = JSON.parse(content);
         if (Array.isArray(importArr)) {
-          this.mergeTasks(importArr);
-          ElMessage.success(this.i18n('settingsImportSuccess'));
+          this.title = this.i18n('settingsImport');
+          this.type = 'import';
+          this.tableData = importArr;
+          this.visible = true;
         } else {
           ElMessage.warning(this.i18n('settingsImportNoArray'));
         }
@@ -153,15 +174,38 @@ export default defineComponent({
     },
     onExoprtJson() {
       const { tasks } = this;
-      this.exportFile(JSON.stringify(tasks, null, 2), 'tasks.json', () => {
-        ElMessage.success(this.i18n('settingsExportJsonSuccess'));
-      });
+      this.title = this.i18n('settingsExportJson');
+      this.type = 'exportJson';
+      this.tableData = tasks;
+      this.visible = true;
     },
     onExportText() {
       const { tasks } = this;
-      this.exportFile(AES.encrypt(JSON.stringify(tasks), secretKey).toString(), 'tasks.txt', () => {
-        ElMessage.success(this.i18n('settingsExportTextSuccess'));
-      });
+      this.type = 'exportText';
+      this.tableData = tasks;
+      this.visible = true;
+    },
+    closeSelector() {
+      this.visible = false;
+    },
+    onSelection(selectData: unknown[]) {
+      const { type } = this;
+      this.visible = false;
+      switch (type) {
+        case 'exportJson':
+          this.exportFile(JSON.stringify(selectData, null, 2), 'tasks.json', () => {
+            ElMessage.success(this.i18n('settingsExportJsonSuccess'));
+          });
+          break;
+        case 'exportText':
+          this.exportFile(AES.encrypt(JSON.stringify(selectData), secretKey).toString(), 'tasks.txt', () => {
+            ElMessage.success(this.i18n('settingsExportTextSuccess'));
+          });
+          break;
+        case 'import':
+          this.mergeTasks(selectData);
+          ElMessage.success(this.i18n('settingsImportSuccess'));
+      }
     },
   },
 });

@@ -521,6 +521,18 @@
   "settingsExportTextTooltip": {
     "message": "导出任务为 txt 文件"
   },
+  "settingsTableName": {
+    "message": "任务名称"
+  },
+  "settingsTableSearchPlaceholder": {
+    "message": "输入关键字搜索"
+  },
+  "settingsTableOk": {
+    "message": "确定"
+  },
+  "settingsTableToggle": {
+    "message": "取消选择"
+  },
   "debugTest": {
     "message": "测试任务代码"
   },

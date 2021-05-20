@@ -521,6 +521,18 @@
   "settingsExportTextTooltip": {
     "message": "Export task as txt file"
   },
+  "settingsTableName": {
+    "message": "Task name"
+  },
+  "settingsTableSearchPlaceholder": {
+    "message": "Enter keyword to search"
+  },
+  "settingsTableOk": {
+    "message": "Ok"
+  },
+  "settingsTableToggle": {
+    "message": "Deselect"
+  },
   "debugTest": {
     "message": "Test task code"
   },

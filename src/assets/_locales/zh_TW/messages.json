@@ -521,6 +521,18 @@
   "settingsExportTextTooltip": {
     "message": "匯出任務為 txt 文件"
   },
+  "settingsTableName": {
+    "message": "任務名稱"
+  },
+  "settingsTableSearchPlaceholder": {
+    "message": "輸入關鍵字搜尋"
+  },
+  "settingsTableOk": {
+    "message": "確認"
+  },
+  "settingsTableToggle": {
+    "message": "取消選擇"
+  },
   "debugTest": {
     "message": "測試任務程式碼"
   },

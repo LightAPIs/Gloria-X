@@ -1,9 +1,16 @@
 <template>
   <el-input
     v-model="filterText"
+    :class="className"
     size="mini"
     :prefix-icon="searching ? 'el-icon-loading' : 'el-icon-search'"
-    :placeholder="type === 'tasks' ? i18n('searchTaskPlaceholder') : i18n('searchNotificationPlaceholder')"
+    :placeholder="
+      type === 'tasks'
+        ? i18n('searchTaskPlaceholder')
+        : type === 'file'
+        ? i18n('settingsTableSearchPlaceholder')
+        : i18n('searchNotificationPlaceholder')
+    "
     clearable
   >
     <template v-if="type === 'tasks'" #append>
@@ -53,6 +60,10 @@ export default defineComponent({
     type: {
       type: String,
       required: true,
+    },
+    className: {
+      type: String,
+      default: '',
     },
   },
   emits: ['filter-text', 'filter-type'],
