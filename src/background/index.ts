@@ -942,8 +942,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 });
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  inflatedRequestHeaders as any,
+  inflatedRequestHeaders,
   {
     urls: ['<all_urls>'],
   },
