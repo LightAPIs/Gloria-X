@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/LightAPIs/Gloria-X/compare/v2.2.0...v2.3.0) (2021-05-21)
+
+
+### Features
+
+* **file:** 添加支持在导入导出任务时可对任务进行选择的功能 ([ef7da06](https://github.com/LightAPIs/Gloria-X/commit/ef7da0643186879a28f948e3333b8f5f824c1bb1))
+
+
+### Bug Fixes
+
+* **contextmenu:** 修复在某些情况下右键菜单不会自动隐藏的问题 ([9e64f56](https://github.com/LightAPIs/Gloria-X/commit/9e64f56e8007ac140452b37e9bb4d04510dc43d5))
+* **popconfirm:** 修复气泡弹出框的样式问题 ([05ac64b](https://github.com/LightAPIs/Gloria-X/commit/05ac64ba0441a127b00e0565208e434893af9107))
+
 ## [2.2.0](https://github.com/LightAPIs/Gloria-X/compare/v2.1.1...v2.2.0) (2021-05-01)
 
 
