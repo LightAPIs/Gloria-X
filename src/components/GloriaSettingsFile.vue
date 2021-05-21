@@ -181,6 +181,7 @@ export default defineComponent({
     },
     onExportText() {
       const { tasks } = this;
+      this.title = this.i18n('settingsExportText');
       this.type = 'exportText';
       this.tableData = tasks;
       this.visible = true;
