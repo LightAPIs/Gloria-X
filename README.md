@@ -505,7 +505,7 @@ function reducer(notification) {
 
 ## Firefox 版本的限制
 
-由于所提供的 API 支持程度不相同，在 Firefox 上的存在一些功能限制。
+由于所提供的 API 支持程度不相同，在 Firefox 上的版本存在一些功能限制。
 
 以下是 Firefox 版本相对 Chrome 版本所<u>不支持</u>的功能：
 
