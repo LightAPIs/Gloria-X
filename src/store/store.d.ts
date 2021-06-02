@@ -33,10 +33,12 @@ declare namespace myStore {
     readonly id: string;
     code: string;
     name: string;
+    type: string;
     triggerInterval: number;
     needInteraction: boolean;
     origin: string;
     onTimeMode: boolean;
+    earliestTime: string;
   }
 
   interface GloriaTask extends GloriaTaskBasic {
@@ -76,6 +78,7 @@ declare namespace myStore {
     taskShowSearchInput: boolean;
     taskAutoRemoveStage: boolean;
     taskTriggerInterval: number;
+    taskEarliestTime: string;
     notificationSound: boolean;
     notificationCustomSound: boolean;
     notificationLaterMark: boolean;

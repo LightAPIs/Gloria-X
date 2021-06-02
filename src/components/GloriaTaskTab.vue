@@ -11,8 +11,10 @@
             :id="task.id"
             :key="task.id"
             :name="task.name"
+            :type="task.type"
             :is-enable="task.isEnable"
             :trigger-interval="task.triggerInterval"
+            :earliest-time="task.earliestTime"
             :trigger-count="task.triggerCount"
             :trigger-date="task.triggerDate"
             :push-count="task.pushCount"
@@ -39,10 +41,12 @@
     <gloria-task-edit
       :id="form.id"
       :dialog-visible="dialogVisible"
-      :type="formType"
+      :editor-type="formType"
       :name="form.name"
       :code="form.code"
+      :type="form.type"
       :trigger-interval="form.triggerInterval"
+      :earliest-time="form.earliestTime"
       :on-time-mode="form.onTimeMode"
       :need-interaction="form.needInteraction"
       @close-dialog="dialogVisible = false"
@@ -77,7 +81,9 @@ export default defineComponent({
         id: '',
         name: '',
         code: '',
+        type: 'timed',
         triggerInterval: 5,
+        earliestTime: '',
         onTimeMode: false,
         needInteraction: false,
       },
@@ -104,13 +110,15 @@ export default defineComponent({
       let editStatus = false;
       for (const item of tasks) {
         if (item.id === id) {
-          const { name, code, triggerInterval, onTimeMode, needInteraction } = item;
+          const { name, code, type, triggerInterval, earliestTime, onTimeMode, needInteraction } = item;
           this.formType = 'edit';
           Object.assign(this.form, {
             id,
             name,
             code,
+            type,
             triggerInterval,
+            earliestTime,
             onTimeMode,
             needInteraction,
           });

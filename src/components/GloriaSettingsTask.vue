@@ -13,7 +13,7 @@
     <div class="margin-top">
       <el-switch
         :value="configs.taskOnTimeMode"
-        :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeText'))"
+        :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeTag'))"
         @change="onChange('taskOnTimeMode', $event)"
       ></el-switch>
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskNewTips')">
@@ -23,7 +23,7 @@
     <div v-if="isChrome" class="margin-top">
       <el-switch
         :value="configs.taskNeedInteraction"
-        :active-text="i18n('settingsTaskNeedInteraction', i18n('popupTaskNeedInteractionText'))"
+        :active-text="i18n('settingsTaskNeedInteraction', i18n('popupTaskNeedInteractionTag'))"
         @change="onChange('taskNeedInteraction', $event)"
       ></el-switch>
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskNewTips')">
@@ -81,12 +81,28 @@
       ></el-input-number>
       {{ ' ' + i18n('minuteText') }}
     </div>
+    <div class="margin-top">
+      <span class="font-14">
+        {{ i18n('settingsTaskEarliestTime') }}
+      </span>
+      <el-time-picker
+        v-model="eTime"
+        class="gloria-time-picker"
+        :popper-class="'gloria-time-picker-popper ' + configs.appearanceInterface"
+        format="HH:mm"
+        size="medium"
+        arrow-control
+        :clearable="false"
+        @change="onEarliestTime"
+      ></el-time-picker>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapMutations, mapState } from 'vuex';
+
 export default defineComponent({
   name: 'GloriaSettingsTask',
   setup() {
@@ -100,16 +116,18 @@ export default defineComponent({
       day: 0,
       hour: 0,
       minute: 0,
+      eTime: '',
     };
   },
   computed: {
     ...mapState(['configs']),
   },
   created() {
-    const { taskTriggerInterval } = this.configs;
+    const { taskTriggerInterval, taskEarliestTime } = this.configs;
     this.day = this.days(taskTriggerInterval);
     this.hour = this.hours(taskTriggerInterval);
     this.minute = this.minutes(taskTriggerInterval);
+    this.eTime = this.hm2date(taskEarliestTime);
   },
   methods: {
     ...mapMutations(['updateConfigs']),
@@ -136,6 +154,12 @@ export default defineComponent({
       this.updateConfigs({
         name: 'taskTriggerInterval',
         value: triggerTime,
+      });
+    },
+    onEarliestTime(date: string) {
+      this.updateConfigs({
+        name: 'taskEarliestTime',
+        value: this.date2hm(date),
       });
     },
   },

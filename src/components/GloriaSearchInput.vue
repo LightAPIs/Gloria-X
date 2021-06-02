@@ -27,6 +27,12 @@
             <el-dropdown-item command="disabled">
               {{ i18n('searchTaskFilterDisabled') }}
             </el-dropdown-item>
+            <el-dropdown-item command="timed">
+              {{ i18n('popupTaskFormTimed') }}
+            </el-dropdown-item>
+            <el-dropdown-item command="daily">
+              {{ i18n('popupTaskFormDaily') }}
+            </el-dropdown-item>
             <el-dropdown-item command="onTime">
               {{ i18n('popupTaskOnTimeModeTag') }}
             </el-dropdown-item>
@@ -117,6 +123,12 @@ export default defineComponent({
           break;
         case 'disabled':
           this.dropdownText = this.i18n('searchTaskFilterDisabled');
+          break;
+        case 'timed':
+          this.dropdownText = this.i18n('popupTaskFormTimed');
+          break;
+        case 'daily':
+          this.dropdownText = this.i18n('popupTaskFormDaily');
           break;
         case 'onTime':
           this.dropdownText = this.i18n('popupTaskOnTimeModeTag');

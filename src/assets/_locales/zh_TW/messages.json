@@ -59,6 +59,9 @@
   "popupTaskTriggerInterval": {
     "message": "時間間隔： "
   },
+  "popupTaskEarliestTimeTitle": {
+    "message": "最早執行時間： "
+  },
   "popupTaskOrigin": {
     "message": "來源： "
   },
@@ -112,6 +115,24 @@
   },
   "popupTaskFormCodePlaceholder": {
     "message": "請輸入任務程式碼"
+  },
+  "popupTaskFormType": {
+    "message": "任務類型"
+  },
+  "popupTaskFormTimed": {
+    "message": "定時任務"
+  },
+  "popupTaskTimedText": {
+    "message": "按照指定時間間隔執行的任務"
+  },
+  "popupTaskFormDaily": {
+    "message": "每日任務"
+  },
+  "popupTaskDailyText": {
+    "message": "每日執行一次的任務"
+  },
+  "popupTaskEarliestTime": {
+    "message": "最早執行時間"
   },
   "popupTaskFormTriggerIntervalLabel": {
     "message": "執行間隔"
@@ -375,7 +396,10 @@
     "message": "新增的任務位於任務列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "任務的預設執行間隔："
+    "message": "定時任務的預設執行間隔："
+  },
+  "settingsTaskEarliestTime": {
+    "message": "每日任務的預設最早執行時間："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任務列表的頂部顯示任務篩選輸入框"

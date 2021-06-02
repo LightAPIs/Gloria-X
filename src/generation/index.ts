@@ -14,9 +14,12 @@ import {
   ElInput,
   ElInputNumber,
   ElMain,
+  ElRadioGroup,
+  ElRadioButton,
   ElRow,
   ElStep,
   ElSteps,
+  ElTimePicker,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
 
@@ -31,9 +34,12 @@ const components = [
   ElInput,
   ElInputNumber,
   ElMain,
+  ElRadioGroup,
+  ElRadioButton,
   ElRow,
   ElStep,
   ElSteps,
+  ElTimePicker,
 ];
 
 const app = createApp(App);

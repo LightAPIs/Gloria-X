@@ -30,6 +30,8 @@ import {
   ElMenuItem,
   ElPopconfirm,
   ElPopover,
+  ElRadioButton,
+  ElRadioGroup,
   ElRow,
   ElScrollbar,
   ElSwitch,
@@ -38,6 +40,7 @@ import {
   ElTag,
   ElTimeline,
   ElTimelineItem,
+  ElTimePicker,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
 
@@ -66,6 +69,8 @@ const components = [
   ElMenuItem,
   ElPopconfirm,
   ElPopover,
+  ElRadioGroup,
+  ElRadioButton,
   ElRow,
   ElScrollbar,
   ElSwitch,
@@ -74,6 +79,7 @@ const components = [
   ElTag,
   ElTimeline,
   ElTimelineItem,
+  ElTimePicker,
 ];
 
 const plugins = [ElInfiniteScroll];

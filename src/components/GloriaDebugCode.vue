@@ -75,7 +75,7 @@
 
     <gloria-task-edit
       :dialog-visible="dialogVisible"
-      type="testAdd"
+      editor-type="testAdd"
       :code="code.trim()"
       @close-dialog="dialogVisible = false"
     ></gloria-task-edit>

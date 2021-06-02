@@ -2,7 +2,7 @@ import { evalUntrusted, inflatedRequestHeaders } from '@/commons/eval-untrusted'
 import IntervalAlarmsManager from '@/commons/IntervalAlarmsManager';
 import NotificationsManager from '@/commons/NavigableNotificationsManager';
 import store from '../store';
-import { isAfterInterval, remainingTime, nowLTS, dayjsLocale } from '@/commons/calc';
+import { isAfterInterval, remainingTime, nowLTS, today, waitingTime, waitingTomorrowTime, isAfterNow, dayjsLocale } from '@/commons/calc';
 import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL, IS_CHROME } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
@@ -44,7 +44,7 @@ taskSubject.subscribe({
 
 function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
   const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;
-  const { id, code, triggerInterval, triggerDate, onTimeMode, name } = task;
+  const { id, code, type, triggerInterval, triggerDate, onTimeMode, earliestTime, name } = task;
   function run() {
     const taskObservable = new Observable((obsever: Observer<unknown>) => {
       obsever.next(() => {
@@ -104,20 +104,41 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
     taskSubject.next(taskObservable);
   }
 
+  //! 在这里处理两种任务的区别
   if (immediately) {
-    alarmsManager.add(id, -1, triggerInterval, run);
-    run();
-  } else {
-    if (onTimeMode) {
-      if (isAfterInterval(triggerDate, triggerInterval)) {
-        alarmsManager.add(id, -1, triggerInterval, run);
-        run();
-      } else {
-        alarmsManager.add(id, remainingTime(triggerDate, triggerInterval), triggerInterval, run);
-      }
+    if (type === 'daily') {
+      alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
     } else {
       alarmsManager.add(id, -1, triggerInterval, run);
-      run();
+    }
+
+    run();
+  } else {
+    if (type === 'daily') {
+      if (today(triggerDate)) {
+        //* 今天已经执行过了
+        alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
+      } else {
+        if (isAfterNow(earliestTime)) {
+          alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
+          run();
+        } else {
+          //* 没有到达执行时间
+          alarmsManager.add(id, waitingTime(earliestTime), 24 * 60, run);
+        }
+      }
+    } else {
+      if (onTimeMode) {
+        if (isAfterInterval(triggerDate, triggerInterval)) {
+          alarmsManager.add(id, -1, triggerInterval, run);
+          run();
+        } else {
+          alarmsManager.add(id, remainingTime(triggerDate, triggerInterval), triggerInterval, run);
+        }
+      } else {
+        alarmsManager.add(id, -1, triggerInterval, run);
+        run();
+      }
     }
   }
 }
@@ -602,10 +623,12 @@ function testVirtualNotification(dataList: myStore.CommitData | myStore.CommitDa
     id: '',
     code: '',
     name: i18n('notificationTestName'),
+    type: '',
     triggerInterval: 0,
     needInteraction: false,
     origin: '',
     onTimeMode: false,
+    earliestTime: '',
     isEnable: false,
     triggerCount: 0,
     pushCount: 0,

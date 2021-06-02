@@ -221,12 +221,41 @@
 
 //// ----------------------------------------------------------------------------
 
+//// ----------------------------------------------------------------------------
+// gloria-dropdown-dark()
+//// ----------------------------------------------------------------------------
+
+@mixin gloria-time-picker-popper-dark {
+  &.el-picker__popper.el-popper[role='tooltip'] {
+    background-color: $dark-radio-background-color;
+  }
+
+  .el-popper__arrow::before,
+  .el-time-spinner__wrapper.is-arrow .el-time-spinner__item:hover:not(.disabled):not(.active) {
+    background-color: $dark-radio-background-color;
+  }
+
+  .el-time-spinner__item.active:not(.disabled) {
+    color: $dark-text-color-primary;
+  }
+
+  .cancel {
+    color: $dark-text-color-darker;
+  }
+}
+
+//// ----------------------------------------------------------------------------
+
 .gloria-theme.dark {
   @include theme-dark();
 }
 
 .gloria-dropdown.dark {
   @include gloria-dropdown-dark();
+}
+
+.gloria-time-picker-popper.dark {
+  @include gloria-time-picker-popper-dark();
 }
 
 @media (prefers-color-scheme: dark) {
@@ -236,6 +265,10 @@
 
   .gloria-dropdown.default {
     @include gloria-dropdown-dark();
+  }
+
+  .gloria-time-picker-popper.default {
+    @include gloria-time-picker-popper-dark();
   }
 }
 

@@ -59,6 +59,9 @@
   "popupTaskTriggerInterval": {
     "message": "Time interval: "
   },
+  "popupTaskEarliestTimeTitle": {
+    "message": "Earliest time: "
+  },
   "popupTaskOrigin": {
     "message": "Source: "
   },
@@ -112,6 +115,24 @@
   },
   "popupTaskFormCodePlaceholder": {
     "message": "Please enter the task code"
+  },
+  "popupTaskFormType": {
+    "message": "Task type"
+  },
+  "popupTaskFormTimed": {
+    "message": "Timed"
+  },
+  "popupTaskTimedText": {
+    "message": "Task performed at specified interval"
+  },
+  "popupTaskFormDaily": {
+    "message": "Daily"
+  },
+  "popupTaskDailyText": {
+    "message": "Task performed once a day"
+  },
+  "popupTaskEarliestTime": {
+    "message": "Earliest time"
   },
   "popupTaskFormTriggerIntervalLabel": {
     "message": "Interval"
@@ -375,7 +396,10 @@
     "message": "The newly added task is at the top of the task list"
   },
   "settingsTaskTriggerInterval": {
-    "message": "Default execution interval of task: "
+    "message": "Default execution interval of Timed task: "
+  },
+  "settingsTaskEarliestTime": {
+    "message": "Defualt earliest execution time of Daily task: "
   },
   "settingsTaskShowSearchInput": {
     "message": "Display the task filter input box at the top of the task list"

@@ -2,8 +2,10 @@ const taskKeys = [
   'id',
   'name',
   'code',
+  'type',
   'origin',
   'triggerInterval',
+  'earliestTime',
   'needInteraction',
   'onTimeMode',
   'triggerCount',
@@ -24,6 +26,7 @@ function defaultConfigs(): myStore.GloriaConfig {
     taskShowSearchInput: false,
     taskAutoRemoveStage: false,
     taskTriggerInterval: 5,
+    taskEarliestTime: '00:05',
     notificationSound: false,
     notificationCustomSound: false,
     notificationLaterMark: false,
@@ -42,11 +45,13 @@ function defaultTaskBasic(): myStore.GloriaTaskBasic {
   return {
     id: '',
     name: '',
+    type: 'timed',
     code: '',
     origin: '',
     triggerInterval: 5,
     needInteraction: false,
     onTimeMode: false,
+    earliestTime: '',
   };
 }
 

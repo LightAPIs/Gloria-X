@@ -15,8 +15,15 @@ declare module '@vue/runtime-core' {
     intervalTime: (d: number) => string;
     now: () => string;
     nowLTS: () => string;
+    today: (date: string) => boolean;
+    hm2date: (date: string) => string;
+    date2hm: (date: string) => string;
+    hm2min: (hm: string) => number;
+    isAfterNow: (hm: string) => boolean;
     isAfterInterval: (date: number | string, interval = 1) => boolean;
     remainingTime: (date: number | string, interval: number) => number;
+    waitingTime: (hm: string) => number;
+    waitingTomorrowTime: (hm: string) => number;
     diff: (lhs: myStore.Stage, rhs: myStore.Stage) => boolean;
     dayjsLocale: (language?: string) => void;
     days: (m: number) => number;

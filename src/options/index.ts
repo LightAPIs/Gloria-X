@@ -37,6 +37,7 @@ import {
   ElTable,
   ElTableColumn,
   ElTooltip,
+  ElTimePicker,
 } from 'element-plus';
 import 'element-plus/packages/theme-chalk/src/base.scss';
 const RouterSettings = () => import(/* webpackChunkName: "options-group" */ '../router/RouterSettings.vue');
@@ -76,6 +77,7 @@ const components = [
   ElSwitch,
   ElTable,
   ElTableColumn,
+  ElTimePicker,
   ElTooltip,
 ];
 

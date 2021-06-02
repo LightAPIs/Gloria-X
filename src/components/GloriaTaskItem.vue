@@ -4,7 +4,9 @@
       itemShow &&
       ((filterType === 'enabled' && isEnable) ||
         (filterType === 'disabled' && !isEnable) ||
-        (filterType === 'onTime' && onTimeMode) ||
+        (filterType === 'timed' && type === 'timed') ||
+        (filterType === 'daily' && type === 'daily') ||
+        (filterType === 'onTime' && type === 'timed' && onTimeMode) ||
         (filterType === 'needInteraction' && needInteraction) ||
         (filterType === 'error' && executionError > 0) ||
         (filterType === 'install' && origin) ||
@@ -18,7 +20,20 @@
     <template #header>
       <span>
         <gloria-text-highlight class-name="header-text" :text="name" :keyword="filterText"></gloria-text-highlight>
-        <el-tag v-if="onTimeMode" size="mini" effect="dark" :title="i18n('popupTaskOnTimeModeText')" class="tag">
+        <el-tag v-if="type === 'timed'" size="mini" effect="dark" :title="i18n('popupTaskTimedText')" class="tag">
+          {{ i18n('popupTaskFormTimed') }}
+        </el-tag>
+        <el-tag v-if="type === 'daily'" type="success" size="mini" effect="dark" :title="i18n('popupTaskDailyText')" class="tag">
+          {{ i18n('popupTaskFormDaily') }}
+        </el-tag>
+        <el-tag
+          v-if="type === 'timed' && onTimeMode"
+          type="info"
+          size="mini"
+          effect="dark"
+          :title="i18n('popupTaskOnTimeModeText')"
+          class="tag"
+        >
           {{ i18n('popupTaskOnTimeModeTag') }}
         </el-tag>
         <el-tag
@@ -98,7 +113,10 @@
       </span>
     </template>
     <div>
-      <span>
+      <span v-if="type === 'daily'">
+        {{ i18n('popupTaskEarliestTimeTitle') + earliestTime }}
+      </span>
+      <span v-else>
         {{ i18n('popupTaskTriggerInterval') + intervalTime(triggerInterval) }}
       </span>
       <span class="float-right">
@@ -150,12 +168,20 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      required: true,
+    },
     isEnable: {
       type: Boolean,
       required: true,
     },
     triggerInterval: {
       type: Number,
+      required: true,
+    },
+    earliestTime: {
+      type: String,
       required: true,
     },
     triggerCount: {
@@ -239,7 +265,7 @@ export default defineComponent({
       this.disconnectTask(id);
     },
     onContextmenu(event: MouseEvent) {
-      const { id, name, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
+      const { id, name, type, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
       const items = [
         isEnable
           ? {
@@ -309,17 +335,19 @@ export default defineComponent({
             );
           },
         },
-        {
-          label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
-          icon: 'el-icon-alarm-clock',
-          divided: !isChrome,
-          onClick: () => {
-            this.updateTaskBasic({
-              id,
-              onTimeMode: !onTimeMode,
-            });
-          },
-        },
+        type === 'timed'
+          ? {
+              label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
+              icon: 'el-icon-alarm-clock',
+              divided: !isChrome,
+              onClick: () => {
+                this.updateTaskBasic({
+                  id,
+                  onTimeMode: !onTimeMode,
+                });
+              },
+            }
+          : {},
         isChrome
           ? {
               label: needInteraction

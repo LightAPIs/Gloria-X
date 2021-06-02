@@ -136,21 +136,56 @@
                   prefix-icon="el-icon-view"
                 ></el-input
               ></el-form-item>
-              <el-form-item :label="i18n('popupTaskFormTriggerIntervalLabel')">
-                <el-input-number v-model="taskForm.day" :min="0" :max="6" step-strictly></el-input-number>
+              <el-form-item :label="i18n('popupTaskFormType')">
+                <el-radio-group v-model="taskForm.type" size="mini" @change="onRadioChange">
+                  <el-radio-button label="timed">
+                    {{ i18n('popupTaskFormTimed') }}
+                  </el-radio-button>
+                  <el-radio-button label="daily">
+                    {{ i18n('popupTaskFormDaily') }}
+                  </el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item v-show="taskForm.type === 'daily'" :label="i18n('popupTaskEarliestTime')">
+                <el-time-picker
+                  v-model="taskForm.eTime"
+                  class="gloria-time-picker"
+                  :popper-class="'gloria-time-picker-popper ' + configs.appearanceInterface"
+                  format="HH:mm"
+                  size="medium"
+                  arrow-control
+                  :clearable="false"
+                ></el-time-picker>
+              </el-form-item>
+              <el-form-item v-show="taskForm.type === 'timed'" :label="i18n('popupTaskFormTriggerIntervalLabel')">
+                <el-input-number v-model="taskForm.day" :min="0" :max="6" size="medium" step-strictly></el-input-number>
                 {{ ' ' + i18n('dayText') }}
-                <el-input-number v-model="taskForm.hour" class="time-input-number" :min="0" :max="23" step-strictly></el-input-number>
+                <el-input-number
+                  v-model="taskForm.hour"
+                  class="time-input-number"
+                  :min="0"
+                  :max="23"
+                  size="medium"
+                  step-strictly
+                ></el-input-number>
                 {{ ' ' + i18n('hourText') }}
-                <el-input-number v-model="taskForm.minute" class="time-input-number" :min="0" :max="59" step-strictly></el-input-number>
+                <el-input-number
+                  v-model="taskForm.minute"
+                  class="time-input-number"
+                  :min="0"
+                  :max="59"
+                  size="medium"
+                  step-strictly
+                ></el-input-number>
                 {{ ' ' + i18n('minuteText') }}
               </el-form-item>
               <el-form-item :label="i18n('popupTaskFormOptionalLabel')">
-                <el-checkbox v-model="taskForm.onTimeMode">
-                  {{ i18n('popupTaskOnTimeModeText') }}
+                <el-checkbox v-if="isChrome" v-model="taskForm.needInteraction" :title="i18n('popupTaskNeedInteractionText')">
+                  {{ i18n('popupTaskNeedInteractionTag') }}
                 </el-checkbox>
                 <br />
-                <el-checkbox v-if="isChrome" v-model="taskForm.needInteraction">
-                  {{ i18n('popupTaskNeedInteractionText') }}
+                <el-checkbox v-show="taskForm.type === 'timed'" v-model="taskForm.onTimeMode" :title="i18n('popupTaskOnTimeModeText')">
+                  {{ i18n('popupTaskOnTimeModeTag') }}
                 </el-checkbox>
               </el-form-item>
             </el-form>
@@ -202,9 +237,11 @@ export default defineComponent({
       },
       taskForm: {
         name: 'Task',
+        type: 'timed',
         day: 0,
         hour: 0,
         minute: 5,
+        eTime: '',
         onTimeMode: false,
         needInteraction: false,
       },
@@ -332,31 +369,44 @@ export default defineComponent({
     onNext() {
       this.progress = 'task';
       this.$emit('active-index', 2);
-      const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval } = this.configs;
+      const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval, taskEarliestTime } = this.configs;
       const day = this.days(taskTriggerInterval);
       const hour = this.hours(taskTriggerInterval);
       const minute = this.minutes(taskTriggerInterval);
+      const eTime = this.hm2date(taskEarliestTime);
       Object.assign(this.taskForm, {
         day,
         hour,
         minute,
+        eTime,
         onTimeMode: taskOnTimeMode,
         needInteraction: taskNeedInteraction,
       });
+    },
+    onRadioChange(val: string) {
+      if (val === 'daily') {
+        this.taskForm.onTimeMode = true;
+        this.taskForm.day = 1;
+        this.taskForm.hour = 0;
+        this.taskForm.minute = 0;
+      }
     },
     onTaskSubmit() {
       (this.$refs.taskForm as InstanceType<typeof ElForm>).validate((valid?: boolean) => {
         if (valid) {
           const {
             code,
-            taskForm: { name, day, hour, minute, onTimeMode, needInteraction },
+            taskForm: { name, type, day, hour, minute, eTime, onTimeMode, needInteraction },
           } = this;
           const triggerTime = day + hour + minute > 0 ? day * 24 * 60 + hour * 60 + minute : 1;
+          const earliestTime = this.date2hm(eTime);
           this.createTaskBasic({
             id: uuid(),
             name,
             code,
+            type,
             triggerInterval: triggerTime,
+            earliestTime,
             onTimeMode,
             needInteraction,
           });

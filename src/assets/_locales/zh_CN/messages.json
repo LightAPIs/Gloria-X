@@ -59,6 +59,9 @@
   "popupTaskTriggerInterval": {
     "message": "时间间隔： "
   },
+  "popupTaskEarliestTimeTitle": {
+    "message": "最早执行时间： "
+  },
   "popupTaskOrigin": {
     "message": "来源： "
   },
@@ -112,6 +115,24 @@
   },
   "popupTaskFormCodePlaceholder": {
     "message": "请输入任务代码"
+  },
+  "popupTaskFormType": {
+    "message": "任务类型"
+  },
+  "popupTaskFormTimed": {
+    "message": "定时任务"
+  },
+  "popupTaskTimedText": {
+    "message": "按照指定时间间隔执行的任务"
+  },
+  "popupTaskFormDaily": {
+    "message": "每日任务"
+  },
+  "popupTaskDailyText": {
+    "message": "每日执行一次的任务"
+  },
+  "popupTaskEarliestTime": {
+    "message": "最早执行时间"
   },
   "popupTaskFormTriggerIntervalLabel": {
     "message": "执行间隔"
@@ -375,7 +396,10 @@
     "message": "新添加的任务位于任务列表的最上方"
   },
   "settingsTaskTriggerInterval": {
-    "message": "任务的默认执行间隔："
+    "message": "定时任务的默认执行间隔："
+  },
+  "settingsTaskEarliestTime": {
+    "message": "每日任务的默认最早执行时间："
   },
   "settingsTaskShowSearchInput": {
     "message": "在任务列表的顶部显示任务筛选输入框"

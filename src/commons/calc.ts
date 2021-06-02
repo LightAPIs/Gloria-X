@@ -4,8 +4,10 @@ import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-tw';
 import duration from 'dayjs/plugin/duration';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import isToday from 'dayjs/plugin/isToday';
 dayjs.extend(duration);
 dayjs.extend(localizedFormat);
+dayjs.extend(isToday);
 
 // dayjs.locale(chrome.i18n.getUILanguage() || navigator.language);
 //? 由于在单元测试时，若直接进行全局设置语言环境,会因为 chrome 没有被定义而报错。
@@ -64,21 +66,68 @@ function nowLTS(): string {
   return dayjs().format('LTS');
 }
 
+function today(date: string): boolean {
+  return date ? dayjs(date).isToday() : false;
+}
+
+function hm2date(hm: string): string {
+  return `${dayjs().format('YYYY-MM-DD')} ${hm}:00`;
+}
+
+function date2hm(date: string): string {
+  return dayjs(date).format('HH:mm');
+}
+
+function hm2Tomorrow(hm: string): string {
+  return `${dayjs().add(1, 'day').format('YYYY-MM-DD')} ${hm}:00`;
+}
+
+function isAfterNow(hm: string): boolean {
+  return dayjs().diff(hm2date(hm), 'm') >= 0;
+}
+
 function isAfterInterval(date: number | string, interval = 1): boolean {
   if (!date) {
     return true;
   }
-
   return dayjs().diff(date, 'm') >= interval;
 }
 
 function remainingTime(date: number | string, interval: number): number {
-  const rtime = interval - dayjs().diff(date, 'm');
-  return rtime > 0 ? rtime : 1;
+  const rTime = interval - dayjs().diff(date, 'm');
+  return rTime > 0 ? rTime : 1;
+}
+
+function waitingTime(hm: string): number {
+  const wTime = -dayjs().diff(hm2date(hm), 'm');
+  return wTime > 0 ? wTime : 1;
+}
+
+function waitingTomorrowTime(hm: string): number {
+  const wTime = -dayjs().diff(hm2Tomorrow(hm), 'm');
+  return wTime > 0 ? wTime : 1;
 }
 
 function diff(lhs: myStore.Stage, rhs: myStore.Stage): boolean {
   return lhs.id !== rhs.id || lhs.title !== rhs.title || lhs.message !== rhs.message;
 }
 
-export { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, dayjsLocale, days, hours, minutes };
+export {
+  displayTime,
+  intervalTime,
+  now,
+  nowLTS,
+  today,
+  hm2date,
+  date2hm,
+  isAfterNow,
+  isAfterInterval,
+  remainingTime,
+  waitingTime,
+  waitingTomorrowTime,
+  diff,
+  dayjsLocale,
+  days,
+  hours,
+  minutes,
+};
