@@ -34,6 +34,20 @@
 
   .el-dialog {
     background-color: $dark-background-color-primary;
+
+    .gloria-table-button-group {
+      .el-button--default:not(.is-disabled) {
+        background-color: $dark-button-default-color;
+        border-color: $dark-button-default-color;
+        color: $dark-text-color-primary;
+
+        &:hover {
+          background-color: $dark-buttom-default-hover-color;
+          border-color: $dark-buttom-default-hover-color;
+          color: $dark-text-color-brighter;
+        }
+      }
+    }
   }
 
   .el-dialog__title {
@@ -111,6 +125,19 @@
     &.is-active {
       color: $dark-text-color-highlight;
     }
+  }
+
+  .el-table {
+    background-color: $dark-context-background-color;
+    color: $dark-text-color-primary;
+    th,
+    tr {
+      background-color: $dark-context-background-color;
+    }
+  }
+
+  .el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: $dark-tabs-item-background-color-height;
   }
 
   .el-tabs {

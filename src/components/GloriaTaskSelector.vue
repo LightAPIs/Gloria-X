@@ -8,7 +8,6 @@
       height="50vh"
       border
       :row-class-name="tableRowClassName"
-      :row-style="tableRowStyle"
       @selection-change="handleSelectChange"
     >
       <el-table-column type="selection" width="55"></el-table-column>
@@ -76,14 +75,6 @@ export default defineComponent({
         return '';
       }
       return 'gloria-row-hide';
-    },
-    tableRowStyle({ row }: unknown) {
-      if (row.isEnable) {
-        return {
-          'background-color': '#f0f9eb',
-        };
-      }
-      return {};
     },
     onFilterText(text: string) {
       this.search = text;
