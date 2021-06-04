@@ -56,6 +56,7 @@ function createNewConfigs() {
     taskShowSearchInput: true,
     taskAutoRemoveStage: true,
     taskTriggerInterval: 1440,
+    taskEarliestTime: '00:05',
     notificationSound: true,
     notificationCustomSound: true,
     notificationLaterMark: true,
