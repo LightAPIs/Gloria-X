@@ -19,7 +19,7 @@ declare module '@vue/runtime-core' {
     hm2date: (date: string) => string;
     date2hm: (date: string) => string;
     hm2min: (hm: string) => number;
-    isAfterNow: (hm: string) => boolean;
+    isBeforeNow: (hm: string) => boolean;
     isAfterInterval: (date: number | string, interval = 1) => boolean;
     remainingTime: (date: number | string, interval: number) => number;
     waitingTime: (hm: string) => number;

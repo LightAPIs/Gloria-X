@@ -2,7 +2,7 @@ import { evalUntrusted, inflatedRequestHeaders } from '@/commons/eval-untrusted'
 import IntervalAlarmsManager from '@/commons/IntervalAlarmsManager';
 import NotificationsManager from '@/commons/NavigableNotificationsManager';
 import store from '../store';
-import { isAfterInterval, remainingTime, nowLTS, today, waitingTime, waitingTomorrowTime, isAfterNow, dayjsLocale } from '@/commons/calc';
+import { isAfterInterval, remainingTime, nowLTS, today, waitingTime, waitingTomorrowTime, isBeforeNow, dayjsLocale } from '@/commons/calc';
 import { i18n } from '@/commons/ui';
 import { APP_ICON_URL as DEFAULT_ICON_URL, IS_CHROME } from '@/commons/var';
 import { v4 as uuid } from 'uuid';
@@ -119,7 +119,7 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
         //* 今天已经执行过了
         alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
       } else {
-        if (isAfterNow(earliestTime)) {
+        if (isBeforeNow(earliestTime)) {
           alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
           run();
         } else {

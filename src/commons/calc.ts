@@ -82,7 +82,7 @@ function hm2Tomorrow(hm: string): string {
   return `${dayjs().add(1, 'day').format('YYYY-MM-DD')} ${hm}:00`;
 }
 
-function isAfterNow(hm: string): boolean {
+function isBeforeNow(hm: string): boolean {
   return dayjs().diff(hm2date(hm), 'm') >= 0;
 }
 
@@ -120,7 +120,7 @@ export {
   today,
   hm2date,
   date2hm,
-  isAfterNow,
+  isBeforeNow,
   isAfterInterval,
   remainingTime,
   waitingTime,

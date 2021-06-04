@@ -2,7 +2,18 @@
 
 import { expect } from 'chai';
 import chrome from 'sinon-chrome';
-import { displayTime, intervalTime, now, nowLTS, isAfterInterval, remainingTime, diff, dayjsLocale } from '@/commons/calc';
+import {
+  displayTime,
+  intervalTime,
+  now,
+  nowLTS,
+  isAfterInterval,
+  remainingTime,
+  diff,
+  dayjsLocale,
+  waitingTomorrowTime,
+  isBeforeNow,
+} from '@/commons/calc';
 
 describe('Test calc:', function () {
   before(function () {
@@ -86,6 +97,22 @@ describe('Test calc:', function () {
       );
       expect(result1).to.be.false;
       expect(result2).to.be.true;
+    });
+  });
+
+  describe('Method: waitingTomorrowTime', function () {
+    it('waitingTomorrowTime is normal.', function () {
+      const result = waitingTomorrowTime('00:01');
+      expect(result).to.be.above(1);
+    });
+  });
+
+  describe('Method: isBeforeNow', function () {
+    it('isBeforeNow is normal.', function () {
+      const result1 = isBeforeNow('00:01');
+      const result2 = isBeforeNow('23:59');
+      expect(result1).to.be.true;
+      expect(result2).to.be.false;
     });
   });
 
