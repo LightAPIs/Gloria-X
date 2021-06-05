@@ -11,8 +11,10 @@ import {
   remainingTime,
   diff,
   dayjsLocale,
-  waitingTomorrowTime,
   isBeforeNow,
+  date2hm,
+  waitingTime,
+  waitingTomorrowTime,
 } from '@/commons/calc';
 
 describe('Test calc:', function () {
@@ -100,19 +102,28 @@ describe('Test calc:', function () {
     });
   });
 
-  describe('Method: waitingTomorrowTime', function () {
-    it('waitingTomorrowTime is normal.', function () {
-      const result = waitingTomorrowTime('00:01');
-      expect(result).to.be.above(1);
-    });
-  });
-
   describe('Method: isBeforeNow', function () {
     it('isBeforeNow is normal.', function () {
       const result1 = isBeforeNow('00:01');
       const result2 = isBeforeNow('23:59');
       expect(result1).to.be.true;
       expect(result2).to.be.false;
+    });
+  });
+
+  describe('Method: waittingTime', function () {
+    it('waitingTime is normal.', function () {
+      const time = Date.now() + 180000;
+      const result = waitingTime(date2hm(time));
+      expect(result).to.equal(3);
+    });
+  });
+
+  describe('Method: waitingTomorrowTime', function () {
+    it('waitingTomorrowTime is normal.', function () {
+      const time = Date.now() + 180000;
+      const result = waitingTomorrowTime(date2hm(time));
+      expect(result).to.be.equal(1443);
     });
   });
 

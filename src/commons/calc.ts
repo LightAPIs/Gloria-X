@@ -100,12 +100,12 @@ function remainingTime(date: number | string, interval: number): number {
 
 function waitingTime(hm: string): number {
   const wTime = -dayjs().diff(hm2date(hm), 'm');
-  return wTime > 0 ? wTime : 1;
+  return wTime > 0 ? wTime + 1 : 1;
 }
 
 function waitingTomorrowTime(hm: string): number {
   const wTime = -dayjs().diff(hm2Tomorrow(hm), 'm');
-  return wTime > 0 ? wTime : 1;
+  return wTime > 0 ? wTime + 1 : 1;
 }
 
 function diff(lhs: myStore.Stage, rhs: myStore.Stage): boolean {
