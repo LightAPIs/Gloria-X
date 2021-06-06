@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/LightAPIs/Gloria-X/compare/v2.3.0...v2.4.0) (2021-06-06)
+
+
+### Features
+
+* **notification:** 允许 Firefox 版本的推送通知支持声音提示 ([c367dc2](https://github.com/LightAPIs/Gloria-X/commit/c367dc2feaa71d6f330660e2fd27bdf2195c8e26))
+* **task:** 添加支持每日任务的功能 ([2522bdb](https://github.com/LightAPIs/Gloria-X/commit/2522bdb5759facbece663ff6b2a2313f1117752c))
+
+
+### Bug Fixes
+
+* **daily:** 修复每日任务的执行时间会比预定的最早时间提前 1 分钟的问题 ([ee9c450](https://github.com/LightAPIs/Gloria-X/commit/ee9c45012eae47e91246cd43a43297f4d3c546e4))
+* **export:** 修复加密导出任务的选择弹窗缺少标题的问题 ([46332f3](https://github.com/LightAPIs/Gloria-X/commit/46332f3eb8d4840f3c8510955121f2e46b28a04b))
+* **file:** 修复导入/导出任务的弹窗在黑暗模式下样式出错的问题 ([556db5b](https://github.com/LightAPIs/Gloria-X/commit/556db5b82a575e48b8d59e4251e833625b059d7d))
+
 ## [2.3.0](https://github.com/LightAPIs/Gloria-X/compare/v2.2.0...v2.3.0) (2021-05-21)
 
 
