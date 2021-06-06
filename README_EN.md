@@ -26,7 +26,7 @@
 >
 > **Original project：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
-It can capture the new content on the website and pop up notifications with a custom JavaScript code task.
+It can capture the new content on the website regularly and pop up notifications with a custom JavaScript code task.
 
 ## Table of contents
 
@@ -61,6 +61,7 @@ It can capture the new content on the website and pop up notifications with a cu
     - [Test Rudecer](#Test-Rudecer)
 - [Other](#Other)
   - [On-time mode](#On-time-mode)
+  - [Other features](#Other-features)
 - [Related documents](#Related-documents)
 - [Limitations of Firefox version](#Limitations-of-Firefox-version)
 - [Development](#Development)
@@ -171,6 +172,8 @@ _Note: If `null` or `undefined` is returned in the Observation task, the executi
 When an array of `Gloria Notification` objects is passed to the `commit` function, the task will be recognized as a "General task", and each collection is cached in an internal "Stages" component so that the notification is pushed only when the object is new.
 
 #### Task difference
+
+The observing task will respond to changes in each result, based on the previous execution result; and the general task will only respond to new results, and do not handle past repeated execution results.
 
 The difference between two types of tasks is explained in detail in two working task codes.
 
@@ -471,7 +474,16 @@ There is an optional option of `On-time mode` in the task, that is, the task per
 If the task is enabled:
 
 - Tasks in the default mode will always be executed automatically when starting the browser, and then set a timer based on the active time of the moment.
+
 - Tasks that use the On-time mode will first determine whether the task has been executed since the last execution time exceeds the set execution interval when starting the browser. If it is still within the interval, the check will not be executed immediately, but according to the scheduled time The inspection will only be performed upon arrival.
+
+### Other features
+
+- Allow implicit push notifications (record notifications but no news prompts)
+- Support for later review of notifications
+- Allow filtering tasks and notification records
+- Allow custom notification to sound
+- You can operate tasks and notification records in the Popup page through the right-click menu
 
 ## Related documents
 
@@ -489,7 +501,6 @@ Here are some of the features that Firefox <u>doesn’t support</u> in compariso
 - The pop-up notification needs to be manually closed as an optional option
 - Display the image in the pop-up notifications
 - Provide action buttons in pop-up notifications
-- Customize whether the notification sounds
 
 Here are some logical differences in Firefox:
 
