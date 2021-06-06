@@ -423,7 +423,7 @@
     "message": "Use a custom notification sound"
   },
   "settingsNotificationCustomSoundTip": {
-    "message": "You need to enable this option notification to sound if your system is Windows 7 or Windows 10 but your chrome://flags/#enable-native-notifications is Disabled."
+    "message": "This option needs to be enabled if the push notification is still not sound after the notification is allowed to sound."
   },
   "settingsNotificationLaterMark": {
     "message": "Support for marking the notification in message for later review"

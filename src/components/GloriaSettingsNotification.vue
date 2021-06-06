@@ -6,14 +6,14 @@
         <span class="options-tip-icon"><i class="el-icon-info"></i></span>
       </el-tooltip>
     </div>
-    <div v-if="isChrome" class="margin-top">
+    <div class="margin-top">
       <el-switch
         :value="configs.notificationSound"
         :active-text="i18n('settingsNotificationSound')"
         @change="onChange('notificationSound', $event)"
       ></el-switch>
     </div>
-    <div v-if="isChrome" class="margin-top">
+    <div class="margin-top">
       <el-switch
         :value="configs.notificationCustomSound"
         :active-text="i18n('settingsNotificationCustomSound')"

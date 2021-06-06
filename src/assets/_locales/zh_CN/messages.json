@@ -423,7 +423,7 @@
     "message": "使用自定义的通知提示音"
   },
   "settingsNotificationCustomSoundTip": {
-    "message": "如果您的系统是 Windows 7，或者系统是 Windows 10 但是将 chrome://flags/#enable-native-notifications 设置为 Disabled 时，需要开启该选项通知才能发出提示音。"
+    "message": "如果在开启允许通知发出提示音后，推送通知时依旧没有提示音，则需要开启该选项。"
   },
   "settingsNotificationLaterMark": {
     "message": "支持在通知消息中标识稍后查阅通知"
