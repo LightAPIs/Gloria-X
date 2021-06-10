@@ -1,12 +1,19 @@
+import { isAfterInterval } from './calc';
+
 class IntervalAlarmsManager {
   jobs: myCommons.Jobs;
   constructor() {
     this.jobs = {};
-    chrome.alarms.onAlarm.addListener(({ name }) => {
-      try {
-        typeof this.jobs[name] === 'function' && this.jobs[name]();
-      } catch (e) {
-        console.error(e);
+    chrome.alarms.onAlarm.addListener(({ name, scheduledTime }) => {
+      const period = 1;
+      //! 处理当浏览器冷启动过慢时可能会出现的计算的 scheduledTime 时间不正确(以上一次关闭浏览器时间为基准)，从而导致 onAlarm 意外事件触发的问题
+      //? 这是 Chromium 内核本身的一个问题
+      if (!isAfterInterval(scheduledTime, period)) {
+        try {
+          typeof this.jobs[name] === 'function' && this.jobs[name]();
+        } catch (e) {
+          console.error(e);
+        }
       }
     });
   }

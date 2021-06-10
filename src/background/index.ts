@@ -109,7 +109,7 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
     if (type === 'daily') {
       alarmsManager.add(id, waitingTomorrowTime(earliestTime), 24 * 60, run);
     } else {
-      alarmsManager.add(id, -1, triggerInterval, run);
+      alarmsManager.add(id, triggerInterval, triggerInterval, run);
     }
 
     run();
@@ -130,13 +130,13 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
     } else {
       if (onTimeMode) {
         if (isAfterInterval(triggerDate, triggerInterval)) {
-          alarmsManager.add(id, -1, triggerInterval, run);
+          alarmsManager.add(id, triggerInterval, triggerInterval, run);
           run();
         } else {
           alarmsManager.add(id, remainingTime(triggerDate, triggerInterval), triggerInterval, run);
         }
       } else {
-        alarmsManager.add(id, -1, triggerInterval, run);
+        alarmsManager.add(id, triggerInterval, triggerInterval, run);
         run();
       }
     }
