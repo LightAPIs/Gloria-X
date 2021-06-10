@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/LightAPIs/Gloria-X/compare/v2.4.0...v2.4.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **background:** 修复在 Chrome 启动时可能会出现重复执行同一任务的问题 ([9ce1720](https://github.com/LightAPIs/Gloria-X/commit/9ce172023f2ca9305323a0ae4b5e39870f1ccc9d))
+
 ## [2.4.0](https://github.com/LightAPIs/Gloria-X/compare/v2.3.0...v2.4.0) (2021-06-06)
 
 
