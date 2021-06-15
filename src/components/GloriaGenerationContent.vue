@@ -153,7 +153,6 @@
                   :popper-class="'gloria-time-picker-popper ' + configs.appearanceInterface"
                   format="HH:mm"
                   size="medium"
-                  arrow-control
                   :clearable="false"
                 ></el-time-picker>
               </el-form-item>
