@@ -206,6 +206,12 @@
   "popupContextTaskNeedInteractionDisable": {
     "message": "Disable Interaction"
   },
+  "popupContextTaskRemoveStage": {
+    "message": "Remove Stage Cache"
+  },
+  "popupContextTaskRemoveStageCompleted": {
+    "message": "The Stage cache for this task has been removed"
+  },
   "popupContextTaskDebug": {
     "message": "Test the task"
   },

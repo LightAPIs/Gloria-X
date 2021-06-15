@@ -206,6 +206,12 @@
   "popupContextTaskNeedInteractionDisable": {
     "message": "禁用手動關閉"
   },
+  "popupContextTaskRemoveStage": {
+    "message": "移除 Stage 快取"
+  },
+  "popupContextTaskRemoveStageCompleted": {
+    "message": "已將該任務的 Stage 快取移除"
+  },
   "popupContextTaskDebug": {
     "message": "測試該任務"
   },

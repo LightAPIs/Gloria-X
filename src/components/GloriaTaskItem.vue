@@ -244,7 +244,7 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask', 'updateTaskBasic']),
+    ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask', 'updateTaskBasic', 'removeStageItem']),
     onEdit() {
       const { id } = this;
       this.$emit('task-edit', id);
@@ -339,7 +339,7 @@ export default defineComponent({
           ? {
               label: onTimeMode ? this.i18n('popupContextTaskOnTimeDisable') : this.i18n('popupContextTaskOnTimeEnable'),
               icon: 'el-icon-alarm-clock',
-              divided: !isChrome,
+              divided: false,
               onClick: () => {
                 this.updateTaskBasic({
                   id,
@@ -354,7 +354,7 @@ export default defineComponent({
                 ? this.i18n('popupContextTaskNeedInteractionDisable')
                 : this.i18n('popupContextTaskNeedInteractionEnable'),
               icon: 'el-icon-thumb',
-              divided: true,
+              divided: false,
               onClick: () => {
                 this.updateTaskBasic({
                   id,
@@ -363,6 +363,15 @@ export default defineComponent({
               },
             }
           : {},
+        {
+          label: this.i18n('popupContextTaskRemoveStage'),
+          icon: 'el-icon-delete',
+          divided: true,
+          onClick: () => {
+            this.removeStageItem(id);
+            ElMessage.success(this.i18n('popupContextTaskRemoveStageCompleted'));
+          },
+        },
         {
           label: this.i18n('popupContextTaskDebug'),
           icon: 'el-icon-view',

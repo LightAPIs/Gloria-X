@@ -261,6 +261,17 @@ export default {
 
     chromeStorage.setStages(state.stages, 'create a new stage.');
   },
+  removeStageItem(state: myStore.VuexState, taskId: string): void {
+    let del = false;
+    for (let i = 0; i < state.stages.length; i++) {
+      if (state.stages[i].id === taskId) {
+        state.stages.splice(i, 1);
+        del = true;
+        break;
+      }
+    }
+    del && chromeStorage.setStages(state.stages, `delete "stages -> ${taskId}".`);
+  },
   clearStages(state: myStore.VuexState): void {
     state.stages = [];
     chromeStorage.setStages(state.stages, 'clear stages.');

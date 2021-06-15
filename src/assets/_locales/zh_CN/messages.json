@@ -206,6 +206,12 @@
   "popupContextTaskNeedInteractionDisable": {
     "message": "禁用手动关闭"
   },
+  "popupContextTaskRemoveStage": {
+    "message": "移除 Stage 缓存"
+  },
+  "popupContextTaskRemoveStageCompleted": {
+    "message": "已将该任务的 Stage 缓存移除"
+  },
   "popupContextTaskDebug": {
     "message": "测试该任务"
   },
