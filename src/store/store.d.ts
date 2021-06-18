@@ -90,6 +90,9 @@ declare namespace myStore {
     notificationShowBadge: boolean;
     notificationShowMenuCount: boolean;
     notificationMaxinum: number;
+    internalStartDelay: boolean;
+    internalDelayTime: number;
+    internalExecutionLimit: number;
   }
 
   interface MessageFlow {

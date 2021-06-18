@@ -38,6 +38,9 @@ function defaultConfigs(): myStore.GloriaConfig {
     notificationShowBadge: false,
     notificationShowMenuCount: false,
     notificationMaxinum: 200,
+    internalStartDelay: false,
+    internalDelayTime: 5,
+    internalExecutionLimit: 5,
   };
 }
 

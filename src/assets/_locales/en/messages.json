@@ -506,6 +506,36 @@
   "settingsClearCachesTip": {
     "message": "Are you sure you want to clear all network request cache?"
   },
+  "settingsInternal": {
+    "message": "Internal"
+  },
+  "settingsInternalStartDelay": {
+    "message": "Delay task execution when extention starts"
+  },
+  "settingsInternalStartDelayTip": {
+    "message": "If you occasionally encounter a crash when the extention starts, you can try to turn on this option."
+  },
+  "settingsInternalDelayTime": {
+    "message": "Delay time (seconds): "
+  },
+  "settingsInternalExecutionLimit": {
+    "message": "* Maximum number of simultaneous tasks in the background: "
+  },
+  "settingsInternalExecutionLimitTip": {
+    "message": "0 means no upper limit is set."
+  },
+  "settingsInternalReload": {
+    "message": "Reload tasks"
+  },
+  "settingsInternalReloadTip": {
+    "message": "(Require reload tasks to make internal settings immediately)"
+  },
+  "settintsInternalReloadSuccess": {
+    "message": "Reload task completed, new internal settings take effect immediately!"
+  },
+  "settingsInternalReloadError": {
+    "message": "Reload task failed. You may need to reload the extention or restart the browser for the internal settings to take effect!"
+  },
   "settingsImportExport": {
     "message": "Import/Export"
   },

@@ -506,6 +506,36 @@
   "settingsClearCachesTip": {
     "message": "確認要清理所有網路請求快取嗎？"
   },
+  "settingsInternal": {
+    "message": "內部設定"
+  },
+  "settingsInternalStartDelay": {
+    "message": "在擴充功能啟動時延遲執行任務"
+  },
+  "settingsInternalStartDelayTip": {
+    "message": "如果偶爾在擴充功能啟動時遇到崩潰的情況，可以嘗試開啟此選項。"
+  },
+  "settingsInternalDelayTime": {
+    "message": "延遲時間(秒)： "
+  },
+  "settingsInternalExecutionLimit": {
+    "message": "* 後台中同時執行的任務數量上限： "
+  },
+  "settingsInternalExecutionLimitTip": {
+    "message": "0 表示不設定上限。"
+  },
+  "settingsInternalReload": {
+    "message": "重載任務"
+  },
+  "settingsInternalReloadTip": {
+    "message": "(需要重載任務以使內部設定立即生效)"
+  },
+  "settintsInternalReloadSuccess": {
+    "message": "重載任務完成，新的內部設定立即生效！"
+  },
+  "settingsInternalReloadError": {
+    "message": "重載任務失敗。可能需要重新載入擴充功能或重啟瀏覽器，內部設定才會生效！"
+  },
   "settingsImportExport": {
     "message": "匯入/匯出"
   },

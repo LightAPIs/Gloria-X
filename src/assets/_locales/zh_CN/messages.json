@@ -506,6 +506,36 @@
   "settingsClearCachesTip": {
     "message": "确认要清理所有网络请求缓存吗？"
   },
+  "settingsInternal": {
+    "message": "内部设置"
+  },
+  "settingsInternalStartDelay": {
+    "message": "在扩展程序启动时延迟执行任务"
+  },
+  "settingsInternalStartDelayTip": {
+    "message": "如果偶尔在扩展程序启动时遇到崩溃的情况，可以尝试开启此选项。"
+  },
+  "settingsInternalDelayTime": {
+    "message": "延迟时间(秒)： "
+  },
+  "settingsInternalExecutionLimit": {
+    "message": "* 后台中同时执行的任务数量上限： "
+  },
+  "settingsInternalExecutionLimitTip": {
+    "message": "0 表示不设定上限。"
+  },
+  "settingsInternalReload": {
+    "message": "重载任务"
+  },
+  "settingsInternalReloadTip": {
+    "message": "(需要重载任务以使内部设置立即生效)"
+  },
+  "settintsInternalReloadSuccess": {
+    "message": "重载任务完成，新的内部设置立即生效！"
+  },
+  "settingsInternalReloadError": {
+    "message": "重载任务失败。可能需要重新加载扩展程序或重启浏览器，内部设置才会生效！"
+  },
   "settingsImportExport": {
     "message": "导入/导出"
   },

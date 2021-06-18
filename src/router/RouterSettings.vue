@@ -13,6 +13,10 @@
     </el-divider>
     <gloria-settings-notification></gloria-settings-notification>
     <el-divider content-position="left">
+      {{ i18n('settingsInternal') }}
+    </el-divider>
+    <gloria-settings-internal></gloria-settings-internal>
+    <el-divider content-position="left">
       {{ i18n('settingsImportExport') }}
     </el-divider>
     <gloria-settings-file></gloria-settings-file>
@@ -24,7 +28,7 @@ import { defineComponent } from 'vue';
 import GloriaSettingsAppearance from '@/components/GloriaSettingsAppearance.vue';
 import GloriaSettingsTask from '@/components/GloriaSettingsTask.vue';
 import GloriaSettingsNotification from '@/components/GloriaSettingsNotification.vue';
-
+import GloriaSettingsInternal from '@/components/GloriaSettingsInternal.vue';
 import GloriaSettingsFile from '@/components/GloriaSettingsFile.vue';
 
 export default defineComponent({
@@ -33,6 +37,7 @@ export default defineComponent({
     GloriaSettingsAppearance,
     GloriaSettingsTask,
     GloriaSettingsNotification,
+    GloriaSettingsInternal,
     GloriaSettingsFile,
   },
 });

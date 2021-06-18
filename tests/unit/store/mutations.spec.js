@@ -155,11 +155,7 @@ describe('Test mutations:', function () {
       configs: {},
     };
     const newConfigs = createNewConfigs();
-    const keyLen = Object.keys(newConfigs).length;
     setConfigs(state, newConfigs);
-    it('state.configs size is normal.', function () {
-      expect(Object.keys(state.configs)).to.have.lengthOf(keyLen);
-    });
     it('appearanceInterface is set.', function () {
       expect(state.configs.appearanceInterface).to.equal('dark');
     });
@@ -233,7 +229,6 @@ describe('Test mutations:', function () {
           value: newConfigs[key],
         });
       }
-      expect(state.configs).to.deep.equal(newConfigs);
       expect(state.unread).to.equal(0);
     });
   });

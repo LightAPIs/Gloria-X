@@ -11,7 +11,7 @@ import { Observable, Observer, Subject } from 'rxjs';
 
 dayjsLocale();
 let runningCount = 0;
-const RUN_LIMIT = 5;
+let runLimit = 5;
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 const taskList: Observable<unknown>[] = [];
@@ -19,7 +19,7 @@ const taskSubject: Subject<Observable<unknown>> = new Subject();
 
 taskSubject.subscribe({
   next: v => {
-    if (runningCount < RUN_LIMIT) {
+    if (runLimit == 0 || runningCount < runLimit) {
       runningCount++;
       const subscription = v.subscribe({
         next: func => {
@@ -146,7 +146,10 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
 function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
   function check() {
     store.commit('triggerLastCheckTasksUpdate');
-    const { tasks, configs } = store.state;
+    const {
+      tasks,
+      configs: { notificationSound, notificationCustomSound },
+    } = store.state;
     tasks.forEach(task => {
       if (task.origin && task.origin.match(/:\/\/gloria\.pub\/task\/(?:\w+)/)) {
         const originId = (/:\/\/gloria\.pub\/task\/(\w+)/.exec(task.origin) as string[])[1];
@@ -165,8 +168,8 @@ function createCheckCodeUpdateTimer(checkId: string, immediately = false) {
                   requireInteraction: false,
                   eventTime: Date.now(),
                   priority: 0,
-                  silent: !configs.notificationSound,
-                  customSound: configs.notificationCustomSound,
+                  silent: !notificationSound,
+                  customSound: notificationCustomSound,
                   detectIcon: false,
                   isTest: true,
                   buttons: [
@@ -332,13 +335,28 @@ function syncTasks() {
 
   store.subscribe((mutation, state) => {
     if (mutation.type.includes('setTasks')) {
-      const { tasks } = state;
-      tasks.forEach(task => {
-        if (task.isEnable) {
-          createTaskTimer(task, false);
-          activeTaskIdList.add(task.id);
-        }
-      });
+      const {
+        configs: { internalStartDelay, internalDelayTime },
+        tasks,
+      } = state;
+      //* 处理插件启动时延迟执行任务
+      if (internalStartDelay) {
+        window.setTimeout(() => {
+          tasks.forEach(task => {
+            if (task.isEnable) {
+              createTaskTimer(task, false);
+              activeTaskIdList.add(task.id);
+            }
+          });
+        }, internalDelayTime * 1000);
+      } else {
+        tasks.forEach(task => {
+          if (task.isEnable) {
+            createTaskTimer(task, false);
+            activeTaskIdList.add(task.id);
+          }
+        });
+      }
     }
 
     if (mutation.type.includes('mergeTasks')) {
@@ -655,6 +673,18 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
           });
           break;
         }
+      }
+      return true;
+    case 'reloadTasks':
+      if (typeof data === 'number') {
+        runLimit = data;
+        sendResponse({
+          result: 'ok',
+        });
+      } else {
+        sendResponse({
+          result: 'error',
+        });
       }
       return true;
     case 'testCode':
@@ -990,6 +1020,7 @@ chrome.storage.local.get(
     store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
     store.commit('setLastActiveTab', lastActiveTab);
     store.commit('setConfigs', configs);
+    runLimit = configs.internalExecutionLimit || 5;
     store.commit('setUnread', unread);
     store.commit('setNotifications', notifications);
     store.commit('setStages', stages);
