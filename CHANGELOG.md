@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/LightAPIs/Gloria-X/compare/v2.4.1...v2.5.0) (2021-06-20)
+
+
+### Features
+
+* **internal:** 添加支持内部设置的功能 ([b1b81fd](https://github.com/LightAPIs/Gloria-X/commit/b1b81fddca14df8bfd7d22b44f16e7ae80414e56))
+* **task:** 支持在任务列表中通过右键菜单移除任务 Stage 缓存 ([38de4e2](https://github.com/LightAPIs/Gloria-X/commit/38de4e24c26dc682a7b3fe161133e01a93c55630))
+
+
+### Bug Fixes
+
+* **popup:** 移除弹出窗口中多余加载的图标字体文件 ([20b062c](https://github.com/LightAPIs/Gloria-X/commit/20b062cffd8f74c60a85f235f282be536abeaf6d))
+
 ### [2.4.1](https://github.com/LightAPIs/Gloria-X/compare/v2.4.0...v2.4.1) (2021-06-10)
 
 
