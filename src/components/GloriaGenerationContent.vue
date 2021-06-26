@@ -346,7 +346,7 @@ export default defineComponent({
               if (err) {
                 this.result = err.message + '\n\n' + this.i18n('generationError');
               } else {
-                this.result = JSON.stringify(result, null, 2);
+                this.result = JSON.stringify(result, null, 2) || 'null';
                 this.next = true;
               }
             }

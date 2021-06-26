@@ -180,7 +180,7 @@ export default defineComponent({
                 if (err) {
                   this.testResult = err;
                 } else {
-                  this.testResult = JSON.stringify(result, null, 2);
+                  this.testResult = JSON.stringify(result, null, 2) || 'null';
                 }
               }
             }

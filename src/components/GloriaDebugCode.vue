@@ -130,7 +130,7 @@ export default defineComponent({
           res => {
             if (res) {
               const { result, err } = res;
-              this.result = JSON.stringify(result, null, 2);
+              this.result = JSON.stringify(result, null, 2) || 'null';
 
               if (err) {
                 this.error = err.message + '\n\n' + err.stack;
@@ -144,7 +144,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style>
 .error {
   margin-top: 15px;
 }
