@@ -36,6 +36,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import GloriaSearchInput from './GloriaSearchInput.vue';
+import { ElTable } from 'element-plus';
 
 export default defineComponent({
   name: 'GloriaTaskSelector',
@@ -53,7 +54,7 @@ export default defineComponent({
     },
     tableData: {
       type: Array,
-      default: function () {
+      default() {
         return [];
       },
     },
@@ -86,8 +87,7 @@ export default defineComponent({
       this.$emit('on-selection', this.selectData);
     },
     toggleSelection() {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (this.$refs.multipleTable as any).clearSelection();
+      (this.$refs.multipleTable as InstanceType<typeof ElTable>).clearSelection();
     },
   },
 });
