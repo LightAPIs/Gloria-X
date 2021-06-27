@@ -51,6 +51,7 @@
 - [高级选项](#高级选项)
   - [调试任务代码](#调试任务代码)
   - [观察内部状态](#观察内部状态)
+  - [自定义请求头信息](#自定义请求头信息)
   - [通知 Reducer](#通知-Reducer)
     - [Reducer 介绍](#Reducer-介绍)
     - [工作方式](#工作方式)
@@ -235,6 +236,32 @@ _当然这两个任务并没有任何实际意义，仅供用来测试参考两�
 
 你可以在 [XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest) 里查看 `XHR` 的使用方法。与 `fetch` 不同的时，Gloria-X 环境下的 `XHR` 不会自动附加目标 url 的 Cookie，也就无法获取到目标网站上的登录状态了。
 
+若你打算使用 `XHR`，你可能需要在任务代码中使用一个相类似的 `Promise` 封装方法：
+
+```javascript
+// Encapsulation method
+function ajax(url, method = 'GET', headers = []) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    headers.forEach(head => {
+      xhr.setRequestHeader(head.name, head.value);
+    });
+    xhr.responseType = 'json';
+    xhr.onload = res => {
+      resolve(res.target.response);
+    };
+    xhr.onerror = res => {
+      reject(res.target.response);
+    };
+    xhr.send();
+  });
+}
+
+// Use ajax
+ajax('...').then( ... ).catch( ... )
+```
+
 #### 访问 URL 示例
 
 比如创建一个检测本项目的最新版本的简单观察任务：
@@ -363,6 +390,16 @@ Gloria-X 和 Gloria 同样内置了一些常用的模块，并可以通过 `impo
 在这里，你可以观察到"通知记录"、"Gloria-X 任务" 和 "STAGES" 组件在内部储存的实时状态。
 
 同时在页面底部还提供了一些清理功能的按钮。
+
+### 自定义请求头信息
+
+> _v2.6.0+_
+
+可以在扩展程序选项页面的"请求头信息"分页中找到自定义请求头信息的面板。
+
+在这里，你可以手动为一些被[禁止修改的消息首部](https://developer.mozilla.org/zh-CN/docs/Glossary/Forbidden_header_name)提供值。
+
+_注：此处的设定会覆盖扩展程序内部自动附加的一些同名值，如 `Cookie` 等。_
 
 ### 通知 Reducer
 

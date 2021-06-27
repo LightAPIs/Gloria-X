@@ -49,6 +49,7 @@ It can capture the new content on the website regularly and pop up notifications
 - [Advanced options](#Advanced-options)
   - [Debug task code](#Debug-task-code)
   - [Observe the internal state](#Observe-the-internal-state)
+  - [Custom RequestHeaders](#Custom_RequestHeaders)
   - [Reducer](#Reducer)
     - [Introduction](#Introduction)
     - [Operation mode](#Operation-mode)
@@ -229,6 +230,32 @@ You can check the usage of `fetch` in the [Fetch API](https://developer.mozilla.
 
 You can check the usage of `XHR` in [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest). Unlike `fetch`, `XHR` in Gloria-X does not automatically append Cookie to the target URL and can not get login status on the target website.
 
+If you plan to use `XHR`, you may need to use a similar `Promise` encapsulation method in your task code:
+
+```javascript
+// Encapsulation method
+function ajax(url, method = 'GET', headers = []) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    headers.forEach(head => {
+      xhr.setRequestHeader(head.name, head.value);
+    });
+    xhr.responseType = 'json';
+    xhr.onload = res => {
+      resolve(res.target.response);
+    };
+    xhr.onerror = res => {
+      reject(res.target.response);
+    };
+    xhr.send();
+  });
+}
+
+// Use ajax
+ajax('...').then( ... ).catch( ... )
+```
+
 #### Access URL example
 
 For example, create a simple Observation task that detects the latest version of this project:
@@ -368,6 +395,16 @@ The panel for observing the internal state can be found in the "Internal state" 
 Here, you can observe the real-time state of "Notification Records", "Gloria-X tasks" and "STAGES" components stored internally.
 
 At the same time, buttons for cleaning up are provided at the bottom of the page.
+
+### Custom RequestHeaders
+
+> _v2.6.0+_
+
+The panel for Custom RequestHeaders can be found in the "RequestHeaders" tab of the extension options page.
+
+Here, you can manually supply values for some message headers that [Forbidden header name](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name).
+
+_Note: The settings here override some of the same name values that are automatically attached within the extension, such as `Cookie`._
 
 ### Reducer
 
