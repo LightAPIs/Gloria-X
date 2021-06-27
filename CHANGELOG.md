@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/LightAPIs/Gloria-X/compare/v2.5.0...v2.6.0) (2021-06-27)
+
+
+### Features
+
+* **request-headers:** 添加支持手动指定请求头信息的功能 ([05e2bf5](https://github.com/LightAPIs/Gloria-X/commit/05e2bf5802fde59eba91bf903d76ce132c6e2660))
+
+
+### Bug Fixes
+
+* **background:** 修复从旧版本更新后可能会出现无法读取数据的错误 ([ea8ee7c](https://github.com/LightAPIs/Gloria-X/commit/ea8ee7c2f78ca8281c767129fa0a54be33cc9798))
+* **test-result:** 修复在新版本 vue 下传递 undefined 导致出错的问题 ([1e5f0ad](https://github.com/LightAPIs/Gloria-X/commit/1e5f0ade206d871d291e572e4aca0a3bdad40c1f))
+
 ## [2.5.0](https://github.com/LightAPIs/Gloria-X/compare/v2.4.1...v2.5.0) (2021-06-20)
 
 
