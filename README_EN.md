@@ -49,7 +49,7 @@ It can capture the new content on the website regularly and pop up notifications
 - [Advanced options](#Advanced-options)
   - [Debug task code](#Debug-task-code)
   - [Observe the internal state](#Observe-the-internal-state)
-  - [Custom RequestHeaders](#Custom_RequestHeaders)
+  - [Custom RequestHeaders](#Custom-RequestHeaders)
   - [Reducer](#Reducer)
     - [Introduction](#Introduction)
     - [Operation mode](#Operation-mode)
