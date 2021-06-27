@@ -1,6 +1,6 @@
 import { now } from '@/commons/calc';
 import ChromeStorage from './storage';
-import { defaultTask, normalizeTask } from './basic';
+import { defaultTask, defaultRule, normalizeTask, normalizeRule } from './basic';
 
 const chromeStorage = new ChromeStorage();
 const STAGE_LIMIT = 200;
@@ -223,6 +223,68 @@ export default {
       }
     }
     dis && chromeStorage.setTasks(state.tasks, `disconnect task -> "${id}".`);
+  },
+
+  setRules(state: myStore.VuexState, newRules: myStore.RequestHeadersRule[]): void {
+    if (newRules && Array.isArray(newRules) && newRules.length > 0) {
+      state.rules = [...newRules];
+    } else {
+      state.rules = [];
+    }
+  },
+  mergeRules(state: myStore.VuexState, newRules: myStore.RequestHeadersRule[]): void {
+    if (Array.isArray(newRules)) {
+      const length = state.rules.length;
+      for (let i = 0; i < newRules.length; i++) {
+        let merge = false;
+        for (let j = 0; j < length; j++) {
+          if (newRules[i].id === state.rules[j].id) {
+            Object.assign(state.rules[j], normalizeRule(newRules[i]));
+            merge = true;
+            break;
+          }
+        }
+        !merge && state.rules.push(Object.assign(defaultRule(), normalizeRule(newRules[i])));
+      }
+
+      chromeStorage.setRules(state.rules, 'merge rules.');
+    }
+  },
+  updateRule(state: myStore.VuexState, newRule: myStore.RequestHeadersRule): void {
+    if (newRule) {
+      let upd = false;
+      const { id, domain, headers } = newRule;
+      for (let i = 0; i < state.rules.length; i++) {
+        if (id === state.rules[i].id) {
+          state.rules[i].domain = domain;
+          state.rules[i].headers = headers;
+          upd = true;
+          break;
+        }
+      }
+
+      if (!upd) {
+        state.rules.push({
+          id,
+          domain,
+          headers,
+        });
+      }
+
+      chromeStorage.setRules(state.rules, `update rule -> "${id}".`);
+    }
+  },
+  removeRule(state: myStore.VuexState, ruleId: string): void {
+    let del = false;
+    for (let i = 0; i < state.rules.length; i++) {
+      if (ruleId === state.rules[i].id) {
+        state.rules.splice(i, 1);
+        del = true;
+        break;
+      }
+    }
+
+    del && chromeStorage.setRules(state.rules, `remove rule -> "${ruleId}".`);
   },
 
   setStages(state: myStore.VuexState, newStages: myStore.GloriaStage[]): void {

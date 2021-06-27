@@ -1,6 +1,6 @@
 {
   "extensionDescription": {
-    "message": "可編程網站訊息聚合器"
+    "message": "可程式化網站通知聚合器"
   },
   "cancelText": {
     "message": "取消"
@@ -12,7 +12,7 @@
     "message": "正在渲染中，請稍候 ..."
   },
   "popupTaskLabel": {
-    "message": "任務列表"
+    "message": "任務清單"
   },
   "popupTaskAdd": {
     "message": "新增任務"
@@ -21,7 +21,7 @@
     "message": "分享任務"
   },
   "popupTaskBook": {
-    "message": "幫助文檔"
+    "message": "使用指南"
   },
   "popupTaskEdit": {
     "message": "編輯"
@@ -54,7 +54,7 @@
     "message": "總執行次數： "
   },
   "popupTaskPushCount": {
-    "message": "總推送訊息數： "
+    "message": "總推送通知數： "
   },
   "popupTaskTriggerInterval": {
     "message": "時間間隔： "
@@ -72,7 +72,7 @@
     "message": "手動關閉"
   },
   "popupTaskNeedInteractionText": {
-    "message": "彈出的訊息需要手動關閉"
+    "message": "彈出的通知需要手動關閉"
   },
   "popupTaskOnTimeModeTag": {
     "message": "準時模式"
@@ -111,10 +111,10 @@
     "message": "為您的任務取一個好聽的名字吧 ^-^"
   },
   "popupTaskFormCodeLabel": {
-    "message": "任務程式碼"
+    "message": "任務代碼"
   },
   "popupTaskFormCodePlaceholder": {
-    "message": "請輸入任務程式碼"
+    "message": "請輸入任務代碼"
   },
   "popupTaskFormType": {
     "message": "任務類型"
@@ -150,19 +150,19 @@
     "message": "請輸入任務名稱"
   },
   "popupTaskRulesCode": {
-    "message": "任務程式碼是必需的"
+    "message": "任務代碼是必需的"
   },
   "popupTaskErrorEdit": {
     "message": "內部錯誤，沒有找到相應的 id"
   },
   "popupNotificationLabel": {
-    "message": "訊息記錄"
+    "message": "通知記錄"
   },
   "popupNotificationAll": {
-    "message": "所有訊息"
+    "message": "所有通知"
   },
   "popupNotificationLater": {
-    "message": "稍後查閱"
+    "message": "稍後檢閱"
   },
   "popupNotificationFrom": {
     "message": "來自： "
@@ -180,31 +180,31 @@
     "message": "複製任務名稱"
   },
   "popupContextTaskCopyNameCompleted": {
-    "message": "已成功將任務名稱複製到剪貼板中"
+    "message": "已成功將任務名稱複製到剪貼簿中"
   },
   "popupContextTaskCopyCode": {
-    "message": "複製任務程式碼"
+    "message": "複製任務代碼"
   },
   "popupContextTaskCopyCodeCompleted": {
-    "message": "已成功將任務程式碼複製到剪貼板中"
+    "message": "已成功將任務代碼複製到剪貼簿中"
   },
   "popupContextTaskCopyId": {
     "message": "複製任務 ID"
   },
   "popupContextTaskCopyIdCompleted": {
-    "message": "已成功將任務 ID 複製到剪貼板中"
+    "message": "已成功將任務 ID 複製到剪貼簿中"
   },
   "popupContextTaskOnTimeEnable": {
     "message": "啟用準時模式"
   },
   "popupContextTaskOnTimeDisable": {
-    "message": "禁用準時模式"
+    "message": "停用準時模式"
   },
   "popupContextTaskNeedInteractionEnable": {
     "message": "啟用手動關閉"
   },
   "popupContextTaskNeedInteractionDisable": {
-    "message": "禁用手動關閉"
+    "message": "停用手動關閉"
   },
   "popupContextTaskRemoveStage": {
     "message": "移除 Stage 快取"
@@ -240,79 +240,79 @@
     "message": "複製此分類名稱"
   },
   "popupContextNotificationMenuCopyCompleted": {
-    "message": "已成功將分類名稱複製到剪貼板中"
+    "message": "已成功將分類名稱複製到剪貼簿中"
   },
   "popupContextNotificationMenuOpenLater": {
-    "message": "開啓所有稍後查閱的訊息"
+    "message": "開啓所有稍後檢閱的通知"
   },
   "popupContextNotificationMenuCheckedLater": {
-    "message": "移除所有稍後查閱標識"
+    "message": "移除所有稍後檢閱標識"
   },
   "popupContextNotificationMenuClearAll": {
-    "message": "清除所有訊息記錄"
+    "message": "清除所有通知記錄"
   },
   "popupContextNotificationMenuMarkLater": {
-    "message": "將分類下所有訊息標識為稍後查閱"
+    "message": "將分類下所有通知標識為稍後檢閱"
   },
   "popupContextNotificationMenuRemoveLater": {
-    "message": "移除分類下所有訊息的稍後查閱標識"
+    "message": "移除分類下所有通知的稍後檢閱標識"
   },
   "popupContextNotificationMenuClear": {
-    "message": "清除此分類下的所有訊息記錄"
+    "message": "清除此分類下的所有通知記錄"
   },
   "popupContextNotificationItemOpenLink": {
     "message": "新增前景分頁開啓網址"
   },
   "popupContextNotificationItemCopyLink": {
-    "message": "複製訊息網址"
+    "message": "複製通知網址"
   },
   "popupContextNotificationItemCopyLinkCompleted": {
-    "message": "已成功將訊息網址複製到剪貼板中"
+    "message": "已成功將通知網址複製到剪貼簿中"
   },
   "popupContextNotificationItemCopyTitle": {
-    "message": "複製訊息標題"
+    "message": "複製通知標題"
   },
   "popupContextNotificationItemCopyTitleCompleted": {
-    "message": "已成功將訊息標題複製到剪貼板中"
+    "message": "已成功將通知標題複製到剪貼簿中"
   },
   "popupContextNotificationItemCopyMessage": {
-    "message": "複製訊息內容"
+    "message": "複製通知內容"
   },
   "popupContextNotificationItemCopyMessageCompleted": {
-    "message": "已成功將訊息內容複製到剪貼板中"
+    "message": "已成功將通知內容複製到剪貼簿中"
   },
   "popupContextNotificationItemCopyIconUrl": {
-    "message": "複製訊息圖示地址"
+    "message": "複製通知圖示地址"
   },
   "popupContextNotificationItemCopyIconUrlCompleted": {
-    "message": "已成功將訊息圖示地址複製到剪貼板中"
+    "message": "已成功將通知圖示地址複製到剪貼簿中"
   },
   "popupContextNotificationItemCopyImageUrl": {
-    "message": "複製訊息圖像地址"
+    "message": "複製通知圖片地址"
   },
   "popupContextNotificationItemCopyImageUrlCompleted": {
-    "message": "已成功將訊息圖像地址複製到剪貼板中"
+    "message": "已成功將通知圖片地址複製到剪貼簿中"
   },
   "popupContextNotificationItemCopyId": {
-    "message": "複製訊息 ID"
+    "message": "複製通知 ID"
   },
   "popupContextNotificationItemCopyIdCompleted": {
-    "message": "已成功將訊息 ID 複製到剪貼板中"
+    "message": "已成功將通知 ID 複製到剪貼簿中"
   },
   "popupContextNotificationItemMarkLater": {
-    "message": "將訊息標識為稍後查閱"
+    "message": "將通知標識為稍後檢閱"
   },
   "popupContextNotificationItemRemoveLater": {
-    "message": "移除訊息的稍後查閱標識"
+    "message": "移除通知的稍後檢閱標識"
   },
   "popupContextNotificationItemDelete": {
-    "message": "刪除此項訊息記錄"
+    "message": "刪除此項通知記錄"
   },
   "popupContextNotificationItemCopyError": {
-    "message": "無法將內容複製到剪貼板"
+    "message": "無法將內容複製到剪貼簿"
   },
   "searchTaskPlaceholder": {
-    "message": "輸入關鍵字對任務進行過濾"
+    "message": "輸入關鍵字對任務進行篩選"
   },
   "searchTaskFilterAll": {
     "message": "全部"
@@ -321,7 +321,7 @@
     "message": "已啟用的"
   },
   "searchTaskFilterDisabled": {
-    "message": "已禁用的"
+    "message": "已停用的"
   },
   "searchTaskFilterError": {
     "message": "存在錯誤"
@@ -333,22 +333,25 @@
     "message": "本地創建"
   },
   "searchNotificationPlaceholder": {
-    "message": "輸入關鍵字對訊息進行過濾"
+    "message": "輸入關鍵字對通知進行篩選"
   },
   "optionsTitle": {
     "message": "選項"
   },
   "optionsSettingsMenu": {
-    "message": "常規設定"
+    "message": "一般設定"
   },
   "optionsDebugMenu": {
-    "message": "任務調試"
+    "message": "任務偵錯"
   },
   "optionsStateMenu": {
     "message": "內部狀態"
   },
+  "optionsHeadersMenu": {
+    "message": "要求標頭"
+  },
   "optionsReducerMenu": {
-    "message": "訊息 Reducer"
+    "message": "通知 Reducer"
   },
   "optionsAboutMenu": {
     "message": "關於 Gloria-X"
@@ -363,7 +366,7 @@
     "message": "跟隨系統"
   },
   "settingsAppearanceInterfaceLight": {
-    "message": "明亮模式"
+    "message": "淺色模式"
   },
   "settingsAppearanceInterfaceDark": {
     "message": "深色模式"
@@ -372,7 +375,7 @@
     "message": "任務"
   },
   "settingsTaskAutoCheckUpdate": {
-    "message": "自動檢查任務程式碼更新"
+    "message": "自動檢查任務代碼更新"
   },
   "settingsTaskAutoCheckUpdateTip": {
     "message": "僅適用於通過 https://gloria.pub/ 安裝的任務"
@@ -399,7 +402,7 @@
     "message": "僅針對新創建或安裝的任務"
   },
   "settingsTaskOnTop": {
-    "message": "新增的任務位於任務列表的最上方"
+    "message": "新增的任務位於任務清單的最上方"
   },
   "settingsTaskTriggerInterval": {
     "message": "定時任務的預設執行間隔："
@@ -408,67 +411,67 @@
     "message": "每日任務的預設最早執行時間："
   },
   "settingsTaskShowSearchInput": {
-    "message": "在任務列表的頂部顯示任務篩選輸入框"
+    "message": "在任務清單的頂部顯示任務篩選輸入框"
   },
   "settingsTaskAutoRemoveStage": {
-    "message": "在移除任務時，自動移除 STAGES 組件中其對應的訊息快取"
+    "message": "在移除任務時，自動移除 STAGES 組件中其對應的通知快取"
   },
   "settingsNotification": {
-    "message": "訊息"
+    "message": "通知"
   },
   "settingsImplicitPush": {
-    "message": "隱式推送訊息"
+    "message": "隱式推送通知"
   },
   "settingsImplicitPushTip": {
-    "message": "只將新訊息記錄在訊息歷史中，不彈出訊息提示"
+    "message": "只將新通知記錄在通知歷史中，不彈出通知提示"
   },
   "settingsNotificationSound": {
-    "message": "允許訊息發出提示音效"
+    "message": "允許通知發出提示音效"
   },
   "settingsNotificationCustomSound": {
-    "message": "使用自定義的訊息提示音效"
+    "message": "使用自定義的通知提示音效"
   },
   "settingsNotificationCustomSoundTip": {
-    "message": "如果在開啟允許訊息發出提示音效後，推送訊息時依舊沒有提示音效，則需要開啟該選項。"
+    "message": "如果在開啟允許通知發出提示音效後，推送通知時依舊沒有提示音效，則需要開啟該選項。"
   },
   "settingsNotificationLaterMark": {
-    "message": "支援在訊息提醒中標識稍後查閱訊息"
+    "message": "支援在通知提醒中標識稍後檢閱通知"
   },
   "settingsNotificationLaterMarkTip": {
-    "message": "僅針對提供了 url 的訊息"
+    "message": "僅針對提供了 url 的通知"
   },
   "settingsNotificationDetectIcon": {
     "message": "允許自動檢測並獲取網站圖示"
   },
   "settingsNotificationDisableError": {
-    "message": "禁用任務執行出錯的訊息"
+    "message": "停用任務執行出錯的通知"
   },
   "settingsNotificationDisableErrorTip": {
     "message": "不建議開啓"
   },
   "settingsNotificationShowUrl": {
-    "message": "在訊息記錄中顯示訊息的網址"
+    "message": "在通知記錄中顯示通知的網址"
   },
   "settingsNotificationShowUrlTip": {
-    "message": "如果訊息擁有網址"
+    "message": "如果通知擁有網址"
   },
   "settingsNotificationLazyLoading": {
-    "message": "對訊息記錄里的訊息圖像啟用懶載入"
+    "message": "對通知記錄里的通知圖片啟用延遲加載"
   },
   "settingsNotificationShowSearchInput": {
-    "message": "在訊息記錄的頂部顯示訊息篩選輸入框"
+    "message": "在通知記錄的頂部顯示通知篩選輸入框"
   },
   "settingsNotificationShowMenuCount": {
-    "message": "在訊息記錄中顯示分類數量"
+    "message": "在通知記錄中顯示分類數量"
   },
   "settingsNotificationShowBadge": {
-    "message": "在擴充功能圖示上顯示未讀訊息數量標記"
+    "message": "在擴充功能圖示上顯示未讀通知數量標記"
   },
   "settingsNotificationShowBadgeFirefox": {
-    "message": "在附加元件圖示上顯示未讀訊息數量標記"
+    "message": "在附加元件圖示上顯示未讀通知數量標記"
   },
   "settingsNotificationMaxinum": {
-    "message": "訊息記錄數量上限："
+    "message": "通知記錄數量上限："
   },
   "settingsClear": {
     "message": "清理功能"
@@ -477,10 +480,10 @@
     "message": "清理完成！"
   },
   "settingsClearNotifications": {
-    "message": "清除訊息記錄"
+    "message": "清除通知記錄"
   },
   "settingsClearNotificationsTip": {
-    "message": "確認要清理所有訊息的歷史記錄嗎？"
+    "message": "確認要清理所有通知的歷史記錄嗎？"
   },
   "settingsClearTasks": {
     "message": "清除所有任務"
@@ -492,19 +495,19 @@
     "message": "清除所有 Stages"
   },
   "settingsClearStagesTip": {
-    "message": "確認要清理所有任務的訊息快取嗎？"
+    "message": "確認要清理所有任務的通知快取嗎？"
   },
   "settingsClearExpiredStages": {
-    "message": "清除過期 Stages"
+    "message": "清除期滿的 Stages"
   },
   "settingsClearExpiredStagesTip": {
-    "message": "確認要清理缺失相對應任務的訊息快取嗎？"
+    "message": "確認要清理缺失相對應任務的通知快取嗎？"
   },
   "settingsClearCaches": {
     "message": "清除 Caches"
   },
   "settingsClearCachesTip": {
-    "message": "確認要清理所有網路請求快取嗎？"
+    "message": "確認要清理所有網路要求快取嗎？"
   },
   "settingsInternal": {
     "message": "內部設定"
@@ -513,7 +516,7 @@
     "message": "在擴充功能啟動時延遲執行任務"
   },
   "settingsInternalStartDelayTip": {
-    "message": "如果偶爾在擴充功能啟動時遇到崩潰的情況，可以嘗試開啟此選項。"
+    "message": "如果不希望在啟動瀏覽器時直接彈出通知，可以開啟該選項。"
   },
   "settingsInternalDelayTime": {
     "message": "延遲時間(秒)： "
@@ -525,22 +528,22 @@
     "message": "0 表示不設定上限。"
   },
   "settingsInternalReload": {
-    "message": "重載任務"
+    "message": "重新載入任務"
   },
   "settingsInternalReloadTip": {
-    "message": "(需要重載任務以使內部設定立即生效)"
+    "message": "(需要重新載入任務以使內部設定立即生效)"
   },
   "settintsInternalReloadSuccess": {
-    "message": "重載任務完成，新的內部設定立即生效！"
+    "message": "重新載入任務完成，新的內部設定立即生效！"
   },
   "settingsInternalReloadError": {
-    "message": "重載任務失敗。可能需要重新載入擴充功能或重啟瀏覽器，內部設定才會生效！"
+    "message": "重新載入任務失敗。可能需要重新載入擴充功能或重啟瀏覽器，內部設定才會生效！"
   },
-  "settingsImportExport": {
-    "message": "匯入/匯出"
+  "settingsTasksFile": {
+    "message": "任務的匯入/匯出"
   },
   "settingsImport": {
-    "message": "匯入任務"
+    "message": "從檔案中匯入"
   },
   "settingsImoprtNoFile": {
     "message": "沒有選擇檔案"
@@ -558,49 +561,49 @@
     "message": "未知錯誤"
   },
   "settingsImportSuccess": {
-    "message": "匯入任務完成"
+    "message": "匯入數據完成"
   },
   "settingsImportTooltip": {
-    "message": "從 json 或 txt 文件中匯入任務 (支援從 Gloria 所匯出的任務)"
+    "message": "從 json 或 txt 檔案中匯入數據"
   },
   "settingsExportJson": {
-    "message": "明文匯出任務"
+    "message": "明文匯出至檔案"
   },
   "settingsExportJsonTooltip": {
-    "message": "匯出任務為 json 文件 (支援匯入到 Gloria 中)"
+    "message": "匯出數據為 json 檔案"
   },
   "settingsExportJsonSuccess": {
-    "message": "成功匯出 json 文件"
+    "message": "成功匯出 json 檔案"
   },
   "settingsExportTextSuccess": {
-    "message": "成功匯出 txt 文件"
+    "message": "成功匯出 txt 檔案"
   },
   "settingsExportText": {
-    "message": "加密匯出任務"
+    "message": "加密匯出至檔案"
   },
   "settingsExportTextTooltip": {
-    "message": "匯出任務為 txt 文件"
+    "message": "匯出數據為 txt 檔案"
   },
   "settingsTableName": {
-    "message": "任務名稱"
+    "message": "名稱"
   },
   "settingsTableSearchPlaceholder": {
     "message": "輸入關鍵字搜尋"
   },
   "settingsTableOk": {
-    "message": "確認"
+    "message": "確定"
   },
   "settingsTableToggle": {
-    "message": "取消選擇"
+    "message": "取消選取"
   },
   "debugTest": {
-    "message": "測試任務程式碼"
+    "message": "測試任務代碼"
   },
   "debugTestCode": {
     "message": "測試"
   },
   "debugTestNoMsgCode": {
-    "message": "測試 (無訊息)"
+    "message": "測試 (無通知)"
   },
   "debugTestCreate": {
     "message": "新增任務"
@@ -609,10 +612,10 @@
     "message": "已完成創建新的任務！"
   },
   "debugCodeLabel": {
-    "message": "測試程式碼："
+    "message": "測試代碼："
   },
   "debugCodePlaceholder": {
-    "message": "請輸入測試的任務程式碼"
+    "message": "請輸入測試的任務代碼"
   },
   "debugResult": {
     "message": "測試結果："
@@ -621,19 +624,19 @@
     "message": "此處顯示測試結果"
   },
   "debugError": {
-    "message": "程式碼碼錯誤："
+    "message": "代碼碼錯誤："
   },
   "debugErrorPlaceholder": {
-    "message": "此處顯示程式碼錯誤"
+    "message": "此處顯示代碼錯誤"
   },
   "stateLabel": {
     "message": "內部狀態"
   },
   "stateNotifications": {
-    "message": "訊息記錄："
+    "message": "通知記錄："
   },
   "stateNotificationsPlaceholder": {
-    "message": "此處顯示訊息記錄的內部狀態"
+    "message": "此處顯示通知記錄的內部狀態"
   },
   "stateTasks": {
     "message": "Gloria-X 任務："
@@ -645,7 +648,67 @@
     "message": "STAGES:"
   },
   "stateStagesPlaceholder": {
-    "message": "此處顯示所有訊息的內部快取情況"
+    "message": "此處顯示所有通知的內部快取情況"
+  },
+  "headersCreateRule": {
+    "message": "新增"
+  },
+  "headersTable": {
+    "message": "要求標頭清單"
+  },
+  "headersTableDomain": {
+    "message": "網域"
+  },
+  "headersTableNameList": {
+    "message": "標頭清單"
+  },
+  "headersTableOperation": {
+    "message": "操作"
+  },
+  "headersTableEdit": {
+    "message": "編緝"
+  },
+  "headersTableDelete": {
+    "message": "刪除"
+  },
+  "headersDialogEdit": {
+    "message": "編緝資訊"
+  },
+  "headersDialogAdd": {
+    "message": "新增資訊"
+  },
+  "headersDialogDomainPlacehoder": {
+    "message": "請輸入匹配的網域"
+  },
+  "headersDialogHeader": {
+    "message": "標頭"
+  },
+  "headersDialogNamePlacehoder": {
+    "message": "請輸入標頭名稱"
+  },
+  "headersDialogValuePlacehoder": {
+    "message": "請輸入值內容"
+  },
+  "headersDialogDelete": {
+    "message": "刪除"
+  },
+  "headersDialogSubmit": {
+    "message": "提交"
+  },
+  "headersDialogAddHeader": {
+    "message": "新增標頭"
+  },
+  "headersRulesDomain": {
+    "message": "請輸入正確的網域"
+  },
+  "headersDeleteTipSuccess": {
+    "message": "已成功移除要求標頭。"
+  },
+  "headersDeleteTipError": {
+    "message": "移除要求標頭失敗！"
+  },
+  "settingsRulesFile": {
+    "message": "要求標頭的匯入/匯出"
   },
   "reducerLabel": {
     "message": "Reducer 函數："
@@ -654,7 +717,7 @@
     "message": "在使用 Reducer 函數前，須知曉其帶來的好處及風險。"
   },
   "reducerLink": {
-    "message": "詳細資訊"
+    "message": "詳細資料"
   },
   "reducerTestContentLabel": {
     "message": "測試內容 (JSON)："
@@ -684,7 +747,7 @@
     "message": "測試"
   },
   "reducerTestNoMsg": {
-    "message": "測試 (無訊息)"
+    "message": "測試 (無通知)"
   },
   "reducerTestError": {
     "message": "傳入的測試對象不正確"
@@ -693,19 +756,19 @@
     "message": "支援"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X 是一款免費開放原始碼的可編程網站訊息聚合器，可以透過自定義的 JavaScript 程式碼任務實現抓取網站上的新內容並彈出訊息提醒，並且絕不會收集發送使用者的任何隱私訊息。"
+    "message": "Gloria-X 是一款免費開放原始碼的可程式化網站通知聚合器，可以透過自定義的 JavaScript 代碼任務實現定時抓取網站上的新內容並彈出通知提醒，並且絕不會收集發送使用者的任何隱私資訊。"
   },
   "aboutSourceCode": {
-    "message": "Gloria-X 原始碼 (MIT License) 和說明頁面"
+    "message": "Gloria-X 原始碼 (MIT License) 和使用指南"
   },
   "aboutIssues": {
-    "message": "問題反饋"
+    "message": "意見反應"
   },
   "aboutGuide": {
     "message": "Gloria 中文指南"
   },
   "aboutShare": {
-    "message": "任務程式碼分享網站"
+    "message": "任務代碼分享網站"
   },
   "aboutThanks": {
     "message": "鳴謝"
@@ -739,7 +802,7 @@
     }
   },
   "notificationTaskTitle": {
-    "message": "Gloria-X 訊息"
+    "message": "Gloria-X 通知"
   },
   "notificationTaskInstall": {
     "message": "安裝新任務: \"$task$\"",
@@ -760,7 +823,7 @@
     }
   },
   "notificationTaskUninstall": {
-    "message": "卸載任務: \"$url$\"",
+    "message": "解除安裝任務: \"$url$\"",
     "placeholders": {
       "url": {
         "content": "$1",
@@ -772,7 +835,7 @@
     "message": "測試"
   },
   "notificationLater": {
-    "message": "稍後查閱"
+    "message": "稍後檢閱"
   },
   "notificationCodeUpdate": {
     "message": "檢測到任務\"$task$\"存在更新",
@@ -784,7 +847,7 @@
     }
   },
   "notificationCodeUpdateTip": {
-    "message": "出於安全考慮，Gloria-X 不會提供自動更新任務程式碼的功能。"
+    "message": "出於安全考慮，Gloria-X 不會提供自動更新任務代碼的功能。"
   },
   "notificationCodeUpdateGo": {
     "message": "前往任務頁面更新"
@@ -805,13 +868,13 @@
     "message": "終止該任務"
   },
   "generationUsage": {
-    "message": "提示：使用滑鼠左鍵單擊點選網頁內元素，可以按住 Ctrl 鍵進行多選。"
+    "message": "提示：使用滑鼠左鍵單擊點選網頁內元素，可以按住 Ctrl 鍵進行多重選擇。"
   },
   "generationStep1": {
     "message": "選取元素"
   },
   "generationStep2": {
-    "message": "生成程式碼"
+    "message": "生成代碼"
   },
   "generationStep3": {
     "message": "創建任務"
@@ -820,7 +883,7 @@
     "message": "最小化"
   },
   "generationRestore": {
-    "message": "恢復"
+    "message": "還原"
   },
   "generationLeft": {
     "message": "浮動於左側"
@@ -844,19 +907,19 @@
     }
   },
   "generationSelectionTitle": {
-    "message": "可選，訊息的標題"
+    "message": "可選，通知的標題"
   },
   "generationSelectionIconUrl": {
-    "message": "可選，訊息的圖示"
+    "message": "可選，通知的圖示"
   },
   "generationSelectionUrl": {
-    "message": "可選，點擊訊息開啓的網址"
+    "message": "可選，點擊通知開啓的網址"
   },
   "generationSelectionSubmit": {
-    "message": "生成任務程式碼"
+    "message": "生成任務代碼"
   },
   "generationTest": {
-    "message": "測試任務程式碼"
+    "message": "測試任務代碼"
   },
   "generationLast": {
     "message": "上一步"
@@ -865,10 +928,10 @@
     "message": "下一步"
   },
   "generationNextTip": {
-    "message": "僅任務程式碼測試成功才能執行下一步"
+    "message": "僅任務代碼測試成功才能執行下一步"
   },
   "generationCode": {
-    "message": "任務程式碼："
+    "message": "任務代碼："
   },
   "generationError": {
     "message": "無法為所選網頁元素自動生成觀察任務，有可能因為它是基於 Ajax 等技術動態載入而來。"
@@ -886,10 +949,10 @@
     "message": "安裝失敗 (X)"
   },
   "injectInstalled": {
-    "message": "卸載任務 (X)"
+    "message": "解除安裝任務 (X)"
   },
   "injectUninstallFaild": {
-    "message": "卸載失敗 (X)"
+    "message": "解除安裝失敗 (X)"
   },
   "injectUpdate": {
     "message": "更新任務 (X)"

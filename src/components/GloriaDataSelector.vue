@@ -11,7 +11,7 @@
       @selection-change="handleSelectChange"
     >
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="name">
+      <el-table-column :prop="keyName">
         <template #header>
           <span>
             {{ i18n('settingsTableName') }}
@@ -39,11 +39,15 @@ import GloriaSearchInput from './GloriaSearchInput.vue';
 import { ElTable } from 'element-plus';
 
 export default defineComponent({
-  name: 'GloriaTaskSelector',
+  name: 'GloriaDataSelector',
   components: {
     GloriaSearchInput,
   },
   props: {
+    tableData: {
+      type: Array,
+      required: true,
+    },
     visible: {
       type: Boolean,
       default: false,
@@ -52,11 +56,9 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    tableData: {
-      type: Array,
-      default() {
-        return [];
-      },
+    keyName: {
+      type: String,
+      default: 'name',
     },
   },
   emits: ['close-selector', 'on-selection'],
@@ -71,8 +73,8 @@ export default defineComponent({
       this.$emit('close-selector');
     },
     tableRowClassName({ row }: unknown) {
-      const { search } = this;
-      if (!search || row.name.toLowerCase().includes(search.toLowerCase())) {
+      const { search, keyName } = this;
+      if (!search || row[keyName].toLowerCase().includes(search.toLowerCase())) {
         return '';
       }
       return 'gloria-row-hide';

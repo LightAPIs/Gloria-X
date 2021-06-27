@@ -12,6 +12,7 @@ class ChromeStorage {
   private lastActiveTab: (func: () => void) => void;
   private lastCheckTasksUpdate: (func: () => void) => void;
   private tasks: (func: () => void) => void;
+  private rules: (func: () => void) => void;
   private notifications: (func: () => void) => void;
   private stages: (func: () => void) => void;
   private configs: (func: () => void) => void;
@@ -47,6 +48,14 @@ class ChromeStorage {
     );
 
     this.tasks = debounce(
+      function (func) {
+        func();
+      },
+      ChromeStorage.WAIT_TIME,
+      ChromeStorage.OPTIONS
+    );
+
+    this.rules = debounce(
       function (func) {
         func();
       },
@@ -148,6 +157,19 @@ class ChromeStorage {
         },
         () => {
           this.consoleLog('#66CC66', message);
+        }
+      );
+    });
+  }
+
+  setRules(data: myStore.RequestHeadersRule[], message?: string): void {
+    this.rules(() => {
+      chrome.storage.local.set(
+        {
+          rules: toRaw(data),
+        },
+        () => {
+          this.consoleLog('#660066', message);
         }
       );
     });

@@ -7,6 +7,7 @@ import * as calc from '../commons/calc';
 import { v4 as uuid } from 'uuid';
 import {
   ElAside,
+  ElAutocomplete,
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElButton,
@@ -36,6 +37,7 @@ import {
   ElSwitch,
   ElTable,
   ElTableColumn,
+  ElTag,
   ElTooltip,
   ElTimePicker,
 } from 'element-plus';
@@ -44,10 +46,12 @@ const RouterSettings = () => import(/* webpackChunkName: "options-group" */ '../
 const RouterDebug = () => import(/* webpackChunkName: "options-group" */ '../router/RouterDebug.vue');
 const RouterState = () => import(/* webpackChunkName: "options-group" */ '../router/RouterState.vue');
 const RouterReducer = () => import(/* webpackChunkName: "options-group" */ '../router/RouterReducer.vue');
+const RouterHeaders = () => import(/* webpackChunkName: "options-group" */ '../router/RouterHeaders.vue');
 const RouterAbout = () => import(/* webpackChunkName: "options-group" */ '../router/RouterAbout.vue');
 
 const components = [
   ElAside,
+  ElAutocomplete,
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElButton,
@@ -77,6 +81,7 @@ const components = [
   ElSwitch,
   ElTable,
   ElTableColumn,
+  ElTag,
   ElTimePicker,
   ElTooltip,
 ];
@@ -96,6 +101,11 @@ const routes = [
     path: '/state',
     name: 'RouterState',
     component: RouterState,
+  },
+  {
+    path: '/headers',
+    name: 'RouterHeaders',
+    component: RouterHeaders,
   },
   {
     path: '/reducer',

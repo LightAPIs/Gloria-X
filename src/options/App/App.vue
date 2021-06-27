@@ -37,6 +37,8 @@ export default defineComponent({
       activeIndex.value = 'debug';
     } else if (hash.includes('#/state')) {
       activeIndex.value = 'state';
+    } else if (hash.includes('#/headers')) {
+      activeIndex.value = 'headers';
     } else if (hash.includes('#/reducer')) {
       activeIndex.value = 'reducer';
     } else if (hash.includes('#/about')) {

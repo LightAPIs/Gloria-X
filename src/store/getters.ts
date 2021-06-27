@@ -176,4 +176,15 @@ export default {
     }
     return active;
   },
+  ruleInfo: (state: myStore.VuexState) => (ruleId: string): myStore.RequestHeadersRule | null => {
+    let info = null;
+    const { rules } = state;
+    for (const rule of rules) {
+      if (rule.id === ruleId) {
+        info = rule;
+        break;
+      }
+    }
+    return info;
+  },
 };

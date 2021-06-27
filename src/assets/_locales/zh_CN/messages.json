@@ -18,10 +18,10 @@
     "message": "添加任务"
   },
   "popupTaskShare": {
-    "message": "分享任务"
+    "message": "共享任务"
   },
   "popupTaskBook": {
-    "message": "帮助文档"
+    "message": "使用指南"
   },
   "popupTaskEdit": {
     "message": "编辑"
@@ -312,7 +312,7 @@
     "message": "无法将内容复制到剪贴板"
   },
   "searchTaskPlaceholder": {
-    "message": "输入关键字对任务进行过滤"
+    "message": "输入关键字对任务进行筛选"
   },
   "searchTaskFilterAll": {
     "message": "全部"
@@ -333,7 +333,7 @@
     "message": "本地创建"
   },
   "searchNotificationPlaceholder": {
-    "message": "输入关键字对通知进行过滤"
+    "message": "输入关键字对通知进行筛选"
   },
   "optionsTitle": {
     "message": "选项"
@@ -346,6 +346,9 @@
   },
   "optionsStateMenu": {
     "message": "内部状态"
+  },
+  "optionsHeadersMenu": {
+    "message": "请求头信息"
   },
   "optionsReducerMenu": {
     "message": "通知 Reducer"
@@ -453,7 +456,7 @@
     "message": "如果通知存在网址"
   },
   "settingsNotificationLazyLoading": {
-    "message": "对通知记录里的通知图片启用懒加载"
+    "message": "对通知记录里的通知图片启用延迟加载"
   },
   "settingsNotificationShowSearchInput": {
     "message": "在通知记录的顶部显示通知筛选输入框"
@@ -495,7 +498,7 @@
     "message": "确认要清理所有任务的通知缓存吗？"
   },
   "settingsClearExpiredStages": {
-    "message": "清除过期 Stages"
+    "message": "清除过期的 Stages"
   },
   "settingsClearExpiredStagesTip": {
     "message": "确认要清理缺失相对应任务的通知缓存吗？"
@@ -513,7 +516,7 @@
     "message": "在扩展程序启动时延迟执行任务"
   },
   "settingsInternalStartDelayTip": {
-    "message": "如果偶尔在扩展程序启动时遇到崩溃的情况，可以尝试开启此选项。"
+    "message": "如果不希望在启动浏览器时直接弹出通知，可以打开该选项。"
   },
   "settingsInternalDelayTime": {
     "message": "延迟时间(秒)： "
@@ -536,11 +539,11 @@
   "settingsInternalReloadError": {
     "message": "重载任务失败。可能需要重新加载扩展程序或重启浏览器，内部设置才会生效！"
   },
-  "settingsImportExport": {
-    "message": "导入/导出"
+  "settingsTasksFile": {
+    "message": "任务的导入/导出"
   },
   "settingsImport": {
-    "message": "导入任务"
+    "message": "从文件中导入"
   },
   "settingsImoprtNoFile": {
     "message": "没有选择文件"
@@ -558,16 +561,16 @@
     "message": "未知错误"
   },
   "settingsImportSuccess": {
-    "message": "导入任务完成"
+    "message": "导入数据完成"
   },
   "settingsImportTooltip": {
-    "message": "从 json 或 txt 文件中导入任务 (支持从 Gloria 所导出的任务)"
+    "message": "从 json 或 txt 文件中导入数据"
   },
   "settingsExportJson": {
-    "message": "明文导出任务"
+    "message": "明文导出至文件"
   },
   "settingsExportJsonTooltip": {
-    "message": "导出任务为 json 文件 (支持导入到 Gloria 中)"
+    "message": "导出数据为 json 文件"
   },
   "settingsExportJsonSuccess": {
     "message": "成功导出 json 文件"
@@ -576,13 +579,13 @@
     "message": "成功导出 txt 文件"
   },
   "settingsExportText": {
-    "message": "加密导出任务"
+    "message": "加密导出至文件"
   },
   "settingsExportTextTooltip": {
-    "message": "导出任务为 txt 文件"
+    "message": "导出数据为 txt 文件"
   },
   "settingsTableName": {
-    "message": "任务名称"
+    "message": "名称"
   },
   "settingsTableSearchPlaceholder": {
     "message": "输入关键字搜索"
@@ -647,6 +650,66 @@
   "stateStagesPlaceholder": {
     "message": "此处显示所有消息的内部缓存情况"
   },
+  "headersCreateRule": {
+    "message": "添加"
+  },
+  "headersTable": {
+    "message": "请求头信息列表"
+  },
+  "headersTableDomain": {
+    "message": "域名"
+  },
+  "headersTableNameList": {
+    "message": "首部列表"
+  },
+  "headersTableOperation": {
+    "message": "操作"
+  },
+  "headersTableEdit": {
+    "message": "编缉"
+  },
+  "headersTableDelete": {
+    "message": "删除"
+  },
+  "headersDialogEdit": {
+    "message": "编辑信息"
+  },
+  "headersDialogAdd": {
+    "message": "新增信息"
+  },
+  "headersDialogDomainPlacehoder": {
+    "message": "请输入匹配的域名"
+  },
+  "headersDialogHeader": {
+    "message": "首部"
+  },
+  "headersDialogNamePlacehoder": {
+    "message": "请输入首部名称"
+  },
+  "headersDialogValuePlacehoder": {
+    "message": "请输入值内容"
+  },
+  "headersDialogDelete": {
+    "message": "删除"
+  },
+  "headersDialogSubmit": {
+    "message": "提交"
+  },
+  "headersDialogAddHeader": {
+    "message": "新增首部"
+  },
+  "headersRulesDomain": {
+    "message": "请输入正确的域名"
+  },
+  "headersDeleteTipSuccess": {
+    "message": "已成功移除请求头信息。"
+  },
+  "headersDeleteTipError": {
+    "message": "移除请求头信息失败！"
+  },
+  "settingsRulesFile": {
+    "message": "请求头信息的导入/导出"
+  },
   "reducerLabel": {
     "message": "Reducer 函数："
   },
@@ -693,7 +756,7 @@
     "message": "支持"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X 是一款免费开源的可编程网站通知聚合器，可以通过自定义的 JavaScript 代码任务实现抓取网站上的新内容并弹出通知提醒，并且绝不会收集发送用户的任何隐私信息。"
+    "message": "Gloria-X 是一款免费开放源代码的可编程网站通知聚合器，可以通过自定义的 JavaScript 代码任务实现定时抓取网站上的新内容并弹出通知提醒，并且绝不会收集发送用户的任何隐私信息。"
   },
   "aboutSourceCode": {
     "message": "Gloria-X 源代码 (MIT License) 和使用指南"
@@ -705,7 +768,7 @@
     "message": "Gloria 中文指南"
   },
   "aboutShare": {
-    "message": "任务代码分享网站"
+    "message": "任务代码公享网站"
   },
   "aboutThanks": {
     "message": "鸣谢"

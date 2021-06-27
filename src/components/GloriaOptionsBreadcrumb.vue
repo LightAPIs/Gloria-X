@@ -31,6 +31,9 @@ export default defineComponent({
         case 'state':
           itemText = this.i18n('optionsStateMenu');
           break;
+        case 'headers':
+          itemText = this.i18n('optionsHeadersMenu');
+          break;
         case 'reducer':
           itemText = this.i18n('optionsReducerMenu');
           break;

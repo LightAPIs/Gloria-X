@@ -586,6 +586,11 @@ function registerMenu() {
       url: './options.html#/state',
     },
     {
+      id: 'gloriaXHeaders',
+      title: 'optionsHeadersMenu',
+      url: './options.html#/headers',
+    },
+    {
       id: 'gloriaXReducer',
       title: 'optionsReducerMenu',
       url: './options.html#/reducer',
@@ -1012,10 +1017,10 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 chrome.storage.local.get(
-  ['implicitPush', 'configs', 'tasks', 'stages', 'notifications', 'reducer', 'lastCheckTasksUpdate', 'lastActiveTab', 'unread'],
+  ['implicitPush', 'configs', 'tasks', 'rules', 'stages', 'notifications', 'reducer', 'lastCheckTasksUpdate', 'lastActiveTab', 'unread'],
   res => {
     console.log(res);
-    const { implicitPush, configs, tasks, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab, unread } = res;
+    const { implicitPush, configs, tasks, rules, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab, unread } = res;
     store.commit('setImplicitPush', implicitPush);
     store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
     store.commit('setLastActiveTab', lastActiveTab);
@@ -1025,6 +1030,7 @@ chrome.storage.local.get(
     store.commit('setNotifications', notifications);
     store.commit('setStages', stages);
     store.commit('setReducer', reducer);
+    store.commit('setRules', rules);
     store.commit('setTasks', tasks);
   }
 );

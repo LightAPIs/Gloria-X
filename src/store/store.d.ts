@@ -106,6 +106,7 @@ declare namespace myStore {
     lastActiveTab: string;
     lastCheckTasksUpdate: string;
     tasks: GloriaTask[];
+    rules: RequestHeadersRule[];
     operationTask: GloriaTask | null;
     notifications: GloriaNotification[];
     stages: GloriaStage[];
@@ -127,5 +128,17 @@ declare namespace myStore {
     id: string;
     origin: string;
     code: string;
+  }
+
+  interface RequestHeaders {
+    name: string;
+    value: string;
+  }
+
+  interface RequestHeadersRule {
+    [key: string]: string | RequestHeaders[];
+    id: string;
+    domain: string;
+    headers: RequestHeaders[];
   }
 }

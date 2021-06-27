@@ -16,6 +16,7 @@
       <el-menu-item index="settings" class="options-menu-item">{{ i18n('optionsSettingsMenu') }}</el-menu-item>
       <el-menu-item index="debug" class="options-menu-item">{{ i18n('optionsDebugMenu') }}</el-menu-item>
       <el-menu-item index="state" class="options-menu-item">{{ i18n('optionsStateMenu') }}</el-menu-item>
+      <el-menu-item index="headers" class="opitons-menu-item">{{ i18n('optionsHeadersMenu') }}</el-menu-item>
       <el-menu-item index="reducer" class="options-menu-item">{{ i18n('optionsReducerMenu') }}</el-menu-item>
       <el-menu-item index="about" class="opitons-menu-item">{{ i18n('optionsAboutMenu') }}</el-menu-item>
     </el-menu>

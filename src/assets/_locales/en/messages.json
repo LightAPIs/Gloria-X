@@ -21,7 +21,7 @@
     "message": "Share task"
   },
   "popupTaskBook": {
-    "message": "Help document"
+    "message": "Usage guide"
   },
   "popupTaskEdit": {
     "message": "Edit"
@@ -347,6 +347,9 @@
   "optionsStateMenu": {
     "message": "Internal state"
   },
+  "optionsHeadersMenu": {
+    "message": "RequestHeaders"
+  },
   "optionsReducerMenu": {
     "message": "Reducer"
   },
@@ -471,7 +474,7 @@
     "message": "Maximum number of notification records: "
   },
   "settingsClear": {
-    "message": "Clean"
+    "message": "Clean Up"
   },
   "settingsClearCompleted": {
     "message": "Clean up is done!"
@@ -513,7 +516,7 @@
     "message": "Delay task execution when extention starts"
   },
   "settingsInternalStartDelayTip": {
-    "message": "If you occasionally encounter a crash when the extention starts, you can try to turn on this option."
+    "message": "If you don't want the notification to pop up directly when you start the browser, you can turn on this option."
   },
   "settingsInternalDelayTime": {
     "message": "Delay time (seconds): "
@@ -536,11 +539,11 @@
   "settingsInternalReloadError": {
     "message": "Reload task failed. You may need to reload the extention or restart the browser for the internal settings to take effect!"
   },
-  "settingsImportExport": {
-    "message": "Import/Export"
+  "settingsTasksFile": {
+    "message": "Task Import/Export"
   },
   "settingsImport": {
-    "message": "Import task"
+    "message": "Import from file"
   },
   "settingsImoprtNoFile": {
     "message": "No file selected"
@@ -558,16 +561,16 @@
     "message": "Unknown error"
   },
   "settingsImportSuccess": {
-    "message": "Import task completed"
+    "message": "Import data completed"
   },
   "settingsImportTooltip": {
-    "message": "Import tasks from json or txt files (support tasks exported from Gloria)"
+    "message": "Import data from json or txt file"
   },
   "settingsExportJson": {
-    "message": "Plaintext export task"
+    "message": "Plaintext export"
   },
   "settingsExportJsonTooltip": {
-    "message": "Export task as json file (support import into Gloria)"
+    "message": "Export data as json file"
   },
   "settingsExportJsonSuccess": {
     "message": "Successfully exported the json file"
@@ -576,16 +579,16 @@
     "message": "Successfully exported the txt file"
   },
   "settingsExportText": {
-    "message": "Encrypted export task"
+    "message": "Encrypt export"
   },
   "settingsExportTextTooltip": {
-    "message": "Export task as txt file"
+    "message": "Export data as txt file"
   },
   "settingsTableName": {
-    "message": "Task name"
+    "message": "Name"
   },
   "settingsTableSearchPlaceholder": {
-    "message": "Enter keyword to search"
+    "message": "Enter search"
   },
   "settingsTableOk": {
     "message": "Ok"
@@ -647,6 +650,66 @@
   "stateStagesPlaceholder": {
     "message": "The internal cache of all messages is displayed here"
   },
+  "headersCreateRule": {
+    "message": "Create"
+  },
+  "headersTable": {
+    "message": "Request header list"
+  },
+  "headersTableDomain": {
+    "message": "Domain"
+  },
+  "headersTableNameList": {
+    "message": "Header List"
+  },
+  "headersTableOperation": {
+    "message": "Operation"
+  },
+  "headersTableEdit": {
+    "message": "Edit"
+  },
+  "headersTableDelete": {
+    "message": "Delete"
+  },
+  "headersDialogEdit": {
+    "message": "Edit information"
+  },
+  "headersDialogAdd": {
+    "message": "Add information"
+  },
+  "headersDialogDomainPlacehoder": {
+    "message": "Enter a matching domain name"
+  },
+  "headersDialogHeader": {
+    "message": "Header"
+  },
+  "headersDialogNamePlacehoder": {
+    "message": "Enter the header name"
+  },
+  "headersDialogValuePlacehoder": {
+    "message": "Enter the value content"
+  },
+  "headersDialogDelete": {
+    "message": "Delete"
+  },
+  "headersDialogSubmit": {
+    "message": "Submit"
+  },
+  "headersDialogAddHeader": {
+    "message": "New header"
+  },
+  "headersRulesDomain": {
+    "message": "Please enter the correct domain name"
+  },
+  "headersDeleteTipSuccess": {
+    "message": "The request header was successfully removed."
+  },
+  "headersDeleteTipError": {
+    "message": "Failed to remove request header!"
+  },
+  "settingsRulesFile": {
+    "message": "RequestHeaders Import/Export"
+  },
   "reducerLabel": {
     "message": "Reducer function:"
   },
@@ -693,7 +756,7 @@
     "message": "Support"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X is a free and open source programmable website notifications aggregator. It can capture the new content on the website and pop up notifications with a custom JavaScript code task. And will never collect any private information from the sending user."
+    "message": "Gloria-X is a free and open source programmable website notifications aggregator. It can capture the new content on the website  regularly and pop up notifications with a custom JavaScript code task. And will never collect any private information from the sending user."
   },
   "aboutSourceCode": {
     "message": "Gloria-X source code (MIT License) and usage guide"

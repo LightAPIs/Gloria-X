@@ -28,6 +28,7 @@ const store = createStore({
       lastActiveTab: 'tasks',
       lastCheckTasksUpdate: '',
       tasks: [],
+      rules: [],
       operationTask: null,
       notifications: [],
       stages: [],

@@ -23,31 +23,48 @@
         </el-button>
       </el-tooltip>
     </span>
-    <gloria-task-selector
+    <gloria-data-selector
       :visible="visible"
       :title="title"
       :table-data="tableData"
+      :key-name="keyName"
       @close-selector="closeSelector"
       @on-selection="onSelection"
-    ></gloria-task-selector>
+    ></gloria-data-selector>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapMutations, mapState } from 'vuex';
 import { ElMessage } from 'element-plus';
-import GloriaTaskSelector from './GloriaTaskSelector.vue';
+import GloriaDataSelector from './GloriaDataSelector.vue';
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
-
-const secretKey = '048e0efc-da28-4322-a93c-37fa69e84df8';
 
 export default defineComponent({
   name: 'GloriaSettingsFile',
   components: {
-    GloriaTaskSelector,
+    GloriaDataSelector,
   },
+  props: {
+    secretKey: {
+      type: String,
+      required: true,
+    },
+    data: {
+      type: Array,
+      required: true,
+    },
+    fileName: {
+      type: String,
+      required: true,
+    },
+    keyName: {
+      type: String,
+      required: true,
+    },
+  },
+  emits: ['merge-data'],
   setup() {
     const exportFile = (content: string, filename: string, completed?: () => void) => {
       const exportBlob = new Blob([content]);
@@ -126,11 +143,7 @@ export default defineComponent({
       tableData: [] as unknown[],
     };
   },
-  computed: {
-    ...mapState(['tasks']),
-  },
   methods: {
-    ...mapMutations(['mergeTasks']),
     onImport() {
       try {
         this.importFile((status, content) => {
@@ -139,7 +152,7 @@ export default defineComponent({
               if (/^\[/.test(content)) {
                 this.handleImport(content);
               } else {
-                const bytes = AES.decrypt(content, secretKey);
+                const bytes = AES.decrypt(content, this.secretKey);
                 const originalText = bytes.toString(encUtf8);
                 this.handleImport(originalText);
               }
@@ -173,38 +186,38 @@ export default defineComponent({
       }
     },
     onExoprtJson() {
-      const { tasks } = this;
+      const { data } = this;
       this.title = this.i18n('settingsExportJson');
       this.type = 'exportJson';
-      this.tableData = tasks;
+      this.tableData = data;
       this.visible = true;
     },
     onExportText() {
-      const { tasks } = this;
+      const { data } = this;
       this.title = this.i18n('settingsExportText');
       this.type = 'exportText';
-      this.tableData = tasks;
+      this.tableData = data;
       this.visible = true;
     },
     closeSelector() {
       this.visible = false;
     },
     onSelection(selectData: unknown[]) {
-      const { type } = this;
+      const { type, fileName } = this;
       this.visible = false;
       switch (type) {
         case 'exportJson':
-          this.exportFile(JSON.stringify(selectData, null, 2), 'tasks.json', () => {
+          this.exportFile(JSON.stringify(selectData, null, 2), `${fileName || 'no-name'}.json`, () => {
             ElMessage.success(this.i18n('settingsExportJsonSuccess'));
           });
           break;
         case 'exportText':
-          this.exportFile(AES.encrypt(JSON.stringify(selectData), secretKey).toString(), 'tasks.txt', () => {
+          this.exportFile(AES.encrypt(JSON.stringify(selectData), this.secretKey).toString(), `${fileName || 'no-name'}.txt`, () => {
             ElMessage.success(this.i18n('settingsExportTextSuccess'));
           });
           break;
         case 'import':
-          this.mergeTasks(selectData);
+          this.$emit('merge-data', selectData);
           ElMessage.success(this.i18n('settingsImportSuccess'));
       }
     },

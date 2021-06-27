@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createGloriaSandbox } from 'gloria-sandbox';
+import store from '@/store';
 
 function getOrigin(url: string): string {
   return new URL(url).origin;
 }
 
 function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDetails): chrome.webRequest.BlockingResponse {
+  const { rules } = store.state;
   const { requestHeaders = [], requestId, url, type, initiator } = details;
   let cookieIndex = -1,
     originIndex = -1,
@@ -178,6 +180,37 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
         });
       }
     }
+
+    //! 添加自定义清求头信息
+    rules.forEach(rule => {
+      const { domain, headers } = rule;
+      if (url.includes(domain)) {
+        headers.forEach(header => {
+          const { name, value } = header;
+          if (name) {
+            const useName = name.replace(/\s/g, '');
+            let rep = false;
+            for (let i = 0; i < requestHeaders.length; i++) {
+              const reqHeader = requestHeaders[i];
+              if (reqHeader && reqHeader.name) {
+                if (reqHeader.name.toLowerCase() === useName.toLowerCase()) {
+                  requestHeaders[i].value = value;
+                  rep = true;
+                  break;
+                }
+              }
+            }
+
+            if (!rep) {
+              requestHeaders.push({
+                name: useName,
+                value,
+              });
+            }
+          }
+        });
+      }
+    });
   }
 
   return {

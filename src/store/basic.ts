@@ -16,6 +16,8 @@ const taskKeys = [
   'executionError',
 ];
 
+const ruleKeys = ['id', 'domain', 'headers'];
+
 function defaultConfigs(): myStore.GloriaConfig {
   return {
     appearanceInterface: 'default',
@@ -70,6 +72,19 @@ function defaultTask(): myStore.GloriaTask {
   };
 }
 
+function defaultRule(): myStore.RequestHeadersRule {
+  return {
+    id: '',
+    domain: '',
+    headers: [
+      {
+        name: '',
+        value: '',
+      },
+    ],
+  };
+}
+
 function normalizeTask(task: myStore.GloriaTask): myStore.GloriaTask {
   Object.keys(task).forEach(key => {
     if (!taskKeys.includes(key)) {
@@ -80,4 +95,14 @@ function normalizeTask(task: myStore.GloriaTask): myStore.GloriaTask {
   return task;
 }
 
-export { defaultConfigs, defaultTaskBasic, defaultTask, normalizeTask };
+function normalizeRule(rule: myStore.RequestHeadersRule): myStore.RequestHeadersRule {
+  Object.keys(rule).forEach(key => {
+    if (!ruleKeys.includes(key)) {
+      delete rule[key];
+    }
+  });
+
+  return rule;
+}
+
+export { defaultConfigs, defaultTaskBasic, defaultTask, defaultRule, normalizeTask, normalizeRule };
