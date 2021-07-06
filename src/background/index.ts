@@ -1025,7 +1025,7 @@ chrome.storage.local.get(
     store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
     store.commit('setLastActiveTab', lastActiveTab);
     store.commit('setConfigs', configs);
-    runLimit = (configs && configs.internalExecutionLimit) || 5;
+    runLimit = configs && typeof configs.internalExecutionLimit === 'number' ? configs.internalExecutionLimit : 5;
     store.commit('setUnread', unread);
     store.commit('setNotifications', notifications);
     store.commit('setStages', stages);
