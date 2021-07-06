@@ -187,7 +187,9 @@ export default defineComponent({
       return false;
     },
     openLinks(list: myStore.GloriaNotification[]) {
+      const { notificationOpenInterval } = this.configs;
       const links = new Set([] as string[]);
+      let index = 0;
       list.forEach(ele => {
         const {
           options: { url },
@@ -206,10 +208,13 @@ export default defineComponent({
               },
               tabs => {
                 if (tabs.length === 0) {
-                  chrome.tabs.create({
-                    url,
-                    active: false,
-                  });
+                  setTimeout(() => {
+                    chrome.tabs.create({
+                      url,
+                      active: false,
+                    });
+                  }, index * notificationOpenInterval);
+                  index++;
                 }
               }
             );

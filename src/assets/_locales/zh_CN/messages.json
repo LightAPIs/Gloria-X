@@ -470,6 +470,9 @@
   "settingsNotificationShowBadgeFirefox": {
     "message": "在附加组件图标上显示未读通知数量标记"
   },
+  "settingsNotificationOpenInterval": {
+    "message": "批量打开通知网址的间隔时间(ms)："
+  },
   "settingsNotificationMaxinum": {
     "message": "通知记录数量上限："
   },

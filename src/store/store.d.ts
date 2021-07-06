@@ -89,6 +89,7 @@ declare namespace myStore {
     notificationShowSearchInput: boolean;
     notificationShowBadge: boolean;
     notificationShowMenuCount: boolean;
+    notificationOpenInterval: number;
     notificationMaxinum: number;
     internalStartDelay: boolean;
     internalDelayTime: number;

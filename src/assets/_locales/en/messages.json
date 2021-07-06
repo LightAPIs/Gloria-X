@@ -470,6 +470,9 @@
   "settingsNotificationShowBadgeFirefox": {
     "message": "Show the number of unread notifications mark on the Add-ons icon"
   },
+  "settingsNotificationOpenInterval": {
+    "message": "Interval time of batch open notification URL(ms): "
+  },
   "settingsNotificationMaxinum": {
     "message": "Maximum number of notification records: "
   },

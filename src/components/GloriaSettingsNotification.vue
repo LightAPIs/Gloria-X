@@ -90,6 +90,21 @@
     </div>
     <div class="margin-top">
       <span class="font-14">
+        {{ i18n('settingsNotificationOpenInterval') }}
+      </span>
+      <el-input-number
+        :model-value="configs.notificationOpenInterval"
+        :min="0"
+        :max="1000"
+        :step="100"
+        controls-position="right"
+        step-strictly
+        size="medium"
+        @change="onChange('notificationOpenInterval', $event)"
+      ></el-input-number>
+    </div>
+    <div class="margin-top">
+      <span class="font-14">
         {{ i18n('settingsNotificationMaxinum') }}
       </span>
       <el-input-number
@@ -124,16 +139,15 @@ export default defineComponent({
     onChange(name: string, value: boolean | number) {
       if (name === 'implicitPush') {
         this.updateImplicitPush(value);
-      } else {
-        let sta = true;
-        if (name === 'notificationMaxinum' && !value) {
-          sta = false;
+      } else if (value != null) {
+        if (name === 'notificationOpenInterval') {
+          value = Math.round((value as number) / 100) * 100;
         }
-        sta &&
-          this.updateConfigs({
-            name,
-            value,
-          });
+
+        this.updateConfigs({
+          name,
+          value,
+        });
       }
     },
   },
