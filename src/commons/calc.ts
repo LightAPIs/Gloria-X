@@ -75,7 +75,10 @@ function hm2date(hm: string): string {
 }
 
 function date2hm(date: string): string {
-  return dayjs(date).format('HH:mm');
+  if (date) {
+    return dayjs(date).format('HH:mm');
+  }
+  return '00:00';
 }
 
 function hm2Tomorrow(hm: string): string {

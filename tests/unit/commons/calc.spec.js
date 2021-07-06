@@ -111,6 +111,15 @@ describe('Test calc:', function () {
     });
   });
 
+  describe('Method: date2hm', function () {
+    it('date2hm if normal.', function () {
+      const result1 = date2hm(undefined);
+      const result2 = date2hm(null);
+      expect(result1).not.undefined;
+      expect(result2).not.null;
+    });
+  });
+
   describe('Method: waittingTime', function () {
     it('waitingTime is normal.', function () {
       const time = Date.now() + 180000;

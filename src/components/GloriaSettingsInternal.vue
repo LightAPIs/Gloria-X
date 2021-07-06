@@ -72,14 +72,15 @@ export default defineComponent({
   methods: {
     ...mapMutations(['updateConfigs']),
     onChange(name: string, value: boolean | number) {
-      if (name === 'internalExecutionLimit') {
-        this.reloadable = true;
+      if (value != null) {
+        if (name === 'internalExecutionLimit') {
+          this.reloadable = true;
+        }
+        this.updateConfigs({
+          name,
+          value,
+        });
       }
-
-      this.updateConfigs({
-        name,
-        value,
-      });
     },
     onReload() {
       this.reloadable = false;
