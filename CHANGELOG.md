@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/LightAPIs/Gloria-X/compare/v2.6.0...v2.7.0) (2021-07-11)
+
+
+### Features
+
+* **later:** 支持设定批量打开网址的间隔时间 ([dc81922](https://github.com/LightAPIs/Gloria-X/commit/dc81922769f5a49777b92d81044988dec0b3fc62))
+
+
+### Bug Fixes
+
+* **execution-limit:** 修复后台任务执行上限设置为 0 时不会生效的问题 ([7357457](https://github.com/LightAPIs/Gloria-X/commit/73574570e05bb36d4c8bca155278315c32ad2ed9))
+* **input:** 修复部分输入框在输入空白值时会出错的问题 ([e9f0d9d](https://github.com/LightAPIs/Gloria-X/commit/e9f0d9d725764664d41521f5e03ce65b04fa5598))
+
 ## [2.6.0](https://github.com/LightAPIs/Gloria-X/compare/v2.5.0...v2.6.0) (2021-06-27)
 
 
