@@ -19,6 +19,14 @@
     {
       "filename": "./src/firefox/manifest.development.json",
       "type": "json"
+    },
+    {
+      "filename": "./src/edge/manifest.production.json",
+      "type": "json"
+    },
+    {
+      "filename": "./src/edge/manifest.development.json",
+      "type": "json"
     }
   ]
 }

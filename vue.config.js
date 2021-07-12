@@ -4,7 +4,7 @@ const path = require('path');
 const packageInfo = require('./package.json');
 
 const productionMode = process.env.NODE_ENV === 'production';
-const chromeMode = process.env.VUE_APP_TITLE === 'chrome';
+const appName = process.env.VUE_APP_NAME;
 const zipMode = process.env.VUE_APP_BUILD === 'zip';
 
 // Generate pages object
@@ -27,44 +27,15 @@ modulesName.forEach(name => {
 
 let outputDir = '';
 let copyFiles = [];
-
-if (productionMode) {
-  if (chromeMode) {
-    outputDir = 'build/chrome';
-    copyFiles = [
-      {
-        from: path.resolve('src/chrome/manifest.production.json'),
-        to: `${path.resolve('build')}/chrome/manifest.json`,
-      },
-    ];
-  } else {
-    outputDir = 'build/firefox';
-    copyFiles = [
-      {
-        from: path.resolve('src/firefox/manifest.production.json'),
-        to: `${path.resolve('build')}/firefox/manifest.json`,
-      },
-    ];
-  }
-} else {
-  if (chromeMode) {
-    outputDir = 'dist/chrome';
-    copyFiles = [
-      {
-        from: path.resolve('src/chrome/manifest.development.json'),
-        to: `${path.resolve('dist')}/chrome/manifest.json`,
-      },
-    ];
-  } else {
-    outputDir = 'dist/firefox';
-    copyFiles = [
-      {
-        from: path.resolve('src/firefox/manifest.development.json'),
-        to: `${path.resolve('dist')}/firefox/manifest.json`,
-      },
-    ];
-  }
-}
+const folderName = productionMode ? 'build' : 'dist';
+const fileName = productionMode ? 'production' : 'development';
+outputDir = `${folderName}/${appName}`;
+copyFiles = [
+  {
+    from: path.resolve(`src/${appName}/manifest.${fileName}.json`),
+    to: `${path.resolve(folderName)}/${appName}/manifest.json`,
+  },
+];
 
 copyFiles.push({
   from: path.resolve('src/assets'),
@@ -110,7 +81,7 @@ module.exports = {
       config.plugins.push(
         new ZipWebpackPlugin({
           path: path.resolve('archive'),
-          filename: `${packageInfo.name}_${chromeMode ? 'chrome' : 'firefox'}_v${packageInfo.version}.zip`,
+          filename: `${packageInfo.name}_${appName}_v${packageInfo.version}.zip`,
         })
       );
     }

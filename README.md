@@ -570,8 +570,9 @@ npm install
 
 ### 构建指令
 
-- 构建 chrome 版本: `npm run build-chrome`
-- 构建 firefox 版本: `npm run build-firefox`
+- 构建 Chrome 版本: `npm run build-chrome`
+- 构建 Edge 版本: `npm run build-edge`
+- 构建 Firefox 版本: `npm run build-firefox`
 
 ### 相关目录及文件
 

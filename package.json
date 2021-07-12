@@ -7,8 +7,10 @@
   "license": "MIT",
   "scripts": {
     "build-chrome-watch": "vue-cli-service build-watch --mode chrome",
+    "build-edge-watch": "vue-cli-service build-watch --mode edge",
     "build-firefox-watch": "vue-cli-service build-watch --mode firefox",
     "build-chrome": "vue-cli-service build --mode chromezip",
+    "build-edge": "vue-cli-service build --mode edgezip",
     "build-firefox": "vue-cli-service build --mode firefoxzip",
     "test:unit": "vue-cli-service test:unit tests/unit/**/*.js",
     "lint": "vue-cli-service lint",
@@ -103,7 +105,7 @@
   },
   "standard-version": {
     "scripts": {
-      "posttag": "npm run build-chrome && npm run build-firefox"
+      "posttag": "npm run build-chrome && npm run build-edge && npm run build-firefox"
     }
   }
 }

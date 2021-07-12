@@ -562,6 +562,7 @@ npm install
 ### Build
 
 - Build the Chrome version: `npm run build-chrome`
+- Build the Edge version: `npm run build-edge`
 - Build the Firefox version: `npm run build-firefox`
 
 ## Related projects
