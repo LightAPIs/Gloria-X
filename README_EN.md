@@ -22,11 +22,11 @@
 - English
 - [中文版](/README.md)
 
-> A programmable website notifications aggregator in Chrome/Firefox
+> A programmable website notifications aggregator
 >
 > **Original project：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
-It can capture the new content on the website regularly and pop up notifications with a custom JavaScript code task.
+Timed a custom JavaScript code task, implement the automation work such as web monitoring or forum check-in, and pop up notifications.
 
 ## Table of contents
 

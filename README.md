@@ -22,13 +22,13 @@
 - [English](/README_EN.md)
 - 中文版
 
-> Chrome/Firefox 上的可编程网站通知聚合器
+> 可编程网站通知聚合器
 >
 > **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
-通过自定义的 JavaScript 代码任务实现定时抓取网站上的新内容并弹出通知提醒。
+通过定时执行自定义的 JavaScript 代码任务，实现网页监视或者论坛签到等自动化工作，并弹出通知提醒。
 
-本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍生版本，用于修改及扩充 Gloria 中的部分功能，并添加我个人所需要的一些特性，所以 Gloria-X 可以理解为是一个以 Gloria 为核心，并提供功能增强的版本。
+_本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍生版本，用于修改及扩充 Gloria 中的部分功能，并添加我个人所需要的一些特性，所以 Gloria-X 可以理解为是一个以 Gloria 为核心，并提供功能增强的版本。_
 
 ## 目录
 
