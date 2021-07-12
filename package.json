@@ -24,7 +24,7 @@
     "core-js": "^3.10.0",
     "crypto-js": "^4.0.0",
     "dayjs": "^1.10.4",
-    "element-plus": "^1.0.2-beta.54",
+    "element-plus": "^1.0.2-beta.55",
     "gloria-sandbox": "^0.2.7",
     "lodash.debounce": "^4.0.8",
     "lodash.isinteger": "^4.0.4",
