@@ -11,8 +11,11 @@
   <a href="https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh">
     <img src="https://img.shields.io/chrome-web-store/v/npdafhgodaenfglcfkkbnmdbfkgfadbh?maxAge=86400" alt="Chrome Web Store" />
   </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/ijhoikcicadeigejkkknglnhbcfkfkkc">
+    <img src="https://img.shields.io/badge/-edge_addons-blue.svg" />
+  </a>
   <a href="https://github.com/LightAPIs/Gloria-X/releases/latest">
-    <img src="https://img.shields.io/badge/-mozilla_addons-lightgrey.svg" alt="Mozilla Addons" />
+    <img src="https://img.shields.io/badge/-mozilla_addons-orange.svg" alt="Mozilla Addons" />
   </a>
   <a href="./LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
@@ -34,6 +37,7 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
 
 - [安装方法](#安装方法)
   - [Chrome](#Chrome)
+  - [Edge](#Edge)
   - [Firefox](#Firefox)
 - [使用方法](#使用方法)
   - [Gloria Notification 对象结构](#Gloria-Notification-对象结构)
@@ -84,6 +88,10 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
 
 - a. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序 `crx` 文件，拖动至扩展程序管理页面进行安装。
 - b. 前往 [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) 下载扩展程序压缩包 `zip` 文件并进行解压，然后点击"加载已解压的扩展程序"按钮，选择加载先前解压文件的根目录即可完成扩展程序的安装。
+
+### Edge
+
+- 前往 [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/gloriax/ijhoikcicadeigejkkknglnhbcfkfkkc) 进行下载安装。
 
 ### Firefox
 

@@ -11,8 +11,11 @@
   <a href="https://chrome.google.com/webstore/detail/npdafhgodaenfglcfkkbnmdbfkgfadbh">
     <img src="https://img.shields.io/chrome-web-store/v/npdafhgodaenfglcfkkbnmdbfkgfadbh?maxAge=86400" alt="Chrome Web Store" />
   </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/ijhoikcicadeigejkkknglnhbcfkfkkc">
+    <img src="https://img.shields.io/badge/-edge_addons-blue.svg" />
+  </a>
   <a href="https://github.com/LightAPIs/Gloria-X/releases/latest">
-    <img src="https://img.shields.io/badge/-mozilla_addons-lightgrey.svg" alt="Mozilla Addons" />
+    <img src="https://img.shields.io/badge/-mozilla_addons-orange.svg" alt="Mozilla Addons" />
   </a>
   <a href="./LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
@@ -32,6 +35,7 @@ Timed a custom JavaScript code task, implement the automation work such as web m
 
 - [Installation](#Installation)
   - [Chrome](#Chrome)
+  - [Edge](#Edge)
   - [Firefox](#Firefox)
 - [Usage](#Usage)
   - [Gloria Notification object structure](#Gloria-Notification-object-structure)
@@ -81,6 +85,10 @@ Timed a custom JavaScript code task, implement the automation work such as web m
 
 - a. Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download the extension `crx` file. Drag to Extensions Page to install.
 - b. Go to the [Releases](https://github.com/LightAPIs/Gloria-X/releases/latest) to download the extension package `zip` file and unzip it. And click "Load unpacked" button, select the root directory of the previously unzipped file to complete the installation of the extension.
+
+### Edge
+
+- Go to the [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/gloriax/ijhoikcicadeigejkkknglnhbcfkfkkc) to download and install.
 
 ### Firefox
 
