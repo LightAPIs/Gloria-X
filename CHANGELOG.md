@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/LightAPIs/Gloria-X/compare/v2.7.0...v2.8.0) (2021-08-24)
+
+
+### Features
+
+* **notification:** 添加支持将出错通知保存至历史记录中 ([f1ff675](https://github.com/LightAPIs/Gloria-X/commit/f1ff6754ca3cf23c92d410118fd198fe00b50194))
+
 ## [2.7.0](https://github.com/LightAPIs/Gloria-X/compare/v2.6.0...v2.7.0) (2021-07-11)
 
 
