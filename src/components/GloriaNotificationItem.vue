@@ -130,6 +130,8 @@ export default defineComponent({
         color = '#0bbd87';
       } else if (url) {
         color = '#3a8ee6';
+      } else if (type === 'error') {
+        color = '#ffcc00';
       } else if (type === 'image') {
         color = '#a56b56';
       }

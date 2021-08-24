@@ -449,6 +449,9 @@
   "settingsNotificationDisableErrorTip": {
     "message": "不推荐开启"
   },
+  "settingsNotificationRecordError": {
+    "message": "将执行出错通知保存至通知的历史记录当中"
+  },
   "settingsNotificationShowUrl": {
     "message": "在通知记录中显示通知的网址"
   },

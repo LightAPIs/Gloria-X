@@ -377,6 +377,8 @@ export default {
         //! 会在订阅器上再次对通知记录进行处理
         data.forEach(item => {
           const { notificationId, iconUrl, ...rest } = item;
+          //? 在处理消息流时先已经将通知记录至历史记录当中
+          //* 此时通知不一定已经弹出
           state.notifications.unshift({
             id: notificationId,
             options: {
@@ -423,6 +425,23 @@ export default {
       });
     } else {
       state.notifications = [];
+    }
+  },
+  addNotification(state: myStore.VuexState, newNotification: myStore.GloriaNotification): void {
+    //? 这是单独添加通知至历史记录的方法，与任务无关
+    if (newNotification) {
+      const { notificationShowBadge, notificationMaxinum } = state.configs;
+      state.notifications.unshift(newNotification);
+
+      //* 处理通知记录数量上限
+      if (notificationMaxinum && state.notifications.length > notificationMaxinum) {
+        state.notifications.pop();
+      }
+      if (notificationShowBadge) {
+        state.unread++;
+        chromeStorage.setUnread(state.unread, `store unread number to "${state.unread}".`);
+      }
+      chromeStorage.setNotifications(state.notifications, 'add a new notification.');
     }
   },
   updateNotification(state: myStore.VuexState, notification: { id: string; options: myStore.GloriaNotificationOptions }): void {

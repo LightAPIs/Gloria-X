@@ -34,6 +34,7 @@ function defaultConfigs(): myStore.GloriaConfig {
     notificationLaterMark: false,
     notificationDetectIcon: false,
     notificationDisableError: false,
+    notificationRecordError: false,
     notificationShowUrl: false,
     notificationLazyLoading: false,
     notificationShowSearchInput: false,

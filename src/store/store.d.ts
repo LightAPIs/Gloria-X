@@ -84,6 +84,7 @@ declare namespace myStore {
     notificationLaterMark: boolean;
     notificationDetectIcon: boolean;
     notificationDisableError: boolean;
+    notificationRecordError: boolean;
     notificationShowUrl: boolean;
     notificationLazyLoading: boolean;
     notificationShowSearchInput: boolean;

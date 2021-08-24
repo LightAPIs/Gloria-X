@@ -449,6 +449,9 @@
   "settingsNotificationDisableErrorTip": {
     "message": "Not recommended"
   },
+  "settingsNotificationRecordError": {
+    "message": "Record the execution error notification to the notification history"
+  },
   "settingsNotificationShowUrl": {
     "message": "Display the URL of the notification in notification records"
   },

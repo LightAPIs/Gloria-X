@@ -43,11 +43,11 @@ taskSubject.subscribe({
 });
 
 function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
-  const { notificationSound, notificationCustomSound, notificationDisableError } = store.state.configs;
   const { id, code, type, triggerInterval, triggerDate, onTimeMode, earliestTime, name } = task;
   function run() {
     const taskObservable = new Observable((obsever: Observer<unknown>) => {
       obsever.next(() => {
+        const { notificationSound, notificationCustomSound, notificationDisableError, notificationRecordError } = store.state.configs;
         store.commit('triggerTask', id);
         evalUntrusted(code)
           .then(dataList => {
@@ -64,21 +64,25 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
           })
           .catch(err => {
             console.error(err);
-            !notificationDisableError &&
+            if (!notificationDisableError) {
+              const errTitle = i18n('notificationCodeError', [name]);
+              const errId = uuid();
+              const errTime = Date.now();
               notificationsManager.add({
-                title: i18n('notificationCodeError', [name]),
+                title: errTitle,
                 message: err.message,
                 iconUrl: DEFAULT_ICON_URL,
                 type: 'basic',
-                id: uuid(),
+                id: errId,
                 contextMessage: 'Gloria-X',
                 requireInteraction: false,
-                eventTime: Date.now(),
+                eventTime: errTime,
                 priority: 0,
                 silent: !notificationSound,
                 customSound: notificationCustomSound,
                 detectIcon: false,
-                isTest: true,
+                //? 若不记录错误通知时，当作是测试用通知处理
+                isTest: !notificationRecordError,
                 buttons: [
                   {
                     title: i18n('notificationTerminateTask'),
@@ -92,7 +96,26 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
                 },
               });
 
-            //* 将错误记录至任务中
+              if (notificationRecordError) {
+                //* 记错误通知记录到通知历史记录当中
+                store.commit('addNotification', {
+                  id: errId,
+                  options: {
+                    //? 这是用于通知历史记录，type 类型并不限定
+                    type: 'error',
+                    title: errTitle,
+                    message: err.message,
+                    iconUrl: DEFAULT_ICON_URL,
+                    //* 这是由插件本身推送的，而不是相关任务推送的
+                    contextMessage: 'Gloria-X',
+                    eventTime: errTime,
+                  },
+                  visited: false,
+                  later: false,
+                });
+              }
+            }
+            //* 始终将错误记录至任务中
             store.commit('executionTaskError', id);
           })
           .finally(() => {

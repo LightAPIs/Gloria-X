@@ -50,6 +50,13 @@
         <span class="options-tip-icon"><i class="el-icon-remove"></i></span>
       </el-tooltip>
     </div>
+    <div v-if="!configs.notificationDisableError" class="margin-top">
+      <el-switch
+        :value="configs.notificationRecordError"
+        :active-text="i18n('settingsNotificationRecordError')"
+        @change="onChange('notificationRecordError', $event)"
+      ></el-switch>
+    </div>
     <div class="margin-top">
       <el-switch
         :value="configs.notificationShowUrl"
