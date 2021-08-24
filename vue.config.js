@@ -4,7 +4,7 @@ const path = require('path');
 const packageInfo = require('./package.json');
 
 const productionMode = process.env.NODE_ENV === 'production';
-const appName = process.env.VUE_APP_NAME;
+const appName = process.env.VUE_APP_NAME || 'chrome';
 const zipMode = process.env.VUE_APP_BUILD === 'zip';
 
 // Generate pages object
