@@ -32,7 +32,7 @@ const fileName = productionMode ? 'production' : 'development';
 outputDir = `${folderName}/${appName}`;
 copyFiles = [
   {
-    from: path.resolve(`src/${appName}/manifest.${fileName}.json`),
+    from: path.resolve(`src/manifest/${appName}/manifest.${fileName}.json`),
     to: `${path.resolve(folderName)}/${appName}/manifest.json`,
   },
 ];
