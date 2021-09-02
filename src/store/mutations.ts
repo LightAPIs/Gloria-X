@@ -159,43 +159,35 @@ export default {
     del && chromeStorage.setTasks(state.tasks, `delete "tasks -> ${taskId}".`);
     delStage && chromeStorage.setStages(state.stages, `delete "stages -> ${taskId}".`);
   },
-  triggerTask(state: myStore.VuexState, taskId: string): void {
+  executionTaskSuccess(state: myStore.VuexState, taskId: string): void {
     let trigger = false;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === taskId) {
         state.tasks[i].triggerCount++;
         state.tasks[i].triggerDate = now();
         trigger = true;
-        break;
-      }
-    }
-    trigger && chromeStorage.setTasks(state.tasks, `trigger task: "${taskId}".`);
-  },
-  executionTaskSuccess(state: myStore.VuexState, taskId: string): void {
-    let reset = false;
-    for (let i = 0; i < state.tasks.length; i++) {
-      if (state.tasks[i].id === taskId) {
         if (state.tasks[i].executionError > 0) {
           state.tasks[i].executionError = 0;
-          reset = true;
         }
         break;
       }
     }
 
-    reset && chromeStorage.setTasks(state.tasks, `task execution success: "${taskId}".`);
+    trigger && chromeStorage.setTasks(state.tasks, `task execution success: "${taskId}".`);
   },
   executionTaskError(state: myStore.VuexState, taskId: string): void {
-    let err = false;
+    let trigger = false;
     for (let i = 0; i < state.tasks.length; i++) {
       if (state.tasks[i].id === taskId) {
+        state.tasks[i].triggerCount++;
+        state.tasks[i].triggerDate = now();
         state.tasks[i].executionError++;
-        err = true;
+        trigger = true;
         break;
       }
     }
 
-    err && chromeStorage.setTasks(state.tasks, `task execution error: "${taskId}".`);
+    trigger && chromeStorage.setTasks(state.tasks, `task execution error: "${taskId}".`);
   },
   clearTasks(state: myStore.VuexState): void {
     let delStage = false;

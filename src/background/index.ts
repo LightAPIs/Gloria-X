@@ -48,7 +48,6 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
     const taskObservable = new Observable((obsever: Observer<unknown>) => {
       obsever.next(() => {
         const { notificationSound, notificationCustomSound, notificationDisableError, notificationRecordError } = store.state.configs;
-        store.commit('triggerTask', id);
         evalUntrusted(code)
           .then(dataList => {
             if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {

@@ -21,7 +21,6 @@ const {
   updateTaskBasic,
   createTaskBasic,
   removeTaskItem,
-  triggerTask,
   executionTaskSuccess,
   executionTaskError,
   clearTasks,
@@ -412,23 +411,6 @@ describe('Test mutations:', function () {
       expect(state.tasks).to.be.empty;
       expect(state.stages).to.be.empty;
       expect(state.operationTask).to.not.be.null;
-    });
-  });
-
-  describe('Method: triggerTask', function () {
-    it('task is trigger.', function () {
-      const state = {
-        tasks: [
-          {
-            id: '1',
-            triggerCount: 0,
-            triggerDate: '',
-          },
-        ],
-      };
-      triggerTask(state, '1');
-      expect(state.tasks[0].triggerCount).to.equal(1);
-      expect(state.tasks[0].triggerDate).to.not.empty;
     });
   });
 
