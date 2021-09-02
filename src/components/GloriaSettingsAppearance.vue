@@ -4,7 +4,7 @@
       <span class="font-14">
         {{ i18n('settingsAppearanceInterface') }}
       </span>
-      <el-radio-group :model-value="configs.appearanceInterface" size="mini" @change="onChange">
+      <el-radio-group :model-value="configs.appearanceInterface" class="interface-radio-group" size="mini" @change="onChange">
         <el-radio-button label="default">{{ i18n('settingsAppearanceInterfaceDefault') }}</el-radio-button>
         <el-radio-button label="light">{{ i18n('settingsAppearanceInterfaceLight') }}</el-radio-button>
         <el-radio-button label="dark">{{ i18n('settingsAppearanceInterfaceDark') }}</el-radio-button>
@@ -46,3 +46,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.interface-radio-group {
+  display: inline-block;
+  vertical-align: super;
+}
+</style>
