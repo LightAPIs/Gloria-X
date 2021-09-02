@@ -83,7 +83,7 @@
     color: $dark-text-color-primary;
   }
 
-  .el-radio-button__inner {
+  .el-radio-button .el-radio-button__inner {
     background-color: $dark-radio-background-color;
     color: $dark-text-color-brighter;
 
@@ -91,7 +91,7 @@
       color: $dark-text-color-highlight;
     }
   }
-  .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  .el-radio-button__original-radio:checked + .el-radio-button__inner {
     background-color: $dark-radio-background-color-highlight;
 
     &:hover {
