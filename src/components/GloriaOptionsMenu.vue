@@ -64,6 +64,6 @@ export default defineComponent({
   }
 }
 .options-menu {
-  width: 100%;
+  border-right: 1px solid #001529;
 }
 </style>
