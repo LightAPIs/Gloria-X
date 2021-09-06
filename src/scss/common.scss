@@ -48,3 +48,11 @@ body {
   background: #303133;
   border-color: #3f434c;
 }
+
+.el-link.el-link--primary {
+  color: #409eff;
+}
+
+.el-link.el-link--primary.is-underline:hover:after {
+  border-color: #409eff;
+}
