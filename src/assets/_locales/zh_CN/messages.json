@@ -762,7 +762,7 @@
     "message": "支持"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X 是一款免费开放源代码的可编程网站通知聚合器，可以通过自定义的 JavaScript 代码任务实现定时抓取网站上的新内容并弹出通知提醒，并且绝不会收集发送用户的任何隐私信息。"
+    "message": "Gloria-X 是一款免费开源的可编程网站通知聚合器。提供定时执行 javascript 脚本任务的功能，以实现监测网页变化或进行论坛签到等自动化工作，并完成通知聚合。同时还提供了通过鼠标快速选取网页元素创建观察任务的功能。并且绝不会收集发送用户的任何隐私信息。"
   },
   "aboutSourceCode": {
     "message": "Gloria-X 源代码 (MIT License) 和使用指南"

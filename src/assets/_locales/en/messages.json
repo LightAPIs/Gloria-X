@@ -762,7 +762,7 @@
     "message": "Support"
   },
   "aboutSupportLabel": {
-    "message": "Gloria-X is a free and open source programmable website notifications aggregator. It can capture the new content on the website  regularly and pop up notifications with a custom JavaScript code task. And will never collect any private information from the sending user."
+    "message": "Gloria-X is a free and open source programmable website notifications aggregator. It provides the function of performing the JavaScript script task to implement automated work such as detection web page changes or forum check-in, and complete the notification aggregation. At the same time, it also provides the function of using the mouse to quickly select web elements to create observation tasks. And will never collect any private information from the sending user."
   },
   "aboutSourceCode": {
     "message": "Gloria-X source code (MIT License) and usage guide"
