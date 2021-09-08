@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/LightAPIs/Gloria-X/compare/v2.8.0...v2.8.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* **link:** 修复通知记录中通知标题的样式问题 ([832b4ea](https://github.com/LightAPIs/Gloria-X/commit/832b4eaf8ddb2c57e1bdc990483a6ec69f91f446))
+* **radio:** 修复单选按钮在黑暗模式下的显示问题 ([dbd711c](https://github.com/LightAPIs/Gloria-X/commit/dbd711c33712e932dd68fb1c3f0343bb8a3906a0))
+
 ## [2.8.0](https://github.com/LightAPIs/Gloria-X/compare/v2.7.0...v2.8.0) (2021-08-24)
 
 
