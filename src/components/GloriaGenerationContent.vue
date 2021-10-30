@@ -20,13 +20,26 @@
             <div>
               <el-form :model="selectionForm" label-width="120px">
                 <el-form-item label="title" prop="title">
-                  <el-input v-model="selectionForm.title" clearable :placeholder="i18n('generationSelectionTitle')"></el-input>
+                  <el-input v-model="selectionForm.title" clearable size="mini" :placeholder="i18n('generationSelectionTitle')"></el-input>
+                </el-form-item>
+                <el-form-item label="imageUrl" prop="imageUrl">
+                  <el-input
+                    v-model="selectionForm.imageUrl"
+                    clearable
+                    size="mini"
+                    :placeholder="i18n('generationSelectionImageUrl')"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item label="iconUrl" prop="iconUrl">
-                  <el-input v-model="selectionForm.iconUrl" clearable :placeholder="i18n('generationSelectionIconUrl')"></el-input>
+                  <el-input
+                    v-model="selectionForm.iconUrl"
+                    clearable
+                    size="mini"
+                    :placeholder="i18n('generationSelectionIconUrl')"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item label="url" prop="url">
-                  <el-input v-model="selectionForm.url" clearable :placeholder="i18n('generationSelectionUrl')"></el-input>
+                  <el-input v-model="selectionForm.url" clearable size="mini" :placeholder="i18n('generationSelectionUrl')"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="primary" size="small" :disabled="elements.length === 0" @click="onSelectionSubmit">
@@ -231,6 +244,7 @@ export default defineComponent({
       next: false,
       selectionForm: {
         title: '',
+        imageUrl: '',
         iconUrl: '',
         url: '',
       },
@@ -288,7 +302,7 @@ export default defineComponent({
     generationCode() {
       const {
         pageUrl,
-        selectionForm: { title, iconUrl, url },
+        selectionForm: { title, imageUrl, iconUrl, url },
         elements,
       } = this;
       let msg = '',
@@ -304,11 +318,13 @@ export default defineComponent({
   const $ = cheerio.load(html);
   const title = "${title ? title : ''}";${msg}
   ${message};
+  const imageUrl = "${imageUrl ? imageUrl : ''}";
   const iconUrl = "${iconUrl ? iconUrl : ''}";
   const url = "${url ? url : ''}";
   return {
     title,
     message,
+    imageUrl,
     iconUrl,
     url,
   }
@@ -556,6 +572,9 @@ export default defineComponent({
   .right-content {
     .form-trigger-time {
       margin-left: 25px;
+    }
+    .el-form-item {
+      margin-bottom: 9px;
     }
   }
   .result {

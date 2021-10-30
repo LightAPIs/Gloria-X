@@ -915,6 +915,9 @@
   "generationSelectionTitle": {
     "message": "可选，通知消息的标题"
   },
+  "generationSelectionImageUrl": {
+    "message": "可选，通知消息显示的图片"
+  },
   "generationSelectionIconUrl": {
     "message": "可选，通知消息的图标"
   },

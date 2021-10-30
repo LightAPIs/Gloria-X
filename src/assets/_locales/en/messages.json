@@ -915,6 +915,9 @@
   "generationSelectionTitle": {
     "message": "Optional, the title of the notification message"
   },
+  "generationSelectionImageUrl": {
+    "message": "Optional, the image of the notification message"
+  },
   "generationSelectionIconUrl": {
     "message": "Optional, the icon of the notification message"
   },
