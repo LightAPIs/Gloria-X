@@ -1,5 +1,5 @@
 <template>
-  <span :class="className">
+  <span :class="className" class="gloria-text-content">
     <template v-for="(item, index) in htmlText" :key="index">
       <span v-if="item.normal" class="gloria-normal-text">
         {{ item.normal }}
@@ -75,3 +75,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.gloria-text-content {
+  word-break: break-all;
+}
+</style>
