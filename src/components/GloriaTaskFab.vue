@@ -21,4 +21,7 @@ export default defineComponent({
   right: 30px;
   bottom: 10px;
 }
+.fab-button:hover {
+  box-shadow: 0px 0px 5px 2px green;
+}
 </style>
