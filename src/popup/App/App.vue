@@ -42,6 +42,10 @@ export default defineComponent({
     ...mapState(['configs']),
     ...mapGetters(['activeTab']),
   },
+  created() {
+    //? 还原 Chromium 中全局网页缩放比例，防止弹出窗口内容溢出；Firefox 中的弹出窗口本身不受全局缩放影响
+    document.body.setAttribute('style', 'zoom: ' + (1 / window.devicePixelRatio) * 100 + '%');
+  },
   methods: {
     ...mapMutations(['updateLastActiveTab', 'clearUnread']),
     leaveTab(activeName: string): void {
