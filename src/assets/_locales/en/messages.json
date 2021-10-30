@@ -29,6 +29,12 @@
   "popupTaskDelete": {
     "message": "Delete"
   },
+  "popupTaskRollUp": {
+    "message": "Roll up"
+  },
+  "popupTaskUnroll": {
+    "message": "Unroll"
+  },
   "popupTaskDisconnect": {
     "message": "Disconnect to check remote updates for this task"
   },

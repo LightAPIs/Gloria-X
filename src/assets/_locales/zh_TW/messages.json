@@ -29,6 +29,12 @@
   "popupTaskDelete": {
     "message": "移除"
   },
+  "popupTaskRollUp": {
+    "message": "縮合"
+  },
+  "popupTaskUnroll": {
+    "message": "展開"
+  },
   "popupTaskDisconnect": {
     "message": "停止檢查此任務的遠程更新"
   },

@@ -17,133 +17,154 @@
     shadow="hover"
     @contextmenu.prevent="onContextmenu"
   >
-    <template #header>
-      <span>
-        <gloria-text-highlight class-name="header-text" :text="name" :keyword="filterText"></gloria-text-highlight>
-        <el-tag v-if="type === 'timed'" size="mini" effect="dark" :title="i18n('popupTaskTimedText')" class="tag">
-          {{ i18n('popupTaskFormTimed') }}
-        </el-tag>
-        <el-tag v-if="type === 'daily'" type="success" size="mini" effect="dark" :title="i18n('popupTaskDailyText')" class="tag">
-          {{ i18n('popupTaskFormDaily') }}
-        </el-tag>
-        <el-tag
-          v-if="type === 'timed' && onTimeMode"
-          type="info"
-          size="mini"
-          effect="dark"
-          :title="i18n('popupTaskOnTimeModeText')"
-          class="tag"
-        >
-          {{ i18n('popupTaskOnTimeModeTag') }}
-        </el-tag>
-        <el-tag
-          v-if="needInteraction && isChrome"
-          type="warning"
-          size="mini"
-          effect="dark"
-          :title="i18n('popupTaskNeedInteractionText')"
-          class="tag"
-        >
-          {{ i18n('popupTaskNeedInteractionTag') }}
-        </el-tag>
-        <el-tag
-          v-if="executionError > 0"
-          type="danger"
-          size="mini"
-          effect="dark"
-          :title="i18n('popupTaskLastExecutionErrorText', executionError.toString())"
-          class="tag"
-        >
-          {{ i18n('popupTaskLastExecutionErrorTag', executionError.toString()) }}
-        </el-tag>
-        <span class="float-right">
-          <el-popconfirm
-            v-if="origin"
-            class="disconnect-btn"
-            effect="dark"
-            :title="i18n('popupTaskDisconnectConfirm')"
-            :confirm-button-text="i18n('popupTaskDisconnectOk')"
-            confirm-button-type="warning"
-            :cancel-button-text="i18n('cancelText')"
-            @confirm="onDisconnect"
-          >
-            <template #reference>
-              <el-button
-                type="warning"
-                size="mini"
-                icon="el-icon-scissors"
-                circle
-                class="card-button"
-                :title="i18n('popupTaskDisconnect')"
-              ></el-button>
-            </template>
-          </el-popconfirm>
-          <el-popconfirm
-            class="delete-btn"
-            effect="dark"
-            :title="i18n('popupTaskDeleteConfirm')"
-            :confirm-button-text="i18n('popupTaskDeleteOk')"
-            confirm-button-type="danger"
-            :cancel-button-text="i18n('cancelText')"
-            icon="el-icon-warning"
-            @confirm="onDelete"
-          >
-            <template #reference>
-              <el-button
-                type="danger"
-                size="mini"
-                icon="el-icon-delete"
-                circle
-                class="card-button"
-                :title="i18n('popupTaskDelete')"
-              ></el-button>
-            </template>
-          </el-popconfirm>
-          <el-button
-            type="primary"
+    <div class="gloria-task-item-header">
+      <el-row>
+        <el-col :span="16">
+          <gloria-text-highlight class-name="header-text" :text="name" :keyword="filterText"></gloria-text-highlight>
+          <el-tag v-if="type === 'timed'" size="mini" effect="dark" :title="i18n('popupTaskTimedText')" class="tag">
+            {{ i18n('popupTaskFormTimed') }}
+          </el-tag>
+          <el-tag v-if="type === 'daily'" type="success" size="mini" effect="dark" :title="i18n('popupTaskDailyText')" class="tag">
+            {{ i18n('popupTaskFormDaily') }}
+          </el-tag>
+          <el-tag
+            v-if="type === 'timed' && onTimeMode"
+            type="info"
             size="mini"
-            icon="el-icon-edit"
-            circle
-            class="card-button"
-            :title="i18n('popupTaskEdit')"
-            @click="onEdit"
-          ></el-button>
-          <el-switch :value="isEnable" active-color="#13ce66" inactive-color="#ff4949" class="switch" @change="onSwitchChange"></el-switch>
+            effect="dark"
+            :title="i18n('popupTaskOnTimeModeText')"
+            class="tag"
+          >
+            {{ i18n('popupTaskOnTimeModeTag') }}
+          </el-tag>
+          <el-tag
+            v-if="needInteraction && isChrome"
+            type="warning"
+            size="mini"
+            effect="dark"
+            :title="i18n('popupTaskNeedInteractionText')"
+            class="tag"
+          >
+            {{ i18n('popupTaskNeedInteractionTag') }}
+          </el-tag>
+          <el-tag
+            v-if="executionError > 0"
+            type="danger"
+            size="mini"
+            effect="dark"
+            :title="i18n('popupTaskLastExecutionErrorText', executionError.toString())"
+            class="tag"
+          >
+            {{ i18n('popupTaskLastExecutionErrorTag', executionError.toString()) }}
+          </el-tag>
+        </el-col>
+        <el-col :span="8">
+          <div class="float-right">
+            <el-button
+              type="info"
+              size="mini"
+              :icon="contentShow ? 'el-icon-arrow-up' : 'el-icon-arrow-down'"
+              circle
+              class="card-button"
+              :title="contentShow ? i18n('popupTaskRollUp') : i18n('popupTaskUnroll')"
+              @click="onRoll"
+            ></el-button>
+            <el-popconfirm
+              v-if="origin"
+              class="disconnect-btn"
+              effect="dark"
+              :title="i18n('popupTaskDisconnectConfirm')"
+              :confirm-button-text="i18n('popupTaskDisconnectOk')"
+              confirm-button-type="warning"
+              :cancel-button-text="i18n('cancelText')"
+              @confirm="onDisconnect"
+            >
+              <template #reference>
+                <el-button
+                  type="warning"
+                  size="mini"
+                  icon="el-icon-scissors"
+                  circle
+                  class="card-button"
+                  :title="i18n('popupTaskDisconnect')"
+                ></el-button>
+              </template>
+            </el-popconfirm>
+            <el-popconfirm
+              class="delete-btn"
+              effect="dark"
+              :title="i18n('popupTaskDeleteConfirm')"
+              :confirm-button-text="i18n('popupTaskDeleteOk')"
+              confirm-button-type="danger"
+              :cancel-button-text="i18n('cancelText')"
+              icon="el-icon-warning"
+              @confirm="onDelete"
+            >
+              <template #reference>
+                <el-button
+                  type="danger"
+                  size="mini"
+                  icon="el-icon-delete"
+                  circle
+                  class="card-button"
+                  :title="i18n('popupTaskDelete')"
+                ></el-button>
+              </template>
+            </el-popconfirm>
+            <el-button
+              type="primary"
+              size="mini"
+              icon="el-icon-edit"
+              circle
+              class="card-button"
+              :title="i18n('popupTaskEdit')"
+              @click="onEdit"
+            ></el-button>
+            <el-switch
+              :value="isEnable"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              class="switch"
+              @change="onSwitchChange"
+            ></el-switch>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <div v-show="contentShow" class="gloria-task-item-content">
+      <div>
+        <span v-if="type === 'daily'">
+          {{ i18n('popupTaskEarliestTimeTitle') + earliestTime }}
         </span>
-      </span>
-    </template>
-    <div>
-      <span v-if="type === 'daily'">
-        {{ i18n('popupTaskEarliestTimeTitle') + earliestTime }}
-      </span>
-      <span v-else>
-        {{ i18n('popupTaskTriggerInterval') + intervalTime(triggerInterval) }}
-      </span>
-      <span class="float-right">
-        {{ i18n('popupTaskOrigin') }}
-        <a v-if="origin" target="_blank" :href="origin">
-          {{ origin }}
-        </a>
         <span v-else>
-          {{ i18n('popupTaskNoOrigin') }}
+          {{ i18n('popupTaskTriggerInterval') + intervalTime(triggerInterval) }}
         </span>
-      </span>
-    </div>
-    <div>
-      <span>
-        {{ i18n('popupTaskTriggerCount') + triggerCount }}
-      </span>
-      <span class="float-right">
-        {{ i18n('popupTaskPushCount') + pushCount }}
-      </span>
-    </div>
-    <div>
-      <span>
-        {{ i18n('popupTaskTriggerDate') + displayTime(triggerDate) }}
-      </span>
-      <span class="float-right">
-        {{ i18n('popupTaskPushDate') + displayTime(pushDate) }}
-      </span>
+        <span class="float-right">
+          {{ i18n('popupTaskOrigin') }}
+          <a v-if="origin" target="_blank" :href="origin">
+            {{ origin }}
+          </a>
+          <span v-else>
+            {{ i18n('popupTaskNoOrigin') }}
+          </span>
+        </span>
+      </div>
+      <div>
+        <span>
+          {{ i18n('popupTaskTriggerCount') + triggerCount }}
+        </span>
+        <span class="float-right">
+          {{ i18n('popupTaskPushCount') + pushCount }}
+        </span>
+      </div>
+      <div>
+        <span>
+          {{ i18n('popupTaskTriggerDate') + displayTime(triggerDate) }}
+        </span>
+        <span class="float-right">
+          {{ i18n('popupTaskPushDate') + displayTime(pushDate) }}
+        </span>
+      </div>
     </div>
   </el-card>
 </template>
@@ -232,6 +253,11 @@ export default defineComponent({
       isChrome,
     };
   },
+  data() {
+    return {
+      contentShow: false,
+    };
+  },
   computed: {
     ...mapGetters(['taskCode']),
     itemShow() {
@@ -245,6 +271,9 @@ export default defineComponent({
   },
   methods: {
     ...mapMutations(['updateIsEnable', 'removeTaskItem', 'disconnectTask', 'updateTaskBasic', 'removeStageItem']),
+    onRoll() {
+      this.contentShow = !this.contentShow;
+    },
     onEdit() {
       const { id } = this;
       this.$emit('task-edit', id);
@@ -459,6 +488,11 @@ export default defineComponent({
   }
   .tag {
     margin-left: 5px;
+  }
+  .gloria-task-item-content {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ffffff;
   }
 }
 </style>
