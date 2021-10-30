@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/LightAPIs/Gloria-X/compare/v2.8.1...v2.9.0) (2021-10-30)
+
+
+### Features
+
+* **generation:** 在自动生成任务代码时允许填写 imageUrl 属性 ([fe91dc9](https://github.com/LightAPIs/Gloria-X/commit/fe91dc938f98014801030c701503b5c608856bf9))
+* **task:** 任务列表中的任务详情默认收起 ([6a1d397](https://github.com/LightAPIs/Gloria-X/commit/6a1d397707466846a5e3814b1181514571c0036e))
+
+
+### Bug Fixes
+
+* **popup:** 修复 Chromium 中全局网页缩放比例超过 100% 时弹出窗口内容溢出的问题 ([912d068](https://github.com/LightAPIs/Gloria-X/commit/912d0689ca8699240f0de1958eb595f069f45173))
+* **text:** 修复文本内容可能显示不全的问题 ([0367c11](https://github.com/LightAPIs/Gloria-X/commit/0367c11fda0e8d7cb5c1878e9d1f83642f409b6b))
+
 ### [2.8.1](https://github.com/LightAPIs/Gloria-X/compare/v2.8.0...v2.8.1) (2021-09-08)
 
 
