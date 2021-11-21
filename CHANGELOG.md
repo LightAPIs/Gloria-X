@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/LightAPIs/Gloria-X/compare/v2.9.0...v2.10.0) (2021-11-21)
+
+
+### Features
+
+* **notifications:** 在通知记录中添加"访问过的"分类 ([fa64dbb](https://github.com/LightAPIs/Gloria-X/commit/fa64dbb47857be7252baae34f9e212aa0f5267c2))
+
 ## [2.9.0](https://github.com/LightAPIs/Gloria-X/compare/v2.8.1...v2.9.0) (2021-10-30)
 
 
