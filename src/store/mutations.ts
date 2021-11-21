@@ -538,6 +538,11 @@ export default {
 
     chromeStorage.setNotifications(state.notifications, `remove notifications by name: "${name}".`);
   },
+  removeNotificationsByVisited(state: myStore.VuexState): void {
+    state.notifications = state.notifications.filter(notify => !notify.visited);
+
+    chromeStorage.setNotifications(state.notifications, 'remove notifications by visited.');
+  },
   clearNotifications(state: myStore.VuexState): void {
     if (state.notifications.length > 0) {
       state.notifications = [];

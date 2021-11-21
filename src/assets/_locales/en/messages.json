@@ -170,6 +170,9 @@
   "popupNotificationLater": {
     "message": "Later review"
   },
+  "popupNotificationVisited": {
+    "message": "Visited"
+  },
   "popupNotificationFrom": {
     "message": "From: "
   },
@@ -253,6 +256,9 @@
   },
   "popupContextNotificationMenuCheckedLater": {
     "message": "Remove all later review flags"
+  },
+  "popupContextNofificationMenuClearVisited": {
+    "message": "Remove all visited notification records"
   },
   "popupContextNotificationMenuClearAll": {
     "message": "Clear all notification records"

@@ -1,3 +1,5 @@
+import { isIncludeNotification } from './basic';
+
 export default {
   activeTab(state: myStore.VuexState): string {
     const { lastActiveTab } = state;
@@ -42,7 +44,8 @@ export default {
     loadIndex: number,
     menuName: string,
     filterText: string,
-    isLater: boolean
+    isLater: boolean,
+    isVisited: boolean
   ): myStore.GloriaNotification[] => {
     const { notifications } = state;
     const notifyList: myStore.GloriaNotification[] = [];
@@ -50,42 +53,24 @@ export default {
     for (const notify of notifications) {
       if (isLater) {
         if (notify.later) {
-          if (filterText) {
-            if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            }
-          } else {
+          if (isIncludeNotification(notify, filterText)) {
+            notifyList.push(notify);
+          }
+        }
+      } else if (isVisited) {
+        if (notify.visited) {
+          if (isIncludeNotification(notify, filterText)) {
             notifyList.push(notify);
           }
         }
       } else if (menuName) {
         if (notify.options.contextMessage === menuName) {
-          if (filterText) {
-            if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
-              notifyList.push(notify);
-            }
-          } else {
+          if (isIncludeNotification(notify, filterText)) {
             notifyList.push(notify);
           }
         }
       } else {
-        if (filterText) {
-          if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
-            notifyList.push(notify);
-          } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
-            notifyList.push(notify);
-          } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
-            notifyList.push(notify);
-          }
-        } else {
+        if (isIncludeNotification(notify, filterText)) {
           notifyList.push(notify);
         }
       }

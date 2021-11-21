@@ -107,4 +107,19 @@ function normalizeRule(rule: myStore.RequestHeadersRule): myStore.RequestHeaders
   return rule;
 }
 
-export { defaultConfigs, defaultTaskBasic, defaultTask, defaultRule, normalizeTask, normalizeRule };
+function isIncludeNotification(notify: myStore.GloriaNotification, filterText: string): boolean {
+  if (filterText) {
+    if (notify.options.title && notify.options.title.toLowerCase().includes(filterText.toLowerCase())) {
+      return true;
+    } else if (notify.options.message && notify.options.message.toLowerCase().includes(filterText.toLowerCase())) {
+      return true;
+    } else if (notify.options.contextMessage && notify.options.contextMessage.toLowerCase().includes(filterText.toLowerCase())) {
+      return true;
+    }
+  } else {
+    return true;
+  }
+  return false;
+}
+
+export { defaultConfigs, defaultTaskBasic, defaultTask, defaultRule, normalizeTask, normalizeRule, isIncludeNotification };

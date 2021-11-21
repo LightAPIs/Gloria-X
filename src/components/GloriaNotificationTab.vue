@@ -18,7 +18,7 @@
           >
             <el-timeline v-infinite-scroll="onInfiniteLoad" class="history-timeline">
               <gloria-notification-item
-                v-for="info in notificationsList(loadIndex, menuName, filterText, isLater)"
+                v-for="info in notificationsList(loadIndex, menuName, filterText, isLater, isVisited)"
                 :id="info.id"
                 :key="info.id"
                 :later="info.later"
@@ -68,6 +68,7 @@ export default defineComponent({
     return {
       menuName: '',
       isLater: false,
+      isVisited: false,
       filterText: '',
       loadIndex: 5,
       context: {
@@ -82,9 +83,10 @@ export default defineComponent({
     ...mapGetters(['notificationsList']),
   },
   methods: {
-    onSelectMenu(menuObj: { menuName: string; isLater: boolean }) {
+    onSelectMenu(menuObj: { menuName: string; isLater: boolean; isVisited: boolean }) {
       this.menuName = menuObj.menuName;
       this.isLater = menuObj.isLater;
+      this.isVisited = menuObj.isVisited;
     },
     onFilterText(text: string) {
       this.filterText = text;

@@ -38,6 +38,14 @@
         <el-badge v-show="laterCount > 0" :value="laterCount" :max="99" class="later-count" type="danger" />
       </el-menu-item>
       <el-menu-item
+        index="-3"
+        class="history-menu-item"
+        :title="i18n('popupNotificationVisited')"
+        @contextmenu.prevent="onContextmenu($event, '-3')"
+      >
+        {{ i18n('popupNotificationVisited') }}
+      </el-menu-item>
+      <el-menu-item
         v-for="(item, index) in notificationsTitleList"
         :key="index"
         :index="index.toString()"
@@ -84,13 +92,17 @@ export default defineComponent({
       'clearNotifications',
       'markLaterByName',
       'removeLaterByName',
+      'removeNotificationsByVisited',
       'removeNotificationsByName',
     ]),
     handleSelect(key: string) {
       let menuName = '';
       let isLater = false;
+      let isVisited = false;
       if (key == '-2') {
         isLater = true;
+      } else if (key == '-3') {
+        isVisited = true;
       } else if (key != '-1') {
         menuName = this.notificationsTitleList[key];
       }
@@ -98,13 +110,14 @@ export default defineComponent({
       this.$emit('select-menu', {
         menuName,
         isLater,
+        isVisited,
       });
     },
     onContextmenu(event: MouseEvent, index: string) {
       const { notificationsTitleList, laterCount, laterList } = this;
       const items = [];
 
-      if (index !== '-1' && index !== '-2') {
+      if (index !== '-1' && index !== '-2' && index !== '-3') {
         items.push(
           {
             label: this.i18n('popupContextNotificationMenuCopy'),
@@ -167,6 +180,14 @@ export default defineComponent({
             icon: 'el-icon-delete-solid',
             onClick: () => {
               this.clearNotifications();
+            },
+          });
+        } else if (index === '-3') {
+          items.push({
+            label: this.i18n('popupContextNofificationMenuClearVisited'),
+            icon: 'el-icon-delete-solid',
+            onClick: () => {
+              this.removeNotificationsByVisited();
             },
           });
         } else {

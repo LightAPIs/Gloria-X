@@ -170,6 +170,9 @@
   "popupNotificationLater": {
     "message": "稍后查阅"
   },
+  "popupNotificationVisited": {
+    "message": "访问过的"
+  },
   "popupNotificationFrom": {
     "message": "来自： "
   },
@@ -253,6 +256,9 @@
   },
   "popupContextNotificationMenuCheckedLater": {
     "message": "移除所有稍后查阅标识"
+  },
+  "popupContextNofificationMenuClearVisited": {
+    "message": "移除所有访问过的通知记录"
   },
   "popupContextNotificationMenuClearAll": {
     "message": "清除所有通知记录"
