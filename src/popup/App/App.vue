@@ -46,12 +46,13 @@ export default defineComponent({
     //? 还原 Chromium 中全局网页缩放比例，防止弹出窗口内容溢出；Firefox 中的弹出窗口本身不受全局缩放影响
     chrome.storage.local.get(['configs'], res => {
       //! 由于不同设备的 dppx 可能存在差异，导致该功能实现效果会不同，所以允许用户手动配置比例
+      let zoomValue = 100;
       if (res != null && res.configs != null) {
-        const devicePixelRatio = window.devicePixelRatio || 1;
-        const zoomValue = res.configs.appearanceZoom || 100;
-        const zoom = zoomValue / 100;
-        document.body.setAttribute('style', 'zoom: ' + (zoom / devicePixelRatio) * 100 + '%');
+        zoomValue = res.configs.appearanceZoom || 100;
       }
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      const zoom = zoomValue / 100;
+      document.body.setAttribute('style', 'zoom: ' + (zoom / devicePixelRatio) * 100 + '%');
     });
   },
   methods: {
