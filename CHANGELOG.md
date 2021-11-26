@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/LightAPIs/Gloria-X/compare/v2.10.0...v2.11.0) (2021-11-26)
+
+
+### Features
+
+* **config:** 添加支持调整弹出窗口缩放比例的设置项 ([4161431](https://github.com/LightAPIs/Gloria-X/commit/41614310950e6d5093b1a72c6828c239242fd655)), closes [#3](https://github.com/LightAPIs/Gloria-X/issues/3)
+
 ## [2.10.0](https://github.com/LightAPIs/Gloria-X/compare/v2.9.0...v2.10.0) (2021-11-21)
 
 
