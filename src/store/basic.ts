@@ -21,6 +21,7 @@ const ruleKeys = ['id', 'domain', 'headers'];
 function defaultConfigs(): myStore.GloriaConfig {
   return {
     appearanceInterface: 'default',
+    appearanceZoom: 100,
     taskAutoCheckUpdate: false,
     taskOnTimeMode: false,
     taskNeedInteraction: false,

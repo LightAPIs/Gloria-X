@@ -383,6 +383,12 @@
   "settingsAppearanceInterfaceDark": {
     "message": "黑暗模式"
   },
+  "settingsAppearanceZoom": {
+    "message": "弹出窗口的缩放比例："
+  },
+  "settingsAppearanceZoomTips": {
+    "message": "如果遇到弹出窗口缩放比例异常的问题，可以尝试手动调整该值"
+  },
   "settingsTask": {
     "message": "任务"
   },

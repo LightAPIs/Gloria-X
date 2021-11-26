@@ -383,6 +383,12 @@
   "settingsAppearanceInterfaceDark": {
     "message": "Dark"
   },
+  "settingsAppearanceZoom": {
+    "message": "Zoom of popup window: "
+  },
+  "settingsAppearanceZoomTips": {
+    "message": "If you encounter the problem of abnormal scaling of pop-up windows, you can try to adjust the value manually"
+  },
   "settingsTask": {
     "message": "Task"
   },

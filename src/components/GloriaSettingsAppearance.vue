@@ -10,6 +10,24 @@
         <el-radio-button label="dark">{{ i18n('settingsAppearanceInterfaceDark') }}</el-radio-button>
       </el-radio-group>
     </div>
+    <div class="margin-top">
+      <span class="font-14">
+        {{ i18n('settingsAppearanceZoom') }}
+      </span>
+      <el-input-number
+        :model-value="configs.appearanceZoom"
+        :min="25"
+        :max="500"
+        controls-position="right"
+        step-strictly
+        size="medium"
+        @change="onZoom($event)"
+      ></el-input-number>
+      %
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsAppearanceZoomTips')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
@@ -42,6 +60,14 @@ export default defineComponent({
         name: 'appearanceInterface',
         value: newLabel,
       });
+    },
+    onZoom(value: number) {
+      if (value != null) {
+        this.updateConfigs({
+          name: 'appearanceZoom',
+          value: value,
+        });
+      }
     },
   },
 });
