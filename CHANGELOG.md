@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.1](https://github.com/LightAPIs/Gloria-X/compare/v2.11.0...v2.11.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **config:** 修复在没有存储设置前弹出窗口不会应用自动缩放调整的问题 ([e081b8b](https://github.com/LightAPIs/Gloria-X/commit/e081b8b8ae69698627260f2f88f1e477b962ff8a))
+
 ## [2.11.0](https://github.com/LightAPIs/Gloria-X/compare/v2.10.0...v2.11.0) (2021-11-26)
 
 
