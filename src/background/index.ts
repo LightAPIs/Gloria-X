@@ -50,11 +50,11 @@ function createTaskTimer(task: myStore.GloriaTask, immediately = false) {
         const { notificationSound, notificationCustomSound, notificationDisableError, notificationRecordError } = store.state.configs;
         evalUntrusted(code)
           .then(dataList => {
+            store.commit('executionTaskSuccess', id);
+
             if (!dataList || (Array.isArray(dataList) && dataList.length === 0)) {
               return;
             }
-
-            store.commit('executionTaskSuccess', id);
 
             store.dispatch('handleData', {
               taskId: id,
