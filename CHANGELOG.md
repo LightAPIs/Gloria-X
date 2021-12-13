@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.2](https://github.com/LightAPIs/Gloria-X/compare/v2.11.1...v2.11.2) (2021-12-13)
+
+
+### Bug Fixes
+
+* **background:** 修复若任务执行成功但结果为空时不会记录执行时间的问题 ([ff92866](https://github.com/LightAPIs/Gloria-X/commit/ff92866b93de379432e5247cc2ecd9320801904f))
+
 ### [2.11.1](https://github.com/LightAPIs/Gloria-X/compare/v2.11.0...v2.11.1) (2021-11-30)
 
 
