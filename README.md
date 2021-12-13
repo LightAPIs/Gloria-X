@@ -35,6 +35,9 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
 
 ## 目录
 
+<details>
+<summary>目录</summary>
+
 - [安装方法](#安装方法)
   - [Chrome](#Chrome)
   - [Edge](#Edge)
@@ -78,6 +81,8 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
   - [相关目录及文件](#相关目录及文件)
 - [相关项目](#相关项目)
 - [许可证](#许可证)
+
+</details>
 
 ## 安装方法
 

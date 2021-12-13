@@ -33,6 +33,9 @@ Timed a custom JavaScript code task, implement the automation work such as web m
 
 ## Table of contents
 
+<details>
+<summary>Table of contents</summary>
+
 - [Installation](#Installation)
   - [Chrome](#Chrome)
   - [Edge](#Edge)
@@ -75,6 +78,8 @@ Timed a custom JavaScript code task, implement the automation work such as web m
   - [Build](#Build)
 - [Related projects](#Related-projects)
 - [Licence](#Licence)
+
+</details>
 
 ## Installation
 
