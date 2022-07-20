@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LightAPIs/PicGoImg@master/img/20210414171507.png" />
+  <img src="https://gcore.jsdelivr.net/gh/LightAPIs/PicGoImg@master/img/20210414171507.png" />
 </p>
 
 <h1 align="center">Gloria-X</h1>
