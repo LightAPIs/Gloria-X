@@ -74,7 +74,7 @@ export default defineComponent({
       context: {
         isShow: false,
         items: [],
-        event: null,
+        event: undefined,
       },
     };
   },
@@ -120,6 +120,9 @@ export default defineComponent({
 .notifications-main {
   padding-right: 0px;
   padding-left: 10px;
+  .el-scrollbar {
+    height: 99%;
+  }
 }
 
 .notifications-scroll-wrap {
