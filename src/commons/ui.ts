@@ -1,6 +1,6 @@
 // Syntactic sugar
 
-function i18n(first: string, sub?: string[]): string {
+function i18n(first: string, sub?: string | string[]): string {
   return chrome.i18n.getMessage(first, sub);
 }
 

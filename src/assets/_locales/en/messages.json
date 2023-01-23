@@ -383,6 +383,9 @@
   "settingsAppearanceInterfaceDark": {
     "message": "Dark"
   },
+  "settingsUseAppearanceZoom": {
+    "message": "Custom pop-up window zoom"
+  },
   "settingsAppearanceZoom": {
     "message": "Zoom of popup window: "
   },

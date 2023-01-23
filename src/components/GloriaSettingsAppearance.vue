@@ -11,6 +11,9 @@
       </el-radio-group>
     </div>
     <div class="margin-top">
+      <el-switch :value="configs.useAppearanceZoom" :active-text="i18n('settingsUseAppearanceZoom')" @change="onUseZoomChange"></el-switch>
+    </div>
+    <div v-if="configs.useAppearanceZoom" class="margin-top">
       <span class="font-14">
         {{ i18n('settingsAppearanceZoom') }}
       </span>
@@ -60,6 +63,14 @@ export default defineComponent({
         name: 'appearanceInterface',
         value: newLabel,
       });
+    },
+    onUseZoomChange(value: boolean) {
+      if (value != null) {
+        this.updateConfigs({
+          name: 'useAppearanceZoom',
+          value,
+        });
+      }
     },
     onZoom(value: number) {
       if (value != null) {

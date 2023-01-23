@@ -3,7 +3,7 @@ import { ComponentCustomProperties } from 'vue';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    i18n: (first: string, sub?: string[]) => string;
+    i18n: (first: string, sub?: string | string[]) => string;
     n2br: (val: string) => string | undefined;
     nbsp: (val: string) => string | undefined;
     isLink: (url: string) => boolean;

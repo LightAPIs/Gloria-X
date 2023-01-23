@@ -383,6 +383,9 @@
   "settingsAppearanceInterfaceDark": {
     "message": "深色模式"
   },
+  "settingsUseAppearanceZoom": {
+    "message": "自定義彈出視窗的縮放比例"
+  },
   "settingsAppearanceZoom": {
     "message": "彈出視窗的縮放比例："
   },
