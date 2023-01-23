@@ -432,8 +432,18 @@ Reducer 是一个同步执行的函数，当一个任务执行完成后若存在
 
 它的执行时机大概是像下面这样的：
 
-```
-Task(Execute) => commit => Gloria Notification(s) => STAGES(Compare and cache) => Reducer => Popup Notifications
+```mermaid
+flowchart LR
+  subgraph Execute
+    id1([Task]) --> id2[commit]
+  end
+  id2 --> id3
+  subgraph Compare and Cache
+    id3["Gloria Notification(s)"] --> id4[STAGES]
+  end
+  id4 --> id5{reducer exists?}
+  id5 -- No ----> id7[/Popup Notifications/]
+  id5 -- Yes --> id6[Reducer] --> id7
 ```
 
 #### 作用

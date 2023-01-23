@@ -435,8 +435,18 @@ Note: Before the Reducer function is executed, the comparison and caching of not
 
 Its execution timing is probably as follows:
 
-```
-Task(Execute) => commit => Gloria Notification(s) => STAGES(Compare and cache) => Reducer => Popup Notifications
+```mermaid
+flowchart LR
+  subgraph Execute
+    id1([Task]) --> id2[commit]
+  end
+  id2 --> id3
+  subgraph Compare and Cache
+    id3["Gloria Notification(s)"] --> id4[STAGES]
+  end
+  id4 --> id5{reducer exists?}
+  id5 -- No ----> id7[/Popup Notifications/]
+  id5 -- Yes --> id6[Reducer] --> id7
 ```
 
 #### Effect
