@@ -199,6 +199,10 @@
                 <el-checkbox v-show="taskForm.type === 'timed'" v-model="taskForm.onTimeMode" :title="i18n('popupTaskOnTimeModeText')">
                   {{ i18n('popupTaskOnTimeModeTag') }}
                 </el-checkbox>
+                <br />
+                <el-checkbox v-model="taskForm.implicit" :title="i18n('popupTaskImplicitText')">
+                  {{ i18n('popupTaskImplicitTag') }}
+                </el-checkbox>
               </el-form-item>
             </el-form>
           </div>
@@ -255,6 +259,7 @@ export default defineComponent({
         hour: 0,
         minute: 5,
         eTime: '',
+        implicit: false,
         onTimeMode: false,
         needInteraction: false,
       },
@@ -384,7 +389,7 @@ export default defineComponent({
     onNext() {
       this.progress = 'task';
       this.$emit('active-index', 2);
-      const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval, taskEarliestTime } = this.configs;
+      const { taskImplicit, taskOnTimeMode, taskNeedInteraction, taskTriggerInterval, taskEarliestTime } = this.configs;
       const day = this.days(taskTriggerInterval);
       const hour = this.hours(taskTriggerInterval);
       const minute = this.minutes(taskTriggerInterval);
@@ -394,6 +399,7 @@ export default defineComponent({
         hour,
         minute,
         eTime,
+        implicit: taskImplicit,
         onTimeMode: taskOnTimeMode,
         needInteraction: taskNeedInteraction,
       });
@@ -411,7 +417,7 @@ export default defineComponent({
         if (valid) {
           const {
             code,
-            taskForm: { name, type, day, hour, minute, eTime, onTimeMode, needInteraction },
+            taskForm: { name, type, day, hour, minute, eTime, implicit, onTimeMode, needInteraction },
           } = this;
           const triggerTime = day + hour + minute > 0 ? day * 24 * 60 + hour * 60 + minute : 1;
           const earliestTime = this.date2hm(eTime);
@@ -422,6 +428,7 @@ export default defineComponent({
             type,
             triggerInterval: triggerTime,
             earliestTime,
+            implicit,
             onTimeMode,
             needInteraction,
           });

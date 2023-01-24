@@ -33,6 +33,9 @@
             <el-dropdown-item command="daily">
               {{ i18n('popupTaskFormDaily') }}
             </el-dropdown-item>
+            <el-dropdown-item command="implicit">
+              {{ i18n('popupTaskImplicitTag') }}
+            </el-dropdown-item>
             <el-dropdown-item command="onTime">
               {{ i18n('popupTaskOnTimeModeTag') }}
             </el-dropdown-item>
@@ -129,6 +132,9 @@ export default defineComponent({
           break;
         case 'daily':
           this.dropdownText = this.i18n('popupTaskFormDaily');
+          break;
+        case 'implicit':
+          this.dropdownText = this.i18n('popupTaskImplicitTag');
           break;
         case 'onTime':
           this.dropdownText = this.i18n('popupTaskOnTimeModeTag');

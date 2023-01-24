@@ -7,6 +7,7 @@ const taskKeys = [
   'triggerInterval',
   'earliestTime',
   'needInteraction',
+  'implicit',
   'onTimeMode',
   'triggerCount',
   'pushCount',
@@ -24,6 +25,7 @@ function defaultConfigs(): myStore.GloriaConfig {
     useAppearanceZoom: false,
     appearanceZoom: 100,
     taskAutoCheckUpdate: false,
+    taskImplicit: false,
     taskOnTimeMode: false,
     taskNeedInteraction: false,
     taskOnTop: false,
@@ -59,6 +61,7 @@ function defaultTaskBasic(): myStore.GloriaTaskBasic {
     origin: '',
     triggerInterval: 5,
     needInteraction: false,
+    implicit: false,
     onTimeMode: false,
     earliestTime: '',
   };

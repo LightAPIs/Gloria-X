@@ -37,6 +37,7 @@ declare namespace myStore {
     triggerInterval: number;
     needInteraction: boolean;
     origin: string;
+    implicit: boolean;
     onTimeMode: boolean;
     earliestTime: string;
   }
@@ -74,6 +75,7 @@ declare namespace myStore {
     useAppearanceZoom: boolean;
     appearanceZoom: number;
     taskAutoCheckUpdate: boolean;
+    taskImplicit: boolean;
     taskOnTimeMode: boolean;
     taskNeedInteraction: boolean;
     taskOnTop: boolean;

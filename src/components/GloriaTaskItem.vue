@@ -6,6 +6,7 @@
         (filterType === 'disabled' && !isEnable) ||
         (filterType === 'timed' && type === 'timed') ||
         (filterType === 'daily' && type === 'daily') ||
+        (filterType === 'implicit' && implicit) ||
         (filterType === 'onTime' && type === 'timed' && onTimeMode) ||
         (filterType === 'needInteraction' && needInteraction) ||
         (filterType === 'error' && executionError > 0) ||
@@ -46,6 +47,9 @@
             class="tag"
           >
             {{ i18n('popupTaskNeedInteractionTag') }}
+          </el-tag>
+          <el-tag v-if="implicit" type="warning" size="mini" effect="dark" :title="i18n('popupTaskImplicitText')" class="tag">
+            {{ i18n('popupTaskImplicitTag') }}
           </el-tag>
           <el-tag
             v-if="executionError > 0"
@@ -233,6 +237,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    implicit: {
+      type: Boolean,
+      default: false,
+    },
     executionError: {
       type: Number,
       default: 0,
@@ -294,7 +302,7 @@ export default defineComponent({
       this.disconnectTask(id);
     },
     onContextmenu(event: MouseEvent) {
-      const { id, name, type, isEnable, onTimeMode, needInteraction, origin, isChrome } = this;
+      const { id, name, type, isEnable, implicit, onTimeMode, needInteraction, origin, isChrome } = this;
       const items = [
         isEnable
           ? {
@@ -362,6 +370,17 @@ export default defineComponent({
                 ElMessage.error(this.i18n('popupContextNotificationItemCopyError'));
               }
             );
+          },
+        },
+        {
+          label: implicit ? this.i18n('popupContextTaskImplicitDisnable') : this.i18n('popupContextTaskImplicitEnable'),
+          icon: 'el-icon-close-notification',
+          divided: false,
+          onClick: () => {
+            this.updateTaskBasic({
+              id,
+              implicit: !implicit,
+            });
           },
         },
         type === 'timed'

@@ -86,6 +86,12 @@
   "popupTaskOnTimeModeText": {
     "message": "Perform tasks strictly in accordance with time intervals"
   },
+  "popupTaskImplicitTag": {
+    "message": "Implicit"
+  },
+  "popupTaskImplicitText": {
+    "message": "Only record messages without pop-up notifications"
+  },
   "popupTaskLastExecutionErrorTag": {
     "message": "Error ($count$)",
     "placeholders": {
@@ -202,6 +208,12 @@
   },
   "popupContextTaskCopyIdCompleted": {
     "message": "The task ID copied successfully."
+  },
+  "popupContextTaskImplicitEnable": {
+    "message": "Enable Implicit"
+  },
+  "popupContextTaskImplicitDisnable": {
+    "message": "Disable Implicit"
   },
   "popupContextTaskOnTimeEnable": {
     "message": "Enable On-Time mode"
@@ -401,6 +413,15 @@
   "settingsTaskAutoCheckUpdateTip": {
     "message": "Only applicable to tasks installed via https://gloria.pub/"
   },
+  "settingsTaskImplicit": {
+    "message": "The \"$option$\" option is turned on by default",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskImplicit"
+      }
+    }
+  },
   "settingsTaskOnTimeMode": {
     "message": "The \"$option$\" option is turned on by default",
     "placeholders": {
@@ -441,7 +462,7 @@
     "message": "Notification"
   },
   "settingsImplicitPush": {
-    "message": "Implicit push notifications"
+    "message": "Global implicit push notifications"
   },
   "settingsImplicitPushTip": {
     "message": "Only record new messages in notification records, no notification prompts"
@@ -807,7 +828,7 @@
     "message": "Undefined"
   },
   "contextMenusImplicitPush": {
-    "message": "Enable implicit push"
+    "message": "Enable global implicit push"
   },
   "contextMenusSelection": {
     "message": "Monitor elements ..."

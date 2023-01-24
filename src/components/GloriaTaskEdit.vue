@@ -57,6 +57,9 @@
         <el-checkbox v-show="form.type === 'timed'" v-model="form.onTimeMode" :title="i18n('popupTaskOnTimeModeText')">
           {{ i18n('popupTaskOnTimeModeTag') }}
         </el-checkbox>
+        <el-checkbox v-model="form.implicit" :title="i18n('popupTaskImplicitText')">
+          {{ i18n('popupTaskImplicitTag') }}
+        </el-checkbox>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="mini" @click="onSubmit">
@@ -118,6 +121,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    implicit: {
+      type: Boolean,
+      default: false,
+    },
     onTimeMode: {
       type: Boolean,
       default: false,
@@ -147,6 +154,7 @@ export default defineComponent({
         hour: 0,
         minute: 5,
         eTime: '',
+        implicit: false,
         onTimeMode: false,
         needInteraction: false,
       },
@@ -174,7 +182,7 @@ export default defineComponent({
   watch: {
     dialogVisible(val) {
       if (val) {
-        const { editorType, id, name, code, type, triggerInterval, earliestTime, onTimeMode, needInteraction } = this;
+        const { editorType, id, name, code, type, triggerInterval, earliestTime, implicit, onTimeMode, needInteraction } = this;
         const day = this.days(triggerInterval);
         const hour = this.hours(triggerInterval);
         const minute = this.minutes(triggerInterval);
@@ -189,12 +197,13 @@ export default defineComponent({
             hour,
             minute,
             eTime,
+            implicit,
             onTimeMode,
             needInteraction,
           });
         } else {
           this.onReset();
-          const { taskOnTimeMode, taskNeedInteraction, taskTriggerInterval, taskEarliestTime } = this.configs;
+          const { taskImplicit, taskOnTimeMode, taskNeedInteraction, taskTriggerInterval, taskEarliestTime } = this.configs;
           Object.assign(this.form, {
             id: this.uuid(),
             name: '',
@@ -204,6 +213,7 @@ export default defineComponent({
             hour: this.hours(taskTriggerInterval),
             minute: this.minutes(taskTriggerInterval),
             eTime: this.hm2date(taskEarliestTime),
+            implicit: taskImplicit,
             onTimeMode: taskOnTimeMode,
             needInteraction: taskNeedInteraction,
           });
@@ -225,7 +235,7 @@ export default defineComponent({
       (this.$refs.form as InstanceType<typeof ElForm>).validate((valid?: boolean) => {
         if (valid) {
           const {
-            form: { id, name, code, type, day, hour, minute, eTime, onTimeMode, needInteraction },
+            form: { id, name, code, type, day, hour, minute, eTime, implicit, onTimeMode, needInteraction },
             editorType,
           } = this;
           const triggerTime = day + hour + minute > 0 ? day * 24 * 60 + hour * 60 + minute : 1;
@@ -238,6 +248,7 @@ export default defineComponent({
               type,
               triggerInterval: triggerTime,
               earliestTime,
+              implicit,
               onTimeMode,
               needInteraction,
             });
@@ -249,6 +260,7 @@ export default defineComponent({
               type,
               triggerInterval: triggerTime,
               earliestTime,
+              implicit,
               onTimeMode,
               needInteraction,
             });

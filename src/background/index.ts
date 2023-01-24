@@ -452,6 +452,10 @@ function syncMessageFlow() {
       if (!implicitPush && !pushMessageList.has(id)) {
         for (const task of tasks) {
           if (task.id === taskId) {
+            if (task.implicit) {
+              //? 处理任务本身配置的隐式选项
+              break;
+            }
             data.forEach((item: myStore.MessageData) => {
               const options = createNotificationOptions(task, item, configs);
               createNotification(options);
@@ -674,6 +678,7 @@ function testVirtualNotification(dataList: myStore.CommitData | myStore.CommitDa
     origin: '',
     onTimeMode: false,
     earliestTime: '',
+    implicit: false,
     isEnable: false,
     triggerCount: 0,
     pushCount: 0,

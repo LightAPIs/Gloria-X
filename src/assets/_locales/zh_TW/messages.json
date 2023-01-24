@@ -86,6 +86,12 @@
   "popupTaskOnTimeModeText": {
     "message": "嚴格按照時間間隔執行任務"
   },
+  "popupTaskImplicitTag": {
+    "message": "隱式推送"
+  },
+  "popupTaskImplicitText": {
+    "message": "只記錄訊息而不彈出通知"
+  },
   "popupTaskLastExecutionErrorTag": {
     "message": "錯誤 ($count$)",
     "placeholders": {
@@ -202,6 +208,12 @@
   },
   "popupContextTaskCopyIdCompleted": {
     "message": "已成功將任務 ID 複製到剪貼簿中"
+  },
+  "popupContextTaskImplicitEnable": {
+    "message": "啟用隱式推送"
+  },
+  "popupContextTaskImplicitDisnable": {
+    "message": "停用隱式推送"
   },
   "popupContextTaskOnTimeEnable": {
     "message": "啟用準時模式"
@@ -401,6 +413,15 @@
   "settingsTaskAutoCheckUpdateTip": {
     "message": "僅適用於通過 https://gloria.pub/ 安裝的任務"
   },
+  "settingsTaskImplicit": {
+    "message": "預設開啟\"$option$\"選項",
+    "placeholders": {
+      "option": {
+        "content": "$1",
+        "example": "popupTaskImplicit"
+      }
+    }
+  },
   "settingsTaskOnTimeMode": {
     "message": "預設開啟\"$option$\"選項",
     "placeholders": {
@@ -441,7 +462,7 @@
     "message": "通知"
   },
   "settingsImplicitPush": {
-    "message": "隱式推送通知"
+    "message": "全域性隱式推送通知"
   },
   "settingsImplicitPushTip": {
     "message": "只將新通知記錄在通知歷史中，不彈出通知提示"
@@ -807,7 +828,7 @@
     "message": "無"
   },
   "contextMenusImplicitPush": {
-    "message": "啟用隱式推送功能"
+    "message": "啟用全域性隱式推送功能"
   },
   "contextMenusSelection": {
     "message": "選取網頁元素進行監視 ..."

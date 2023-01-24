@@ -12,6 +12,16 @@
     </div>
     <div class="margin-top">
       <el-switch
+        :value="configs.taskImplicit"
+        :active-text="i18n('settingsTaskImplicit', i18n('popupTaskImplicitTag'))"
+        @change="onChange('taskImplicit', $event)"
+      ></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsTaskNewTips')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
+    </div>
+    <div class="margin-top">
+      <el-switch
         :value="configs.taskOnTimeMode"
         :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeTag'))"
         @change="onChange('taskOnTimeMode', $event)"

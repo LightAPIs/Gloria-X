@@ -22,6 +22,7 @@
             :origin="task.origin"
             :need-interaction="task.needInteraction"
             :on-time-mode="task.onTimeMode"
+            :implicit="task.implicit"
             :execution-error="task.executionError"
             :filter-text="filterText"
             :filter-type="filterType"
@@ -47,6 +48,7 @@
       :type="form.type"
       :trigger-interval="form.triggerInterval"
       :earliest-time="form.earliestTime"
+      :implicit="form.implicit"
       :on-time-mode="form.onTimeMode"
       :need-interaction="form.needInteraction"
       @close-dialog="dialogVisible = false"
@@ -56,7 +58,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 import GloriaTaskItem from './GloriaTaskItem.vue';
 import GloriaTaskFab from './GloriaTaskFab.vue';
 import GloriaTaskEdit from './GloriaTaskEdit.vue';
@@ -84,6 +86,7 @@ export default defineComponent({
         type: 'timed',
         triggerInterval: 5,
         earliestTime: '',
+        implicit: false,
         onTimeMode: false,
         needInteraction: false,
       },
@@ -92,7 +95,7 @@ export default defineComponent({
       context: {
         isShow: false,
         items: [],
-        event: null,
+        event: undefined,
       },
     };
   },
@@ -100,7 +103,6 @@ export default defineComponent({
     ...mapState(['tasks', 'configs']),
   },
   methods: {
-    ...mapMutations(['updateIsEnable', 'updateTaskBasic']),
     onAddTask() {
       this.formType = 'add';
       this.dialogVisible = true;
@@ -110,7 +112,7 @@ export default defineComponent({
       let editStatus = false;
       for (const item of tasks) {
         if (item.id === id) {
-          const { name, code, type, triggerInterval, earliestTime, onTimeMode, needInteraction } = item;
+          const { name, code, type, triggerInterval, earliestTime, implicit, onTimeMode, needInteraction } = item;
           this.formType = 'edit';
           Object.assign(this.form, {
             id,
@@ -119,6 +121,7 @@ export default defineComponent({
             type,
             triggerInterval,
             earliestTime,
+            implicit,
             onTimeMode,
             needInteraction,
           });
