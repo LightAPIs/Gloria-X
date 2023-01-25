@@ -767,6 +767,18 @@
   "reducerLink": {
     "message": "詳細資料"
   },
+  "reducerEditableText": {
+    "message": "編輯中"
+  },
+  "reducerEditableTip": {
+    "message": "處於編輯中，請點選\"儲存\"使結果生效"
+  },
+  "reducerLockedText": {
+    "message": "鎖定中"
+  },
+  "reducerLocakedTip": {
+    "message": "如需編輯，請點選\"編輯\"按鈕"
+  },
   "reducerTestContentLabel": {
     "message": "測試內容 (JSON)："
   },

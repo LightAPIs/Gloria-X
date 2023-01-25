@@ -20,8 +20,9 @@
           <span class="reducer-label">
             {{ i18n('reducerLabel') }}
           </span>
-          <span>
+          <span class="reducer-state" :title="i18n(editable ? 'reducerEditableTip' : 'reducerLocakedTip')">
             <i :class="editable ? 'el-icon-unlock' : 'el-icon-lock'"></i>
+            <b>{{ i18n(editable ? 'reducerEditableText' : 'reducerLockedText') }}</b>
           </span>
         </div>
         <div id="reducer-code">
@@ -190,7 +191,8 @@ export default defineComponent({
         }
       } catch (e) {
         console.error(e);
-        this.testResult = e.message + '\n\n' + e.stack;
+        const { message, stack } = e as Error;
+        this.testResult = message + '\n\n' + stack;
       }
     },
     handleReducer(val: string) {
@@ -209,11 +211,16 @@ export default defineComponent({
 }
 
 .reducer-label {
-  margin-left: 10px;
+  margin-left: 5px;
   margin-right: 15px;
 }
 
-.reducer-tip-icon {
+.reducer-tip-icon,
+.reducer-state {
   cursor: help;
+}
+
+.reducer-state b {
+  margin: 2px;
 }
 </style>

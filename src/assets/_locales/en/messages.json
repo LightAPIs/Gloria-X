@@ -767,6 +767,18 @@
   "reducerLink": {
     "message": "Details"
   },
+  "reducerEditableText": {
+    "message": "Editing"
+  },
+  "reducerEditableTip": {
+    "message": "In editing, please click \"Save\" to make the result effective"
+  },
+  "reducerLockedText": {
+    "message": "Locked"
+  },
+  "reducerLocakedTip": {
+    "message": "To edit, click the \"Edit\" button"
+  },
   "reducerTestContentLabel": {
     "message": "Test content (JSON):"
   },

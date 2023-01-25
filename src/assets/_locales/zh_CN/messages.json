@@ -767,6 +767,18 @@
   "reducerLink": {
     "message": "详细信息"
   },
+  "reducerEditableText": {
+    "message": "编辑中"
+  },
+  "reducerEditableTip": {
+    "message": "处于编辑中，请点击\"保存\"使结果生效"
+  },
+  "reducerLockedText": {
+    "message": "锁定中"
+  },
+  "reducerLocakedTip": {
+    "message": "如需编辑，请点击\"编辑\"按钮"
+  },
   "reducerTestContentLabel": {
     "message": "测试内容 (JSON)："
   },
