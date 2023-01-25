@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/-mozilla_addons-orange.svg" alt="Mozilla Addons" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
+    <img src="https://img.shields.io/github/license/LightAPIs/Gloria-X.svg" alt="MIT License" />
   </a>
 </p>
 
@@ -27,7 +27,7 @@
 
 > A programmable website notifications aggregator
 >
-> **Original project：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
+> **Original project：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/github/license/BlackGlory/Gloria.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
 Timed a custom JavaScript code task, implement the automation work such as web monitoring or forum check-in, and pop up notifications.
 
@@ -36,48 +36,48 @@ Timed a custom JavaScript code task, implement the automation work such as web m
 <details>
 <summary>Table of contents</summary>
 
-- [Installation](#Installation)
-  - [Chrome](#Chrome)
-  - [Edge](#Edge)
-  - [Firefox](#Firefox)
-- [Usage](#Usage)
-  - [Gloria Notification object structure](#Gloria-Notification-object-structure)
-    - [Introduction to object properties](#Introduction-to-object-properties)
+- [Installation](#installation)
+  - [Chrome](#chrome)
+  - [Edge](#edge)
+  - [Firefox](#firefox)
+- [Usage](#usage)
+  - [Gloria Notification object structure](#gloria-notification-object-structure)
+    - [Introduction to object properties](#introduction-to-object-properties)
   - [commit](#commit)
-    - [Task classification](#Task-classification)
-      - [Observation task](#Observation-task)
-      - [General task](#General-task)
-    - [Task difference](#Task-difference)
-  - [Access URL](#Access-URL)
-    - [Access URL example](#Access-URL-example)
-  - [Load external scripts async](#Load-external-scripts-async)
-- [Extra features](#Extra-features)
-  - [Select page elements for monitoring](#Select-page-elements-for-monitoring)
-- [Advanced options](#Advanced-options)
-  - [Debug task code](#Debug-task-code)
-  - [Observe the internal state](#Observe-the-internal-state)
-  - [Custom RequestHeaders](#Custom-RequestHeaders)
-  - [Reducer](#Reducer)
-    - [Introduction](#Introduction)
-    - [Operation mode](#Operation-mode)
-    - [Effect](#Effect)
-    - [Specific usage](#Specific-usage)
-    - [Example](#Example)
-      - [Filter notifications](#Filter-notifications)
-      - [Modify notifications](#Modify-notifications)
-      - [Send to Pushbullet](#Send-to-Pushbullet)
-    - [Test Rudecer](#Test-Rudecer)
-- [Other](#Other)
-  - [On-time mode](#On-time-mode)
-  - [Other features](#Other-features)
-- [Related documents](#Related-documents)
-- [Limitations of Firefox version](#Limitations-of-Firefox-version)
-- [Development](#Development)
-  - [Environment](#Environment)
-  - [Initialization](#Initialization)
-  - [Build](#Build)
-- [Related projects](#Related-projects)
-- [Licence](#Licence)
+    - [Task classification](#task-classification)
+      - [Observation task](#observation-task)
+      - [General task](#general-task)
+    - [Task difference](#task-difference)
+  - [Access URL](#access-url)
+    - [Access URL example](#access-url-example)
+  - [Load external scripts async](#load-external-scripts-async)
+- [Extra features](#extra-features)
+  - [Select page elements for monitoring](#select-page-elements-for-monitoring)
+- [Advanced options](#advanced-options)
+  - [Debug task code](#debug-task-code)
+  - [Observe the internal state](#observe-the-internal-state)
+  - [Custom RequestHeaders](#custom-RequestHeaders)
+  - [Reducer](#reducer)
+    - [Introduction](#introduction)
+    - [Operation mode](#operation-mode)
+    - [Effect](#effect)
+    - [Specific usage](#specific-usage)
+    - [Example](#example)
+      - [Filter notifications](#filter-notifications)
+      - [Modify notifications](#modify-notifications)
+      - [Send to Pushbullet](#send-to-pushbullet)
+    - [Test Rudecer](#test-rudecer)
+- [Other](#other)
+  - [On-time mode](#on-time-mode)
+  - [Other features](#other-features)
+- [Related documents](#related-documents)
+- [Limitations of Firefox version](#limitations-of-firefox-version)
+- [Development](#development)
+  - [Environment](#environment)
+  - [Initialization](#initialization)
+  - [Build](#build)
+- [Related projects](#related-projects)
+- [Licence](#licence)
 
 </details>
 
@@ -451,7 +451,7 @@ flowchart LR
 
 #### Effect
 
-In the Reducer function, you can complete the operations of modification, filtering, and sending to third-party services (For example: [Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Alertover](https://www.alertover.com/)) via HTTP requests to synchronize notifications to other devices.
+In the Reducer function, you can complete the operations of modification, filtering, and sending to third-party services (For example: [Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/) etc.) via HTTP requests to synchronize notifications to other devices.
 
 #### Specific usage
 

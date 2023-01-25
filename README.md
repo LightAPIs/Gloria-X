@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/-mozilla_addons-orange.svg" alt="Mozilla Addons" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License" />
+    <img src="https://img.shields.io/github/license/LightAPIs/Gloria-X.svg" alt="MIT License" />
   </a>
 </p>
 
@@ -27,7 +27,7 @@
 
 > 可编程网站通知聚合器
 >
-> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
+> **原项目：**[BlackGlory](https://github.com/BlackGlory)/[Gloria](https://github.com/BlackGlory/Gloria) [![MIT License](https://img.shields.io/github/license/BlackGlory/Gloria.svg)](https://raw.githubusercontent.com/BlackGlory/Gloria/master/LICENSE)
 
 通过定时执行自定义的 JavaScript 代码任务，实现网页监视或者论坛签到等自动化工作，并弹出通知提醒。
 
@@ -39,19 +39,19 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
 <summary>目录</summary>
 
 - [安装方法](#安装方法)
-  - [Chrome](#Chrome)
-  - [Edge](#Edge)
-  - [Firefox](#Firefox)
+  - [Chrome](#chrome)
+  - [Edge](#edge)
+  - [Firefox](#firefox)
 - [使用方法](#使用方法)
-  - [Gloria Notification 对象结构](#Gloria-Notification-对象结构)
+  - [Gloria Notification 对象结构](#gloria-notification-对象结构)
     - [对象属性介绍](#对象属性介绍)
   - [commit 函数](#commit-函数)
     - [任务分类](#任务分类)
       - [观察任务](#观察任务)
       - [常规任务](#常规任务)
     - [两种任务的区别](#两种任务的区别)
-  - [访问 URL](#访问-URL)
-    - [访问 URL 示例](#访问-URL-示例)
+  - [访问 URL](#访问-url)
+    - [访问 URL 示例](#访问-url-示例)
   - [异步载入外部脚本](#异步载入外部脚本)
 - [额外功能](#额外功能)
   - [选取网页元素进行监视](#选取网页元素进行监视)
@@ -59,21 +59,21 @@ _本项目是由我个人采用 TypeScript 进行编写和维护的 Gloria 衍�
   - [调试任务代码](#调试任务代码)
   - [观察内部状态](#观察内部状态)
   - [自定义请求头信息](#自定义请求头信息)
-  - [通知 Reducer](#通知-Reducer)
-    - [Reducer 介绍](#Reducer-介绍)
+  - [通知 Reducer](#通知-reducer)
+    - [Reducer 介绍](#reducer-介绍)
     - [工作方式](#工作方式)
     - [作用](#作用)
     - [具体用法](#具体用法)
     - [示例](#示例)
       - [过滤通知](#过滤通知)
       - [修改通知](#修改通知)
-      - [发送给 Pushbullet](#发送给-Pushbullet)
-    - [测试 Rudecer](#测试-Rudecer)
+      - [发送给 Pushbullet](#发送给-pushbullet)
+    - [测试 Rudecer](#测试-rudecer)
 - [其他事项](#其他事项)
   - [准时模式](#准时模式)
   - [其他特性](#其他特性)
 - [相关文档](#相关文档)
-- [Firefox 版本的限制](#Firefox-版本的限制)
+- [Firefox 版本的限制](#firefox-版本的限制)
 - [开发编译](#开发编译)
   - [环境需求](#环境需求)
   - [初始化指令](#初始化指令)
@@ -448,7 +448,7 @@ flowchart LR
 
 #### 作用
 
-在 Reducer 函数中，你可以完成修改、过滤以及通过 HTTP 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Alertover](https://www.alertover.com/)、[Server 酱](https://sc.ftqq.com/3.version))将通知同步至其他设备当中的操作。
+在 Reducer 函数中，你可以完成修改、过滤以及通过 HTTP 请求发送给第三方服务(比如：[Pushbullet](https://www.pushbullet.com/)、[Pushover](https://pushover.net/)、[Server 酱](https://sct.ftqq.com/)等)将通知同步至其他设备当中的操作。
 
 #### 具体用法
 
