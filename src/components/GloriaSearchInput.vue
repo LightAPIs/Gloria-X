@@ -162,3 +162,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.el-input .el-input-group__append .el-button-group .el-button:not(.el-dropdown__caret-button) {
+  cursor: unset;
+}
+</style>
