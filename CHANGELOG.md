@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/LightAPIs/Gloria-X/compare/v2.11.2...v2.12.0) (2023-01-26)
+
+
+### Features
+
+* **settings:** 添加支持可选自定义弹出窗口缩放比例 ([b01f9a3](https://github.com/LightAPIs/Gloria-X/commit/b01f9a3b33cd276c36a1b5365277498634f3462c))
+* **task:** 添加支持设置单个任务隐式推送 ([96d2089](https://github.com/LightAPIs/Gloria-X/commit/96d2089bbd470a2c9920bd92f3ed7aaebfa2eb7f)), closes [#6](https://github.com/LightAPIs/Gloria-X/issues/6)
+
+
+### Bug Fixes
+
+* **notifications:** 修复通知记录页面在某些情况下无法继续滚动加载的问题 ([039488b](https://github.com/LightAPIs/Gloria-X/commit/039488b432655cb3e116d25e6aca63f53399742c))
+* **search:** 修正弹出窗口中任务筛选框的样式 ([163c181](https://github.com/LightAPIs/Gloria-X/commit/163c181b12251db5dba6282aa9dafbbf29a0c1a4))
+* **settings:** 修正设置页面的图标样式 ([4d27b1d](https://github.com/LightAPIs/Gloria-X/commit/4d27b1d9d5b74928c5d41b3949e4e107f5a9c7f2))
+
 ### [2.11.2](https://github.com/LightAPIs/Gloria-X/compare/v2.11.1...v2.11.2) (2021-12-13)
 
 
