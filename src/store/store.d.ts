@@ -19,7 +19,7 @@ declare namespace myStore {
   }
 
   interface GloriaNotificationOptions {
-    readonly type: string;
+    readonly type: 'basic' | 'image';
     title?: string;
     message?: string;
     iconUrl?: string;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="flex-center">
       <el-switch :value="implicitPush" :active-text="i18n('settingsImplicitPush')" @change="onChange('implicitPush', $event)"></el-switch>
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsImplicitPushTip')">
         <span class="options-tip-icon"><i class="el-icon-info"></i></span>
@@ -13,7 +13,7 @@
         @change="onChange('notificationSound', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <el-switch
         :value="configs.notificationCustomSound"
         :active-text="i18n('settingsNotificationCustomSound')"
@@ -23,7 +23,7 @@
         <span class="options-tip-icon"><i class="el-icon-question"></i></span>
       </el-tooltip>
     </div>
-    <div v-if="isChrome" class="margin-top">
+    <div v-if="isChrome" class="margin-top flex-center">
       <el-switch
         :value="configs.notificationLaterMark"
         :active-text="i18n('settingsNotificationLaterMark')"
@@ -40,7 +40,7 @@
         @change="onChange('notificationDetectIcon', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <el-switch
         :value="configs.notificationDisableError"
         :active-text="i18n('settingsNotificationDisableError')"
@@ -57,7 +57,7 @@
         @change="onChange('notificationRecordError', $event)"
       ></el-switch>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <el-switch
         :value="configs.notificationShowUrl"
         :active-text="i18n('settingsNotificationShowUrl')"

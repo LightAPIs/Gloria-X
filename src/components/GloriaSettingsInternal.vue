@@ -1,6 +1,6 @@
 <template>
   <div class="gloria-settings-internal">
-    <div>
+    <div class="flex-center">
       <el-switch
         :value="configs.internalStartDelay"
         :active-text="i18n('settingsInternalStartDelay')"
@@ -25,7 +25,7 @@
         @change="onChange('internalDelayTime', $event)"
       ></el-input-number>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <span class="font-14">
         {{ i18n('settingsInternalExecutionLimit') }}
       </span>

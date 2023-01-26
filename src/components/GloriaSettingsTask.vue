@@ -1,6 +1,6 @@
 <template>
   <div class="gloria-settings-task">
-    <div>
+    <div class="flex-center">
       <el-switch
         :value="configs.taskAutoCheckUpdate"
         :active-text="i18n('settingsTaskAutoCheckUpdate')"
@@ -10,7 +10,7 @@
         <span class="options-tip-icon"><i class="el-icon-question"></i></span>
       </el-tooltip>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <el-switch
         :value="configs.taskImplicit"
         :active-text="i18n('settingsTaskImplicit', i18n('popupTaskImplicitTag'))"
@@ -20,7 +20,7 @@
         <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
       </el-tooltip>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <el-switch
         :value="configs.taskOnTimeMode"
         :active-text="i18n('settingsTaskOnTimeMode', i18n('popupTaskOnTimeModeTag'))"
@@ -30,7 +30,7 @@
         <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
       </el-tooltip>
     </div>
-    <div v-if="isChrome" class="margin-top">
+    <div v-if="isChrome" class="margin-top flex-center">
       <el-switch
         :value="configs.taskNeedInteraction"
         :active-text="i18n('settingsTaskNeedInteraction', i18n('popupTaskNeedInteractionTag'))"
