@@ -570,15 +570,11 @@ Here are some logical differences in Firefox:
 
 ### Environment
 
-- Install [Node.js](https://nodejs.org/) 8.9 and above (_new version has integrated npm_)
+- Install [Node.js](https://nodejs.org/) 16 (_`npm` is integrated_)
 
-### Initialization
+### Installation dependency
 
 ```bash
-# Install Vue CLI
-npm install @vue/cli -g
-
-# Installation dependency
 npm install
 ```
 

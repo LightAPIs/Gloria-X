@@ -579,15 +579,11 @@ function reducer(notification) {
 
 ### 环境需求
 
-- 安装 [Node.js](https://nodejs.org/) 8.9 及以上(_新版本已集成 npm,若您的网络环境不佳，推荐安装使用 [cnpm](https://github.com/cnpm/cnpm)_)
+- 安装 [Node.js](https://nodejs.org/) 16(_已集成 `npm`，若您的网络环境不佳，推荐安装使用 [`cnpm`](https://github.com/cnpm/cnpm)_)
 
-### 初始化指令
+### 安装依赖
 
 ```bash
-# 安装 Vue CLI
-npm install @vue/cli -g
-
-# 安装依赖
 npm install
 ```
 
