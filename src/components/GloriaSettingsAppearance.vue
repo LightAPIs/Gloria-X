@@ -11,7 +11,13 @@
       </el-radio-group>
     </div>
     <div class="margin-top">
+      <el-switch :value="configs.appearancePopup" :active-text="i18n('settingsOpenPopupWindow')" @change="onPopupChange"></el-switch>
+    </div>
+    <div class="margin-top flex-center">
       <el-switch :value="configs.useAppearanceZoom" :active-text="i18n('settingsUseAppearanceZoom')" @change="onUseZoomChange"></el-switch>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsAppearanceZoomTips')">
+        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
+      </el-tooltip>
     </div>
     <div v-if="configs.useAppearanceZoom" class="margin-top flex-center">
       <span class="font-14">
@@ -27,9 +33,6 @@
         @change="onZoom($event)"
       ></el-input-number>
       %
-      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsAppearanceZoomTips')">
-        <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
-      </el-tooltip>
     </div>
   </div>
 </template>
@@ -63,6 +66,14 @@ export default defineComponent({
         name: 'appearanceInterface',
         value: newLabel,
       });
+    },
+    onPopupChange(value: boolean) {
+      if (value != null) {
+        this.updateConfigs({
+          name: 'appearancePopup',
+          value,
+        });
+      }
     },
     onUseZoomChange(value: boolean) {
       if (value != null) {

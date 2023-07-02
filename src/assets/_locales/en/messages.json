@@ -395,6 +395,9 @@
   "settingsAppearanceInterfaceDark": {
     "message": "Dark"
   },
+  "settingsOpenPopupWindow": {
+    "message": "Always open a standalone pop-up window"
+  },
   "settingsUseAppearanceZoom": {
     "message": "Custom pop-up window zoom"
   },
@@ -844,6 +847,9 @@
   },
   "contextMenusSelection": {
     "message": "Monitor elements ..."
+  },
+  "contextMenusPopup": {
+    "message": "Open pop-up window ..."
   },
   "contextMenusMore": {
     "message": "More"

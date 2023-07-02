@@ -395,6 +395,9 @@
   "settingsAppearanceInterfaceDark": {
     "message": "深色模式"
   },
+  "settingsOpenPopupWindow": {
+    "message": "始終開啟獨立的彈出視窗"
+  },
   "settingsUseAppearanceZoom": {
     "message": "自定義彈出視窗的縮放比例"
   },
@@ -844,6 +847,9 @@
   },
   "contextMenusSelection": {
     "message": "選取網頁元素進行監視 ..."
+  },
+  "contextMenusPopup": {
+    "message": "開啟獨立視窗 ..."
   },
   "contextMenusMore": {
     "message": "更多選項"

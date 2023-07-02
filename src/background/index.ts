@@ -12,6 +12,7 @@ import { Observable, Observer, Subject } from 'rxjs';
 dayjsLocale();
 let runningCount = 0;
 let runLimit = 5;
+let popupWindowId: number | null = null;
 const alarmsManager = new IntervalAlarmsManager();
 const notificationsManager = new NotificationsManager();
 const taskList: Observable<unknown>[] = [];
@@ -544,6 +545,55 @@ function syncImplicitStatus() {
   );
 }
 
+function popupWindow() {
+  if (popupWindowId) {
+    chrome.windows.get(popupWindowId, win => {
+      if (win) {
+        chrome.windows.update(win.id, {
+          focused: true,
+        });
+      } else {
+        openPopupWindow();
+      }
+    });
+  } else {
+    openPopupWindow();
+  }
+}
+
+function openPopupWindow() {
+  const { useAppearanceZoom, appearanceZoom } = store.state.configs;
+  let width = 750,
+    height = 580;
+  if (useAppearanceZoom) {
+    width = Math.round((width * appearanceZoom) / 100);
+    height = Math.round((height * appearanceZoom) / 100);
+  }
+  chrome.windows.create(
+    {
+      focused: true,
+      type: 'popup',
+      url: './popup.html',
+      width,
+      height,
+    },
+    win => {
+      if (!chrome.runtime.lastError && win) {
+        popupWindowId = win.id;
+        const { appearancePopup } = store.state.configs;
+        if (!appearancePopup) {
+          //? Change once
+          chrome.browserAction.setPopup({
+            popup: '',
+          });
+        }
+      } else {
+        popupWindowId = null;
+      }
+    }
+  );
+}
+
 function registerMenu() {
   chrome.contextMenus.create({
     id: 'gloriaXSelection',
@@ -572,6 +622,17 @@ function registerMenu() {
   });
 
   chrome.contextMenus.create({
+    id: 'gloriaXPopup',
+    title: i18n('contextMenusPopup'),
+    contexts: ['browser_action'],
+    onclick() {
+      if (!chrome.runtime.lastError) {
+        popupWindow();
+      }
+    },
+  });
+
+  chrome.contextMenus.create({
     id: 'gloriaXSeparator',
     type: 'separator',
     contexts: ['browser_action'],
@@ -592,20 +653,12 @@ function registerMenu() {
     });
   }
 
-  chrome.contextMenus.create({
-    id: 'gloriaXDebug',
-    title: i18n('optionsDebugMenu'),
-    contexts: ['browser_action'],
-    onclick() {
-      if (!chrome.runtime.lastError) {
-        chrome.tabs.create({
-          url: './options.html#/debug',
-        });
-      }
-    },
-  });
-
   const moreMenus = [
+    {
+      id: 'gloriaXDebug',
+      title: 'optionsDebugMenu',
+      url: './options.html#/debug',
+    },
     {
       id: 'gloriaXState',
       title: 'optionsStateMenu',
@@ -654,6 +707,49 @@ function registerMenu() {
           }
         },
       });
+    }
+  });
+}
+
+function browserActionHandler() {
+  const { appearancePopup } = store.state.configs;
+  if (appearancePopup) {
+    chrome.browserAction.setPopup({
+      popup: '',
+    });
+  }
+
+  store.watch(
+    (state: myStore.VuexState): boolean => state.configs.appearancePopup,
+    (val: boolean) => {
+      if (val) {
+        chrome.browserAction.setPopup({
+          popup: '',
+        });
+      } else {
+        chrome.browserAction.setPopup({
+          popup: 'popup.html',
+        });
+      }
+    }
+  );
+
+  chrome.browserAction.onClicked.addListener(() => {
+    popupWindow();
+  });
+
+  //? for context menu click
+  chrome.windows.onRemoved.addListener(winId => {
+    if (winId && popupWindowId) {
+      if (winId === popupWindowId) {
+        popupWindowId = null;
+        const { appearancePopup } = store.state.configs;
+        if (!appearancePopup) {
+          chrome.browserAction.setPopup({
+            popup: 'popup.html',
+          });
+        }
+      }
     }
   });
 }
@@ -1068,3 +1164,4 @@ syncUnreadNumber();
 syncImplicitStatus();
 syncCodeUpdate();
 registerMenu();
+browserActionHandler();
