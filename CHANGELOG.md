@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](///compare/v2.12.0...v2.13.0) (2023-07-02)
+
+
+### Features
+
+* 支持打开独立的弹出窗口 7a00dbb, closes #8
+
 ## [2.12.0](https://github.com/LightAPIs/Gloria-X/compare/v2.11.2...v2.12.0) (2023-01-26)
 
 
