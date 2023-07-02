@@ -26,7 +26,7 @@
       <el-input-number
         :model-value="configs.appearanceZoom"
         :min="25"
-        :max="500"
+        :max="250"
         controls-position="right"
         step-strictly
         size="medium"
