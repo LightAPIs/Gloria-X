@@ -11,10 +11,18 @@
       </el-radio-group>
     </div>
     <div class="margin-top">
-      <el-switch :value="configs.appearancePopup" :active-text="i18n('settingsOpenPopupWindow')" @change="onPopupChange"></el-switch>
+      <el-switch
+        :value="configs.appearancePopup"
+        :active-text="i18n('settingsOpenPopupWindow')"
+        @change="onSwitchChange('appearancePopup', $event)"
+      ></el-switch>
     </div>
     <div class="margin-top flex-center">
-      <el-switch :value="configs.useAppearanceZoom" :active-text="i18n('settingsUseAppearanceZoom')" @change="onUseZoomChange"></el-switch>
+      <el-switch
+        :value="configs.useAppearanceZoom"
+        :active-text="i18n('settingsUseAppearanceZoom')"
+        @change="onSwitchChange('useAppearanceZoom', $event)"
+      ></el-switch>
       <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsAppearanceZoomTips')">
         <span class="options-tip-icon"><i class="el-icon-warning"></i></span>
       </el-tooltip>
@@ -33,6 +41,13 @@
         @change="onZoom($event)"
       ></el-input-number>
       %
+    </div>
+    <div class="margin-top flex-center">
+      <el-switch
+        :value="configs.appearanceContextMenus"
+        :active-text="i18n('settingsAppearanceContextMenus')"
+        @change="onSwitchChange('appearanceContextMenus', $event)"
+      ></el-switch>
     </div>
   </div>
 </template>
@@ -67,18 +82,10 @@ export default defineComponent({
         value: newLabel,
       });
     },
-    onPopupChange(value: boolean) {
+    onSwitchChange(name: string, value: boolean) {
       if (value != null) {
         this.updateConfigs({
-          name: 'appearancePopup',
-          value,
-        });
-      }
-    },
-    onUseZoomChange(value: boolean) {
-      if (value != null) {
-        this.updateConfigs({
-          name: 'useAppearanceZoom',
+          name,
           value,
         });
       }

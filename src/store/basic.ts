@@ -25,6 +25,7 @@ function defaultConfigs(): myStore.GloriaConfig {
     appearancePopup: false,
     useAppearanceZoom: false,
     appearanceZoom: 100,
+    appearanceContextMenus: false,
     taskAutoCheckUpdate: false,
     taskImplicit: false,
     taskOnTimeMode: false,

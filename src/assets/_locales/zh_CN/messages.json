@@ -407,6 +407,9 @@
   "settingsAppearanceZoomTips": {
     "message": "如果遇到弹出窗口缩放比例异常的问题，可以尝试手动调整该值"
   },
+  "settingsAppearanceContextMenus": {
+    "message": "显示网页上下文菜单"
+  },
   "settingsTask": {
     "message": "任务"
   },

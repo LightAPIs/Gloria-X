@@ -75,6 +75,7 @@ declare namespace myStore {
     appearancePopup: boolean;
     useAppearanceZoom: boolean;
     appearanceZoom: number;
+    appearanceContextMenus: boolean;
     taskAutoCheckUpdate: boolean;
     taskImplicit: boolean;
     taskOnTimeMode: boolean;

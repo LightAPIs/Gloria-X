@@ -595,10 +595,18 @@ function openPopupWindow() {
 }
 
 function registerMenu() {
+  const { appearanceContextMenus } = store.state.configs;
+
+  const selectionMenuId = 'gloriaXSelection';
+  const selectionContexts = ['browser_action'];
+  if (appearanceContextMenus) {
+    selectionContexts.push('page');
+  }
+
   chrome.contextMenus.create({
-    id: 'gloriaXSelection',
+    id: selectionMenuId,
     title: i18n('contextMenusSelection'),
-    contexts: ['browser_action', 'page'],
+    contexts: selectionContexts,
     documentUrlPatterns: ['http://*/*', 'https://*/*', 'file://*/*', 'ftp://*/*'],
     onclick() {
       if (!chrome.runtime.lastError) {
@@ -709,6 +717,19 @@ function registerMenu() {
       });
     }
   });
+
+  store.watch(
+    (state: myStore.VuexState): boolean => state.configs.appearanceContextMenus,
+    (val: boolean) => {
+      const contexts = ['browser_action'];
+      if (val) {
+        contexts.push('page');
+      }
+      chrome.contextMenus.update(selectionMenuId, {
+        contexts: contexts,
+      });
+    }
+  );
 }
 
 function browserActionHandler() {

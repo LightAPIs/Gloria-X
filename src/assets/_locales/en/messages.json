@@ -407,6 +407,9 @@
   "settingsAppearanceZoomTips": {
     "message": "If you encounter the problem of abnormal scaling of pop-up windows, you can try to adjust the value manually"
   },
+  "settingsAppearanceContextMenus": {
+    "message": "Show web page context menu"
+  },
   "settingsTask": {
     "message": "Task"
   },
