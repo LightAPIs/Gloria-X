@@ -398,6 +398,9 @@
   "settingsOpenPopupWindow": {
     "message": "始终打开独立的弹出窗口"
   },
+  "settingsPopupRecord": {
+    "message": "记录独立弹出窗口的位置及尺寸"
+  },
   "settingsUseAppearanceZoom": {
     "message": "自定义弹出窗口的缩放比例"
   },

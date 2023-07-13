@@ -1,6 +1,6 @@
 import { now } from '@/commons/calc';
 import ChromeStorage from './storage';
-import { defaultTask, defaultRule, normalizeTask, normalizeRule } from './basic';
+import { defaultTask, defaultRule, defaultPopupWindow, normalizeTask, normalizeRule } from './basic';
 
 const chromeStorage = new ChromeStorage();
 const STAGE_LIMIT = 200;
@@ -61,6 +61,15 @@ export default {
             state.unread = 0;
             chromeStorage.setUnread(state.unread, 'sync clear unread number.');
           }
+        }
+      }
+
+      //* 处理记录的独立弹出窗口位置
+      if (name === 'appearancePopupRecord') {
+        if (!state.configs.appearancePopupRecord) {
+          // 关闭时清空数据
+          Object.assign(state.popupWindow, defaultPopupWindow());
+          chromeStorage.setPopupWindow(state.popupWindow, 'clear popup window.');
         }
       }
 
@@ -576,6 +585,13 @@ export default {
     if (state.unread > 0) {
       state.unread = 0;
       chromeStorage.setUnread(state.unread, 'clear unread number.');
+    }
+  },
+
+  setPopupWindow(state: myStore.VuexState, pw: myStore.PopupWindow): void {
+    if (pw) {
+      Object.assign(state.popupWindow, pw);
+      chromeStorage.setPopupWindow(state.popupWindow, 'set popup window.');
     }
   },
 };

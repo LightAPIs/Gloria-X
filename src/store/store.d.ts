@@ -73,6 +73,7 @@ declare namespace myStore {
     [key: string]: number | boolean | string;
     appearanceInterface: string;
     appearancePopup: boolean;
+    appearancePopupRecord: boolean;
     useAppearanceZoom: boolean;
     appearanceZoom: number;
     appearanceContextMenus: boolean;
@@ -121,6 +122,7 @@ declare namespace myStore {
     configs: GloriaConfig;
     reducer: string;
     unread: number;
+    popupWindow: PopupWindow;
   }
 
   interface GloriaGetter {
@@ -148,5 +150,12 @@ declare namespace myStore {
     id: string;
     domain: string;
     headers: RequestHeaders[];
+  }
+
+  interface PopupWindow {
+    left: number;
+    top: number;
+    width: number;
+    height: number;
   }
 }

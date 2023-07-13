@@ -17,6 +17,13 @@
         @change="onSwitchChange('appearancePopup', $event)"
       ></el-switch>
     </div>
+    <div v-if="isChrome" class="margin-top flex-center">
+      <el-switch
+        :value="configs.appearancePopupRecord"
+        :active-text="i18n('settingsPopupRecord')"
+        @change="onSwitchChange('appearancePopupRecord', $event)"
+      ></el-switch>
+    </div>
     <div class="margin-top flex-center">
       <el-switch
         :value="configs.useAppearanceZoom"
@@ -58,6 +65,12 @@ import { mapState, mapMutations } from 'vuex';
 
 export default defineComponent({
   name: 'GloriaSettingsAppearance',
+  setup() {
+    const isChrome = process.env.VUE_APP_TITLE === 'chrome';
+    return {
+      isChrome,
+    };
+  },
   computed: {
     ...mapState(['configs']),
   },

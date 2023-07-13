@@ -23,6 +23,7 @@ function defaultConfigs(): myStore.GloriaConfig {
   return {
     appearanceInterface: 'default',
     appearancePopup: false,
+    appearancePopupRecord: false,
     useAppearanceZoom: false,
     appearanceZoom: 100,
     appearanceContextMenus: false,
@@ -94,6 +95,15 @@ function defaultRule(): myStore.RequestHeadersRule {
   };
 }
 
+function defaultPopupWindow(): myStore.PopupWindow {
+  return {
+    left: 10,
+    top: 10,
+    width: 750,
+    height: 580,
+  };
+}
+
 function normalizeTask(task: myStore.GloriaTask): myStore.GloriaTask {
   Object.keys(task).forEach(key => {
     if (!taskKeys.includes(key)) {
@@ -129,4 +139,13 @@ function isIncludeNotification(notify: myStore.GloriaNotification, filterText: s
   return false;
 }
 
-export { defaultConfigs, defaultTaskBasic, defaultTask, defaultRule, normalizeTask, normalizeRule, isIncludeNotification };
+export {
+  defaultConfigs,
+  defaultTaskBasic,
+  defaultTask,
+  defaultRule,
+  defaultPopupWindow,
+  normalizeTask,
+  normalizeRule,
+  isIncludeNotification,
+};

@@ -548,7 +548,7 @@ function syncImplicitStatus() {
 function popupWindow() {
   if (popupWindowId) {
     chrome.windows.get(popupWindowId, win => {
-      if (win) {
+      if (win.id) {
         chrome.windows.update(win.id, {
           focused: true,
         });
@@ -562,23 +562,30 @@ function popupWindow() {
 }
 
 function openPopupWindow() {
-  const { useAppearanceZoom, appearanceZoom } = store.state.configs;
-  let width = 750,
-    height = 580;
-  if (useAppearanceZoom) {
-    width = Math.round((width * appearanceZoom) / 100);
-    height = Math.round((height * appearanceZoom) / 100);
+  const { appearancePopupRecord } = store.state.configs;
+  let winWidth: number | undefined = 750,
+    winHeight: number | undefined = 580,
+    winLeft: number | undefined = undefined,
+    winTop: number | undefined = undefined;
+  if (appearancePopupRecord) {
+    const { left, top, width, height } = store.state.popupWindow;
+    winWidth = width;
+    winHeight = height;
+    winLeft = left;
+    winTop = top;
   }
   chrome.windows.create(
     {
       focused: true,
       type: 'popup',
       url: './popup.html',
-      width,
-      height,
+      width: winWidth,
+      height: winHeight,
+      left: winLeft,
+      top: winTop,
     },
     win => {
-      if (!chrome.runtime.lastError && win) {
+      if (!chrome.runtime.lastError && win && win.id) {
         popupWindowId = win.id;
         const { appearancePopup } = store.state.configs;
         if (!appearancePopup) {
@@ -598,7 +605,7 @@ function registerMenu() {
   const { appearanceContextMenus } = store.state.configs;
 
   const selectionMenuId = 'gloriaXSelection';
-  const selectionContexts = ['browser_action'];
+  const selectionContexts: chrome.contextMenus.ContextType[] = ['browser_action'];
   if (appearanceContextMenus) {
     selectionContexts.push('page');
   }
@@ -721,7 +728,7 @@ function registerMenu() {
   store.watch(
     (state: myStore.VuexState): boolean => state.configs.appearanceContextMenus,
     (val: boolean) => {
-      const contexts = ['browser_action'];
+      const contexts: chrome.contextMenus.ContextType[] = ['browser_action'];
       if (val) {
         contexts.push('page');
       }
@@ -764,15 +771,38 @@ function browserActionHandler() {
     if (winId && popupWindowId) {
       if (winId === popupWindowId) {
         popupWindowId = null;
-        const { appearancePopup } = store.state.configs;
+        const { appearancePopup, appearancePopupRecord } = store.state.configs;
         if (!appearancePopup) {
           chrome.browserAction.setPopup({
             popup: 'popup.html',
           });
         }
+        if (appearancePopupRecord) {
+          //TODO...
+        }
       }
     }
   });
+
+  //? for popup window
+  if (typeof chrome.windows.onBoundsChanged === 'object') {
+    //* chrome 86+
+    //! firefox not support
+    chrome.windows.onBoundsChanged.addListener(win => {
+      const { appearancePopupRecord } = store.state.configs;
+      if (appearancePopupRecord) {
+        if (popupWindowId && win.id === popupWindowId) {
+          const { left, top, width, height } = win;
+          store.commit('setPopupWindow', {
+            left,
+            top,
+            width,
+            height,
+          });
+        }
+      }
+    });
+  }
 }
 
 function testVirtualNotification(dataList: myStore.CommitData | myStore.CommitData[]) {
@@ -1161,10 +1191,34 @@ chrome.webRequest.onCompleted.addListener(
 );
 
 chrome.storage.local.get(
-  ['implicitPush', 'configs', 'tasks', 'rules', 'stages', 'notifications', 'reducer', 'lastCheckTasksUpdate', 'lastActiveTab', 'unread'],
+  [
+    'implicitPush',
+    'configs',
+    'tasks',
+    'rules',
+    'stages',
+    'notifications',
+    'reducer',
+    'lastCheckTasksUpdate',
+    'lastActiveTab',
+    'unread',
+    'popupWindow',
+  ],
   res => {
     console.log(res);
-    const { implicitPush, configs, tasks, rules, stages, notifications, reducer, lastCheckTasksUpdate, lastActiveTab, unread } = res;
+    const {
+      implicitPush,
+      configs,
+      tasks,
+      rules,
+      stages,
+      notifications,
+      reducer,
+      lastCheckTasksUpdate,
+      lastActiveTab,
+      unread,
+      popupWindow,
+    } = res;
     store.commit('setImplicitPush', implicitPush);
     store.commit('setLastCheckTasksUpdate', lastCheckTasksUpdate);
     store.commit('setLastActiveTab', lastActiveTab);
@@ -1176,6 +1230,7 @@ chrome.storage.local.get(
     store.commit('setReducer', reducer);
     store.commit('setRules', rules);
     store.commit('setTasks', tasks);
+    store.commit('setPopupWindow', popupWindow);
   }
 );
 

@@ -398,6 +398,9 @@
   "settingsOpenPopupWindow": {
     "message": "Always open a standalone pop-up window"
   },
+  "settingsPopupRecord": {
+    "message": "Record the position and size of standalone pop-up window"
+  },
   "settingsUseAppearanceZoom": {
     "message": "Custom pop-up window zoom"
   },

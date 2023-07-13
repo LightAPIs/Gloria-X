@@ -239,7 +239,7 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           break;
         case 'type':
           if ((typeof value === 'string' && this.templateTypes.includes(value)) || typeof value === 'undefined') {
-            options.type = value;
+            options.type = value as chrome.notifications.TemplateType | undefined;
             status = true;
           }
           break;
@@ -545,30 +545,34 @@ abstract class Notification<T extends enhanced.NotificationOptions> implements E
           });
         }
 
-        chrome.notifications.create(this.options.id || uuid(), this.format(this.options), (id: string) => {
-          if (chrome.runtime.lastError) {
-            return reject(chrome.runtime.lastError);
-          }
-
-          if (!this.options.silent && this.options.customSound) {
-            this.audio();
-          }
-
-          chrome.notifications.onClosed.addListener(this.closeHandler);
-          chrome.notifications.onClicked.addListener(this.clickHandler);
-          chrome.notifications.onButtonClicked.addListener(this.buttonClickHandler);
-
-          if (this.options.autoCloseTime) {
-            if (typeof this.options.autoCloseTime === 'number') {
-              setTimeout(this.clear, this.options.autoCloseTime);
+        chrome.notifications.create(
+          this.options.id || uuid(),
+          this.format(this.options) as chrome.notifications.NotificationOptions<true>,
+          (id: string) => {
+            if (chrome.runtime.lastError) {
+              return reject(chrome.runtime.lastError);
             }
+
+            if (!this.options.silent && this.options.customSound) {
+              this.audio();
+            }
+
+            chrome.notifications.onClosed.addListener(this.closeHandler);
+            chrome.notifications.onClicked.addListener(this.clickHandler);
+            chrome.notifications.onButtonClicked.addListener(this.buttonClickHandler);
+
+            if (this.options.autoCloseTime) {
+              if (typeof this.options.autoCloseTime === 'number') {
+                setTimeout(this.clear, this.options.autoCloseTime);
+              }
+            }
+
+            this._id = id;
+            this._state = NotificationState.CREATED;
+
+            resolve(id);
           }
-
-          this._id = id;
-          this._state = NotificationState.CREATED;
-
-          resolve(id);
-        });
+        );
       }
     });
   }

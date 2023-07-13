@@ -18,6 +18,7 @@ class ChromeStorage {
   private configs: (func: () => void) => void;
   private reducer: (func: () => void) => void;
   private unread: (func: () => void) => void;
+  private popupWindow: (func: () => void) => void;
   private blockLog: boolean;
 
   constructor(blockLog?: boolean) {
@@ -96,6 +97,14 @@ class ChromeStorage {
     );
 
     this.unread = debounce(
+      function (func) {
+        func();
+      },
+      ChromeStorage.WAIT_TIME,
+      ChromeStorage.OPTIONS
+    );
+
+    this.popupWindow = debounce(
       function (func) {
         func();
       },
@@ -235,6 +244,19 @@ class ChromeStorage {
         },
         () => {
           this.consoleLog('#333300', message);
+        }
+      );
+    });
+  }
+
+  setPopupWindow(data: myStore.PopupWindow, message?: string): void {
+    this.popupWindow(() => {
+      chrome.storage.local.set(
+        {
+          popupWindow: toRaw(data),
+        },
+        () => {
+          this.consoleLog('#884400', message);
         }
       );
     });

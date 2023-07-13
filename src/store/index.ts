@@ -1,6 +1,6 @@
 import { createStore, createLogger } from 'vuex';
 import VuexChromePlugin from '../vuex-extensions';
-import { defaultConfigs } from './basic';
+import { defaultConfigs, defaultPopupWindow } from './basic';
 import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
@@ -35,6 +35,7 @@ const store = createStore({
       configs: defaultconf,
       reducer: '',
       unread: 0,
+      popupWindow: defaultPopupWindow(),
     } as myStore.VuexState;
   },
   getters,
