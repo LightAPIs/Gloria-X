@@ -771,14 +771,11 @@ function browserActionHandler() {
     if (winId && popupWindowId) {
       if (winId === popupWindowId) {
         popupWindowId = null;
-        const { appearancePopup, appearancePopupRecord } = store.state.configs;
+        const { appearancePopup } = store.state.configs;
         if (!appearancePopup) {
           chrome.browserAction.setPopup({
             popup: 'popup.html',
           });
-        }
-        if (appearancePopupRecord) {
-          //TODO...
         }
       }
     }
