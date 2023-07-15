@@ -16,7 +16,7 @@
             view-class="notifications-scroll-view"
             tag="div"
           >
-            <el-timeline v-infinite-scroll="onInfiniteLoad" class="history-timeline">
+            <el-timeline v-infinite-scroll="onInfiniteLoad" :infinite-scroll-distance="5" class="history-timeline">
               <gloria-notification-item
                 v-for="info in notificationsList(loadIndex, menuName, filterText, isLater, isVisited)"
                 :id="info.id"
@@ -108,7 +108,7 @@ export default defineComponent({
 
 <style lang="scss">
 .history-container {
-  height: 510px;
+  height: calc(100vh - 70px);
   .history-aside {
     background-color: #545c64;
   }
@@ -118,11 +118,7 @@ export default defineComponent({
 }
 
 .notifications-main {
-  padding-right: 0px;
-  padding-left: 10px;
-  .el-scrollbar {
-    height: 99%;
-  }
+  padding: 5px 0px 0px 10px;
 }
 
 .notifications-scroll-wrap {

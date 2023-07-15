@@ -19,7 +19,7 @@
           wrap
           :print-margin="false"
           :options="{ tabSize: 2 }"
-          style="height: 165px; font-size: 15px; border: 1px solid #b32929"
+          style="height: calc(100vh - 415px); font-size: 15px; border: 1px solid #b32929"
         />
       </el-form-item>
       <el-form-item :label="i18n('popupTaskFormType')">

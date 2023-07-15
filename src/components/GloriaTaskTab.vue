@@ -153,6 +153,6 @@ export default defineComponent({
 
 <style lang="scss">
 .task-container {
-  height: 510px;
+  height: calc(100vh - 70px);
 }
 </style>

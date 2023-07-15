@@ -74,6 +74,12 @@ export default defineComponent({
 <style lang="scss">
 @import '~@/scss/index.scss';
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #212121;
+  }
+}
+
 #gloria-popup-app {
   width: 750px;
   height: 580px;
@@ -81,11 +87,8 @@ export default defineComponent({
     border: 0px;
   }
   .tab-pane {
-    height: 510px;
+    height: calc(100vh - 70px);
     overflow: auto;
-  }
-  .tab-content {
-    min-height: 510px;
   }
   .el-dialog__header {
     padding-bottom: 5px;

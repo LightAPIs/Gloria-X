@@ -253,7 +253,7 @@ export default defineComponent({
 
 <style lang="scss">
 .history-menu {
-  height: 510px;
+  height: calc(100vh - 70px);
   border-right: 1px solid #545c64;
   .history-menu-item {
     overflow: hidden;
