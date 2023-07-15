@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](///compare/v2.13.0...v2.14.0) (2023-07-15)
+
+
+### Features
+
+* **popup:** 支持记录独立弹出窗口的位置及尺寸 859de1d, closes #10
+* 支持自定义是否显示网页上下文菜单 8bf8ec5, closes #9
+
+
+### Bug Fixes
+
+* **task:** 修复当任务代码中无 `commit` 函数时导致任务列表阻塞 929f24b
+
 ## [2.13.0](///compare/v2.12.0...v2.13.0) (2023-07-02)
 
 
