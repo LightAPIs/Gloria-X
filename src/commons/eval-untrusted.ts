@@ -78,7 +78,7 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
       try {
         window.sessionStorage[idName] = window.sessionStorage[inflateName];
       } catch (e) {
-        if (e.name === 'QuotaExceededError') {
+        if ((e as any).name === 'QuotaExceededError') {
           Object.keys(window.sessionStorage).forEach(key => {
             if (key !== idName && key !== inflateName) {
               window.sessionStorage.removeItem(key);
@@ -220,14 +220,23 @@ function inflatedRequestHeaders(details: chrome.webRequest.WebRequestHeadersDeta
 
 function evalUntrusted(code: string): Promise<myStore.CommitData | myStore.CommitData[]> {
   return new Promise((resolve, reject) => {
+    //? 处理当任务代码中不存在 commit 函数时，无法触发任务"完成"/"出错"的问题
+    const timeout = window.setTimeout(() => {
+      window.clearTimeout(timeout);
+      reject('timeout');
+    }, 1000 * 65);
+
     createGloriaSandbox().then((sandbox: any) => {
       sandbox.addEventListener('error', ({ detail }: any) => {
+        window.clearTimeout(timeout);
         reject(detail);
       });
       sandbox.addEventListener('commit', ({ detail }: any) => {
+        window.clearTimeout(timeout);
         resolve(detail);
         sandbox.destroy();
       });
+
       sandbox
         .execute(code, 1000 * 60)
         .then(() => {
@@ -235,6 +244,7 @@ function evalUntrusted(code: string): Promise<myStore.CommitData | myStore.Commi
           sandbox.destroy();
         })
         .catch((err: unknown) => {
+          window.clearTimeout(timeout);
           reject(err);
           sandbox.destroy();
         });
