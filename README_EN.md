@@ -48,6 +48,7 @@ Timed a custom JavaScript code task, implement the automation work such as web m
       - [Observation task](#observation-task)
       - [General task](#general-task)
     - [Task difference](#task-difference)
+    - [Note](#note)
   - [Access URL](#access-url)
     - [Access URL example](#access-url-example)
   - [Load external scripts async](#load-external-scripts-async)
@@ -228,6 +229,40 @@ The behavior of the General task is completely different. When you do it enough 
 Because when the task is created, the task will be executed once, and the result of the first execution will be cached in the STAGES component. When a different result appears in the subsequent execution, a new notification will be pushed and the new result will be cached in the STAGES component. It is important that the General task is different from the Observation task, is not remove old results, but will be cached in the STAEGS component along with the new results. And because of the particularity of this example task, there are only two possible results, no matter what result the subsequent execution will get, it will be the same as one of the wto results cached in the STAGES component, which is impossible to push new notifications.
 
 These are examples of the differencess between the two tasks, which can be observed in the internal state view panel of the options page.
+
+#### Note
+
+In a task code, the `commit` function is **required**. a `Gloria Notification` object, `Gloria Notification` array, `null` or `undefined` prompt should be sent to the `commit` function at the end of any code.
+
+For example, in the following example task code:
+
+```javascript
+(async () => {
+  const { lodash: _ } = await importScripts('gloria-utils');
+  const result = _.random(1);
+  if (result) {
+    commit({
+      title: result.toString(),
+    });
+  }
+})();
+```
+
+When the `result` in the above code is `0`, since no value was provided to the `commit` function, the task will need to wait for a timeout(`60s`) error before ending execution. So the above task code should be normalized to:
+
+```javascript
+(async () => {
+  const { lodash: _ } = await importScripts('gloria-utils');
+  const result = _.random(1);
+  if (result) {
+    commit({
+      title: result.toString(),
+    });
+  } else {
+    commit(null);
+  }
+})();
+```
 
 ### Access URL
 
