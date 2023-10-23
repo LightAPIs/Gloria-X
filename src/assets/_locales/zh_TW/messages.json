@@ -530,6 +530,9 @@
   "settingsNotificationMaxinum": {
     "message": "通知記錄數量上限："
   },
+  "settingsNotificationMaxinumTip": {
+    "message": "不包含稍後查閱的通知，即稍後查閱的通知始終儲存。"
+  },
   "settingsClear": {
     "message": "清理功能"
   },

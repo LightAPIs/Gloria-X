@@ -44,10 +44,14 @@ export default {
 
       //* 处理通知记录数量上限
       if (name === 'notificationMaxinum') {
-        if (state.configs.notificationMaxinum && state.notifications.length > state.configs.notificationMaxinum) {
-          const diffNum = state.notifications.length - state.configs.notificationMaxinum;
-          for (let i = 0; i < diffNum; i++) {
-            state.notifications.pop();
+        const len = state.notifications.filter(item => !item.later).length;
+        if (state.configs.notificationMaxinum && len > state.configs.notificationMaxinum) {
+          const diffNum = len - state.configs.notificationMaxinum;
+          for (let i = state.notifications.length - 1, j = 0; i > 0 && j < diffNum; i--) {
+            if (!state.notifications[i].later) {
+              state.notifications.splice(i, 1);
+              j++;
+            }
           }
           chromeStorage.setNotifications(state.notifications, `update "notifications maxinum".`);
         }
@@ -395,10 +399,14 @@ export default {
           });
         });
         //* 处理通知记录数量上限
-        if (notificationMaxinum && state.notifications.length > notificationMaxinum) {
-          const diffNum = state.notifications.length - notificationMaxinum;
-          for (let i = 0; i < diffNum; i++) {
-            state.notifications.pop();
+        const len = state.notifications.filter(item => !item.later).length;
+        if (notificationMaxinum && len > notificationMaxinum) {
+          const diffNum = len - notificationMaxinum;
+          for (let i = state.notifications.length - 1, j = 0; i > 0 && j < diffNum; i--) {
+            if (!state.notifications[i].later) {
+              state.notifications.splice(i, 1);
+              j++;
+            }
           }
         }
         if (notificationShowBadge) {
@@ -435,8 +443,14 @@ export default {
       state.notifications.unshift(newNotification);
 
       //* 处理通知记录数量上限
-      if (notificationMaxinum && state.notifications.length > notificationMaxinum) {
-        state.notifications.pop();
+      const len = state.notifications.filter(item => !item.later).length;
+      if (notificationMaxinum && len > notificationMaxinum) {
+        for (let i = state.notifications.length - 1; i > 0; i--) {
+          if (!state.notifications[i].later) {
+            state.notifications.splice(i, 1);
+            break;
+          }
+        }
       }
       if (notificationShowBadge) {
         state.unread++;

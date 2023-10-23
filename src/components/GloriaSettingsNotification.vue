@@ -110,7 +110,7 @@
         @change="onChange('notificationOpenInterval', $event)"
       ></el-input-number>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex-center">
       <span class="font-14">
         {{ i18n('settingsNotificationMaxinum') }}
       </span>
@@ -123,6 +123,9 @@
         size="medium"
         @change="onChange('notificationMaxinum', $event)"
       ></el-input-number>
+      <el-tooltip placement="top-start" :enterable="false" :content="i18n('settingsNotificationMaxinumTip')">
+        <span class="options-tip-icon"><i class="el-icon-info"></i></span>
+      </el-tooltip>
     </div>
   </div>
 </template>

@@ -530,6 +530,9 @@
   "settingsNotificationMaxinum": {
     "message": "Maximum number of notification records: "
   },
+  "settingsNotificationMaxinumTip": {
+    "message": "Not included notifications that are later review. In other words, notifications of later review are always saved."
+  },
   "settingsClear": {
     "message": "Clean Up"
   },
