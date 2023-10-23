@@ -238,7 +238,7 @@ _当然这两个任务并没有任何实际意义，仅供用来测试参考两�
 
 #### 注意事项
 
-在一个任务代码中，`commit` 函数是**必需的**。即应该在任何代码的结束位置上将一个 `Gloria Notification` 对象、`Gloria Notification` 数组、`null` 或 `undefined` 提使给 `commit` 函数。
+在一个任务代码中，`commit` 函数是**必需的**。即应该在任何代码的结束位置上将一个 `Gloria Notification` 对象、`Gloria Notification` 数组、`null` 或 `undefined` 提供给 `commit` 函数。
 
 例如，在以下示例任务代码中：
 
