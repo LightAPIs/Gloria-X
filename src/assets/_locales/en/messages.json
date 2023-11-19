@@ -17,6 +17,9 @@
   "popupTaskAdd": {
     "message": "Add task"
   },
+  "popupTaskOpen": {
+    "message": "Pop-up as a standalone window"
+  },
   "popupTaskShare": {
     "message": "Share task"
   },

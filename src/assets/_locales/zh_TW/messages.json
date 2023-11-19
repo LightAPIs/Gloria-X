@@ -17,6 +17,9 @@
   "popupTaskAdd": {
     "message": "新增任務"
   },
+  "popupTaskOpen": {
+    "message": "彈出成獨立視窗"
+  },
   "popupTaskShare": {
     "message": "分享任務"
   },

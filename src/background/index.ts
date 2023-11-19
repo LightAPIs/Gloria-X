@@ -756,7 +756,7 @@ function browserActionHandler() {
         });
       } else {
         chrome.browserAction.setPopup({
-          popup: 'popup.html',
+          popup: 'popup.html#/?popup=1',
         });
       }
     }
@@ -774,7 +774,7 @@ function browserActionHandler() {
         const { appearancePopup } = store.state.configs;
         if (!appearancePopup) {
           chrome.browserAction.setPopup({
-            popup: 'popup.html',
+            popup: 'popup.html#/?popup=1',
           });
         }
       }
@@ -1166,6 +1166,9 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
           }
         }
       );
+      return true;
+    case 'open-popup':
+      popupWindow();
       return true;
   }
 });
