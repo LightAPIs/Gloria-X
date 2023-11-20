@@ -6,7 +6,32 @@
       </el-aside>
       <el-container>
         <el-header class="options-header">
-          <gloria-options-breadcrumb :breadcrumb-index="activeIndex"></gloria-options-breadcrumb>
+          <el-row>
+            <el-col :span="12">
+              <gloria-options-breadcrumb :breadcrumb-index="activeIndex"></gloria-options-breadcrumb>
+            </el-col>
+            <el-col :span="12">
+              <div style="text-align: right">
+                <span class="gloria-config-button" :title="i18n('settingsConfigExportTip')" @click="onExport">
+                  {{ i18n('settingsConfigExport') }}
+                </span>
+                <el-popconfirm
+                  placement="left-start"
+                  effect="dark"
+                  :title="i18n('settingsConfigImportWarn')"
+                  :confirm-button-text="i18n('confirmText')"
+                  :cancel-button-text="i18n('cancelText')"
+                  @confirm="onImport"
+                >
+                  <template #reference>
+                    <span class="gloria-config-button" :title="i18n('settingsConfigImportTip')">
+                      {{ i18n('settingsConfigImport') }}
+                    </span>
+                  </template>
+                </el-popconfirm>
+              </div>
+            </el-col>
+          </el-row>
         </el-header>
         <el-scrollbar :native="false" :noresize="false" tag="div">
           <el-main>
@@ -20,9 +45,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
+import { ElMessage } from 'element-plus';
 import GloriaOptionsMenu from '@/components/GloriaOptionsMenu.vue';
 import GloriaOptionsBreadcrumb from '@/components/GloriaOptionsBreadcrumb.vue';
+import { exportFile, importFile } from '@/commons/file';
+import { defaultConfigs } from '@/store/basic';
 
 export default defineComponent({
   name: 'App',
@@ -49,14 +77,59 @@ export default defineComponent({
 
     return {
       activeIndex,
+      exportFile,
+      importFile,
     };
   },
   computed: {
     ...mapState(['configs']),
+    ...mapGetters(['exportConetnt']),
   },
   methods: {
+    ...mapMutations(['updateImplicitPush', 'saveConfigs', 'saveReducer', 'saveRules', 'saveTasks']),
     menuClick(index: string) {
       this.activeIndex = index;
+    },
+    onExport() {
+      this.exportFile(this.exportConetnt, 'gloria_x.txt', () => {
+        ElMessage.success(this.i18n('settingsExportJsonSuccess'));
+      });
+    },
+    onImport() {
+      try {
+        this.importFile((status, content) => {
+          if (status) {
+            if (content) {
+              if (/^{"implicitPush":/.test(content)) {
+                try {
+                  const importObj = JSON.parse(content);
+                  if (typeof importObj === 'object' && importObj) {
+                    const { implicitPush = false, tasks = [], rules = [], reducer = '', configs = defaultConfigs() } = importObj;
+                    this.updateImplicitPush(implicitPush);
+                    this.saveConfigs(configs);
+                    this.saveReducer(reducer);
+                    this.saveRules(rules);
+                    this.saveTasks(tasks);
+                  }
+                } catch (e) {
+                  console.error(e);
+                  ElMessage.error(this.i18n('settingsImportUnkown'));
+                }
+              } else {
+                ElMessage.error(this.i18n('settingsImportInvalid'));
+              }
+            } else {
+              ElMessage.error(this.i18n('settingsImportEmpty'));
+            }
+          } else {
+            content === 'no file' && ElMessage.warning(this.i18n('settingsImoprtNoFile'));
+            content === 'invalid' && ElMessage.error(this.i18n('settingsImportInvalid'));
+          }
+        });
+      } catch (e) {
+        console.error(e);
+        ElMessage.error(this.i18n('settingsImportUnkown'));
+      }
     },
   },
 });
@@ -88,6 +161,12 @@ export default defineComponent({
       font-size: 1.25em;
       cursor: help;
     }
+  }
+
+  .gloria-config-button {
+    color: #9a9aff;
+    margin: 0 10px;
+    cursor: pointer;
   }
 }
 

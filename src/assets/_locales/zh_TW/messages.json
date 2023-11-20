@@ -647,6 +647,21 @@
   "settingsExportTextTooltip": {
     "message": "匯出數據為 txt 檔案"
   },
+  "settingsConfigExport": {
+    "message": "匯出配置"
+  },
+  "settingsConfigExportTip": {
+    "message": "匯出設定、任務、要求標頭、Reducer"
+  },
+  "settingsConfigImport": {
+    "message": "匯入配置"
+  },
+  "settingsConfigImportTip": {
+    "message": "匯出設定、任務、要求標頭、Reducer"
+  },
+  "settingsConfigImportWarn": {
+    "message": "這將覆蓋設定、任務、要求標頭、Reducer，確認匯入嗎？"
+  },
   "settingsTableName": {
     "message": "名稱"
   },

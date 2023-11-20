@@ -158,4 +158,12 @@ declare namespace myStore {
     width: number;
     height: number;
   }
+
+  interface ExportContent {
+    implicitPush: boolean;
+    tasks: GloriaTask[];
+    rules: RequestHeadersRule[];
+    configs: GloriaConfig;
+    reducer: string;
+  }
 }

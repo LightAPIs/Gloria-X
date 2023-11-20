@@ -647,6 +647,21 @@
   "settingsExportTextTooltip": {
     "message": "导出数据为 txt 文件"
   },
+  "settingsConfigExport": {
+    "message": "导出配置"
+  },
+  "settingsConfigExportTip": {
+    "message": "导出设置、任务、请求头、Reducer"
+  },
+  "settingsConfigImport": {
+    "message": "导入配置"
+  },
+  "settingsConfigImportTip": {
+    "message": "导入设置、任务、请求头、Reducer"
+  },
+  "settingsConfigImportWarn": {
+    "message": "这将覆盖设置、任务、请求头、Reducer，确认导入吗？"
+  },
   "settingsTableName": {
     "message": "名称"
   },

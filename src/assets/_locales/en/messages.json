@@ -647,6 +647,21 @@
   "settingsExportTextTooltip": {
     "message": "Export data as txt file"
   },
+  "settingsConfigExport": {
+    "message": "Export"
+  },
+  "settingsConfigExportTip": {
+    "message": "Export settings, tasks, request header, Reducer"
+  },
+  "settingsConfigImport": {
+    "message": "Import"
+  },
+  "settingsConfigImportTip": {
+    "message": "Import settings, tasks, request header, Reducer"
+  },
+  "settingsConfigImportWarn": {
+    "message": "This overrides the settings, tasks, request header, Reducer. Are you sure to import?"
+  },
   "settingsTableName": {
     "message": "Name"
   },

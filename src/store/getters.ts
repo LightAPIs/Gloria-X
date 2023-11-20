@@ -172,4 +172,18 @@ export default {
     }
     return info;
   },
+
+  exportConetnt(state: myStore.VuexState): string {
+    const { implicitPush, tasks, rules, configs, reducer } = state;
+
+    const content: myStore.ExportContent = {
+      implicitPush,
+      tasks,
+      rules,
+      configs,
+      reducer,
+    };
+
+    return JSON.stringify(content);
+  },
 };

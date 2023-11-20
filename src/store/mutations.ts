@@ -37,6 +37,41 @@ export default {
   setConfigs(state: myStore.VuexState, newCofings: myStore.GloriaConfig): void {
     Object.assign(state.configs, newCofings || {});
   },
+  saveConfigs(state: myStore.VuexState, newCofings: myStore.GloriaConfig): void {
+    Object.assign(state.configs, newCofings || {});
+
+    //* 处理通知记录数量上限
+    const len = state.notifications.filter(item => !item.later).length;
+    if (state.configs.notificationMaxinum && len > state.configs.notificationMaxinum) {
+      const diffNum = len - state.configs.notificationMaxinum;
+      for (let i = state.notifications.length - 1, j = 0; i > 0 && j < diffNum; i--) {
+        if (!state.notifications[i].later) {
+          state.notifications.splice(i, 1);
+          j++;
+        }
+      }
+      chromeStorage.setNotifications(state.notifications, `update "notifications maxinum".`);
+    }
+
+    //* 处理扩展程序图标显示未读通知数
+    if (!state.configs.notificationShowBadge) {
+      // 关闭选项时清零
+      if (state.unread > 0) {
+        state.unread = 0;
+        chromeStorage.setUnread(state.unread, 'sync clear unread number.');
+      }
+    }
+
+    //* 处理记录的独立弹出窗口位置
+    if (!state.configs.appearancePopupRecord) {
+      // 关闭时清空数据
+      Object.assign(state.popupWindow, defaultPopupWindow());
+      chromeStorage.setPopupWindow(state.popupWindow, 'clear popup window.');
+    }
+
+    //* 保存配置至存储
+    chromeStorage.setConfigs(state.configs, 'set configs.');
+  },
   updateConfigs(state: myStore.VuexState, config: myStore.GloriaConfigItem): void {
     const { name, value } = config;
     if (typeof name === 'string') {
@@ -87,6 +122,15 @@ export default {
     } else {
       state.tasks = [];
     }
+  },
+  saveTasks(state: myStore.VuexState, newTasks: myStore.GloriaTask[]): void {
+    if (newTasks && Array.isArray(newTasks) && newTasks.length > 0) {
+      state.tasks = newTasks.map(task => Object.assign(defaultTask(), normalizeTask(task)));
+    } else {
+      state.tasks = [];
+    }
+
+    chromeStorage.setTasks(state.tasks, 'set tasks.');
   },
   mergeTasks(state: myStore.VuexState, newTasks: myStore.GloriaTask[]): void {
     if (Array.isArray(newTasks)) {
@@ -236,6 +280,15 @@ export default {
     } else {
       state.rules = [];
     }
+  },
+  saveRules(state: myStore.VuexState, newRules: myStore.RequestHeadersRule[]): void {
+    if (newRules && Array.isArray(newRules) && newRules.length > 0) {
+      state.rules = [...newRules];
+    } else {
+      state.rules = [];
+    }
+
+    chromeStorage.setRules(state.rules, 'set rules.');
   },
   mergeRules(state: myStore.VuexState, newRules: myStore.RequestHeadersRule[]): void {
     if (Array.isArray(newRules)) {
@@ -580,6 +633,11 @@ export default {
 
   setReducer(state: myStore.VuexState, newReducer: string): void {
     state.reducer = newReducer || '';
+  },
+  saveReducer(state: myStore.VuexState, newReducer: string): void {
+    state.reducer = newReducer || '';
+
+    chromeStorage.setReducer(state.reducer, 'set reducer.');
   },
   updateReducer(state: myStore.VuexState, newReducer: string): void {
     state.reducer = newReducer;
