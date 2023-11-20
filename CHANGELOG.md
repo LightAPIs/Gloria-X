@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.15.0](///compare/v2.14.1...v2.15.0) (2023-11-20)
+
+
+### Features
+
+* **options:** 支持导入导出所有配置 1f697ce, closes #12
+* 在弹窗中添加弹出成独立窗口的按钮 316b86e, closes #10 #12
+
 ### [2.14.1](///compare/v2.14.0...v2.14.1) (2023-10-23)
 
 ## [2.14.0](///compare/v2.13.0...v2.14.0) (2023-07-15)
