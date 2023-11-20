@@ -81,8 +81,8 @@ export default defineComponent({
 }
 
 #gloria-popup-app {
-  width: 750px;
-  height: 580px;
+  min-width: 750px;
+  min-height: 580px;
   .gloria-tabs {
     border: 0px;
   }
