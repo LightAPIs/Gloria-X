@@ -46,12 +46,12 @@
         {{ i18n('popupNotificationVisited') }}
       </el-menu-item>
       <el-menu-item
-        v-for="(item, index) in notificationsTitleList"
-        :key="index"
-        :index="index.toString()"
+        v-for="item in notificationsTitleList"
+        :key="'t-' + item"
+        :index="'t-' + item"
         class="history-menu-item"
         :title="item"
-        @contextmenu.prevent="onContextmenu($event, index.toString())"
+        @contextmenu.prevent="onContextmenu($event, 't-' + item)"
       >
         <template v-if="configs.notificationShowMenuCount">
           <el-row type="flex">
@@ -104,7 +104,7 @@ export default defineComponent({
       } else if (key == '-3') {
         isVisited = true;
       } else if (key != '-1') {
-        menuName = this.notificationsTitleList[key];
+        menuName = key.substring(2);
       }
 
       this.$emit('select-menu', {
@@ -113,11 +113,11 @@ export default defineComponent({
         isVisited,
       });
     },
-    onContextmenu(event: MouseEvent, index: string) {
-      const { notificationsTitleList, laterCount, laterList } = this;
+    onContextmenu(event: MouseEvent, key: string) {
+      const { laterCount, laterList } = this;
       const items = [];
 
-      if (index !== '-1' && index !== '-2' && index !== '-3') {
+      if (key !== '-1' && key !== '-2' && key !== '-3') {
         items.push(
           {
             label: this.i18n('popupContextNotificationMenuCopy'),
@@ -125,7 +125,7 @@ export default defineComponent({
             divided: true,
             onClick: () => {
               this.copyToClip(
-                notificationsTitleList[index],
+                key.substring(2),
                 () => {
                   ElMessage.success(this.i18n('popupContextNotificationMenuCopyCompleted'));
                 },
@@ -139,7 +139,7 @@ export default defineComponent({
             label: this.i18n('popupContextNotificationMenuMarkLater'),
             icon: 'el-icon-collection-tag',
             onClick: () => {
-              this.markLaterByName(notificationsTitleList[index]);
+              this.markLaterByName(key.substring(2));
             },
           },
           {
@@ -147,13 +147,13 @@ export default defineComponent({
             icon: 'el-icon-finished',
             divided: true,
             onClick: () => {
-              this.removeLaterByName(notificationsTitleList[index]);
+              this.removeLaterByName(key.substring(2));
             },
           }
         );
       }
 
-      if (index === '-2') {
+      if (key === '-2') {
         if (laterCount <= 10) {
           items.push({
             label: this.i18n('popupContextNotificationMenuOpenLater'),
@@ -173,8 +173,8 @@ export default defineComponent({
         });
       }
 
-      if (index !== '-2') {
-        if (index === '-1') {
+      if (key !== '-2') {
+        if (key === '-1') {
           items.push({
             label: this.i18n('popupContextNotificationMenuClearAll'),
             icon: 'el-icon-delete-solid',
@@ -182,7 +182,7 @@ export default defineComponent({
               this.clearNotifications();
             },
           });
-        } else if (index === '-3') {
+        } else if (key === '-3') {
           items.push({
             label: this.i18n('popupContextNofificationMenuClearVisited'),
             icon: 'el-icon-delete-solid',
@@ -195,7 +195,7 @@ export default defineComponent({
             label: this.i18n('popupContextNotificationMenuClear'),
             icon: 'el-icon-delete-solid',
             onClick: () => {
-              this.removeNotificationsByName(notificationsTitleList[index]);
+              this.removeNotificationsByName(key.substring(2));
             },
           });
         }
