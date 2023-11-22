@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.1](///compare/v2.15.0...v2.15.1) (2023-11-22)
+
+
+### Bug Fixes
+
+* **notifications:** 修复通知记录菜单栏在有新通知时菜单焦点会出错的问题 0ba3b86, closes #12
+* **popup:** 修复当通知记录中包含大图时会导致独立弹窗内主体框架宽度显示异常的问题 44336da, closes smile/gloria-x#2
+
 ## [2.15.0](///compare/v2.14.1...v2.15.0) (2023-11-20)
 
 
